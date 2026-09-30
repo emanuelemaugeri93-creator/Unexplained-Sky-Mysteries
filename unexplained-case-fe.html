@@ -1,0 +1,2330 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unexplained Sky Mysteries</title>
+  <meta name="robots" content="noindex, nofollow, noarchive" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    :root {
+      --bg-1: #0B1026;
+      --bg-2: #141B3D;
+      --bg-3: #232A5E;
+      --panel: rgba(255,255,255,0.08);
+      --panel-soft: rgba(255,255,255,0.05);
+      --panel-strong: rgba(255,255,255,0.12);
+      --line: rgba(255,255,255,0.12);
+      --line-strong: rgba(255,255,255,0.22);
+
+      --text-strong: #ffffff;
+      --text-base: #dcecff;
+      --text-muted: #9db8de;
+
+      --accent-primary: #2DD4BF;
+      --accent-secondary: #FBBF24;
+      --accent-violet: #818CF8;
+      --accent-yellow: #FBBF24;
+      --accent-mint: #2DD4BF;
+
+      --shadow-lg: 0 30px 80px rgba(0,0,0,0.35);
+      --shadow-md: 0 16px 36px rgba(0,0,0,0.26);
+      --glow-blue: 0 0 0 1px rgba(45,212,191,0.12), 0 0 30px rgba(45,212,191,0.16);
+
+      --radius-xl: 34px;
+      --radius-lg: 26px;
+      --radius-md: 18px;
+      --radius-sm: 14px;
+
+      --font-head: 'Baloo 2', system-ui, sans-serif;
+      --font-main: 'Inter', system-ui, sans-serif;
+      --transition: all .28s cubic-bezier(.4,0,.2,1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      min-height: 100%;
+    }
+
+    body {
+      font-family: var(--font-main);
+      color: var(--text-base);
+      background:
+        radial-gradient(circle at 10% 10%, rgba(45,212,191,.18) 0%, transparent 22%),
+        radial-gradient(circle at 90% 15%, rgba(129,140,248,.14) 0%, transparent 18%),
+        radial-gradient(circle at 76% 82%, rgba(45,212,191,.14) 0%, transparent 18%),
+        linear-gradient(180deg, var(--bg-2) 0%, var(--bg-1) 55%, #070B1E 100%);
+      overflow-x: hidden;
+    }
+
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::before {
+      background-image:
+        radial-gradient(2px 2px at 10% 20%, rgba(255,255,255,.65), transparent 55%),
+        radial-gradient(1.5px 1.5px at 40% 12%, rgba(255,255,255,.55), transparent 55%),
+        radial-gradient(1.8px 1.8px at 76% 18%, rgba(255,255,255,.5), transparent 55%),
+        radial-gradient(2px 2px at 85% 42%, rgba(255,255,255,.65), transparent 55%),
+        radial-gradient(1.5px 1.5px at 20% 72%, rgba(255,255,255,.45), transparent 55%),
+        radial-gradient(1.5px 1.5px at 62% 64%, rgba(255,255,255,.5), transparent 55%),
+        radial-gradient(2px 2px at 30% 48%, rgba(255,255,255,.55), transparent 55%),
+        radial-gradient(1.2px 1.2px at 92% 78%, rgba(255,255,255,.4), transparent 55%);
+      opacity: .92;
+    }
+
+    body::after {
+      background:
+        linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+      background-size: 42px 42px;
+      mask-image: linear-gradient(to bottom, rgba(255,255,255,.16), transparent 65%);
+      opacity: .16;
+    }
+
+    .app-shell {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 34px;
+      border-radius: 36px;
+      border: 1px solid rgba(255,255,255,.12);
+      background:
+        linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.04)),
+        radial-gradient(circle at 12% 18%, rgba(45,212,191,.18), transparent 25%),
+        radial-gradient(circle at 88% 18%, rgba(129,140,248,.15), transparent 24%),
+        linear-gradient(135deg, rgba(14,25,50,.92), rgba(8,18,36,.92));
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 24px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      color: #dff6ff;
+      font-size: .92rem;
+      font-weight: 700;
+      letter-spacing: .02em;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-family: var(--font-head);
+      font-size: clamp(2.9rem, 7vw, 5rem);
+      line-height: .92;
+      letter-spacing: -.02em;
+      color: white;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 20px rgba(45,212,191,.15);
+    }
+
+    .hero p.lead {
+      max-width: 700px;
+      font-size: 1.08rem;
+      color: var(--text-base);
+      line-height: 1.75;
+      margin-bottom: 22px;
+    }
+
+    .hero-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(255,255,255,.1);
+      color: #e6f4ff;
+      font-size: .94rem;
+      font-weight: 700;
+    }
+
+    .hero-badge svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent-secondary);
+    }
+
+    .hero-art {
+      min-height: 260px;
+      position: relative;
+      border-radius: 28px;
+      background:
+        radial-gradient(circle at 30% 25%, rgba(255,255,255,.22), transparent 18%),
+        radial-gradient(circle at 65% 42%, rgba(45,212,191,.25), transparent 18%),
+        radial-gradient(circle at 58% 72%, rgba(129,140,248,.18), transparent 14%),
+        linear-gradient(180deg, rgba(6,14,28,.45), rgba(10,20,40,.65));
+      border: 1px solid rgba(255,255,255,.1);
+      overflow: hidden;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    }
+
+    .radar-scope, .sky-orb, .flight-path, .glow-dot, .hero-art-label {
+      position: absolute;
+    }
+    .radar-scope {
+      width: 190px; height: 190px; left: 24px; bottom: 24px; border-radius: 50%;
+      border: 1.5px solid rgba(45,212,191,.5);
+      background: radial-gradient(circle, rgba(45,212,191,.12) 0%, rgba(11,16,38,.6) 70%);
+      overflow: hidden; box-shadow: 0 0 40px rgba(45,212,191,.18), inset 0 0 30px rgba(45,212,191,.12);
+    }
+    .radar-ring { position: absolute; inset: 0; border-radius: 50%; border: 1px solid rgba(45,212,191,.22); }
+    .radar-ring.r1 { inset: 28px; } .radar-ring.r2 { inset: 60px; }
+    .radar-sweep {
+      position: absolute; inset: 0; border-radius: 50%;
+      background: conic-gradient(from 0deg, rgba(45,212,191,.55) 0deg, transparent 70deg);
+      animation: radarSpin 5s linear infinite;
+    }
+    @keyframes radarSpin { to { transform: rotate(360deg); } }
+    .radar-blip { position: absolute; width: 8px; height: 8px; border-radius: 50%; background: #FBBF24; box-shadow: 0 0 12px #FBBF24; }
+    .radar-blip.b1 { top: 52px; left: 110px; } .radar-blip.b2 { top: 120px; left: 60px; opacity: .7; }
+    .sky-orb {
+      width: 74px; height: 74px; top: 32px; right: 48px; border-radius: 50%;
+      background: radial-gradient(circle at 40% 35%, #FEF3C7 0%, #FDE68A 25%, #FBBF24 60%, rgba(251,191,36,.1) 100%);
+      box-shadow: 0 0 34px rgba(251,191,36,.55), 0 0 80px rgba(251,191,36,.25);
+      filter: blur(.3px);
+    }
+    .flight-path {
+      left: 60px; right: 30px; top: 88px; height: 60px;
+      border-top: 2px dashed rgba(251,191,36,.55);
+      border-radius: 0 60px 0 0; transform: rotate(-6deg); opacity: .8;
+    }
+    .glow-dot { width: 7px; height: 7px; border-radius: 50%; background: #fff; box-shadow: 0 0 12px rgba(255,255,255,.9); }
+    .glow-dot.g1 { top: 26px; left: 30px; } .glow-dot.g2 { top: 70px; left: 150px; width: 5px; height: 5px; }
+    .glow-dot.g3 { bottom: 30px; right: 30px; } .glow-dot.g4 { top: 150px; right: 90px; width: 5px; height: 5px; }
+    .hero-art-label {
+      bottom: 16px; right: 16px; display: inline-flex; align-items: center; gap: 8px;
+      font-size: .78rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
+      color: #CCFBF1; background: rgba(11,16,38,.6); border: 1px solid rgba(45,212,191,.35);
+      padding: 8px 12px; border-radius: 999px;
+    }
+    .hero-art-label svg { width: 15px; height: 15px; }
+
+    .tabs-shell {
+      display: flex;
+      justify-content: center;
+      margin: 24px 0 26px;
+    }
+
+    .tab-pills {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow-md);
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      border: 0;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 13px 20px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--transition);
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: .01em;
+    }
+
+    .tab-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+    }
+
+    .tab-btn:hover {
+      background: rgba(255,255,255,.08);
+      color: white;
+      transform: translateY(-1px);
+    }
+
+    .tab-btn.active {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #04111f;
+      box-shadow: 0 8px 24px rgba(45,212,191,.32);
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn .35s ease;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(16px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .workspace-panel {
+      border-radius: 34px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)),
+        linear-gradient(180deg, rgba(8,19,38,.84), rgba(6,14,28,.92));
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(18px);
+      padding: 28px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .workspace-panel::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(45,212,191,.08), transparent 25%),
+        radial-gradient(circle at 100% 100%, rgba(129,140,248,.06), transparent 25%);
+      pointer-events: none;
+    }
+
+    .panel-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .section-head h3 {
+      font-family: var(--font-head);
+      color: white;
+      font-size: 1.95rem;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .section-head p {
+      max-width: 820px;
+      font-size: 1.02rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+    }
+
+    .story-intro-block {
+      margin-bottom: 30px;
+    }
+
+    .story-head {
+      margin-bottom: 20px;
+    }
+
+    .topic-stack {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 22px;
+    }
+
+    .topic-main-group {
+      gap: 12px;
+    }
+
+    .topic-main-group label {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #fff5c8;
+      font-size: 1.06rem;
+      font-weight: 900;
+      letter-spacing: .01em;
+    }
+
+    .topic-main-group label svg {
+      width: 18px;
+      height: 18px;
+      stroke: var(--accent-yellow);
+    }
+
+    .topic-helper-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(251,191,36,.12), rgba(255,255,255,.04));
+      border: 1px solid rgba(251,191,36,.18);
+      color: #fff4cc;
+      font-size: .95rem;
+      font-weight: 700;
+      line-height: 1.55;
+      width: 100%;
+      max-width: 760px;
+    }
+
+    .topic-helper-box svg {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      stroke: var(--accent-yellow);
+    }
+
+    .story-mode-ribbon {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      padding: 12px;
+      margin-top: 8px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 24px;
+    }
+
+    .story-builder,
+    .design-builder {
+      padding: 30px;
+      border-radius: 28px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.11);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .input-group label {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: #ddecff;
+      font-weight: 800;
+      font-size: .98rem;
+      letter-spacing: .01em;
+    }
+
+    .input-group label svg {
+      width: 17px;
+      height: 17px;
+      stroke: var(--accent-secondary);
+    }
+
+    input[type="text"], select, textarea {
+      width: 100%;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      color: white;
+      border-radius: 18px;
+      padding: 15px 16px;
+      outline: none;
+      transition: var(--transition);
+      font-size: 1rem;
+      font-family: var(--font-main);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    select option {
+      background: #07111f;
+      color: white;
+    }
+
+    input[type="text"]::placeholder,
+    textarea::placeholder {
+      color: #9eb6da;
+    }
+
+    input[type="text"]:focus,
+    select:focus,
+    textarea:focus {
+      border-color: rgba(45,212,191,.55);
+      box-shadow: 0 0 0 4px rgba(45,212,191,.12), 0 10px 28px rgba(45,212,191,.12);
+      transform: translateY(-1px);
+    }
+
+    .main-input {
+      padding: 20px 18px !important;
+      font-size: 1.12rem !important;
+      font-weight: 700;
+      border-radius: 22px !important;
+      background: linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.04)) !important;
+      border-color: rgba(255,255,255,.16) !important;
+    }
+
+    .main-topic-input {
+      min-height: 84px;
+      font-size: 1.2rem !important;
+      font-weight: 800;
+      padding: 24px 22px !important;
+      border-radius: 24px !important;
+      line-height: 1.35;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    .custom-input {
+      display: none;
+      margin-top: 4px;
+      border-style: dashed !important;
+      border-color: rgba(45,212,191,.55) !important;
+    }
+
+    .mode-ribbon {
+      display: inline-flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      padding: 10px;
+      margin-bottom: 22px;
+      background: rgba(255,255,255,.055);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 22px;
+    }
+
+    .mode-btn {
+      border: 0;
+      cursor: pointer;
+      background: transparent;
+      color: var(--text-muted);
+      padding: 14px 18px;
+      border-radius: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-weight: 800;
+      transition: var(--transition);
+      font-size: .97rem;
+      justify-content: center;
+      min-height: 58px;
+    }
+
+    .mode-btn:hover {
+      color: white;
+      background: rgba(255,255,255,.08);
+    }
+
+    .mode-btn.active {
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #04111f;
+      box-shadow: 0 10px 24px rgba(45,212,191,.24);
+    }
+
+    .mode-btn svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+    }
+
+    .form-section {
+      padding: 22px;
+      margin-bottom: 18px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.11);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+    }
+
+    .form-section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: var(--font-head);
+      color: white;
+      font-size: 1.35rem;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px dashed rgba(255,255,255,.12);
+    }
+
+    .form-section-title svg {
+      width: 22px;
+      height: 22px;
+      stroke: var(--accent-primary);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+    }
+
+    .paste-zone {
+      padding: 24px;
+      margin-bottom: 22px;
+      border-radius: 26px;
+      background: linear-gradient(180deg, rgba(45,212,191,.08), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.11);
+    }
+
+    .engine-card {
+      padding: 20px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(45,212,191,.09), rgba(255,255,255,.03));
+      border: 1px solid rgba(45,212,191,.2);
+      margin-bottom: 22px;
+    }
+
+    .engine-card .form-section-title {
+      color: #ccf7ff;
+      border-bottom-color: rgba(45,212,191,.18);
+    }
+
+    .btn-magic {
+      width: 100%;
+      border: 0;
+      cursor: pointer;
+      color: #07111f;
+      font-weight: 900;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      padding: 18px 20px;
+      border-radius: 22px;
+      font-size: 1.03rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: var(--transition);
+      background: linear-gradient(135deg, #7dd3fc, #2DD4BF);
+      box-shadow: 0 18px 36px rgba(45,212,191,.22);
+    }
+
+    .btn-magic:hover {
+      transform: translateY(-3px) scale(1.01);
+      filter: brightness(1.03);
+      box-shadow: 0 24px 44px rgba(45,212,191,.28);
+    }
+
+    .btn-secondary {
+      background: linear-gradient(135deg, #93c5fd, #67e8f9);
+    }
+
+    .btn-copy {
+      border: 0;
+      cursor: pointer;
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      color: #05111d;
+      font-weight: 900;
+      font-size: .95rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+      box-shadow: 0 10px 20px rgba(45,212,191,.18);
+    }
+
+    .btn-copy:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.04);
+    }
+
+    .btn-copy svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    .loader-wrapper {
+      display: none;
+      text-align: center;
+      padding: 34px 0 6px;
+    }
+
+    .spinner {
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      border: 4px solid rgba(255,255,255,.12);
+      border-top-color: var(--accent-secondary);
+      animation: spin 1s linear infinite;
+      box-shadow: 0 0 24px rgba(45,212,191,.14);
+    }
+
+    .loader-wrapper p {
+      font-weight: 900;
+      letter-spacing: .06em;
+      font-size: 1rem;
+      color: #d5f7ff;
+      text-transform: uppercase;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .output-box {
+      display: none;
+      text-align: center;
+      margin-top: 24px;
+      padding: 28px;
+      border-radius: 26px;
+      border: 1px dashed rgba(45,212,191,.45);
+      background: linear-gradient(180deg, rgba(45,212,191,.09), rgba(255,255,255,.03));
+    }
+
+    .output-box h3 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: white;
+      font-family: var(--font-head);
+      font-size: 1.55rem;
+      margin-bottom: 14px;
+    }
+
+    .output-box h3 svg {
+      stroke: var(--accent-secondary);
+    }
+
+    .json-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .json-card {
+      padding: 18px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      border: 1px solid rgba(255,255,255,.12);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,.05);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .json-card::before {
+      content: "";
+      position: absolute;
+      inset: auto -30px -30px auto;
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(45,212,191,.14), transparent 65%);
+      pointer-events: none;
+    }
+
+    .json-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(45,212,191,.34);
+      box-shadow: var(--glow-blue), var(--shadow-md);
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .json-index {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, #fef3c7, #fbbf24);
+      color: #1f2937;
+      font-weight: 900;
+      font-size: .88rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      width: fit-content;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.12);
+      color: #eff9ff;
+      font-size: .84rem;
+      font-weight: 900;
+      letter-spacing: .02em;
+    }
+
+    .json-help {
+      color: var(--text-muted);
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+
+    .footer-brand {
+      margin: 22px 0 8px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: .95rem;
+      padding: 10px 0 20px;
+    }
+
+    .footer-brand strong {
+      color: #f5fbff;
+    }
+
+    /* Top Navigation Buttons */
+    .top-nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 4px 20px 4px;
+      flex-wrap: wrap;
+    }
+
+    .nav-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: 0.95rem;
+      text-decoration: none;
+      color: white;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      backdrop-filter: blur(12px);
+      transition: var(--transition);
+      font-family: var(--font-main);
+      letter-spacing: 0.01em;
+      box-shadow: var(--shadow-md);
+    }
+
+    .nav-btn:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.3);
+      box-shadow: 0 16px 36px rgba(0,0,0,0.3);
+    }
+
+    .nav-btn svg {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+    }
+
+    .nav-btn-primary {
+      background: linear-gradient(135deg, rgba(45,212,191,0.25), rgba(45,212,191,0.25));
+      border-color: rgba(45,212,191,0.3);
+    }
+
+    .nav-btn-primary:hover {
+      background: linear-gradient(135deg, rgba(45,212,191,0.4), rgba(45,212,191,0.4));
+      border-color: rgba(45,212,191,0.5);
+    }
+
+    .sky-input-row { display: flex; gap: 12px; align-items: stretch; }
+    .sky-input-row input { flex: 1; }
+    .surprise-btn {
+      flex-shrink: 0; border: 0; cursor: pointer; border-radius: 20px; padding: 0 20px;
+      font-weight: 800; font-size: .95rem; color: #06281F; white-space: nowrap;
+      background: linear-gradient(135deg, #2DD4BF, #FBBF24);
+      box-shadow: 0 10px 24px rgba(45,212,191,.28);
+      transition: all .25s ease; display: inline-flex; align-items: center;
+    }
+    .surprise-btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+    .glow-pulse { animation: glowPulse .9s ease !important; border-color: rgba(45,212,191,.8) !important; }
+    @keyframes glowPulse {
+      0% { box-shadow: 0 0 0 0 rgba(45,212,191,.0); }
+      35% { box-shadow: 0 0 0 6px rgba(45,212,191,.28), 0 0 28px rgba(45,212,191,.4); }
+      100% { box-shadow: 0 0 0 0 rgba(45,212,191,0); }
+    }
+    .case-tier-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; margin: 14px 0 18px; }
+    .case-tier-card {
+      cursor: pointer; text-align: center; padding: 16px 12px; border-radius: 20px;
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.12);
+      transition: all .25s ease;
+    }
+    .case-tier-card:hover { background: rgba(255,255,255,.1); transform: translateY(-2px); }
+    .case-tier-card.active {
+      background: linear-gradient(135deg, #2DD4BF, #FBBF24); color: #06281F;
+      border-color: rgba(255,255,255,.2); box-shadow: 0 10px 26px rgba(45,212,191,.3);
+    }
+    .case-tier-card .tier-count { font-family: var(--font-head); font-size: 1.9rem; line-height: 1; }
+    .case-tier-card .tier-name { font-weight: 800; font-size: 1.02rem; }
+    .case-tier-card .tier-sub { font-size: .85rem; opacity: .8; font-weight: 600; }
+    @media (max-width: 1080px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-art {
+        min-height: 220px;
+      }
+    }
+
+    @media (max-width: 780px) {
+      .app-shell {
+        padding: 16px;
+      }
+
+      .hero,
+      .workspace-panel {
+        padding: 18px;
+        border-radius: 26px;
+      }
+
+      .story-builder,
+      .design-builder,
+      .paste-zone,
+      .form-section,
+      .engine-card {
+        padding: 18px;
+        border-radius: 22px;
+      }
+
+      .tab-pills {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .tab-btn {
+        flex: 1 1 auto;
+        justify-content: center;
+      }
+
+      .hero h1 {
+        line-height: .95;
+      }
+
+      .section-head h3 {
+        font-size: 1.7rem;
+      }
+
+      .section-head p {
+        font-size: .97rem;
+      }
+
+      .main-topic-input {
+        min-height: 76px;
+        font-size: 1.08rem !important;
+        padding: 20px 18px !important;
+      }
+
+      .story-mode-ribbon {
+        grid-template-columns: 1fr;
+      }
+
+      .case-tier-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .sky-input-row {
+        flex-direction: column;
+      }
+
+      .surprise-btn {
+        justify-content: center;
+        padding: 14px;
+      }
+
+      .mode-ribbon {
+        width: 100%;
+      }
+
+      .mode-btn {
+        width: 100%;
+      }
+
+      .top-nav {
+        justify-content: center;
+      }
+
+      .nav-btn {
+        padding: 10px 18px;
+        font-size: 0.85rem;
+      }
+    }
+    /* Guided workflow step bar (shared pattern across the Unexplained Sky Mysteries suite) */
+    .tabs-shell{display:none}
+    .wf-steps{display:flex;align-items:flex-start;justify-content:center;margin:26px 0 6px;gap:0}
+    .wf-step-pill{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1 1 0;min-width:104px;max-width:170px;background:none;border:0;font-family:var(--font-main);padding:0;color:var(--text-muted)}
+    .wf-step-pill.clickable{cursor:pointer}
+    .wf-dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:1.1rem;border:2px solid rgba(255,255,255,.18);color:var(--text-muted);background:rgba(255,255,255,.04);transition:var(--transition)}
+    .wf-dot svg{width:20px;height:20px}
+    .wf-dot .wf-check{display:none}
+    .wf-step-pill.current .wf-dot{border-color:var(--accent-primary);color:#fff;box-shadow:0 0 0 4px rgba(45,212,191,.15),0 0 24px rgba(45,212,191,.25)}
+    .wf-step-pill.done .wf-dot{background:linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));border-color:transparent;color:#04111f}
+    .wf-step-pill.done .wf-num{display:none}
+    .wf-step-pill.done .wf-check{display:inline}
+    .wf-step-label{font-size:.82rem;font-weight:800;letter-spacing:.01em;color:var(--text-muted)}
+    .wf-step-pill.current .wf-step-label{color:var(--text-strong)}
+    .wf-step-pill.done .wf-step-label{color:var(--text-base)}
+    .wf-link{flex:1 1 20px;min-width:14px;height:2px;background:rgba(255,255,255,.14);margin-top:21px;border-radius:2px}
+    .wf-link.done{background:linear-gradient(90deg,var(--accent-primary),var(--accent-secondary))}
+    .wf-counter{text-align:center;color:var(--text-muted);font-size:.85rem;font-weight:700;margin-bottom:20px}
+    .wf-nav{display:flex;gap:12px;justify-content:center;margin:26px 0 8px;flex-wrap:wrap}
+    .wf-continue{border:0;cursor:pointer;border-radius:18px;padding:15px 26px;font-weight:900;font-size:1rem;color:#04111f;background:linear-gradient(135deg,var(--accent-primary),var(--accent-secondary));box-shadow:0 12px 28px rgba(45,212,191,.25);transition:var(--transition);font-family:var(--font-main);white-space:nowrap}
+    .wf-continue:hover{transform:translateY(-2px);filter:brightness(1.05)}
+    .wf-back{border:1px solid rgba(255,255,255,.16);cursor:pointer;border-radius:18px;padding:13px 22px;font-weight:800;font-size:.95rem;color:var(--text-base);background:rgba(255,255,255,.06);transition:var(--transition);font-family:var(--font-main);white-space:nowrap}
+    .wf-back:hover{background:rgba(255,255,255,.12);color:#fff}
+    @media (max-width:640px){.wf-step-pill{min-width:84px}.wf-step-label{font-size:.72rem}.wf-dot{width:38px;height:38px}}
+  </style>
+</head>
+<body>
+  
+  
+  
+  
+  
+
+  <div class="app-shell">
+    <section class="hero">
+      <div class="hero-grid">
+        <div>
+          <div class="kicker">
+            <i data-lucide="radar"></i>
+            Sky Mystery Royalty Builder
+          </div>
+          <h1>Unexplained Sky Mysteries</h1>
+          <div class="hero-tagline" style="color: var(--accent-primary); font-weight: 700; font-size: 1.05rem; letter-spacing: .02em; margin-bottom: 10px;">From One Topic to a Complete KDP-Ready Case Files Book</div>
+          <p class="lead">Create intriguing sky-mystery case files for kids and families — unexplained sightings, strange lights, and unsolved aerial phenomena — then turn every case into structured visual prompts.</p>
+
+          <div class="hero-badges">
+            <div class="hero-badge"><i data-lucide="file-question"></i> Case File Prompt Engine</div>
+            <div class="hero-badge"><i data-lucide="scan-search"></i> Visual Prompt Lab</div>
+            <div class="hero-badge"><i data-lucide="eye"></i> Unexplained Sky Mysteries Book Builder</div>
+          </div>
+        </div>
+
+        <div class="hero-art">
+          <div class="radar-scope"><div class="radar-sweep"></div><div class="radar-blip b1"></div><div class="radar-blip b2"></div><div class="radar-ring r1"></div><div class="radar-ring r2"></div></div>
+          <div class="sky-orb"></div>
+          <div class="flight-path"></div>
+          <div class="glow-dot g1"></div>
+          <div class="glow-dot g2"></div>
+          <div class="glow-dot g3"></div>
+          <div class="glow-dot g4"></div>
+          <div class="hero-art-label"><i data-lucide="telescope"></i><span>night watch // sector 7</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="wf-steps" id="wfSteps">
+      <button type="button" class="wf-step-pill current clickable" data-wf="1" onclick="wfGoto(1)">
+        <span class="wf-dot"><span class="wf-num">1</span><i data-lucide="check" class="wf-check"></i></span>
+        <span class="wf-step-label">Build Cases</span>
+      </button>
+      <div class="wf-link" data-wf-link="1"></div>
+      <button type="button" class="wf-step-pill" data-wf="2" onclick="wfGoto(2)">
+        <span class="wf-dot"><span class="wf-num">2</span><i data-lucide="check" class="wf-check"></i></span>
+        <span class="wf-step-label">Generate Visuals</span>
+      </button>
+    </div>
+    <div class="wf-counter" id="wfCounter">Step 1 of 2</div>
+
+    <div class="tabs-shell">
+      <div class="tab-pills">
+        <button class="tab-btn active" onclick="switchTab('tab-story')" id="btn-tab-story">
+          <i data-lucide="file-question"></i>
+          <span>1. Case File Builder</span>
+        </button>
+        <button class="tab-btn" onclick="switchTab('tab-design')" id="btn-tab-design">
+          <i data-lucide="scan-search"></i>
+          <span>2. Visual Generator</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="tab-story" class="tab-content active">
+      <section class="workspace-panel">
+        <div class="panel-inner">
+          <div class="story-builder">
+            <div class="story-intro-block">
+              <div class="section-head story-head">
+                <div>
+                  <h3>Case File Builder</h3>
+                  <p>Choose Auto for a fast case-book draft, or switch to Manual for tighter control over age, tone, language, and case focus.</p>
+                </div>
+              </div>
+
+              <div class="topic-stack">
+                <div class="input-group topic-main-group">
+                  <label><i data-lucide="telescope"></i> Sky Mystery Topic or Region</label>
+                  <div class="sky-input-row">
+                    <input type="text" id="s1-topic" class="main-input main-topic-input" placeholder="e.g. Glowing Lights Over a Small Town, Strange Sounds from the Sky, Mysterious Object Near an Airport...">
+                    <button type="button" class="surprise-btn" id="btn-surprise-sky" onclick="surpriseSky()">&#x1F52D; Surprise Me</button>
+                  </div>
+                </div>
+
+                <div class="topic-helper-box">
+                  <i data-lucide="sparkles"></i>
+                  <span>Best topics are intriguing, visual, and easy to imagine — like glowing lights, strange sounds, radar blips, or objects seen by multiple witnesses.</span>
+                </div>
+              </div>
+
+              <div class="mode-ribbon story-mode-ribbon">
+                <button class="mode-btn active" id="mode-auto-story" onclick="setMode('story', 'auto')">
+                  <i data-lucide="radar"></i> Auto Case Files
+                </button>
+                <button class="mode-btn" id="mode-manual-story" onclick="setMode('story', 'manual')">
+                  <i data-lucide="settings-2"></i> Manual Setup
+                </button>
+              </div>
+            </div>
+
+            <div id="story-manual-options" style="display:none;">
+              <div class="form-section">
+                <div class="form-section-title"><i data-lucide="file-text"></i> Case File Details</div>
+                <div class="form-grid">
+                  <div class="input-group">
+                    <label><i data-lucide="globe"></i> Language</label>
+                    <select id="s1-lang" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s1-lang-custom" class="custom-input" placeholder="Type language...">
+                  </div>
+                  <div class="input-group">
+                    <label><i data-lucide="user"></i> Author Name</label>
+                    <input type="text" id="s1-author" placeholder="Leave blank for none">
+                  </div>
+                  <div class="input-group">
+                    <label><i data-lucide="type"></i> Custom Title</label>
+                    <input type="text" id="s1-title" placeholder="Leave blank for AI choice">
+                  </div>
+                  <div class="input-group">
+                    <label><i data-lucide="type"></i> Custom Subtitle</label>
+                    <input type="text" id="s1-subtitle" placeholder="Leave blank for AI choice">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <div class="form-section-title"><i data-lucide="eye"></i> Investigation Tone</div>
+                <div class="form-grid">
+                  <div class="input-group">
+                    <label><i data-lucide="users"></i> Target Age</label>
+                    <select id="s1-age" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s1-age-custom" class="custom-input">
+                  </div>
+                  <div class="input-group">
+                    <label><i data-lucide="cloud-lightning"></i> Book Tone</label>
+                    <select id="s1-tone" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s1-tone-custom" class="custom-input">
+                  </div>
+                  <div class="input-group">
+                    <label><i data-lucide="radar"></i> Case Type Focus</label>
+                    <select id="s1-case-type" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s1-case-type-custom" class="custom-input">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <div class="form-section-title"><i data-lucide="file-question"></i> Case Files Length</div>
+                <p class="tier-hint">Pick how many cases go in the book — Standard Files (50) is the balanced choice.</p>
+                <div class="case-tier-grid" id="caseTierGrid">
+                  <div class="case-tier-card" data-count="30" onclick="pickCaseTier(30,this)"><div class="tier-count">30</div><div class="tier-name">Quick Files</div><div class="tier-sub">fast case pack</div></div>
+                  <div class="case-tier-card active" data-count="50" onclick="pickCaseTier(50,this)"><div class="tier-count">50</div><div class="tier-name">Standard Files</div><div class="tier-sub">most balanced &#9733;</div></div>
+                  <div class="case-tier-card" data-count="75" onclick="pickCaseTier(75,this)"><div class="tier-count">75</div><div class="tier-name">Deep Archive</div><div class="tier-sub">full investigation set</div></div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn-magic" onclick="generateStoryConcept()">
+              <i data-lucide="file-question"></i>
+              Generate My Case Files Book
+            </button>
+
+            <div id="loading-story" class="loader-wrapper">
+              <div class="spinner" style="border-top-color: var(--accent-primary);"></div>
+              <p>Scanning the night sky...</p>
+            </div>
+
+            <div id="output-story" class="output-box">
+              <h3><i data-lucide="eye"></i> Case prompt ready — paste into ChatGPT!</h3>
+              <button class="btn-copy" style="width:auto; margin:12px auto 0; padding:14px 24px;" onclick="copyHiddenData('hidden-story-prompt', this, true)">
+                <i data-lucide="copy"></i>
+                Copy Case Prompt
+              </button>
+              <textarea id="hidden-story-prompt" style="display:none;"></textarea>
+            </div>
+            <div class="wf-nav">
+              <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 2: Generate Visuals →</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <div id="tab-design" class="tab-content">
+      <section class="workspace-panel">
+        <div class="panel-inner">
+          <div class="design-builder">
+            <div class="wf-nav" style="margin-top:0;">
+              <button type="button" class="wf-back" onclick="wfBack()">← Back to Step 1</button>
+            </div>
+            <div class="section-head" style="margin-bottom:20px;">
+              <div>
+                <h3>Visual Generator Lab</h3>
+                <p>Paste the finished case-book structure, choose your illustration modes, then compile ready-to-copy case prompts for your image workflow.</p>
+              </div>
+            </div>
+
+            <div class="paste-zone">
+              <div class="input-group">
+                <label style="color:#fff5c8;"><i data-lucide="scan-search"></i> Paste ChatGPT Case Files Here</label>
+                <textarea id="s2-pasted" class="main-input" placeholder="Paste the text containing [Cover Page], [CASE 1], etc..." style="height: 220px;"></textarea>
+              </div>
+            </div>
+
+            <div id="variety-check-panel" class="form-section" style="display:none;">
+              <div class="form-section-title"><i data-lucide="clipboard-check"></i> Variety Check</div>
+              <div id="variety-check-results"></div>
+            </div>
+
+            <div id="fix-merge-zone" style="display:none; margin-top:16px;">
+              <div class="input-group">
+                <label><i data-lucide="clipboard-paste"></i> Paste ChatGPT's Corrected Cases Here</label>
+                <textarea id="s2-fix-pasted" class="main-input" placeholder="Paste the corrected [CASE X] blocks ChatGPT sent back..." style="height:140px;"></textarea>
+              </div>
+              <button class="btn-copy" style="width:auto; margin-top:10px; padding:12px 24px;" onclick="mergeFixedCases()">
+                <i data-lucide="merge"></i> Merge Corrected Cases Into My Book
+              </button>
+              <div id="merge-confirmation" style="display:none; margin-top:10px; color: var(--accent-primary); font-weight:700;"></div>
+            </div>
+
+            <div class="engine-card">
+              <div class="form-section-title"><i data-lucide="telescope"></i> Core Output Engine</div>
+              <div class="form-grid">
+                <div class="input-group">
+                  <label style="color:#fff;">Interior Case Mode</label>
+                  <select id="s2-inner-mode" onchange="updateDynamicDropdowns('inner')">
+                    <option value="witness_sketch">Witness Sketch (B&W Line Art)</option>
+                    <option value="radar_thermal">Radar & Thermal Readout</option>
+                    <option value="case_photo">Case File Photograph (Full Color)</option>
+                    <option value="declassified_doc">Declassified Document Style</option>
+                  </select>
+                </div>
+                <div class="input-group">
+                  <label style="color:#fff;">Cover Page Mode</label>
+                  <select id="s2-cover-mode" onchange="updateDynamicDropdowns('cover')">
+                    <option value="case_photo">Case File Photograph (Full Color)</option>
+                    <option value="radar_thermal">Radar & Thermal Readout</option>
+                    <option value="witness_sketch">Witness Sketch (B&W Line Art)</option>
+                    <option value="declassified_doc">Declassified Document Style</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div class="mode-ribbon">
+              <button class="mode-btn active" id="mode-auto-design" onclick="setMode('design', 'auto')">
+                <i data-lucide="zap"></i> Auto Design Logic
+              </button>
+              <button class="mode-btn" id="mode-manual-design" onclick="setMode('design', 'manual')">
+                <i data-lucide="settings-2"></i> Manual Specific Tweaks
+              </button>
+            </div>
+
+            <div id="design-manual-options" style="display:none;">
+              <div class="form-section">
+                <div class="form-section-title"><i data-lucide="radar"></i> Book Size Setup</div>
+                <div class="form-grid">
+                  <div class="input-group">
+                    <label>Book Size</label>
+                    <select id="s2-size" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-size-custom" class="custom-input">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <div class="form-section-title"><i data-lucide="image"></i> Cover Customization</div>
+                <div class="form-grid">
+                  <div class="input-group">
+                    <label>Cover Illustration Style</label>
+                    <select id="s2-cover-style" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-cover-style-custom" class="custom-input">
+                  </div>
+                  <div class="input-group" id="wrap-cover-color">
+                    <label>Cover Color Palette</label>
+                    <select id="s2-cover-color" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-cover-color-custom" class="custom-input">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <div class="form-section-title"><i data-lucide="images"></i> Inner Page Customization</div>
+                <div class="form-grid">
+                  <div class="input-group">
+                    <label>Inner Illustration Style</label>
+                    <select id="s2-inner-style" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-inner-style-custom" class="custom-input">
+                  </div>
+                  <div class="input-group" id="wrap-inner-color">
+                    <label>Inner Color Palette</label>
+                    <select id="s2-inner-color" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-inner-color-custom" class="custom-input">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <div class="form-section-title"><i data-lucide="users"></i> Witnesses & Scene Details</div>
+                <div class="form-grid">
+                  <div class="input-group">
+                    <label>Character Style</label>
+                    <select id="s2-char-style" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-char-style-custom" class="custom-input">
+                  </div>
+                  <div class="input-group">
+                    <label>Background Detail</label>
+                    <select id="s2-bg-detail" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-bg-detail-custom" class="custom-input">
+                  </div>
+                  <div class="input-group">
+                    <label>Character Consistency</label>
+                    <select id="s2-char-cons" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-char-cons-custom" class="custom-input">
+                  </div>
+                  <div class="input-group">
+                    <label>Sighting Object Style</label>
+                    <select id="s2-obj" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-obj-custom" class="custom-input">
+                  </div>
+                  <div class="input-group">
+                    <label>Sky Phenomenon</label>
+                    <select id="s2-space-theme" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-space-theme-custom" class="custom-input">
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-section">
+                <div class="form-section-title"><i data-lucide="layout"></i> Report Formatting</div>
+                <div class="form-grid">
+                  <div class="input-group">
+                    <label>Border Style</label>
+                    <select id="s2-border" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-border-custom" class="custom-input">
+                  </div>
+                  <div class="input-group">
+                    <label>Text Area Space</label>
+                    <select id="s2-textarea" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-textarea-custom" class="custom-input">
+                  </div>
+                  <div class="input-group">
+                    <label>Page Density</label>
+                    <select id="s2-density" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-density-custom" class="custom-input">
+                  </div>
+                  <div class="input-group">
+                    <label>Case Text Position</label>
+                    <select id="s2-factpos" onchange="checkCustom(this)"></select>
+                    <input type="text" id="s2-factpos-custom" class="custom-input">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <button class="btn-magic btn-secondary" onclick="generateDesignJSON()">
+              <i data-lucide="sparkles"></i>
+              Compile Case File Prompts
+            </button>
+
+            <div id="loading-design" class="loader-wrapper">
+              <div class="spinner"></div>
+              <p>Compiling Case JSONs...</p>
+            </div>
+
+            <div id="output-design" class="json-grid" style="display:none;"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+  <script>
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      document.getElementById('btn-' + tabId).classList.add('active');
+    }
+
+    /* Guided workflow navigation: Step 1 → Step 2 (drives the existing tabs) */
+    let wfStep = 1;
+    let wfMaxReached = 1;
+    const WF_TOTAL = 2;
+    function wfShowStep(n) {
+      if (n === 1) switchTab('tab-story');
+      else switchTab('tab-design');
+    }
+    function wfRender() {
+      document.querySelectorAll('#wfSteps .wf-step-pill').forEach(function (pill) {
+        var n = parseInt(pill.getAttribute('data-wf'), 10);
+        pill.classList.toggle('done', n < wfStep);
+        pill.classList.toggle('current', n === wfStep);
+        pill.classList.toggle('clickable', n <= wfMaxReached);
+      });
+      document.querySelectorAll('#wfSteps .wf-link').forEach(function (link) {
+        link.classList.toggle('done', parseInt(link.getAttribute('data-wf-link'), 10) < wfStep);
+      });
+      var counter = document.getElementById('wfCounter');
+      if (counter) counter.textContent = 'Step ' + wfStep + ' of ' + WF_TOTAL;
+    }
+    function wfGoto(n) {
+      n = Math.max(1, Math.min(WF_TOTAL, n));
+      if (n > wfMaxReached) return;
+      wfStep = n;
+      wfShowStep(n);
+      wfRender();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+    function wfNext() {
+      if (wfStep === 1) {
+        var topic = (document.getElementById('s1-topic') || { value: '' }).value.trim();
+        if (!topic) { alert('Please enter a Sky Mystery Topic first!'); return; }
+      }
+      if (wfStep < WF_TOTAL) {
+        wfMaxReached = Math.max(wfMaxReached, wfStep + 1);
+        wfGoto(wfStep + 1);
+      }
+    }
+    function wfBack() { wfGoto(wfStep - 1); }
+
+    let modes = { story: 'auto', design: 'auto' };
+
+    function setMode(section, mode) {
+      modes[section] = mode;
+      document.getElementById(`mode-auto-${section}`).classList.remove('active');
+      document.getElementById(`mode-manual-${section}`).classList.remove('active');
+      document.getElementById(`mode-${mode}-${section}`).classList.add('active');
+      document.getElementById(`${section}-manual-options`).style.display = (mode === 'manual') ? 'block' : 'none';
+    }
+
+    function checkCustom(selectElement) {
+      const customInput = document.getElementById(selectElement.id + '-custom');
+      if (customInput) {
+        customInput.style.display = selectElement.value === 'custom' ? 'block' : 'none';
+        if (selectElement.value === 'custom') customInput.focus();
+      }
+    }
+
+    function getVal(id) {
+      const select = document.getElementById(id);
+      if (!select) return "";
+      if (select.value === 'custom') return document.getElementById(id + '-custom').value || "Default / Balanced";
+      if (select.value === 'auto') return "Default / Balanced";
+      return select.value;
+    }
+
+    const DB_LANG = [
+      "English", "Indonesian", "Mandarin Chinese", "Hindi", "Spanish",
+      "French", "Arabic", "Bengali", "Russian", "Portuguese",
+      "Urdu", "German", "Japanese", "Korean", "Swahili",
+      "Marathi", "Telugu", "Turkish", "Tamil", "Vietnamese"
+    ];
+
+    const SKY_MYSTERY_TOPICS = ["Glowing Lights Over a Small Town", "Strange Lights Above the Ocean", "Mysterious Object Near an Airport", "Unexplained Sounds from the Sky", "Disappearing Star in the Night Sky", "Strange Cloud Formation", "Object Spotted by Pilots", "Mysterious Signal from Space", "Lights Seen by an Entire Town", "Strange Object Caught on Camera", "Object Tracked by Radar", "Unusual Sky Color at Night", "Mystery Light Following a Car", "Strange Formation in a Field", "Object Seen Near a Mountain", "Lights Over a Lake", "Unexplained Sky Flash", "Strange Object During a Storm", "Mysterious Aircraft with No Markings", "Object Spotted from a Plane Window", "Strange Lights During a Meteor Shower", "Unexplained Object Near a Military Base", "Glowing Object Over a Farm", "Mystery Light Pattern in the Sky", "Strange Sighting During a Camping Trip", "Object Reported by Multiple Witnesses", "Unexplained Radar Blip", "Strange Light Seen from a School Playground", "Mysterious Object Photographed by a Tourist", "Unexplained Aerial Phenomenon Over a City", "Silent Triangle Hovering Over a Harbor", "Pulsing Orbs Above a Desert Highway", "Vanishing Light Over a Snowy Village", "Humming Glow Near a Wind Farm", "Split Light That Rejoined Over the Pines", "Midnight Flash Caught on a Doorbell Camera", "Low Orb That Paced a Night Bus", "Cloud Glowing from Inside at Dawn", "Spiral of Light During a Stargazing Night", "Diamond Formation Over a River Delta", "Quiet Boom and Flickering Sky Glow", "V-Shaped Lights Over a Soccer Field", "Color-Changing Sphere Above a Foggy Bay", "Slow Disc Drifting Over Open Pastures", "Ring of Soft Light Above a Fire Tower", "Blinking Row Crossing the Full Moon", "Glowing Mist Rising Over a Night Market", "Starlink-Like String with an Odd Survivor", "Silent Streak During a Backyard Sleepover"];
+
+    // --- Unlimited combinatorial engine: phenomena x places x moments x witnesses = millions of unique ideas ---
+    const SKY_PHENOMENA = ["Silent Triangle of Lights", "Cluster of Pulsing Orbs", "Slow-Moving Glowing Disc", "Cigar-Shaped Light", "V-Shaped Formation of Lights", "Hovering Ring with Soft Glow", "Flashing Light Moving Against the Wind", "Low Humming Light", "Color-Changing Sphere", "Silent Streak Across the Sky", "Boomerang of Faint Lights", "Spinning Wheel of Light", "Glowing Mist Drifting Upward", "Double Light That Split and Rejoined", "Sky Flash Followed by a Low Tone", "Diamond of White Lights", "Slow Spiral of Light", "Bright Orb Dimming in Pulses", "Row of Blinking Lights in a Line", "Cloud Glowing from Inside", "Unexplained Whistling Sound from Above", "Low Rumble with Flickering Sky Glow", "Radar Blip with No Visible Aircraft", "Light That Paced a Car Then Rose Away"];
+    const SKY_PLACES = ["Over a Small Lakeside Town", "Above the Open Ocean", "Near a Quiet Regional Airport", "Over a Mountain Valley", "Above a Cornfield at the Edge of Town", "Over a Pine Campground", "Near a Coastal Lighthouse", "Above a Desert Highway", "Over a School Playground After Dark", "Near a Hilltop Wind Farm", "Above a Fishing Harbor", "Over a Snowy Village", "Near a Hilltop Observatory", "Above a River Delta", "Over a Suburban Neighborhood", "Above a Foggy Bay", "Over Open Farm Pastures", "Near a Forest Fire Tower", "Above a Countryside Train Station", "Over a Soccer Field at Dusk", "Near a Cave Entrance in the Hills", "Over a Night Market by the Lake", "Above a Volcano Overlook, Far Away", "Along a Lonely Night Bus Route"];
+    const SKY_MOMENTS = ["at Midnight", "Just After Sunset", "During a Meteor Shower", "Right After a Summer Storm", "On a Foggy Autumn Night", "Under a Full Moon", "At 3 AM on a Silent Night", "During a Power Outage", "At Dawn Before Sunrise", "On a Windless Winter Evening", "During a Backyard Stargazing Night", "Right Before a Thunderstorm", "On a Clear Moonless Night", "During a Night Hike", "On a Summer Camping Night", "During a Meteor-Watching Party"];
+    const SKY_WITNESSES = ["Seen by Two Teen Campers", "Spotted by a Pilot on Approach", "Seen by a Family on a Road Trip", "Reported by Night-Shift Workers", "Seen by Stargazing Kids", "Spotted by Fishermen Before Dawn", "Seen by a Bus Driver and Passengers", "Reported by Camp Counselors", "Seen by a Photographer Testing a Camera", "Spotted by Hikers on a Ridge", "Seen by a Whole Neighborhood", "Reported by Two Independent Witness Groups"];
+    const SKY_TWISTS = ["That Vanished Without a Sound", "That Pulsed in a Repeating Pattern", "That Hovered, Then Rose Silently", "That Returned Three Nights in a Row", "That Was Also Caught on Camera", "That Moved Against the Wind", "That Hummed Softly, Then Went Silent", "That Blinked Out When Spotted", "", "", "", ""];
+
+    const _recentSurpriseTopics = new Set();
+    function _randPick(arr) { return arr[Math.floor(Math.random() * arr.length)]; }
+    function buildUnlimitedTopic() {
+      for (let attempt = 0; attempt < 12; attempt++) {
+        const phenomenon = _randPick(SKY_PHENOMENA);
+        const place = _randPick(SKY_PLACES);
+        const moment = _randPick(SKY_MOMENTS);
+        const witness = _randPick(SKY_WITNESSES);
+        const twist = _randPick(SKY_TWISTS);
+        let topic = `${phenomenon} ${place} ${moment} — ${witness}`;
+        if (twist) topic = `${phenomenon} ${place} ${moment} ${twist} — ${witness}`;
+        topic = topic.replace(/\s+/g, ' ').trim();
+        if (!_recentSurpriseTopics.has(topic)) {
+          _recentSurpriseTopics.add(topic);
+          if (_recentSurpriseTopics.size > 60) {
+            const first = _recentSurpriseTopics.values().next().value;
+            _recentSurpriseTopics.delete(first);
+          }
+          return topic;
+        }
+      }
+      return `${_randPick(SKY_PHENOMENA)} ${_randPick(SKY_PLACES)} ${_randPick(SKY_MOMENTS)} — ${_randPick(SKY_WITNESSES)}`;
+    }
+
+    let selectedCaseCount = 50;
+
+    function pickCaseTier(n, el) {
+      selectedCaseCount = n;
+      document.querySelectorAll('.case-tier-card').forEach(c => c.classList.remove('active'));
+      if (el) el.classList.add('active');
+    }
+
+    function surpriseSky() {
+      const field = document.getElementById('s1-topic');
+      const btn = document.getElementById('btn-surprise-sky');
+      if (!field) return;
+      // Slot-machine preview: rapid cycling for a generative feel, then settle on unlimited combo
+      const useCurated = Math.random() < 0.2;
+      const finalPick = useCurated
+        ? _randPick(SKY_MYSTERY_TOPICS)
+        : buildUnlimitedTopic();
+      let ticks = 0;
+      const maxTicks = 7;
+      const previewTimer = setInterval(() => {
+        ticks++;
+        field.value = buildUnlimitedTopic();
+        if (ticks >= maxTicks) {
+          clearInterval(previewTimer);
+          field.value = finalPick;
+          field.classList.remove('glow-pulse');
+          void field.offsetWidth;
+          field.classList.add('glow-pulse');
+          setTimeout(() => field.classList.remove('glow-pulse'), 950);
+          if (btn) { btn.style.filter = 'brightness(1.1)'; setTimeout(() => btn.style.filter = '', 300); }
+        }
+      }, 70);
+    }
+
+    const STYLE_OPTIONS = {
+      witness_sketch: ["Shaky Hand-Drawn Sketch", "Simple Testimony Outline", "Detailed Recollection Sketch", "Radar-Grid Line Art", "Crisp Investigator Line Art"],
+      radar_thermal: ["Green Radar Scan Style", "Thermal Imaging Gradient", "Night-Vision Scan Style", "Signal Interference Overlay", "Tracking Grid Readout"],
+      case_photo: ["Documentary Night-Sky Style", "Polished Field Report Photo", "Archival Case Photograph", "Cinematic Night Scene", "Muted Evidence Photo Style"],
+      declassified_doc: ["Redacted Field Report", "Stamped Case Summary", "Aged Government Memo", "Classified Photo Insert", "Official Incident Log"]
+    };
+
+    const DB_DYNAMIC_STYLES = STYLE_OPTIONS;
+
+    const DB = {
+      age: ["6-8", "8-10", "10-12", "All Ages"],
+      tone: ["Curious & Wondering", "Mysterious but Fun", "Documentary-Style", "Spooky-Light (not scary)"],
+      caseType: ["Sky Lights & UFOs", "Strange Sounds & Signals", "Odd Aircraft Sightings", "Mixed Sky Phenomena"],
+
+      size: [
+        "8.5 x 11 in (Large Portrait - Best)",
+        "8.5 x 8.5 in (Square)",
+        "6 x 9 in (Standard)",
+        "7 x 10 in (Medium Portrait)",
+        "5.5 x 8.5 in (Small Novel)",
+        "8.25 x 8.25 in (Small Square)",
+        "8.5 x 11.69 in (A4 Size)"
+      ],
+      color: ["Bright", "Pastel", "Rainbow", "Warm", "Cool", "Earth Tone", "Candy Colors", "Soft Muted"],
+      charStyle: ["Cute Style", "Funny Style", "Friendly Style", "Adventure Style"],
+      bgDetail: ["Minimal", "Simple", "Medium", "Rich"],
+      charCons: ["Normal", "Strong", "Maximum"],
+      objStyle: ["Cute", "Rounded", "Simple", "Detailed"],
+      spaceTheme: ["Night Sky Watch", "Radar Tracking Station", "Small Town Sighting", "Airport Encounter", "Mountain Overlook", "Lakeside Lights"],
+      border: ["None", "Rounded Border", "Case File Border", "Radar Grid Border", "Aged Paper Border", "Stamped Corner Border"],
+      textarea: ["Large", "Medium", "Small", "None"],
+      density: ["Simple", "Balanced", "Rich"],
+      factPos: ["Mixed (Dynamic)", "Left", "Right", "Top", "Bottom", "Center"]
+    };
+
+    function populateSelect(id, array) {
+      const select = document.getElementById(id);
+      if (!select) return;
+      select.innerHTML = '<option value="auto">✨ Auto (Let AI Decide)</option>';
+      array.forEach(item => {
+        let option = document.createElement("option");
+        option.value = item;
+        option.textContent = item;
+        select.appendChild(option);
+      });
+      select.innerHTML += '<option value="custom">✏️ Custom Specify...</option>';
+    }
+
+    function populateSelectStrict(id, array, defaultVal, addCustom = false) {
+      const select = document.getElementById(id);
+      if (!select) return;
+      select.innerHTML = '';
+      array.forEach(item => {
+        let option = document.createElement("option");
+        option.value = item;
+        option.textContent = item;
+        select.appendChild(option);
+      });
+      if (addCustom) {
+        select.innerHTML += '<option value="custom">✏️ Custom Specify...</option>';
+      }
+      if (defaultVal) select.value = defaultVal;
+    }
+
+    function updateDynamicDropdowns(section) {
+      let mode = document.getElementById(`s2-${section}-mode`).value;
+      let styleDropdownId = `s2-${section}-style`;
+      let colorWrapId = `wrap-${section}-color`;
+
+      populateSelect(styleDropdownId, STYLE_OPTIONS[mode]);
+
+      if (mode === 'witness_sketch') {
+        document.getElementById(colorWrapId).style.display = 'none';
+      } else {
+        document.getElementById(colorWrapId).style.display = 'flex';
+        document.getElementById(colorWrapId).style.flexDirection = 'column';
+      }
+    }
+
+    window.onload = function() {
+      populateSelectStrict('s1-lang', DB_LANG, "English", true);
+      populateSelectStrict('s2-size', DB.size, "8.5 x 11 in (Large Portrait - Best)", true);
+
+      populateSelect('s1-age', DB.age);
+      populateSelect('s1-tone', DB.tone);
+      populateSelect('s1-case-type', DB.caseType);
+
+      populateSelect('s2-cover-color', DB.color);
+      populateSelect('s2-inner-color', DB.color);
+
+      populateSelect('s2-char-style', DB.charStyle);
+      populateSelect('s2-bg-detail', DB.bgDetail);
+      populateSelect('s2-char-cons', DB.charCons);
+      populateSelect('s2-obj', DB.objStyle);
+      populateSelect('s2-space-theme', DB.spaceTheme);
+
+      populateSelect('s2-border', DB.border);
+      populateSelect('s2-textarea', DB.textarea);
+      populateSelect('s2-density', DB.density);
+      populateSelect('s2-factpos', DB.factPos);
+
+      lucide.createIcons();
+      updateDynamicDropdowns('inner');
+      updateDynamicDropdowns('cover');
+    };
+
+    function copyHiddenData(id, btn, isStory = false) {
+      const text = document.getElementById(id).value;
+      navigator.clipboard.writeText(text).then(() => {
+        const origHTML = btn.innerHTML;
+        const origBg = btn.style.background;
+
+        btn.innerHTML = `<i data-lucide="check-circle"></i> COPIED!`;
+        if (!isStory) btn.style.background = "#34d399";
+        lucide.createIcons();
+
+        setTimeout(() => {
+          btn.innerHTML = origHTML;
+          if (!isStory) btn.style.background = origBg || "linear-gradient(135deg, var(--accent-primary), var(--accent-secondary))";
+          lucide.createIcons();
+        }, 2000);
+      });
+    }
+
+    function looksLikePromptTemplate(text) {
+      return text.includes("OUTPUT STRUCTURE REQUIREMENT:") ||
+             text.includes("...continue until [CASE") ||
+             text.includes("You are an expert children's case-file author");
+    }
+
+    function extractStorySections(text) {
+      const regex = /\[(Cover Page|CASE\s+\d+|Back Cover)\]\s*([\s\S]*?)(?=\[(?:Cover Page|CASE\s+\d+|Back Cover)\]|$)/gi;
+      const sections = [];
+      let match;
+
+      while ((match = regex.exec(text)) !== null) {
+        sections.push({
+          name: match[1].trim().toUpperCase(),
+          content: match[2].trim()
+        });
+      }
+
+      return sections;
+    }
+
+    function analyzeVariety(sections) {
+      const caseSections = (sections || []).filter(s => s && s.name && /CASE\s+\d+/i.test(s.name));
+
+      const getCaseNumber = (name) => {
+        const m = /CASE\s+(\d+)/i.exec(name || '');
+        return m ? parseInt(m[1], 10) : null;
+      };
+
+      const cleanKey = (w) => (w || '').toLowerCase().replace(/^[^a-z0-9]+|[^a-z0-9]+$/g, '');
+      const stripPunct = (s) => (s || '').toLowerCase().replace(/[^a-z0-9\s]/g, ' ').replace(/\s+/g, ' ').trim();
+
+      // 1. Title pattern repetition: same first word in >3 titles
+      const titleGroups = {};
+      caseSections.forEach(sec => {
+        const num = getCaseNumber(sec.name);
+        if (num == null) return;
+        const m = /Case Title:\s*(.+)/i.exec(sec.content || '');
+        if (!m) return;
+        const firstRaw = (m[1].trim().split(/\s+/)[0] || '');
+        const key = cleanKey(firstRaw);
+        if (!key) return;
+        if (!titleGroups[key]) {
+          titleGroups[key] = { word: firstRaw.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g, ''), cases: [] };
+        }
+        titleGroups[key].cases.push(num);
+      });
+      const titleIssues = Object.values(titleGroups)
+        .filter(g => g.cases.length > 3)
+        .map(g => ({ word: g.word, cases: g.cases.sort((a, b) => a - b) }));
+
+      // 2. Explanation repetition: fingerprint = first 4 words, flag if >2 cases
+      const explGroups = {};
+      caseSections.forEach(sec => {
+        const num = getCaseNumber(sec.name);
+        if (num == null) return;
+        const m = /Possible Explanation:\s*(.+)/i.exec(sec.content || '');
+        if (!m) return;
+        const fingerprint = stripPunct(m[1]).split(' ').filter(Boolean).slice(0, 4).join(' ');
+        if (!fingerprint) return;
+        if (!explGroups[fingerprint]) explGroups[fingerprint] = { fingerprint, cases: [] };
+        explGroups[fingerprint].cases.push(num);
+      });
+      const explanationIssues = Object.values(explGroups)
+        .filter(g => g.cases.length > 2)
+        .map(g => ({ fingerprint: g.fingerprint, cases: g.cases.sort((a, b) => a - b) }));
+
+      // 3. Mystery Rating distribution
+      const canonical = (raw) => {
+        const v = (raw || '').trim().toLowerCase();
+        if (v === 'still unexplained') return 'Still Unexplained';
+        if (v === 'likely explained') return 'Likely Explained';
+        if (v === 'debated') return 'Debated';
+        return null;
+      };
+      const counts = { 'Still Unexplained': 0, 'Likely Explained': 0, 'Debated': 0 };
+      const casesByRating = { 'Still Unexplained': [], 'Likely Explained': [], 'Debated': [] };
+      const sequence = [];
+      caseSections.forEach(sec => {
+        const num = getCaseNumber(sec.name);
+        if (num == null) return;
+        const m = /Mystery Rating:\s*(Still Unexplained|Likely Explained|Debated)/i.exec(sec.content || '');
+        const c = m ? canonical(m[1]) : null;
+        if (c) {
+          counts[c]++;
+          casesByRating[c].push(num);
+          sequence.push({ rating: c, num });
+        }
+      });
+      const total = caseSections.length;
+      let ratingIssue = null;
+      if (total > 0) {
+        let dominant = null;
+        let domCount = 0;
+        Object.keys(counts).forEach(k => {
+          if (counts[k] > domCount) { domCount = counts[k]; dominant = k; }
+        });
+        if (dominant && domCount > total * 0.5) {
+          ratingIssue = { dominant, count: domCount, total, cases: [...casesByRating[dominant]].sort((a, b) => a - b) };
+        } else {
+          // check same rating 4+ times in a row
+          let bestRating = null, bestStreak = 0, bestCases = [];
+          let curRating = null, curStreak = 0, curCases = [];
+          sequence.forEach(entry => {
+            if (entry.rating === curRating) { curStreak++; curCases.push(entry.num); }
+            else { curRating = entry.rating; curStreak = 1; curCases = [entry.num]; }
+            if (curStreak > bestStreak) { bestStreak = curStreak; bestRating = curRating; bestCases = [...curCases]; }
+          });
+          if (bestStreak >= 4) {
+            ratingIssue = { dominant: bestRating, count: bestStreak, total, cases: bestCases };
+          }
+        }
+      }
+
+      // 4. Opening phrase repetition in "The Report": first 4 words, flag if >2 cases
+      const openGroups = {};
+      caseSections.forEach(sec => {
+        const num = getCaseNumber(sec.name);
+        if (num == null) return;
+        const m = /The Report:\s*(.+)/i.exec(sec.content || '');
+        if (!m) return;
+        const phrase = stripPunct(m[1]).split(' ').filter(Boolean).slice(0, 4).join(' ');
+        if (!phrase) return;
+        if (!openGroups[phrase]) openGroups[phrase] = { phrase, cases: [] };
+        openGroups[phrase].cases.push(num);
+      });
+      const openingIssues = Object.values(openGroups)
+        .filter(g => g.cases.length > 2)
+        .map(g => ({ phrase: g.phrase, cases: g.cases.sort((a, b) => a - b) }));
+
+      const isClean = titleIssues.length === 0 && explanationIssues.length === 0 && !ratingIssue && openingIssues.length === 0;
+
+      return { titleIssues, explanationIssues, ratingIssue, openingIssues, isClean };
+    }
+
+    function escapeVarietyHtml(s) {
+      return (s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+
+    function renderVarietyResults(report) {
+      const box = document.getElementById('variety-check-results');
+      const panel = document.getElementById('variety-check-panel');
+      if (!box || !panel) return;
+      panel.style.display = 'block';
+
+      const rowBase = 'display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:14px;margin-bottom:10px;font-size:.95rem;line-height:1.45;border:1px solid rgba(255,255,255,.1);';
+
+      if (!report || report.isClean) {
+        box.innerHTML =
+          '<div style="' + rowBase + 'background:rgba(52,211,153,.1);border-left:4px solid #34d399;color:#d1fae5;">' +
+            '<i data-lucide="check-circle" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;color:#34d399;"></i>' +
+            '<span><strong>No repetition issues detected</strong> &mdash; this book looks well varied.</span>' +
+          '</div>';
+        lucide.createIcons();
+        return;
+      }
+
+      let html = '';
+
+      const fixBtnStyle = 'width:auto;padding:8px 16px;margin-left:12px;flex-shrink:0;align-self:center;';
+
+      (report.titleIssues || []).forEach(issue => {
+        html +=
+          '<div style="' + rowBase + 'background:rgba(251,191,36,.08);border-left:4px solid #FBBF24;color:#fff5c8;">' +
+            '<i data-lucide="alert-triangle" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;color:#FBBF24;"></i>' +
+            '<span style="flex:1;"><strong>' + issue.cases.length + ' case titles</strong> start with the same word &ldquo;' + escapeVarietyHtml(issue.word) + '&rdquo; (Cases ' + issue.cases.join(', ') + ')</span>' +
+            '<button class="btn-copy" style="' + fixBtnStyle + '" onclick="generateFixPrompt(\'title\', [' + issue.cases.join(',') + '], this)"><i data-lucide="wrench"></i> Fix These Cases</button>' +
+          '</div>';
+      });
+
+      (report.explanationIssues || []).forEach(issue => {
+        html +=
+          '<div style="' + rowBase + 'background:rgba(251,191,36,.08);border-left:4px solid #FBBF24;color:#fff5c8;">' +
+            '<i data-lucide="alert-triangle" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;color:#FBBF24;"></i>' +
+            '<span style="flex:1;"><strong>' + issue.cases.length + ' cases</strong> use a very similar explanation &ldquo;' + escapeVarietyHtml(issue.fingerprint) + '&rdquo; (Cases ' + issue.cases.join(', ') + ')</span>' +
+            '<button class="btn-copy" style="' + fixBtnStyle + '" onclick="generateFixPrompt(\'explanation\', [' + issue.cases.join(',') + '], this)"><i data-lucide="wrench"></i> Fix These Cases</button>' +
+          '</div>';
+      });
+
+      if (report.ratingIssue) {
+        const r = report.ratingIssue;
+        const isDominant = r.total > 0 && (r.count / r.total) > 0.5;
+        const msg = isDominant
+          ? '<strong>' + escapeVarietyHtml(r.dominant) + '</strong> appears in <strong>' + r.count + ' of ' + r.total + ' cases</strong> (over 50%) &mdash; consider rebalancing ratings.'
+          : '<strong>' + escapeVarietyHtml(r.dominant) + '</strong> appears <strong>' + r.count + ' times in a row</strong> &mdash; break up the sequence.';
+        const ratingCases = (r.cases || []).join(',');
+        const ratingBtn = ratingCases
+          ? '<button class="btn-copy" style="' + fixBtnStyle + '" onclick="generateFixPrompt(\'rating\', [' + ratingCases + '], this)"><i data-lucide="wrench"></i> Fix These Cases</button>'
+          : '';
+        html +=
+          '<div style="' + rowBase + 'background:rgba(251,191,36,.08);border-left:4px solid #FBBF24;color:#fff5c8;">' +
+            '<i data-lucide="alert-triangle" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;color:#FBBF24;"></i>' +
+            '<span style="flex:1;">' + msg + '</span>' +
+            ratingBtn +
+          '</div>';
+      }
+
+      (report.openingIssues || []).forEach(issue => {
+        html +=
+          '<div style="' + rowBase + 'background:rgba(251,191,36,.08);border-left:4px solid #FBBF24;color:#fff5c8;">' +
+            '<i data-lucide="alert-triangle" style="width:18px;height:18px;flex-shrink:0;margin-top:2px;color:#FBBF24;"></i>' +
+            '<span style="flex:1;"><strong>' + issue.cases.length + ' cases</strong> open &ldquo;The Report&rdquo; with the same phrase &ldquo;' + escapeVarietyHtml(issue.phrase) + '&rdquo; (Cases ' + issue.cases.join(', ') + ')</span>' +
+            '<button class="btn-copy" style="' + fixBtnStyle + '" onclick="generateFixPrompt(\'opening\', [' + issue.cases.join(',') + '], this)"><i data-lucide="wrench"></i> Fix These Cases</button>' +
+          '</div>';
+      });
+
+      box.innerHTML = html;
+      lucide.createIcons();
+    }
+
+    function generateFixPrompt(issueType, caseNumbers, btn) {
+      if (!caseNumbers || !caseNumbers.length) return;
+      const targetBtn = btn || (typeof event !== 'undefined' && event && event.currentTarget ? event.currentTarget : null);
+
+      let issueSpecificInstruction = '';
+      if (issueType === 'title') {
+        issueSpecificInstruction = 'Each of these case titles currently starts with a repeated word. Rewrite each Case Title to start with a different word or structure, while keeping the same case content and meaning.';
+      } else if (issueType === 'explanation') {
+        issueSpecificInstruction = 'Each of these cases currently uses a very similar Possible Explanation. Replace the Possible Explanation in each one with a different plausible alternative (choose from: satellite train, ball lightning, lenticular cloud, drone light show, light pillar, temperature inversion, meteor fragment, searchlight on clouds, helicopter spotlight, sky lantern) — do not repeat the same explanation across these cases either.';
+      } else if (issueType === 'rating') {
+        issueSpecificInstruction = 'These cases currently share the same Mystery Rating too often in sequence. Adjust the Mystery Rating for each of these cases so the three ratings (Still Unexplained / Likely Explained / Debated) are more evenly distributed, while keeping the case content consistent with whichever rating you assign.';
+      } else if (issueType === 'opening') {
+        issueSpecificInstruction = 'Each of these cases currently opens \'The Report\' section with a very similar phrase. Rewrite the opening sentence of \'The Report\' for each case using a different structure (start with the witness, the phenomenon, the time/place, or a sound/sensation instead), while keeping the same factual content.';
+      }
+
+      const prompt =
+        'Please revise ONLY the following cases from the sky mystery case files book you just wrote, keeping everything else in the book exactly as is — do not regenerate or renumber any other case.\n\n' +
+        'Cases to revise: CASE ' + caseNumbers.join(', CASE ') + '\n\n' +
+        issueSpecificInstruction + '\n\n' +
+        'Output ONLY the corrected case blocks, in this exact format:\n\n' +
+        '[CASE ' + caseNumbers[0] + ']\n' +
+        'Case Title: ...\n' +
+        'The Report: ...\n' +
+        'The Evidence: ...\n' +
+        'Possible Explanation: ...\n' +
+        'Mystery Rating: ...\n' +
+        'Visual Metaphor Idea: ...\n\n' +
+        '...repeat for each case listed above...\n\n' +
+        'Do not include any conversational text before or after the case blocks.';
+
+      navigator.clipboard.writeText(prompt).then(() => {
+        const mergeZone = document.getElementById('fix-merge-zone');
+        if (mergeZone && mergeZone.style.display === 'none') {
+          mergeZone.style.display = 'block';
+          lucide.createIcons();
+        }
+        if (!targetBtn) return;
+        const origHTML = targetBtn.innerHTML;
+        targetBtn.innerHTML = '<i data-lucide="check-circle"></i> COPIED!';
+        lucide.createIcons();
+        setTimeout(() => {
+          targetBtn.innerHTML = origHTML;
+          lucide.createIcons();
+        }, 2000);
+      });
+    }
+
+    function mergeFixedCases() {
+      const fixTa = document.getElementById('s2-fix-pasted');
+      const mainTa = document.getElementById('s2-pasted');
+      const conf = document.getElementById('merge-confirmation');
+      if (!fixTa || !mainTa) return;
+      const fixText = (fixTa.value || '').trim();
+      if (!fixText) return;
+      const fixedSections = extractStorySections(fixText).filter(s => s && s.name && /CASE\s+\d+/i.test(s.name));
+      if (!fixedSections.length) return;
+      let fullText = mainTa.value || '';
+      let mergedCount = 0;
+      fixedSections.forEach(sec => {
+        const numMatch = /CASE\s+(\d+)/i.exec(sec.name || '');
+        if (!numMatch) return;
+        const num = numMatch[1];
+        const newBlock = '[' + sec.name + ']\n' + (sec.content || '').trim();
+        const re = new RegExp('\\[CASE ' + num + '\\][\\s\\S]*?(?=\\[CASE|\\[Back Cover\\]|$)', 'i');
+        if (re.test(fullText)) {
+          fullText = fullText.replace(re, newBlock);
+          mergedCount++;
+        }
+      });
+      if (!mergedCount) return;
+      mainTa.value = fullText;
+      try {
+        const sections = extractStorySections(fullText);
+        const report = analyzeVariety(sections);
+        renderVarietyResults(report);
+      } catch (e) {}
+      if (conf) {
+        conf.textContent = '✅ ' + mergedCount + ' corrected case(s) merged — Variety Check updated above.';
+        conf.style.display = 'block';
+        setTimeout(() => { conf.style.display = 'none'; }, 3000);
+      }
+    }
+
+    let varietyCheckTimer = null;
+    (function initVarietyCheck() {
+      const ta = document.getElementById('s2-pasted');
+      if (!ta) return;
+      ta.addEventListener('input', () => {
+        clearTimeout(varietyCheckTimer);
+        varietyCheckTimer = setTimeout(() => {
+          const text = ta.value || '';
+          const panel = document.getElementById('variety-check-panel');
+          if (!/\[CASE/i.test(text)) {
+            if (panel) panel.style.display = 'none';
+            return;
+          }
+          try {
+            const sections = extractStorySections(text);
+            const report = analyzeVariety(sections);
+            renderVarietyResults(report);
+          } catch (e) {
+            if (panel) panel.style.display = 'none';
+          }
+        }, 500);
+      });
+    })();
+
+    function sanitizePromptText(text) {
+      return text
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"')
+        .replace(/\n/g, '\\n')
+        .trim();
+    }
+
+    const CASE_LOADER_MSGS = ["Scanning the night sky...", "Cross-checking witness reports...", "Calibrating mystery variety...", "Sketching visual ideas...", "Rating the evidence...", "Filing the case..."];
+    let caseLoaderTimer = null;
+
+    function generateStoryConcept() {
+      const topic = document.getElementById('s1-topic').value.trim();
+      const author = document.getElementById('s1-author').value.trim();
+      const title = document.getElementById('s1-title').value.trim();
+      const subtitle = document.getElementById('s1-subtitle').value.trim();
+      const lang = getVal('s1-lang');
+
+      if (!topic) {
+        alert("Please enter a Sky Mystery Topic first!");
+        return;
+      }
+
+      document.getElementById('output-story').style.display = 'none';
+      document.getElementById('loading-story').style.display = 'block';
+      const loadP = document.querySelector('#loading-story p');
+      let li = 0;
+      if (loadP) loadP.textContent = CASE_LOADER_MSGS[0];
+      clearInterval(caseLoaderTimer);
+      caseLoaderTimer = setInterval(() => {
+        li = (li + 1) % CASE_LOADER_MSGS.length;
+        if (loadP) loadP.textContent = CASE_LOADER_MSGS[li];
+      }, 900);
+
+      setTimeout(() => {
+        const totalCases = selectedCaseCount;
+        let customInstructs = "";
+
+        if (modes.story === 'manual') {
+          customInstructs = `
+STRICT GUIDELINES:
+- Language: ${lang}
+- Target Age: ${getVal('s1-age')} (calibrate vocabulary, sentence length and wonder-level for this age; short vivid sentences for 6-8, richer clues and light deduction for 10-12)
+- Tone: ${getVal('s1-tone')}
+- Case Type Focus: ${getVal('s1-case-type')}
+${author ? '- Author Name: ' + author : ''}
+${title ? '- Requested Title: ' + title : ''}
+${subtitle ? '- Requested Subtitle: ' + subtitle : ''}
+- Variety anchor: use the topic "${topic}" as the book theme, but every single case must feel like a NEW mini-mystery, not a rewrite of the same sighting.
+`;
+        } else {
+          customInstructs = `\nSTRICT GUIDELINES:\n- Let AI decide the best Age, Tone, Language and Case Type for a sky-mystery case book for kids and families. Default to English and All Ages.\n- Calibrate for All Ages: simple enough for 7-year-olds, intriguing enough for 12-year-olds and parents reading along.\n- Use the topic "${topic}" as the creative seed: expand it into ${totalCases} distinct angles, never repeat the same scene twice.\n`;
+        }
+
+        const limitRule = `CRITICAL RULE: Try to generate all ${totalCases} cases in one go. However, if you run out of output limits, stop cleanly at the current case. I will type "Continue" so you can finish the remaining cases.`;
+
+        const prompt = `You are an expert children's case-file author specializing in sky-mystery books for kids and families.
+I need you to write a complete Case Files Book based on this sky mystery topic/region: "${topic}".
+CRITICAL: This is a MYSTERY case book. Present intriguing, family-safe sky sightings with a neutral, curious tone. Explore the mystery, decide for yourself — never assert something is definitely real or definitely fake.
+
+${customInstructs}
+
+STRICT CONTENT RULES:
+- Cases: Exactly ${totalCases} cases (excluding Cover and Back Cover).
+- UNLIMITED VARIETY ENGINE (critical for quality): no two cases may share the same combination of phenomenon + place + time + witness type. Rotate across: light formations (orbs, triangles, discs, V-shapes, spirals, flashes), sounds (hums, rumbles, whistles, silence), sky effects (glowing clouds, color shifts, radar blips), places (lake, ocean, mountains, farm, school, desert, harbor, forest, suburbs, observatory), times (midnight, sunset, meteor shower, after storm, full moon, dawn, power outage), witnesses (campers, pilots, families, fishermen, hikers, photographers, neighborhoods, night workers). The first 5 cases must be the strongest hooks; the last case must feel like a wonder-filled finale.
+- TITLE QUALITY: each Case Title 3-7 words, punchy and kid-curious ("The Midnight Triangle", "Orbs Over the Harbor"). Vary adjectives — do NOT start more than 3 titles with "Mysterious" or "Strange". No duplicate titles.
+- SENTENCE-LEVEL VARIETY (critical): Do NOT open consecutive 'The Report' sections with the same sentence structure. Rotate opening styles across cases — sometimes start with the witness ('A group of campers noticed...'), sometimes with the phenomenon itself ('A pulsing orb appeared...'), sometimes with the time or place ('Just after midnight, near the harbor...'), sometimes with a sound or sensation before the sighting. Do NOT reuse the same opening phrase, sentence length pattern, or paragraph structure in more than 2 cases total across the entire book. Vary sentence length noticeably between cases — some reports should be short and punchy, others slightly longer and more descriptive.
+- Avoid formulaic connector phrases repeated across cases (e.g. 'Local authorities could not confirm...', 'To this day, no one knows...') — if used, vary the wording every time and do not use the same closing-line pattern in more than 2 cases.
+- Every case MUST present BOTH a witness report AND a plausible alternative explanation — never assert something is definitely real or definitely fake; tone stays neutral and curious ("explore the mystery, decide for yourself").
+- EXPLANATION ROTATION BANK (cycle through, do not reuse the same one twice in a row): weather balloon, aircraft landing lights, Starlink satellite train, atmospheric lensing / temperature inversion, ball lightning, meteor fragment, drone light show, searchlight on low clouds, planet Venus / bright planet, helicopter with spotlight, Chinese lantern / sky lantern, lenticular cloud, light pillar / ice crystals, fireworks reflection, radar false echo / birds. Each Possible Explanation must fit the specific scene in 1-2 sentences.
+- MYSTERY RATING DISTRIBUTION: distribute roughly 1/3 "Still Unexplained", 1/3 "Likely Explained", 1/3 "Debated" across the book — never give the same rating more than 3 times in a row.
+- No real government conspiracy claims, no real named people, no real specific dates/locations tied to actual documented incidents — all cases must read as generic, plausible, family-safe scenarios.
+- No frightening, graphic, or nightmare-inducing content — tone is "intriguing and curious," never "horror".
+- No claims of alien contact, abduction, or harm to people.
+- Keep reports factual and calm, no real named individuals or real specific locations, keep it generic/plausible.
+- The Evidence must be concrete and kid-visual: what was photographed / recorded / tracked (blurry photo described, radar reading, sound clip length, compass wobble, dog barking, car radio static, etc.). Vary evidence type every case.
+- VISUAL DIVERSITY (mandatory, not optional): every Visual Metaphor Idea must specify a DIFFERENT camera framing than the case before it — explicitly alternate between: a wide establishing view, a close-up on a witness's reaction, a close-up on physical evidence, a silhouette shot, a point-of-view shot looking up or through a window, and an aerial view. Cycle through these framings in sequence across the book rather than defaulting to the same wide sky shot for every case. Also vary lighting conditions (moonlit, storm-flash, sunset glow, pre-dawn, artificial light source) and foreground elements (tent, car, playground equipment, boat, farm fence, observatory dome) so consecutive pages do not share the same setting.
+
+OUTPUT STRUCTURE REQUIREMENT:
+You must output the exact structure below. Do NOT include conversational filler.
+
+[Cover Page]
+Title: ${title ? title : "(Catchy case-book title)"}
+${subtitle ? `Subtitle: ${subtitle}` : `Subtitle: (Optional)`}
+${author ? `Author: ${author}` : `(Do NOT include an Author line)`}
+Visual Metaphor Idea: (Describe the core cover illustration — night sky, distant glow, witnesses looking up, atmospheric)
+
+[CASE 1]
+Case Title: (catchy, intriguing name for the sighting/case)
+The Report: (what witnesses say they saw or experienced — written factually and calmly, no real named individuals or real specific locations, keep it generic/plausible)
+The Evidence: (what physical or circumstantial evidence exists — photos described, radar readings, sounds recorded, footprints, etc.)
+Possible Explanation: (a plausible scientific or natural alternative explanation — weather balloon, aircraft, atmospheric phenomenon, optical illusion, etc.)
+Mystery Rating: (Still Unexplained / Likely Explained / Debated)
+Visual Metaphor Idea: (description of the scene to illustrate — the sighting moment itself, intriguing but not frightening)
+
+...continue until [CASE ${totalCases}]...
+
+${limitRule}
+AFTER the final case is generated, you ABSOLUTELY MUST output the Back Cover below:
+
+[Back Cover]
+Blurb Text: (Short intriguing summary of the cases inside)
+Visual Metaphor Idea: (A subtle, concluding night-sky visual. DO NOT include or suggest barcodes, ISBNs, or fake text)`;
+
+        document.getElementById('hidden-story-prompt').value = prompt;
+        clearInterval(caseLoaderTimer);
+        document.getElementById('loading-story').style.display = 'none';
+        document.getElementById('output-story').style.display = 'block';
+      }, 1200);
+    }
+
+    function generateDesignJSON() {
+      const pasted = document.getElementById('s2-pasted').value.trim();
+
+      if (!pasted) {
+        alert("Please paste the generated case book containing [Cover Page] and [CASE X] tags.");
+        return;
+      }
+
+      if (!pasted.includes("[Cover Page]") && !pasted.includes("[CASE 1]")) {
+        alert("Please paste text containing at least [Cover Page] or [CASE 1] to continue.");
+        return;
+      }
+
+      if (looksLikePromptTemplate(pasted)) {
+        alert("You pasted the Case Prompt template, not the final ChatGPT case output.");
+        return;
+      }
+
+      document.getElementById('output-design').style.display = 'none';
+      document.getElementById('loading-design').style.display = 'block';
+      const dLoadP = document.querySelector('#loading-design p');
+      const dMsgs = ["Compiling Case JSONs...", "Cross-referencing evidence...", "Filing the case..."];
+      let di = 0;
+      if (dLoadP) dLoadP.textContent = dMsgs[0];
+      const dTimer = setInterval(() => { di = (di + 1) % dMsgs.length; if (dLoadP) dLoadP.textContent = dMsgs[di]; }, 900);
+
+      setTimeout(() => {
+        clearInterval(dTimer);
+        const sections = extractStorySections(pasted);
+        const wrapper = document.getElementById('output-design');
+        wrapper.innerHTML = '';
+
+        if (!sections.length) {
+          document.getElementById('loading-design').style.display = 'none';
+          alert("No valid [Cover Page], [CASE X], or [Back Cover] sections were found.");
+          return;
+        }
+
+        let innerMode = document.getElementById('s2-inner-mode').value;
+        let coverMode = document.getElementById('s2-cover-mode').value;
+
+        let designPrefs = {};
+        let manualSize = getVal('s2-size');
+
+        if (manualSize === "Default / Balanced" || manualSize === "auto" || manualSize === "") {
+          manualSize = "8.5 x 11 in (Large Portrait - Best)";
+        }
+
+        if (modes.design === 'auto') {
+          // Auto Design Logic: default book size + dynamic/mixed text positioning
+          designPrefs = {
+            size: "8.5 x 11 in (Large Portrait - Best)",
+            factPos: "Mixed (Dynamic)"
+          };
+        } else {
+          designPrefs = {
+            size: manualSize,
+            coverStyle: getVal('s2-cover-style'),
+            coverColor: getVal('s2-cover-color'),
+            innerStyle: getVal('s2-inner-style'),
+            innerColor: getVal('s2-inner-color'),
+            charStyle: getVal('s2-char-style'),
+            bgDetail: getVal('s2-bg-detail'),
+            charCons: getVal('s2-char-cons'),
+            objStyle: getVal('s2-obj'),
+            spaceTheme: getVal('s2-space-theme'),
+            border: getVal('s2-border'),
+            textarea: getVal('s2-textarea'),
+            density: getVal('s2-density'),
+            factPos: getVal('s2-factpos')
+          };
+        }
+
+        const dynamicPositions = [
+          "Left aligned text",
+          "Right aligned text",
+          "Top aligned text",
+          "Bottom aligned text",
+          "Center aligned text"
+        ];
+
+        const DECOR_MOTIFS = {
+          witness_sketch: "hand-annotated margin notes, a small compass rose doodle, a torn-paper edge effect, a faint pencil-sketch case number in the corner",
+          radar_thermal: "a thin scan-line overlay across the full image, small corner readout numbers, a faint grid frame, a blinking-dot style marker on the sighting location",
+          case_photo: "a subtle vignette frame, a small embossed case-file corner tab, soft film-grain texture, a discreet timestamp-style caption area",
+          declassified_doc: "visible paper grain and edge wear, at least one black redaction bar, a corner stamp mark, staple or paperclip shadow detail"
+        };
+
+        const COMPOSITION_ANGLES = [
+          "Wide establishing shot of the full night sky scene, subjects small within a vast environment",
+          "Low-angle point-of-view shot as if the viewer is looking straight up into the sky",
+          "Over-the-shoulder shot from behind a witness, showing what they see ahead of them",
+          "Close-up shot focused on a witness's face reacting to the sighting, phenomenon visible in the background",
+          "Aerial / bird's-eye view looking down at the location with the phenomenon visible above it",
+          "Silhouette shot — witnesses and foreground objects in dark silhouette against a glowing sky",
+          "Interior view looking out through a window or tent flap toward the phenomenon outside",
+          "Extreme close-up on a piece of physical evidence (a device, a photo, a footprint, a recording), phenomenon blurred in the background",
+          "Wide horizontal landscape shot with the phenomenon positioned off-center, negative space emphasizing isolation",
+          "Dynamic diagonal composition suggesting motion, as if the phenomenon is moving quickly across the frame"
+        ];
+
+        let cardCount = 0;
+
+        sections.forEach((section, idx) => {
+          const sectionName = section.name;
+          const sectionContent = section.content;
+
+          if (!sectionContent || sectionContent.trim() === "") return;
+
+          cardCount++;
+
+          const safeId = sectionName.replace(/\s+/g, '-').toLowerCase();
+          const safeContent = sanitizePromptText(sectionContent);
+
+          let isCover = sectionName.includes("COVER");
+          let currentMode = isCover ? coverMode : innerMode;
+
+          const decorText = DECOR_MOTIFS[currentMode] || DECOR_MOTIFS['case_photo'];
+          const appliedComposition = isCover
+            ? "Wide, striking hero composition — the phenomenon as the clear focal point, title text integrated into the sky or negative space."
+            : COMPOSITION_ANGLES[idx % COMPOSITION_ANGLES.length];
+
+          let selectedStyle = "Default";
+          let selectedColor = "Default";
+          let manualConfigJSON = "";
+
+          if (modes.design === 'manual') {
+            selectedStyle = isCover ? designPrefs.coverStyle : designPrefs.innerStyle;
+            selectedColor = isCover ? designPrefs.coverColor : designPrefs.innerColor;
+
+            if (designPrefs.charStyle !== "Default / Balanced") manualConfigJSON += `\n    "MANDATORY_character_style": "STRICTLY ENFORCE ${designPrefs.charStyle}",`;
+            if (designPrefs.charCons !== "Default / Balanced") manualConfigJSON += `\n    "MANDATORY_character_consistency": "STRICTLY ENFORCE ${designPrefs.charCons} consistency",`;
+            if (designPrefs.objStyle !== "Default / Balanced") manualConfigJSON += `\n    "MANDATORY_object_style": "STRICTLY ENFORCE ${designPrefs.objStyle}",`;
+            if (designPrefs.bgDetail !== "Default / Balanced") manualConfigJSON += `\n    "MANDATORY_background_detail": "STRICTLY ENFORCE ${designPrefs.bgDetail} detail",`;
+            if (designPrefs.spaceTheme !== "Default / Balanced") manualConfigJSON += `\n    "MANDATORY_sky_phenomenon": "STRICTLY ENFORCE ${designPrefs.spaceTheme} night-sky environment and sighting logic",`;
+            if (designPrefs.border !== "Default / Balanced") manualConfigJSON += `\n    "MANDATORY_border_style": "YOU ABSOLUTELY MUST FRAME THE IMAGE WITH A ${designPrefs.border}",`;
+            if (designPrefs.textarea !== "Default / Balanced") manualConfigJSON += `\n    "MANDATORY_text_area": "Ensure text space matches ${designPrefs.textarea} requirements",`;
+            if (designPrefs.density !== "Default / Balanced") manualConfigJSON += `\n    "MANDATORY_page_density": "STRICTLY ENFORCE ${designPrefs.density} density",`;
+          } else {
+            selectedStyle = "Default";
+          }
+
+          let formatSpecificRule = "";
+          let baseStylePrompt = "";
+
+          if (currentMode === 'witness_sketch') {
+            baseStylePrompt = (selectedStyle === "Default" || selectedStyle === "Default / Balanced")
+              ? "Hand-drawn witness testimony sketch"
+              : `Hand-drawn witness testimony sketch, ${selectedStyle}`;
+
+            formatSpecificRule = `"witness_sketch_rules": "Strictly black and white line art ONLY, rendered as if hand-drawn by an eyewitness recalling the scene. Imperfect, sparse, sketch-like linework on a plain background. NO color, NO shading, NO polish.",`;
+          } else if (currentMode === 'radar_thermal') {
+            baseStylePrompt = (selectedStyle === "Default" || selectedStyle === "Default / Balanced")
+              ? "Radar or thermal instrument readout style"
+              : `Radar or thermal instrument readout style, ${selectedStyle}`;
+
+            formatSpecificRule = `"radar_thermal_rules": "Render the image as if captured by a scanning or thermal-imaging instrument — grid overlays, scan lines, or thermal color gradients. Must look like recorded equipment data, not a hand-illustrated scene. ${(selectedColor !== "Default" && selectedColor !== "Default / Balanced") ? `Use ${selectedColor} Color palette.` : ''}",`;
+          } else if (currentMode === 'case_photo') {
+            baseStylePrompt = (selectedStyle === "Default" || selectedStyle === "Default / Balanced")
+              ? "Professional documentary case-file photograph style"
+              : `Professional documentary case-file photograph style, ${selectedStyle}`;
+
+            formatSpecificRule = `"case_photo_rules": "High-end, flawless, professional documentary-style visual. Restrained and atmospheric, presented as polished visual evidence within an official case file. Perfectly composed. ${(selectedColor !== "Default" && selectedColor !== "Default / Balanced") ? `Use ${selectedColor} Color palette.` : ''}",`;
+          } else if (currentMode === 'declassified_doc') {
+            baseStylePrompt = (selectedStyle === "Default" || selectedStyle === "Default / Balanced")
+              ? "Declassified government document style"
+              : `Declassified government document style, ${selectedStyle}`;
+
+            formatSpecificRule = `"declassified_doc_rules": "Render the image as an aged, official-looking declassified document or case file page — visible paper texture, black redaction bars over portions of text or image areas, and a 'CLASSIFIED' or 'DECLASSIFIED' stamp mark. Must look like an official record, not a hand-illustrated scene or photograph. ${(selectedColor !== "Default" && selectedColor !== "Default / Balanced") ? `Use ${selectedColor} Color palette.` : ''}",`;
+          }
+
+          let placementRule = "";
+
+          if (isCover) {
+            if (sectionName === "BACK COVER") {
+              placementRule = `"TYPOGRAPHY_MANDATE": "CRITICAL: You ABSOLUTELY MUST write the 'Blurb Text' directly into the back cover design. Use huge, highly readable font. NO barcodes, NO ISBN."`;
+            } else {
+              placementRule = `"TYPOGRAPHY_MANDATE": "CRITICAL: You ABSOLUTELY MUST write ALL the exact text provided in the prompt (Title, Subtitle, and Author if it exists) directly onto the cover image. Use huge, beautiful, and highly legible typography."`;
+            }
+          } else {
+            let appliedFactPos = designPrefs.factPos;
+
+            if (appliedFactPos && (appliedFactPos.includes('Mixed') || appliedFactPos.includes('Default') || appliedFactPos === 'Leave to AI')) {
+              const pageIndex = idx;
+              appliedFactPos = dynamicPositions[pageIndex % dynamicPositions.length];
+            }
+
+            placementRule = `"TYPOGRAPHY_MANDATE": "CRITICAL: You ABSOLUTELY MUST write the EXACT 'Case Title' as a big bold header, followed by key details below it, directly into the image at the ${appliedFactPos} position. Use highly legible typography. Depict the sighting moment itself — intriguing and atmospheric, not frightening."`;
+          }
+
+          const jsonPrompt = `{
+  "objective": "Generate image for ${sectionName} of an unexplained mysteries kids book.",
+  "book_dimension": "${designPrefs.size}",
+  "input_data": {
+    "page_content": "${safeContent}"
+  },
+  "design_preferences": {
+    "art_style": "${baseStylePrompt}"${manualConfigJSON},
+    "visual_richness": "Rich, detailed background and scene elements — avoid plain or empty backgrounds. Add environmental storytelling details (weather, terrain texture, secondary background elements) appropriate to the case's setting."
+  },
+  "critical_format_rules": {
+    ${formatSpecificRule}
+    ${placementRule},
+    "DECORATIVE_DETAIL": "Include tasteful genre-appropriate decorative details: ${decorText}. These details should enhance the case-file feel without cluttering the main scene or obscuring the required text.",
+    "COMPOSITION_DIRECTIVE": "${appliedComposition} This composition MUST differ from adjacent cases — do not default to a generic wide establishing shot for every page."
+  }
+}`;
+
+          const cleanJsonPrompt = jsonPrompt.replace(/,\s*\}/g, '\n  }');
+
+          wrapper.innerHTML += `
+            <div class="json-card">
+              <div class="card-meta">
+                <div class="json-index">${cardCount}</div>
+                <span class="badge">${sectionName}</span>
+              </div>
+              <div class="json-help">Copy this case prompt block for your image model or case-by-case visual workflow.</div>
+              <button class="btn-copy" onclick="copyHiddenData('json-${safeId}', this)">
+                <i data-lucide="copy"></i>
+                Copy Prompt
+              </button>
+              <textarea id="json-${safeId}" style="display:none;">${cleanJsonPrompt}</textarea>
+            </div>
+          `;
+        });
+
+        document.getElementById('loading-design').style.display = 'none';
+        wrapper.style.display = 'grid';
+        setTimeout(() => { lucide.createIcons(); }, 50);
+      }, 1200);
+    }
+
+    lucide.createIcons();
+  </script>
+</body>
+</html>
