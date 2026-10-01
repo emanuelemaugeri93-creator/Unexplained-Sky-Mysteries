@@ -1,0 +1,2473 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unexplained Sky Mysteries: KDP Production Suite</title>
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<style>
+:root{
+  --bg-0:#0F1417;
+  --bg-1:#1A2126;
+  --bg-2:#212B31;
+  --card:rgba(255,255,255,.06);
+  --card-2:rgba(255,255,255,.09);
+  --line:rgba(255,255,255,.12);
+  --line-strong:rgba(255,255,255,.2);
+  --text-strong:#FFFFFF;
+  --text-base:#D7E3E0;
+  --text-muted:#93A8A0;
+  --accent:#10B981;
+  --accent-2:#84CC16;
+  --accent-dark:#065F46;
+  --warn:#FBBF24;
+  --danger:#F87171;
+  --radius-xl:26px;
+  --radius-lg:20px;
+  --radius-md:16px;
+  --radius-sm:12px;
+  --font-head:'Baloo 2',system-ui,sans-serif;
+  --font-main:'Inter',system-ui,sans-serif;
+  --shadow-lg:0 28px 70px rgba(0,0,0,.45);
+  --shadow-md:0 14px 32px rgba(0,0,0,.32);
+  --trans:all .25s cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{min-height:100%;overflow-x:hidden;max-width:100vw}
+body{
+  font-family:var(--font-main);
+  color:var(--text-base);
+  background:
+    radial-gradient(circle at 8% 8%, rgba(16,185,129,.16) 0%, transparent 26%),
+    radial-gradient(circle at 92% 12%, rgba(132,204,22,.12) 0%, transparent 22%),
+    radial-gradient(circle at 50% 100%, rgba(16,185,129,.08) 0%, transparent 28%),
+    linear-gradient(180deg,var(--bg-1) 0%,var(--bg-0) 60%, #0A0E10 100%);
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background:
+    repeating-linear-gradient(-45deg, rgba(255,255,255,.022) 0 2px, transparent 2px 18px);
+  mask-image:linear-gradient(to bottom, rgba(0,0,0,.6), transparent 70%);
+}
+.app-shell{position:relative;z-index:1;width:100%;max-width:1180px;min-width:0;margin:0 auto;padding:24px;box-sizing:border-box}
+
+/* BRAND BAR — compact persistent product identity */
+.brand-bar{display:flex;align-items:center;gap:14px;min-height:76px;padding:14px 20px;margin-bottom:22px;border-radius:20px;background:linear-gradient(135deg, rgba(255,255,255,.07), rgba(255,255,255,.02)),linear-gradient(135deg, rgba(26,33,38,.95), rgba(15,20,23,.95));border:1px solid var(--line);box-shadow:var(--shadow-md);max-width:100%;min-width:0;box-sizing:border-box}
+.brand-emblem{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;flex-shrink:0;background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#06281F;box-shadow:0 8px 20px rgba(16,185,129,.3)}
+.brand-emblem svg{width:24px;height:24px}
+.brand-text{display:flex;flex-direction:column;gap:2px;min-width:0}
+.brand-text small{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2)}
+.brand-text strong{font-family:var(--font-head);font-size:1.45rem;line-height:1;color:#fff}
+
+/* MODULE TOGGLE — two independent tools, one page */
+.module-toggle{display:flex;gap:10px;padding:10px;margin-bottom:22px;border-radius:999px;background:rgba(255,255,255,.06);border:1px solid var(--line);box-shadow:var(--shadow-md);backdrop-filter:blur(14px);max-width:100%;min-width:0;box-sizing:border-box;flex-wrap:wrap}
+.module-btn{flex:1 1 auto;border:0;cursor:pointer;background:transparent;color:var(--text-muted);padding:13px 20px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:var(--trans);font-size:1rem;font-weight:800;letter-spacing:.01em;font-family:var(--font-main);white-space:nowrap}
+.module-btn svg{width:18px;height:18px;stroke:currentColor}
+.module-btn:hover{background:rgba(255,255,255,.08);color:#fff}
+.module-btn.active{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#06281F;box-shadow:0 8px 24px rgba(16,185,129,.3)}
+
+/* HERO */
+.finisher-hero{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:24px;align-items:center;
+  padding:32px;border-radius:28px;margin-bottom:22px;
+  background:linear-gradient(135deg, rgba(255,255,255,.08), rgba(255,255,255,.03)),
+    linear-gradient(135deg, rgba(26,33,38,.95), rgba(15,20,23,.95));
+  border:1px solid var(--line);
+  box-shadow:var(--shadow-lg);
+  backdrop-filter:blur(14px);
+  overflow:hidden;position:relative;
+}
+.finisher-hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:4px;
+  background:repeating-linear-gradient(90deg, var(--accent) 0 28px, var(--accent-2) 28px 56px, transparent 56px 68px);
+  opacity:.85;
+}
+.kicker{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:9px 15px;border-radius:999px;margin-bottom:14px;
+  background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.35);
+  color:#C9F5E3;font-weight:800;font-size:.88rem;letter-spacing:.02em;
+}
+.kicker svg{width:16px;height:16px}
+.finisher-hero h1{
+  font-family:var(--font-head);color:#fff;
+  font-size:clamp(2.2rem,5.4vw,3.6rem);line-height:.95;letter-spacing:-.02em;margin-bottom:8px;
+}
+.finisher-hero h1 span{background:linear-gradient(135deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-tagline{color:var(--accent-2);font-weight:800;font-size:1rem;margin-bottom:10px;letter-spacing:.01em}
+.hero-lead{line-height:1.7;color:var(--text-base);max-width:620px;margin-bottom:16px}
+.hero-notes{display:flex;flex-wrap:wrap;gap:10px}
+.hero-note{
+  display:inline-flex;align-items:center;gap:8px;font-size:.86rem;font-weight:700;
+  padding:10px 14px;border-radius:14px;background:rgba(255,255,255,.06);border:1px solid var(--line);color:#E6F4EE;
+}
+.hero-note svg{width:16px;height:16px;stroke:var(--accent-2)}
+
+/* Paper stack Deco */
+.paper-stage{
+  min-height:250px;position:relative;border-radius:22px;overflow:hidden;
+  background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(0,0,0,.25));
+  border:1px solid var(--line);
+}
+.sheet{
+  position:absolute;width:170px;height:210px;border-radius:12px;
+  background:linear-gradient(180deg,#FFFFFF,#E8F0EC);
+  border:1px solid rgba(0,0,0,.15);
+  box-shadow:0 18px 40px rgba(0,0,0,.45);
+  left:50%;top:50%;
+}
+.sheet::before{
+  content:"";position:absolute;left:16px;right:16px;top:16px;height:10px;border-radius:6px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+}
+.sheet::after{
+  content:"";position:absolute;left:16px;right:16px;top:36px;bottom:16px;border-radius:8px;
+  background:
+    linear-gradient(rgba(15,20,23,.14) 2px, transparent 2px),
+    linear-gradient(90deg, rgba(15,20,23,.06) 1px, transparent 1px);
+  background-size:100% 18px, 100% 100%;
+}
+.sheet.s1{animation:settleA 4.2s ease-in-out infinite}
+.sheet.s2{animation:settleB 4.2s ease-in-out infinite}
+.sheet.s3{animation:settleC 4.2s ease-in-out infinite}
+@keyframes settleA{0%,100%{transform:translate(-88%,-52%) rotate(-10deg)}50%{transform:translate(-86%,-54%) rotate(-7deg)}}
+@keyframes settleB{0%,100%{transform:translate(-50%,-56%) rotate(2deg)}50%{transform:translate(-50%,-50%) rotate(0deg)}}
+@keyframes settleC{0%,100%{transform:translate(-12%,-52%) rotate(10deg)}50%{transform:translate(-14%,-54%) rotate(7deg)}}
+.paper-caption{
+  position:absolute;bottom:14px;left:14px;right:14px;display:flex;justify-content:space-between;align-items:center;
+  font-size:.76rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#B9F5DC;
+  background:rgba(15,20,23,.68);border:1px solid rgba(16,185,129,.35);padding:9px 12px;border-radius:999px;
+}
+.paper-caption svg{width:15px;height:15px}
+
+/* WIZARD LAYOUT */
+.wizard-layout{display:grid;grid-template-columns:280px 1fr;gap:20px;align-items:start;max-width:100%;min-width:0;box-sizing:border-box}
+.steps-rail{
+  position:sticky;top:20px;padding:18px;border-radius:var(--radius-xl);
+  background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+  border:1px solid var(--line);box-shadow:var(--shadow-md);
+}
+.rail-title{display:flex;align-items:center;gap:10px;color:#fff;font-family:var(--font-head);font-size:1.2rem;margin-bottom:14px}
+.rail-title svg{width:20px;height:20px;stroke:var(--accent-2)}
+.rail-step{
+  display:flex;gap:12px;align-items:flex-start;padding:14px;border-radius:16px;margin-bottom:10px;
+  border:1px solid transparent;cursor:pointer;transition:var(--trans);background:transparent;width:100%;text-align:left;color:inherit;font-family:inherit;
+}
+.rail-step .num{
+  width:36px;height:36px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;
+  font-weight:900;background:rgba(255,255,255,.08);border:1px solid var(--line);color:var(--text-muted);
+}
+.rail-step .lbl{font-weight:900;color:#E7F5EF;font-size:.98rem}
+.rail-step .sub{font-size:.84rem;color:var(--text-muted);line-height:1.45;margin-top:2px}
+.rail-step.active{background:rgba(16,185,129,.12);border-color:rgba(16,185,129,.4)}
+.rail-step.active .num{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#06281F;border-color:transparent}
+.rail-step.done .num{background:rgba(132,204,22,.2);border-color:rgba(132,204,22,.5);color:#D9F99D}
+.rail-progress{height:8px;border-radius:999px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:6px}
+.rail-progress i{display:block;height:100%;width:33%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px;transition:width .3s ease}
+
+.stage{background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));border:1px solid var(--line);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);padding:26px;min-height:480px;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden}
+.stage-panel{display:none;animation:fadeUp .3s ease;max-width:100%;min-width:0;box-sizing:border-box}
+.stage-panel.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.stage-panel h2{font-family:var(--font-head);color:#fff;font-size:1.7rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.stage-panel h2 svg{width:22px;height:22px;stroke:var(--accent-2)}
+.stage-panel .desc{color:var(--text-muted);line-height:1.65;margin-bottom:18px;max-width:720px}
+
+/* Dropzone */
+.dropzone{
+  border:2px dashed rgba(16,185,129,.5);border-radius:22px;padding:38px 24px;text-align:center;cursor:pointer;
+  background:linear-gradient(180deg, rgba(16,185,129,.08), rgba(255,255,255,.02));
+  transition:var(--trans);
+}
+.dropzone:hover,.dropzone.drag{border-color:var(--accent-2);background:rgba(132,204,22,.08);transform:translateY(-1px)}
+.dropzone svg{width:38px;height:38px;stroke:var(--accent);margin-bottom:10px}
+.dropzone strong{display:block;color:#fff;font-size:1.12rem;margin-bottom:6px}
+.dropzone span{color:var(--text-muted);font-size:.92rem}
+.privacy-note{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:12px;font-size:.85rem;color:#9BE3C3;font-weight:600}
+.privacy-note svg{width:15px;height:15px}
+
+.strip-wrap{margin-top:18px;width:100%;max-width:100%;min-width:0;box-sizing:border-box}
+.strip-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.counter{font-weight:900;color:#D9FBEA;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);padding:8px 14px;border-radius:999px;font-size:.9rem}
+.thumb-strip{display:flex;flex-wrap:nowrap;gap:12px;overflow-x:auto;overflow-y:hidden;width:100%;max-width:100%;min-width:0;box-sizing:border-box;padding:12px 4px 14px}
+.thumb{
+  flex:0 0 132px;width:132px;border-radius:14px;overflow:hidden;background:#0B0F11;border:1px solid var(--line);position:relative;
+}
+.thumb img{width:100%;height:96px;object-fit:cover;display:block;background:#111}
+.thumb .fname{font-size:.7rem;padding:7px 8px;color:#CDE8DD;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;background:rgba(255,255,255,.04)}
+.thumb .rm{position:absolute;top:6px;right:6px;width:26px;height:26px;border-radius:50%;border:0;cursor:pointer;background:rgba(0,0,0,.7);color:#fff;font-weight:900;line-height:1}
+.thumb .rm:hover{background:var(--danger)}
+.empty-strip{padding:18px;border-radius:14px;border:1px dashed var(--line);color:var(--text-muted);text-align:center;font-size:.92rem}
+
+/* Buttons */
+.nav-row{display:flex;gap:12px;margin-top:22px;flex-wrap:wrap}
+.btn{
+  border:0;cursor:pointer;border-radius:16px;padding:15px 20px;font-weight:900;font-size:.98rem;
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:var(--trans);
+  font-family:var(--font-main);letter-spacing:.01em;text-decoration:none;
+}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#06281F;box-shadow:0 14px 30px rgba(16,185,129,.28);flex:1}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.05)}
+.btn-primary:disabled{opacity:.45;cursor:not-allowed;box-shadow:none}
+.btn-ghost{background:rgba(255,255,255,.07);border:1px solid var(--line);color:#E8F5EF}
+.btn-ghost:hover{background:rgba(255,255,255,.12);transform:translateY(-1px)}
+.btn-small{padding:11px 16px;font-size:.9rem;border-radius:13px;flex:0}
+.btn-tool{padding:12px 20px;white-space:nowrap;width:auto;display:inline-flex;align-items:center;gap:8px;flex:0 0 auto}
+.btn{white-space:nowrap}
+.btn-generate{width:100%;font-size:1.08rem;padding:19px;text-transform:uppercase;letter-spacing:.04em}
+.btn-generate.loading{opacity:.85;pointer-events:none}
+.btn-generate.success{background:linear-gradient(135deg,#34D399,#84CC16)}
+
+/* Arrange grid */
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.arrange-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.page-card{
+  border-radius:18px;overflow:hidden;background:rgba(0,0,0,.3);border:1px solid var(--line);
+  transition:var(--trans);position:relative;cursor:grab;
+}
+.page-card:active{cursor:grabbing}
+.page-card.dragging{opacity:.5;transform:scale(.97);border-color:var(--accent-2)}
+.page-card.drop-target{outline:2px solid var(--accent-2);outline-offset:2px}
+.page-card img{width:100%;height:170px;object-fit:cover;display:block;background:#111;pointer-events:none}
+.page-card .meta{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:10px 11px}
+.role-badge{font-size:.72rem;font-weight:900;letter-spacing:.06em;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,.09);border:1px solid var(--line);color:#E8F5EF;text-transform:uppercase}
+.role-badge.cover{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#06281F;border-color:transparent}
+.role-badge.back{background:rgba(132,204,22,.18);border-color:rgba(132,204,22,.5);color:#D9F99D}
+.drag-handle{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:10px;background:rgba(255,255,255,.07);border:1px solid var(--line);color:#B9D9CC}
+.drag-handle svg{width:16px;height:16px;pointer-events:none}
+.page-num{font-size:.74rem;color:var(--text-muted);font-weight:700;padding:0 11px 11px}
+
+/* Export */
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.field label{display:flex;align-items:center;gap:8px;font-weight:800;color:#E2F3EB;font-size:.95rem}
+.field label svg{width:16px;height:16px;stroke:var(--accent-2)}
+input[type="text"],select{
+  width:100%;border:1px solid var(--line);border-radius:14px;padding:14px 15px;font-size:1rem;font-family:var(--font-main);
+  background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));color:#fff;outline:none;transition:var(--trans);
+}
+select option{background:#0F1417;color:#fff}
+input[type="text"]:focus,select:focus{border-color:rgba(16,185,129,.6);box-shadow:0 0 0 4px rgba(16,185,129,.15)}
+input[type="text"]::placeholder{color:#7FA096}
+.fit-toggle{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:16px}
+.fit-option{cursor:pointer;border-radius:16px;padding:16px;border:1px solid var(--line);background:rgba(255,255,255,.05);transition:var(--trans);display:flex;gap:12px;align-items:flex-start}
+.fit-option input{margin-top:3px;accent-color:var(--accent)}
+.fit-option strong{display:block;color:#fff;margin-bottom:4px;font-size:.96rem}
+.fit-option span{font-size:.86rem;color:var(--text-muted);line-height:1.5}
+.fit-option.selected{border-color:rgba(16,185,129,.6);background:rgba(16,185,129,.1);box-shadow:0 0 0 4px rgba(16,185,129,.12)}
+.summary-box{padding:16px 18px;border-radius:16px;background:rgba(132,204,22,.08);border:1px solid rgba(132,204,22,.3);color:#EAFBDD;font-weight:700;line-height:1.6;margin-bottom:16px;display:flex;gap:10px;align-items:flex-start}
+.summary-box svg{width:20px;height:20px;flex-shrink:0;stroke:var(--accent-2);margin-top:2px}
+.warn-banner{display:flex;gap:10px;align-items:flex-start;padding:13px 14px;border-radius:14px;margin-bottom:16px;background:rgba(251,191,36,.1);border:1px solid rgba(251,191,36,.4);border-left:4px solid var(--warn);color:#FFF3D1;font-size:.9rem;line-height:1.5}
+.warn-banner button{margin-left:auto;background:transparent;border:0;color:#FFF3D1;cursor:pointer;font-weight:900;font-size:1rem}
+.spinner{width:20px;height:20px;border-radius:50%;border:3px solid rgba(0,0,0,.25);border-top-color:#06281F;animation:spin 0.9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.info-banner{display:flex;gap:10px;align-items:flex-start;padding:13px 14px;border-radius:14px;margin-top:12px;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.4);border-left:4px solid var(--accent);color:#D9FBEA;font-size:.9rem;line-height:1.5}
+.info-banner button{margin-left:auto;background:transparent;border:0;color:#D9FBEA;cursor:pointer;font-weight:900;font-size:1rem}
+.check-row{display:flex;gap:12px;align-items:flex-start;padding:16px;border-radius:16px;background:rgba(255,255,255,.05);border:1px solid var(--line);cursor:pointer;transition:var(--trans)}
+.check-row:hover{background:rgba(255,255,255,.08)}
+.check-row input{margin-top:3px;width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;cursor:pointer}
+.check-row strong{display:block;color:#fff;font-size:.96rem;margin-bottom:4px}
+.check-row small{display:block;font-size:.85rem;color:var(--text-muted);line-height:1.5;font-weight:500}
+.field-hint{font-size:.84rem;color:var(--text-muted);line-height:1.5;margin-top:8px}
+.progress-wrap{display:none;margin:16px 0;padding:16px 18px;border-radius:16px;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.3)}
+.progress-wrap.visible{display:block}
+.progress-text{font-weight:800;color:#D9FBEA;font-size:.95rem;margin-bottom:10px;text-align:center}
+.progress-track{height:12px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
+.progress-fill{display:block;height:100%;width:0%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:999px;transition:width .2s ease}
+
+/* Output Format selector — KDP Production Suite */
+.form-section{padding:18px;margin-bottom:16px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));border:1px solid var(--line)}
+.form-section-title{display:flex;align-items:center;gap:10px;font-family:var(--font-head);color:#fff;font-size:1.25rem;margin-bottom:14px;padding-bottom:10px;border-bottom:1px dashed rgba(255,255,255,.12)}
+.form-section-title svg{width:20px;height:20px;stroke:var(--accent-2)}
+.case-tier-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.case-tier-card{cursor:pointer;text-align:center;padding:16px 12px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid var(--line);transition:var(--trans)}
+.case-tier-card:hover{background:rgba(255,255,255,.1);transform:translateY(-2px)}
+.case-tier-card.active{background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#06281F;border-color:transparent;box-shadow:0 10px 26px rgba(16,185,129,.3)}
+.case-tier-card .tier-name{font-weight:900;font-size:1rem}
+.case-tier-card .tier-sub{font-size:.82rem;opacity:.8;font-weight:600;margin-top:4px;line-height:1.4}
+
+/* Mockup Builder preview */
+#mockupPreviewBox{margin-top:16px;text-align:center;color:var(--text-muted);font-size:.9rem;line-height:1.6}
+#mockupPreviewBox img{max-width:320px;width:100%;height:auto;border-radius:14px;border:1px solid var(--line);box-shadow:var(--shadow-md);display:block;margin:0 auto}
+#mockupPreviewBox .preview-loading{padding:22px 0;font-weight:800;color:#D9FBEA}
+
+/* Mockup Customize panel */
+#wrapMockupLayout .input-group, #wrapMockupCustomize .input-group{display:flex;flex-direction:column;gap:8px;margin:14px 0}
+#wrapMockupLayout .input-group label, #wrapMockupCustomize .input-group label{font-weight:800;color:#E2F3EB;font-size:.95rem}
+#mockupPageCountLabel{font-weight:800;color:#D9FBEA;font-size:.9rem;background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);padding:6px 12px;border-radius:999px;width:fit-content}
+#wrapMockupLayout input[type="range"], #wrapMockupCustomize input[type="range"]{width:100%;accent-color:var(--accent);cursor:pointer}
+#wrapMockupLayout input[type="range"]:disabled, #wrapMockupCustomize input[type="range"]:disabled{opacity:.35;cursor:not-allowed}
+#wrapMockupLayout input[type="color"], #wrapMockupCustomize input[type="color"]{width:64px;height:42px;border:1px solid var(--line);border-radius:12px;background:rgba(255,255,255,.06);cursor:pointer;padding:4px}
+#wrapMockupLayout select, #wrapMockupCustomize select{width:100%;border:1px solid var(--line);border-radius:14px;padding:14px 15px;font-size:1rem;font-family:var(--font-main);background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.03));color:#fff;outline:none}
+#wrapMockupLayout select option, #wrapMockupCustomize select option{background:#0F1417;color:#fff}
+.checkbox-row{display:flex;gap:10px;align-items:center;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--line);cursor:pointer;font-weight:700;color:#E8F5EF;margin:14px 0}
+.checkbox-row input{width:18px;height:18px;accent-color:var(--accent);cursor:pointer}
+.mockup-btn-row{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+#mockupVariantStrip .thumb{cursor:pointer;transition:var(--trans)}
+#mockupVariantStrip .thumb:hover{transform:translateY(-2px);border-color:var(--accent-2)}
+#mockupVariantStrip .thumb.selected{outline:2px solid var(--accent-2);outline-offset:2px}
+.mockup-btn-row .btn-secondary{flex:1;white-space:nowrap}
+.input-disabled{opacity:.4}
+.input-disabled label{color:var(--text-muted)}
+.btn-secondary{border:1px solid var(--line);cursor:pointer;border-radius:14px;padding:13px 18px;font-weight:800;font-size:.95rem;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:var(--trans);font-family:var(--font-main);background:rgba(255,255,255,.07);color:#E8F5EF;width:100%}
+.btn-secondary:hover{background:rgba(255,255,255,.12);transform:translateY(-1px)}
+.btn-secondary svg{width:17px;height:17px}
+
+@media (max-width:960px){
+  .finisher-hero{grid-template-columns:1fr}
+  .paper-stage{min-height:220px}
+  .wizard-layout{grid-template-columns:1fr}
+  .steps-rail{position:static}
+  .steps-rail .steps-list{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+  .rail-step{flex-direction:column;align-items:center;text-align:center;padding:12px 8px}
+  .rail-step .sub{display:none}
+  .rail-progress{margin-top:12px}
+  .stage{padding:18px}
+  .arrange-grid{grid-template-columns:repeat(2,1fr)}
+  .fit-toggle{grid-template-columns:1fr}
+  .case-tier-grid{grid-template-columns:1fr}
+  .btn-primary{flex:1}
+}
+    /* Guided workflow step bar (shared pattern across the Unexplained Sky Mysteries suite) */
+    .steps-rail{display:none}
+    .wizard-layout{grid-template-columns:1fr}
+    #panel-1 .nav-row,#panel-2 .nav-row,#panel-3 .nav-row{display:none}
+    .wf-steps{display:flex;align-items:flex-start;justify-content:center;margin:26px 0 6px;gap:0}
+    .wf-step-pill{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1 1 0;min-width:80px;max-width:150px;background:none;border:0;font-family:var(--font-main);padding:0;color:var(--text-muted)}
+    .wf-step-pill.clickable{cursor:pointer}
+    .wf-dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:1.1rem;border:2px solid rgba(255,255,255,.18);color:var(--text-muted);background:rgba(255,255,255,.05);transition:var(--trans)}
+    .wf-dot svg{width:20px;height:20px}
+    .wf-dot .wf-check{display:none}
+    .wf-step-pill.current .wf-dot{border-color:var(--accent);color:#fff;box-shadow:0 0 0 4px rgba(16,185,129,.15),0 0 24px rgba(16,185,129,.25)}
+    .wf-step-pill.done .wf-dot{background:linear-gradient(135deg,var(--accent),var(--accent-2));border-color:transparent;color:#06281F}
+    .wf-step-pill.done .wf-num{display:none}
+    .wf-step-pill.done .wf-check{display:inline}
+    .wf-step-label{font-size:.78rem;font-weight:800;letter-spacing:.01em;color:var(--text-muted)}
+    .wf-step-pill.current .wf-step-label{color:var(--text-strong)}
+    .wf-step-pill.done .wf-step-label{color:var(--text-base)}
+    .wf-link{flex:1 1 16px;min-width:10px;height:2px;background:rgba(255,255,255,.14);margin-top:21px;border-radius:2px}
+    .wf-link.done{background:linear-gradient(90deg,var(--accent),var(--accent-2))}
+    .wf-counter{text-align:center;color:var(--text-muted);font-size:.85rem;font-weight:700;margin-bottom:20px}
+    .wf-nav{display:flex;gap:12px;justify-content:center;margin:26px 0 8px;flex-wrap:wrap}
+    .wf-continue{border:0;cursor:pointer;border-radius:16px;padding:15px 26px;font-weight:900;font-size:1rem;color:#06281F;background:linear-gradient(135deg,var(--accent),var(--accent-2));box-shadow:0 12px 28px rgba(16,185,129,.25);transition:var(--trans);font-family:var(--font-main);white-space:nowrap}
+    .wf-continue:hover{transform:translateY(-2px);filter:brightness(1.05)}
+    .wf-back{background:rgba(255,255,255,.07);border:1px solid var(--line);cursor:pointer;border-radius:16px;padding:13px 22px;font-weight:800;font-size:.95rem;color:#E8F5EF;transition:var(--trans);font-family:var(--font-main);white-space:nowrap}
+    .wf-back:hover{background:rgba(255,255,255,.12);transform:translateY(-1px)}
+    @media (max-width:640px){.wf-step-pill{min-width:68px}.wf-step-label{font-size:.68rem}.wf-dot{width:38px;height:38px}}
+  </style>
+</head>
+<body>
+<div class="app-shell">
+
+  <header class="brand-bar">
+    <span class="brand-emblem"><i data-lucide="layers"></i></span>
+    <span class="brand-text"><small>Unexplained Sky Mysteries</small><strong>KDP Production Suite</strong></span>
+  </header>
+
+  <div class="module-toggle">
+    <button class="module-btn active" data-module="assembler" onclick="switchModule('assembler')"><i data-lucide="layout-grid"></i> Book Assembler</button>
+    <button class="module-btn" data-module="listing" onclick="switchModule('listing')"><i data-lucide="tag"></i> Listing Generator</button>
+  </div>
+
+  <section class="finisher-hero">
+    <div>
+      <div class="kicker"><i data-lucide="printer"></i> KDP Production Suite · Print Production Desk</div>
+      <h1>KDP <span>Production Suite</span></h1>
+      <div class="hero-tagline">Everything between your generated images and a published KDP or Etsy listing — assembly, formatting, and copy, in one suite.</div>
+      <p class="hero-lead">Upload your cover, case pages and back cover in order, pick KDP Print Book or Etsy Printable Pack output, choose Fit or Fill, and download a properly-sized file ready for Amazon KDP, home printing, or your Etsy shop.</p>
+      <div class="hero-notes">
+        <div class="hero-note"><i data-lucide="layout-grid"></i> 3-step assembly line</div>
+        <div class="hero-note"><i data-lucide="file-stack"></i> Cover → Cases → Back Cover</div>
+        <div class="hero-note"><i data-lucide="check-circle"></i> 100% in-browser</div>
+      </div>
+    </div>
+    <div class="paper-stage" aria-hidden="true">
+      <div class="sheet s1"></div>
+      <div class="sheet s2"></div>
+      <div class="sheet s3"></div>
+      <div class="paper-caption"><span style="display:inline-flex;align-items:center;gap:8px"><i data-lucide="layers"></i> assembling pages</span><span id="heroMiniCount">0 pages</span></div>
+    </div>
+  </section>
+
+  <div id="module-assembler">
+  <div class="wf-steps" id="wfSteps">
+    <button type="button" class="wf-step-pill current clickable" data-wf="1" onclick="wfGoto(1)">
+      <span class="wf-dot"><span class="wf-num">1</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Upload Images</span>
+    </button>
+    <div class="wf-link" data-wf-link="1"></div>
+    <button type="button" class="wf-step-pill" data-wf="2" onclick="wfGoto(2)">
+      <span class="wf-dot"><span class="wf-num">2</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Arrange Pages</span>
+    </button>
+    <div class="wf-link" data-wf-link="2"></div>
+    <button type="button" class="wf-step-pill" data-wf="3" onclick="wfGoto(3)">
+      <span class="wf-dot"><span class="wf-num">3</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Export PDF</span>
+    </button>
+  </div>
+  <div class="wf-counter" id="wfCounter">Step 1 of 3</div>
+  <div class="wizard-layout">
+    <aside class="steps-rail">
+      <div class="rail-title"><i data-lucide="layout-grid"></i> Assembly Line</div>
+      <div class="steps-list">
+        <button class="rail-step active" id="rail-1" onclick="goToStep(1)">
+          <span class="num">1</span>
+          <span><span class="lbl">Upload Images</span><div class="sub">Drop your PNG / JPG / WEBP files</div></span>
+        </button>
+        <button class="rail-step" id="rail-2" onclick="goToStep(2)">
+          <span class="num">2</span>
+          <span><span class="lbl">Arrange Pages</span><div class="sub">Drag to set book order</div></span>
+        </button>
+        <button class="rail-step" id="rail-3" onclick="goToStep(3)">
+          <span class="num">3</span>
+          <span><span class="lbl">Export</span><div class="sub">Format, size &amp; download</div></span>
+        </button>
+      </div>
+      <div class="rail-progress"><i id="railBar"></i></div>
+    </aside>
+
+    <main class="stage">
+      <!-- STEP 1 -->
+      <section class="stage-panel active" id="panel-1">
+        <h2><i data-lucide="upload"></i> 1. Upload Images</h2>
+        <p class="desc">Drag your finished case images here — cover first if you can, but you can reorder in the next step. Files never leave this browser.</p>
+
+        <div class="dropzone" id="dropzone" role="button" tabindex="0" aria-label="Upload images">
+          <i data-lucide="image"></i>
+          <strong>Drag your generated case images here, or click to browse</strong>
+          <span>PNG · JPG · WEBP — multiple files supported</span>
+          <input type="file" id="fileInput" multiple accept="image/*" style="display:none" />
+        </div>
+        <div class="privacy-note"><i data-lucide="check-circle"></i> Your images stay on your device — nothing is uploaded to any server.</div>
+
+        <div class="info-banner" id="largeBookBanner" style="display:none">
+          <span>📚 Large book detected (100+ pages). Processing may take a minute or two during export — this is normal for books this size.</span>
+          <button onclick="document.getElementById('largeBookBanner').style.display='none'" aria-label="Dismiss">✕</button>
+        </div>
+
+        <div class="strip-wrap">
+          <div class="strip-head">
+            <div class="counter" id="imgCount">0 images uploaded</div>
+            <button class="btn btn-ghost btn-small" onclick="clearAll()" id="btnClear" style="display:none">Clear all</button>
+          </div>
+          <div class="thumb-strip" id="thumbStrip"></div>
+        </div>
+
+        <div class="nav-row">
+          <button class="btn btn-primary" id="btnToStep2" onclick="goToStep(2)" disabled>Continue to Arrange →</button>
+        </div>
+        <div class="wf-nav">
+          <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 2: Arrange Pages →</button>
+        </div>
+      </section>
+
+      <!-- STEP 2 -->
+      <section class="stage-panel" id="panel-2">
+        <div class="wf-nav" style="margin-top:0;">
+          <button type="button" class="wf-back" onclick="wfBack()">← Back to Step 1</button>
+        </div>
+        <h2><i data-lucide="move"></i> 2. Arrange Pages</h2>
+        <p class="desc">Drag cards to reorder. The first card becomes <strong style="color:#fff">COVER</strong>, the last becomes <strong style="color:#fff">BACK COVER</strong>, everything in between is auto-numbered CASE 1, CASE 2…</p>
+
+        <div class="toolbar">
+          <button class="btn btn-ghost btn-small btn-tool" onclick="autoSort()"><span>🔤</span> Auto-Sort by Filename</button>
+          <button class="btn btn-ghost btn-small btn-tool" onclick="resetOrder()"><span>↩</span> Reset Order</button>
+          <div class="counter" id="arrangeCount" style="margin-left:auto">0 pages</div>
+        </div>
+
+        <div class="arrange-grid" id="arrangeGrid"></div>
+
+        <div class="nav-row">
+          <button class="btn btn-ghost" onclick="goToStep(1)">← Back</button>
+          <button class="btn btn-primary" onclick="goToStep(3)">Continue to Export →</button>
+        </div>
+        <div class="wf-nav">
+          <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 3: Export PDF →</button>
+        </div>
+      </section>
+
+      <!-- STEP 3 -->
+      <section class="stage-panel" id="panel-3">
+        <div class="wf-nav" style="margin-top:0;">
+          <button type="button" class="wf-back" onclick="wfBack()">← Back to Step 2</button>
+        </div>
+        <h2><i data-lucide="printer"></i> 3. Export</h2>
+        <p class="desc">Pick an output format, set size and fit mode, then generate your production-ready files. KDP produces one combined PDF — Etsy produces a .zip of individual printables plus a listing mockup.</p>
+
+        <div class="warn-banner" id="lowPageWarning" style="display:none">
+          <span>⚠️ Your book has very few pages — make sure you've uploaded your cover, all case pages, and your back cover.</span>
+          <button onclick="document.getElementById('lowPageWarning').style.display='none'" aria-label="Dismiss">✕</button>
+        </div>
+
+        <div class="field">
+          <label><i data-lucide="file-stack"></i> Book Title <span style="font-weight:500;color:var(--text-muted)">(filename / metadata only — not printed)</span></label>
+          <input type="text" id="bookTitle" placeholder="My Sky Mystery Case Files" />
+        </div>
+
+        <div class="form-section">
+          <div class="form-section-title"><i data-lucide="package"></i> Output Format</div>
+          <div class="case-tier-grid" id="outputFormatGrid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="case-tier-card active" data-format="pdf" onclick="pickOutputFormat('pdf', this)"><div class="tier-name">KDP Print Book (PDF)</div><div class="tier-sub">single combined file for Amazon KDP</div></div>
+            <div class="case-tier-card" data-format="etsy" onclick="pickOutputFormat('etsy', this)"><div class="tier-name">Etsy Printable Pack</div><div class="tier-sub">individual page files + product mockup</div></div>
+          </div>
+        </div>
+
+        <div class="field" id="wrapPdfPageSize">
+          <label><i data-lucide="layout-grid"></i> Page Size</label>
+          <select id="pageSize" onchange="updateSummary()">
+            <option value="6,9" selected>6 x 9 in (Standard Trade)</option>
+            <option value="5.5,8.5">5.5 x 8.5 in (Digest)</option>
+            <option value="7,10">7 x 10 in (Textbook)</option>
+            <option value="8,8">8 x 8 in (Square Small)</option>
+            <option value="8.5,8.5">8.5 x 8.5 in (Square Large)</option>
+            <option value="8.5,11">8.5 x 11 in (Large Portrait)</option>
+          </select>
+        </div>
+
+        <div class="field" id="wrapEtsyPageSize" style="display:none">
+          <label><i data-lucide="layout-grid"></i> Printable Page Size</label>
+          <select id="etsyPageSize" onchange="updateSummary()">
+            <option value="8.5,11" selected>8.5 x 11 in (US Letter)</option>
+            <option value="8.27,11.69">A4 (210 x 297mm)</option>
+          </select>
+          <div class="field-hint">Etsy printables are sold as standard home-print sizes, not KDP trim sizes.</div>
+        </div>
+
+        <div class="field">
+          <label><i data-lucide="image"></i> Image Fit Mode</label>
+          <div class="fit-toggle">
+            <label class="fit-option selected" id="optFit">
+              <input type="radio" name="fitMode" value="fit" checked onchange="updateFitUI()" />
+              <span><strong>Fit to Page</strong><span>Show full image, may add small white margins. Nothing cropped.</span></span>
+            </label>
+            <label class="fit-option" id="optFill">
+              <input type="radio" name="fitMode" value="fill" onchange="updateFitUI()" />
+              <span><strong>Fill Page</strong><span>Crop overflow, no margins. Image covers the whole page.</span></span>
+            </label>
+          </div>
+        </div>
+
+        <div class="field">
+          <label><i data-lucide="gauge"></i> Compression Quality</label>
+          <select id="compressionQuality" onchange="updateSummary()">
+            <option value="standard" selected>Standard (recommended, smaller file) — 300 DPI / 85% JPEG</option>
+            <option value="high">High Quality (larger file) — 300 DPI / 95% JPEG</option>
+            <option value="max">Maximum Compression (fastest, smallest) — 200 DPI / 75% JPEG</option>
+          </select>
+          <div class="field-hint">Images are auto-downscaled to print resolution before insertion to keep large books fast and KDP-friendly.</div>
+        </div>
+
+        <div class="field" id="wrapKdpMargins">
+          <label class="check-row" for="kdpMargins">
+            <input type="checkbox" id="kdpMargins" checked onchange="updateSummary()" />
+            <span><strong>☑ Add KDP-Safe Margins</strong><small>Adds a safe white margin so no content gets trimmed or falls into the binding gutter. Cover and back cover stay full-bleed to the edge (per KDP requirements); interior pages get a 0.25in safety margin on all sides.</small></span>
+          </label>
+        </div>
+
+        <div class="field" id="wrapEtsyFooter" style="display:none">
+          <label class="check-row" for="etsyFooter">
+            <input type="checkbox" id="etsyFooter" onchange="updateSummary()" />
+            <span><strong>☑ Include a small marketing footer on each page</strong><small>Adds a subtle small-text line like "Unexplained Sky Mysteries — Sample Page" at the bottom of each printable. Optional branding sometimes added to printables.</small></span>
+          </label>
+        </div>
+
+        <div class="form-section" id="wrapMockupLayout" style="display:none">
+          <div class="form-section-title"><i data-lucide="image"></i> Mockup Layout</div>
+          <div class="case-tier-grid" id="mockupLayoutGrid" style="grid-template-columns: repeat(2, 1fr);">
+            <div class="case-tier-card active" data-layout="fan" onclick="pickMockupLayout('fan', this)"><div class="tier-name">Fanned Cards</div><div class="tier-sub">cover + 4 pages, cascading spread</div></div>
+            <div class="case-tier-card" data-layout="flatlay" onclick="pickMockupLayout('flatlay', this)"><div class="tier-name">Flat Lay Grid</div><div class="tier-sub">clean grid, top-down view</div></div>
+            <div class="case-tier-card" data-layout="stack" onclick="pickMockupLayout('stack', this)"><div class="tier-name">Stacked Pile</div><div class="tier-sub">pages stacked with slight offset</div></div>
+            <div class="case-tier-card" data-layout="hero" onclick="pickMockupLayout('hero', this)"><div class="tier-name">Hero Cover</div><div class="tier-sub">single bold cover, minimal</div></div>
+          </div>
+          <div id="mockupPreviewBox">
+            <span style="display:inline-flex;align-items:center;gap:8px"><i data-lucide="eye"></i> Preview will appear here after you click "Preview Mockup" below.</span>
+          </div>
+          <div class="mockup-btn-row">
+            <button class="btn-secondary" onclick="previewMockup()"><i data-lucide="refresh-cw"></i> Preview Mockup</button>
+            <button class="btn-secondary" onclick="randomizeMockupStyle()">🎲 Randomize Style</button>
+          </div>
+          <div class="mockup-btn-row">
+            <button class="btn-secondary" id="btnBatchVariants" onclick="generateBatchVariants()"><i data-lucide="copy-plus"></i> Generate 5 Variants</button>
+          </div>
+          <div id="mockupVariantWrap" style="display:none; margin-top:14px;">
+            <div class="field-hint" style="margin-bottom:8px;">Generated variants — click one to preview it full-size as your primary mockup.</div>
+            <div class="thumb-strip" id="mockupVariantStrip"></div>
+          </div>
+        </div>
+
+        <div class="form-section" id="wrapMockupCustomize" style="display:none">
+          <div class="form-section-title"><i data-lucide="sliders"></i> Customize Your Mockup</div>
+
+          <div class="input-group">
+            <label>Export Format</label>
+            <select id="mockupExportFormat" onchange="previewMockup()">
+              <option value="square" selected>Etsy/Square (2000 x 2000)</option>
+              <option value="pinterest">Pinterest (1000 x 1500)</option>
+              <option value="instastory">Instagram/TikTok Story (1080 x 1920)</option>
+              <option value="banner">Facebook/Link Banner (1200 x 630)</option>
+            </select>
+          </div>
+
+          <div class="input-group" id="mockupPageCountGroup">
+            <label>Number of Pages Shown</label>
+            <input type="range" id="mockupPageCount" min="1" max="7" value="5" oninput="updateMockupPageCountLabel(this.value); previewMockup();">
+            <span id="mockupPageCountLabel">5 pages</span>
+          </div>
+
+          <div class="input-group">
+            <label>Background Style</label>
+            <select id="mockupBgStyle" onchange="updateMockupBgColorVisibility(); previewMockup()">
+              <option value="soft-gradient">Soft Neutral Gradient</option>
+              <option value="solid-color">Solid Color</option>
+              <option value="radial-spotlight">Radial Spotlight</option>
+              <option value="textured-paper">Textured Paper</option>
+              <option value="matching-theme">Match Book's Color Theme</option>
+            </select>
+          </div>
+
+          <div class="input-group" id="mockupBgColorWrap" style="display:none;">
+            <label>Background Color</label>
+            <input type="color" id="mockupBgColor" value="#F3F4F6" oninput="previewMockup()">
+          </div>
+
+          <div class="input-group">
+            <label>Decorative Accents</label>
+            <select id="mockupDecoration" onchange="previewMockup()">
+              <option value="none">None (Clean)</option>
+              <option value="confetti">Scattered Confetti Dots</option>
+              <option value="sparkle">Sparkle Accents</option>
+              <option value="washi-tape">Washi Tape Corners</option>
+              <option value="ribbon-banner">"NEW" Ribbon Banner</option>
+              <option value="stars-scatter">Scattered Stars</option>
+            </select>
+          </div>
+
+          <div class="input-group">
+            <label>Shadow Intensity</label>
+            <input type="range" id="mockupShadowIntensity" min="0" max="100" value="60" oninput="previewMockup()">
+          </div>
+
+          <div class="input-group">
+            <label>Page Spacing / Spread</label>
+            <input type="range" id="mockupSpread" min="0" max="100" value="50" oninput="previewMockup()">
+          </div>
+
+          <label class="checkbox-row">
+            <input type="checkbox" id="mockupShowCaption" checked onchange="previewMockup()"> Show page-count caption
+          </label>
+        </div>
+
+        <div class="summary-box"><i data-lucide="check-circle"></i><span id="exportSummary">Ready to export: 0 pages.</span></div>
+
+        <div class="progress-wrap" id="exportProgressWrap">
+          <div class="progress-text" id="exportProgressText">Processing page 0 of 0...</div>
+          <div class="progress-track"><i class="progress-fill" id="exportProgressBar"></i></div>
+        </div>
+
+        <button class="btn btn-primary btn-generate" id="btnGenerate" onclick="handleGenerate()">📥 Generate &amp; Download PDF</button>
+
+        <div class="nav-row">
+          <button class="btn btn-ghost" onclick="goToStep(2)">← Back to Arrange</button>
+        </div>
+      </section>
+    </main>
+  </div>
+  </div><!-- /module-assembler -->
+
+  <section class="stage" id="module-listing" style="display:none">
+    <div class="stage-panel active">
+      <h2><i data-lucide="tag"></i> KDP Listing Generator</h2>
+      <p class="desc">Paste your finished book text below, set the marketplace and universe, then generate a detailed prompt that writes your complete KDP listing — title options, description, keywords, categories, age range and author bio. Paste the prompt into ChatGPT, then copy the results into your KDP listing fields when publishing.</p>
+
+      <div class="info-banner" style="margin-bottom:12px;">
+        <span>📋 Which text goes here? This is the RAW TEXT your AI writer generated — the one with [Cover Page], [CASE 1], [CASE 2]... tags — from before you turned it into illustrations. It's the same text you pasted into the Visual Generator Lab in the main Unexplained Sky Mysteries tool. Your finished, illustrated PDF pages are images and can't be pasted here directly — you'll need the original manuscript text instead.</span>
+      </div>
+      <div class="field-hint" style="margin-bottom:12px;">💡 Tip: Always save a copy of your generated manuscript text in a notes file before moving on to illustrations — you'll need it here later.</div>
+
+      <div class="field">
+        <label><i data-lucide="clipboard-paste"></i> Paste Your Original Case Files Manuscript Text Here</label>
+        <textarea id="listingBookText" placeholder="Paste the original manuscript text here — the one with [Cover Page], [CASE 1], [CASE 2]... tags — ChatGPT will base the entire listing ONLY on what's actually in this text..." style="height:220px;"></textarea>
+      </div>
+
+      <div class="warn-banner" id="listingValidation" style="display:none">
+        <span>This doesn't look like a case files manuscript. Make sure you're pasting the original text with [CASE X] tags, not the illustrated book itself.</span>
+        <button onclick="document.getElementById('listingValidation').style.display='none'" aria-label="Dismiss">✕</button>
+      </div>
+
+        <div class="field">
+          <label><i data-lucide="book-open"></i> Book Title</label>
+          <input type="text" id="listingTitle" placeholder="My Sky Mystery Case Files" />
+        </div>
+
+        <div class="field">
+          <label><i data-lucide="layers"></i> Mystery Universe</label>
+          <select id="listingUniverse">
+            <option value="sky" selected>Sky Mysteries — UFOs &amp; sky phenomena</option>
+            <option value="cryptid">Cryptid Files — legendary creatures</option>
+            <option value="haunted">Haunted Files — haunted places</option>
+            <option value="ancient">Ancient Mysteries — lost history</option>
+            <option value="deepsea">Deep Sea Files — ocean anomalies</option>
+            <option value="vanishing">Vanishing Files — unexplained disappearances</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label><i data-lucide="globe"></i> Marketplace</label>
+          <select id="listingMarketplace">
+            <option value="Amazon.com" selected>Amazon.com (US)</option>
+            <option value="Amazon.co.uk">Amazon.co.uk (UK)</option>
+            <option value="Amazon.de">Amazon.de (Germany)</option>
+            <option value="Amazon.fr">Amazon.fr (France)</option>
+            <option value="Amazon.it">Amazon.it (Italy)</option>
+            <option value="Amazon.es">Amazon.es (Spain)</option>
+            <option value="Amazon.ca">Amazon.ca (Canada)</option>
+            <option value="Amazon.com.au">Amazon.com.au (Australia)</option>
+            <option value="Amazon.co.jp">Amazon.co.jp (Japan)</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label><i data-lucide="tag"></i> Target Price <span style="font-weight:500;color:var(--text-muted)">(optional — leave blank to skip)</span></label>
+          <input type="text" id="listingPrice" placeholder="e.g. $9.99" />
+        </div>
+
+        <button class="btn btn-primary btn-generate" id="btnListing" onclick="generateListingPrompt()">✨ Generate Listing Prompt</button>
+
+        <div id="listingOutputWrap" style="display:none; margin-top:18px;">
+          <div class="field">
+            <label><i data-lucide="clipboard-copy"></i> Your listing prompt — copy &amp; paste into ChatGPT</label>
+            <textarea id="listingPromptText" readonly style="height:280px; font-size:.92rem; line-height:1.6;"></textarea>
+          </div>
+          <button class="btn btn-primary" style="width:100%;" id="btnCopyListing" onclick="copyListingPrompt()">📋 Copy Listing Prompt</button>
+          <div class="field-hint" style="margin-top:10px;">Paste this into ChatGPT, then copy the results directly into your KDP listing fields when publishing.</div>
+        </div>
+
+        <div class="summary-box" id="listingDone" style="display:none; margin-top:16px;"><i data-lucide="check-circle"></i><span>✅ Your book is ready — PDF downloaded and listing prompt generated.</span></div>
+    </div>
+  </section>
+</div>
+
+<script>
+let uploadedImages = [];
+let originalOrderIds = [];
+let currentStep = 1;
+let uploadSeq = 0;
+let dragSrcId = null;
+
+const dropzone = document.getElementById('dropzone');
+const fileInput = document.getElementById('fileInput');
+const thumbStrip = document.getElementById('thumbStrip');
+const arrangeGrid = document.getElementById('arrangeGrid');
+
+dropzone.addEventListener('click', () => fileInput.click());
+dropzone.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') fileInput.click(); });
+fileInput.addEventListener('change', (e) => { handleFiles(e.target.files); fileInput.value = ''; });
+
+['dragenter','dragover'].forEach(ev => dropzone.addEventListener(ev, (e) => { e.preventDefault(); dropzone.classList.add('drag'); }));
+['dragleave','drop'].forEach(ev => dropzone.addEventListener(ev, (e) => { e.preventDefault(); dropzone.classList.remove('drag'); }));
+dropzone.addEventListener('drop', (e) => {
+  const files = e.dataTransfer ? e.dataTransfer.files : [];
+  handleFiles(files);
+});
+
+function handleFiles(fileList) {
+  const files = Array.from(fileList || []).filter(f => f.type && f.type.startsWith('image/'));
+  if (!files.length) return;
+  files.forEach((file) => {
+    const reader = new FileReader();
+    reader.onload = (ev) => {
+      const dataUrl = ev.target.result;
+      const img = new Image();
+      img.onload = () => {
+        const id = 'img_' + Date.now() + '_' + (uploadSeq++) + '_' + Math.floor(Math.random()*1e6);
+        uploadedImages.push({ id, filename: file.name || ('image-' + uploadSeq + '.png'), dataUrl, width: img.naturalWidth || 1000, height: img.naturalHeight || 1000 });
+        originalOrderIds.push(id);
+        renderAll();
+      };
+      img.src = dataUrl;
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+function removeImage(id) {
+  uploadedImages = uploadedImages.filter(x => x.id !== id);
+  originalOrderIds = originalOrderIds.filter(x => x !== id);
+  renderAll();
+}
+
+function clearAll() {
+  if (!uploadedImages.length) return;
+  if (!confirm('Remove all uploaded images?')) return;
+  uploadedImages = [];
+  originalOrderIds = [];
+  renderAll();
+  goToStep(1);
+}
+
+function roleForIndex(i, total) {
+  if (total === 1) return 'COVER';
+  if (i === 0) return 'COVER';
+  if (i === total - 1) return 'BACK COVER';
+  return 'CASE ' + i;
+}
+
+function renderStrip() {
+  const countEl = document.getElementById('imgCount');
+  const n = uploadedImages.length;
+  countEl.textContent = n + (n === 1 ? ' image uploaded' : ' images uploaded');
+  document.getElementById('btnClear').style.display = n ? '' : 'none';
+  document.getElementById('btnToStep2').disabled = n < 1;
+  const heroMini = document.getElementById('heroMiniCount');
+  if (heroMini) heroMini.textContent = n + (n === 1 ? ' page' : ' pages');
+  const largeBanner = document.getElementById('largeBookBanner');
+  if (largeBanner) largeBanner.style.display = n > 100 ? 'flex' : 'none';
+
+  if (!n) {
+    thumbStrip.innerHTML = '<div class="empty-strip" style="width:100%">No images yet — your thumbnails will appear here as a scrollable strip.</div>';
+  } else {
+    thumbStrip.innerHTML = '';
+    uploadedImages.forEach((im) => {
+      const d = document.createElement('div');
+      d.className = 'thumb';
+      const imgEl = document.createElement('img');
+      imgEl.src = im.dataUrl;
+      imgEl.alt = im.filename;
+      const fn = document.createElement('div');
+      fn.className = 'fname';
+      fn.title = im.filename;
+      fn.textContent = im.filename;
+      const rm = document.createElement('button');
+      rm.className = 'rm';
+      rm.title = 'Remove';
+      rm.textContent = '✕';
+      rm.onclick = (e) => { e.stopPropagation(); removeImage(im.id); };
+      d.appendChild(imgEl);
+      d.appendChild(fn);
+      d.appendChild(rm);
+      thumbStrip.appendChild(d);
+    });
+  }
+}
+
+function renderGrid() {
+  const n = uploadedImages.length;
+  document.getElementById('arrangeCount').textContent = n + (n === 1 ? ' page' : ' pages');
+  arrangeGrid.innerHTML = '';
+  if (!n) {
+    arrangeGrid.innerHTML = '<div class="empty-strip" style="grid-column:1/-1">No pages yet — go back to Step 1 and upload your images.</div>';
+    return;
+  }
+  uploadedImages.forEach((im, idx) => {
+    const card = document.createElement('div');
+    card.className = 'page-card';
+    card.setAttribute('draggable', 'true');
+    card.dataset.id = im.id;
+
+    const role = roleForIndex(idx, n);
+    const badgeClass = role === 'COVER' ? 'role-badge cover' : (role === 'BACK COVER' ? 'role-badge back' : 'role-badge');
+
+    card.innerHTML =
+      '<img src="' + im.dataUrl + '" alt="" />' +
+      '<div class="meta"><span class="' + badgeClass + '">' + role + '</span>' +
+      '<span class="drag-handle" title="Drag to reorder"><i data-lucide="move"></i></span></div>' +
+      '<div class="page-num">Page ' + (idx+1) + ' of ' + n + ' · ' + escapeHtml(im.filename) + '</div>';
+
+    card.addEventListener('dragstart', (e) => {
+      dragSrcId = im.id;
+      card.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+      try { e.dataTransfer.setData('text/plain', im.id); } catch(err) {}
+    });
+    card.addEventListener('dragend', () => {
+      card.classList.remove('dragging');
+      document.querySelectorAll('.page-card.drop-target').forEach(c => c.classList.remove('drop-target'));
+      dragSrcId = null;
+    });
+    card.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      if (im.id !== dragSrcId) card.classList.add('drop-target');
+    });
+    card.addEventListener('dragleave', () => card.classList.remove('drop-target'));
+    card.addEventListener('drop', (e) => {
+      e.preventDefault();
+      card.classList.remove('drop-target');
+      let srcId = dragSrcId;
+      try { srcId = e.dataTransfer.getData('text/plain') || srcId; } catch(err) {}
+      if (!srcId || srcId === im.id) return;
+      const from = uploadedImages.findIndex(x => x.id === srcId);
+      const to = uploadedImages.findIndex(x => x.id === im.id);
+      if (from < 0 || to < 0) return;
+      const [moved] = uploadedImages.splice(from, 1);
+      uploadedImages.splice(to, 0, moved);
+      renderAll();
+    });
+
+    arrangeGrid.appendChild(card);
+  });
+  if (window.lucide) lucide.createIcons();
+}
+
+function escapeHtml(s) {
+  return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function renderAll() {
+  renderStrip();
+  renderGrid();
+  updateSummary();
+  updateRail();
+}
+
+function autoSort() {
+  uploadedImages.sort((a,b) => a.filename.localeCompare(b.filename, undefined, { numeric: true, sensitivity: 'base' }));
+  renderAll();
+}
+
+function resetOrder() {
+  const pos = {};
+  originalOrderIds.forEach((id, i) => pos[id] = i);
+  uploadedImages.sort((a,b) => (pos[a.id] ?? 0) - (pos[b.id] ?? 0));
+  renderAll();
+}
+
+function goToStep(n) {
+  if (n === 2 && uploadedImages.length < 1) {
+    alert('Upload at least 1 image first!');
+    return;
+  }
+  if (n === 3 && uploadedImages.length < 1) {
+    alert('Upload and arrange your images first!');
+    return;
+  }
+  currentStep = n;
+  [1,2,3].forEach(i => {
+    document.getElementById('panel-' + i).classList.toggle('active', i === n);
+    const rail = document.getElementById('rail-' + i);
+    rail.classList.toggle('active', i === n);
+    rail.classList.toggle('done', i < n || (i === 1 && uploadedImages.length > 0 && n > 1));
+  });
+  const bar = document.getElementById('railBar');
+  if (bar) bar.style.width = (n === 1 ? '33%' : n === 2 ? '66%' : '100%');
+  if (n === 3) updateSummary();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function updateRail() {
+  [1,2,3].forEach(i => {
+    const rail = document.getElementById('rail-' + i);
+    if (!rail) return;
+    rail.classList.toggle('active', i === currentStep);
+    if (i < currentStep) rail.classList.add('done');
+    else if (!(i === 1 && uploadedImages.length > 0 && currentStep > 1)) {
+      if (i !== currentStep) rail.classList.remove('done');
+    }
+  });
+}
+
+function getPageSize() {
+  const v = document.getElementById('pageSize').value || '6,9';
+  const parts = v.split(',').map(Number);
+  return { w: parts[0] || 6, h: parts[1] || 9, label: document.getElementById('pageSize').selectedOptions[0].textContent };
+}
+
+let selectedOutputFormat = 'pdf';
+let selectedMockupLayout = 'fan';
+
+function pickOutputFormat(format, el) {
+  selectedOutputFormat = format;
+  document.querySelectorAll('#outputFormatGrid .case-tier-card').forEach(c => c.classList.remove('active'));
+  if (el) el.classList.add('active');
+  updateExportUIForFormat();
+}
+
+function pickMockupLayout(layout, el) {
+  selectedMockupLayout = layout;
+  document.querySelectorAll('#mockupLayoutGrid .case-tier-card').forEach(c => c.classList.remove('active'));
+  if (el) el.classList.add('active');
+  updateMockupHeroState();
+  try {
+    if (uploadedImages && uploadedImages.length) previewMockup();
+  } catch (e) {}
+}
+
+function getEtsyPageSize() {
+  const sel = document.getElementById('etsyPageSize');
+  const v = (sel && sel.value) || '8.5,11';
+  const parts = v.split(',').map(Number);
+  const label = sel && sel.selectedOptions && sel.selectedOptions[0] ? sel.selectedOptions[0].textContent : (v + ' in');
+  return { w: parts[0] || 8.5, h: parts[1] || 11, label };
+}
+
+function getEtsyFooterEnabled() {
+  const el = document.getElementById('etsyFooter');
+  return el ? el.checked : false;
+}
+
+function updateExportUIForFormat() {
+  const isPdf = selectedOutputFormat === 'pdf';
+  const wrapPdf = document.getElementById('wrapPdfPageSize');
+  const wrapEtsy = document.getElementById('wrapEtsyPageSize');
+  const wrapMargins = document.getElementById('wrapKdpMargins');
+  const wrapFooter = document.getElementById('wrapEtsyFooter');
+  const btn = document.getElementById('btnGenerate');
+  if (wrapPdf) wrapPdf.style.display = isPdf ? '' : 'none';
+  if (wrapEtsy) wrapEtsy.style.display = isPdf ? 'none' : '';
+  if (wrapMargins) wrapMargins.style.display = isPdf ? '' : 'none';
+  if (wrapFooter) wrapFooter.style.display = isPdf ? 'none' : '';
+  const wrapMockup = document.getElementById('wrapMockupLayout');
+  if (wrapMockup) wrapMockup.style.display = isPdf ? 'none' : '';
+  const wrapCustomize = document.getElementById('wrapMockupCustomize');
+  if (wrapCustomize) wrapCustomize.style.display = isPdf ? 'none' : '';
+  if (!isPdf) { updateMockupBgColorVisibility(); updateMockupHeroState(); }
+  if (btn) btn.innerHTML = isPdf ? '📥 Generate &amp; Download PDF' : '📥 Generate &amp; Download Etsy Printable Pack (.zip)';
+  updateSummary();
+  if (window.lucide) lucide.createIcons();
+}
+
+function handleGenerate() {
+  if (selectedOutputFormat === 'etsy') return generateEtsyPack('single');
+  return generatePDF();
+}
+
+/* Shared print pipeline — single source of truth for compression, scaling and chunking.
+   Both PDF and Etsy paths MUST call these three functions (no parallel duplicate logic). */
+function calculateFitFillPlacement(imgWidth, imgHeight, targetWidth, targetHeight, mode) {
+  const scale = (mode === 'fill')
+    ? Math.max(targetWidth / imgWidth, targetHeight / imgHeight)
+    : Math.min(targetWidth / imgWidth, targetHeight / imgHeight);
+  const drawWidth = imgWidth * scale;
+  const drawHeight = imgHeight * scale;
+  const offsetX = (targetWidth - drawWidth) / 2;
+  const offsetY = (targetHeight - drawHeight) / 2;
+  return { drawWidth, drawHeight, offsetX, offsetY };
+}
+
+/* Backward-compatible wrapper — delegates to the single canonical math above (no duplicate calculation). */
+function computeDrawRect(iw, ih, usableW, usableH, mode, offX, offY) {
+  const r = calculateFitFillPlacement(iw, ih, usableW, usableH, mode);
+  return { scale: r.drawWidth / iw, drawW: r.drawWidth, drawH: r.drawHeight, x: offX + r.offsetX, y: offY + r.offsetY };
+}
+
+async function compressImageForPrint(imgData, targetWidthPx, targetHeightPx, quality) {
+  const img = await loadImageAsync(imgData);
+  const srcW = img.naturalWidth || 1000;
+  const srcH = img.naturalHeight || 1000;
+  const s = Math.min(1, targetWidthPx / srcW, targetHeightPx / srcH);
+  const tw = Math.max(1, Math.round(srcW * s));
+  const th = Math.max(1, Math.round(srcH * s));
+  const canvas = document.createElement('canvas');
+  canvas.width = tw;
+  canvas.height = th;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, tw, th);
+  ctx.drawImage(img, 0, 0, tw, th);
+  let dataUrl = null;
+  try {
+    dataUrl = canvas.toDataURL('image/jpeg', quality);
+  } catch (e) {
+    dataUrl = imgData;
+  }
+  return { canvas, dataUrl: dataUrl || imgData, w: tw, h: th, srcW, srcH };
+}
+
+async function processImagesInChunks(imagesArray, perImageCallback, onProgress) {
+  const total = imagesArray.length;
+  for (let i = 0; i < total; i++) {
+    await perImageCallback(imagesArray[i], i, total);
+    if (onProgress) onProgress(i + 1, total);
+    await yieldToUI();
+  }
+}
+
+function loadImageAsync(srcDataUrl) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = srcDataUrl;
+  });
+}
+
+function canvasToBlobAsync(canvas, quality) {
+  return new Promise((resolve) => {
+    if (canvas.toBlob) {
+      canvas.toBlob((b) => resolve(b), 'image/jpeg', quality);
+    } else {
+      try {
+        const dataUrl = canvas.toDataURL('image/jpeg', quality);
+        const parts = dataUrl.split(',');
+        const mime = parts[0].match(/:(.*?);/)[1];
+        const bstr = atob(parts[1]);
+        let n = bstr.length;
+        const u8 = new Uint8Array(n);
+        while (n--) u8[n] = bstr.charCodeAt(n);
+        resolve(new Blob([u8], { type: mime }));
+      } catch (e) { resolve(null); }
+    }
+  });
+}
+
+function etsyFilenameForIndex(i, total) {
+  const pad = (n) => String(n).padStart(2, '0');
+  const role = roleForIndex(i, total);
+  if (role === 'COVER') return pad(i + 1) + '_Cover.jpg';
+  if (role === 'BACK COVER') return pad(i + 1) + '_Back_Cover.jpg';
+  const caseNum = i; /* interior: CASE i */
+  return pad(i + 1) + '_Case_' + caseNum + '.jpg';
+}
+
+function renderEtsyPageCanvas(img, pageWpx, pageHpx, mode, footerOn) {
+  const canvas = document.createElement('canvas');
+  canvas.width = pageWpx;
+  canvas.height = pageHpx;
+  const ctx = canvas.getContext('2d');
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(0, 0, pageWpx, pageHpx);
+  const iw = (img && (img.naturalWidth || img.width)) || pageWpx;
+  const ih = (img && (img.naturalHeight || img.height)) || pageHpx;
+  const r = calculateFitFillPlacement(iw, ih, pageWpx, pageHpx, mode);
+  ctx.drawImage(img, r.offsetX, r.offsetY, r.drawWidth, r.drawHeight);
+  if (footerOn) {
+    const barH = Math.round(pageHpx * 0.032);
+    ctx.fillStyle = 'rgba(255,255,255,0.94)';
+    ctx.fillRect(0, pageHpx - barH, pageWpx, barH);
+    ctx.fillStyle = '#6B7280';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    const fontSize = Math.max(18, Math.round(pageHpx * 0.011));
+    try { ctx.font = '600 ' + fontSize + 'px Inter, system-ui, sans-serif'; } catch (e) {}
+    ctx.fillText('Unexplained Sky Mysteries \u2014 Sample Page', pageWpx / 2, pageHpx - barH / 2);
+  }
+  return canvas;
+}
+
+function drawTiltedPage(ctx, src, cx, cy, w, h, angleRad, skewX, skewY, opts) {
+  opts = opts || {};
+  const border = (typeof opts.border === 'number') ? opts.border : 3;
+  const shadows = opts.shadows || [];
+  ctx.save();
+  ctx.translate(cx, cy);
+  ctx.rotate(angleRad);
+  ctx.transform(1, skewY || 0, skewX || 0, 1, 0, 0);
+  const x0 = -w / 2, y0 = -h / 2;
+  shadows.forEach((sh) => {
+    ctx.save();
+    ctx.shadowColor = sh.color || 'rgba(15,23,42,0.18)';
+    ctx.shadowBlur = sh.blur || 40;
+    ctx.shadowOffsetX = sh.offX || 0;
+    ctx.shadowOffsetY = sh.offY || 24;
+    ctx.fillStyle = 'rgba(255,255,255,1)';
+    ctx.globalAlpha = (typeof sh.alpha === 'number') ? sh.alpha : 1;
+    ctx.fillRect(x0, y0, w, h);
+    ctx.restore();
+  });
+  ctx.fillStyle = '#FFFFFF';
+  ctx.fillRect(x0 - border, y0 - border, w + border * 2, h + border * 2);
+  if (typeof opts.opacity === 'number') ctx.globalAlpha = opts.opacity;
+  if (opts.filter) { try { ctx.filter = opts.filter; } catch (e) {} }
+  ctx.drawImage(src, x0, y0, w, h);
+  try { ctx.filter = 'none'; } catch (e2) {}
+  ctx.globalAlpha = 1;
+  ctx.restore();
+}
+
+const MOCKUP_FORMATS = {
+  square: { w: 2000, h: 2000, label: 'Square' },
+  pinterest: { w: 1000, h: 1500, label: 'Pinterest' },
+  instastory: { w: 1080, h: 1920, label: 'Story' },
+  banner: { w: 1200, h: 630, label: 'Banner' }
+};
+
+function validMockupFormat(f) { return MOCKUP_FORMATS[f] ? f : 'square'; }
+function mockupFormatDims(fmt) { return MOCKUP_FORMATS[validMockupFormat(fmt)]; }
+
+function mockupBaseCanvas(fmt) {
+  const d = mockupFormatDims(fmt);
+  const canvas = document.createElement('canvas');
+  canvas.width = d.w; canvas.height = d.h;
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  return { canvas, ctx, W: d.w, H: d.h, S: Math.min(d.w, d.h) };
+}
+
+function mockupFitInside(img, maxW, maxH) {
+  const iw = img.naturalWidth || img.width || 1000;
+  const ih = img.naturalHeight || img.height || 1400;
+  const p = calculateFitFillPlacement(iw, ih, maxW, maxH, 'fit');
+  return { w: p.drawWidth, h: p.drawHeight };
+}
+
+function mockupCaption(ctx, W, H, caseCount) {
+  const n = (typeof caseCount === 'number' && caseCount > 0) ? caseCount : null;
+  const label = n ? (n + '-Page Printable Set') : 'Printable Set';
+  const fontSize = Math.max(14, Math.round(0.027 * Math.min(W, H)));
+  ctx.fillStyle = '#6B7280';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  try { ctx.font = '600 ' + fontSize + 'px Inter, system-ui, sans-serif'; } catch (e) {}
+  try { if ('letterSpacing' in ctx) ctx.letterSpacing = '1px'; } catch (e2) {}
+  ctx.fillText(label, W / 2, H * 0.9225);
+}
+
+function mockupSampleIndices(total, count) {
+  if (total <= 0) return [];
+  if (total === 1) return [0];
+  const n = Math.max(1, Math.min(count || 5, 7, total));
+  if (n === 1) return [0];
+  const idx = [];
+  for (let i = 0; i < n; i++) {
+    const f = (i / (n - 1)) * 0.8;
+    const k = Math.round((total - 1) * f);
+    if (idx.indexOf(k) === -1) idx.push(k);
+  }
+  for (let k = 0; k < total && idx.length < n; k++) {
+    if (idx.indexOf(k) === -1) idx.push(k);
+  }
+  idx.sort((a, b) => a - b);
+  return idx;
+}
+
+function updateMockupPageCountLabel(v) {
+  const el = document.getElementById('mockupPageCountLabel');
+  if (el) el.textContent = v + (String(v) === '1' ? ' page' : ' pages');
+}
+
+function updateMockupBgColorVisibility() {
+  const style = (document.getElementById('mockupBgStyle') || {}).value || 'soft-gradient';
+  const wrap = document.getElementById('mockupBgColorWrap');
+  if (wrap) wrap.style.display = (style === 'solid-color') ? '' : 'none';
+}
+
+function updateMockupHeroState() {
+  const isHero = (selectedMockupLayout === 'hero');
+  const slider = document.getElementById('mockupPageCount');
+  const group = document.getElementById('mockupPageCountGroup');
+  if (slider) slider.disabled = isHero;
+  if (group) group.classList.toggle('input-disabled', isHero);
+}
+
+function readMockupControls() {
+  const num = (id, fb) => {
+    const el = document.getElementById(id);
+    const v = el ? parseInt(el.value, 10) : fb;
+    return isNaN(v) ? fb : v;
+  };
+  const str = (id, fb) => {
+    const el = document.getElementById(id);
+    return (el && el.value) || fb;
+  };
+  const layout = selectedMockupLayout || 'fan';
+  const rawCount = num('mockupPageCount', 5);
+  return {
+    layoutType: layout,
+    pageCount: (layout === 'hero') ? 1 : Math.max(1, Math.min(rawCount, 7)),
+    exportFormat: validMockupFormat(str('mockupExportFormat', 'square')),
+    bgStyle: str('mockupBgStyle', 'soft-gradient'),
+    bgColor: str('mockupBgColor', '#F3F4F6'),
+    decoration: str('mockupDecoration', 'none'),
+    shadowIntensity: Math.max(0, Math.min(num('mockupShadowIntensity', 60), 100)),
+    spread: Math.max(0, Math.min(num('mockupSpread', 50), 100)),
+    showCaption: (function () { const el = document.getElementById('mockupShowCaption'); return el ? el.checked : true; })()
+  };
+}
+
+function mockupOptionsSeed(o, total) {
+  const s = [o.layoutType, o.pageCount, o.exportFormat, o.bgStyle, o.bgColor, o.decoration, o.shadowIntensity, o.spread, o.showCaption ? 1 : 0, total].join('|');
+  let h = 2166136261;
+  for (let i = 0; i < s.length; i++) { h ^= s.charCodeAt(i); h = Math.imul(h, 16777619); }
+  return h >>> 0;
+}
+
+function mulberry32(seed) {
+  let a = seed >>> 0;
+  return function () {
+    a |= 0; a = (a + 0x6D2B79F5) | 0;
+    let t = Math.imul(a ^ (a >>> 15), 1 | a);
+    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function scaleShadowSet(shadows, intensity) {
+  if (!intensity || intensity <= 0) return [];
+  const k = intensity / 100;
+  return (shadows || []).map((sh) => ({
+    color: sh.color,
+    blur: Math.max(1, Math.round((sh.blur || 40) * (0.35 + 0.65 * k))),
+    offX: Math.round((sh.offX || 0) * (0.4 + 0.6 * k)),
+    offY: Math.round((sh.offY || 24) * (0.4 + 0.6 * k)),
+    alpha: Math.min(1, (typeof sh.alpha === 'number' ? sh.alpha : 0.2) * (0.35 + 0.65 * k))
+  }));
+}
+
+function spreadFactor(spread) { return Math.max(0, (spread == null ? 50 : spread) / 50); }
+function gapFactor(spread) { return 0.3 + 1.4 * ((spread == null ? 50 : spread) / 100); }
+
+function averageCoverColor(coverImg) {
+  try {
+    const c = document.createElement('canvas');
+    c.width = 32; c.height = 32;
+    const x = c.getContext('2d');
+    x.drawImage(coverImg, 0, 0, 32, 32);
+    const d = x.getImageData(0, 0, 32, 32).data;
+    let r = 0, g = 0, b = 0, n = 0;
+    for (let i = 0; i < d.length; i += 16) { r += d[i]; g += d[i + 1]; b += d[i + 2]; n++; }
+    r = Math.round(r / n); g = Math.round(g / n); b = Math.round(b / n);
+    c.width = 0; c.height = 0;
+    return { r, g, b };
+  } catch (e) { return null; }
+}
+
+function mixWithWhite(c, amt) {
+  return {
+    r: Math.round(c.r + (255 - c.r) * amt),
+    g: Math.round(c.g + (255 - c.g) * amt),
+    b: Math.round(c.b + (255 - c.b) * amt)
+  };
+}
+function rgbStr(c) { return 'rgb(' + c.r + ',' + c.g + ',' + c.b + ')'; }
+
+let _paperPatternCache = null;
+function paperPattern(ctx) {
+  if (_paperPatternCache) return _paperPatternCache;
+  try {
+    const t = document.createElement('canvas');
+    t.width = 256; t.height = 256;
+    const x = t.getContext('2d');
+    x.fillStyle = 'rgba(0,0,0,0)';
+    x.clearRect(0, 0, 256, 256);
+    const rnd = mulberry32(987654321);
+    for (let i = 0; i < 2600; i++) {
+      const v = rnd();
+      x.fillStyle = v > 0.5 ? 'rgba(120,110,95,0.05)' : 'rgba(255,255,255,0.06)';
+      x.fillRect(Math.floor(rnd() * 256), Math.floor(rnd() * 256), 1 + Math.floor(rnd() * 2), 1 + Math.floor(rnd() * 2));
+    }
+    _paperPatternCache = ctx.createPattern(t, 'repeat');
+    return _paperPatternCache;
+  } catch (e) { return null; }
+}
+
+function paintMockupBackground(ctx, W, H, o, coverImg) {
+  const style = o.bgStyle || 'soft-gradient';
+  const m = Math.min(W, H), M = Math.max(W, H);
+  if (style === 'solid-color') {
+    ctx.fillStyle = o.bgColor || '#F3F4F6';
+    ctx.fillRect(0, 0, W, H);
+    return;
+  }
+  if (style === 'radial-spotlight') {
+    ctx.fillStyle = '#DDE1E6';
+    ctx.fillRect(0, 0, W, H);
+    try {
+      const g = ctx.createRadialGradient(W * 0.5, H * 0.46, 0.06 * m, W * 0.5, H * 0.5, 0.72 * M);
+      g.addColorStop(0, '#FFFFFF');
+      g.addColorStop(0.45, '#EDEFF1');
+      g.addColorStop(1, '#BFC5CC');
+      ctx.fillStyle = g;
+      ctx.fillRect(0, 0, W, H);
+    } catch (e) {}
+    return;
+  }
+  if (style === 'textured-paper') {
+    ctx.fillStyle = '#F1EFE9';
+    ctx.fillRect(0, 0, W, H);
+    try {
+      const pat = paperPattern(ctx);
+      if (pat) { ctx.fillStyle = pat; ctx.fillRect(0, 0, W, H); }
+    } catch (e) {}
+    return;
+  }
+  if (style === 'matching-theme' && coverImg) {
+    const avg = averageCoverColor(coverImg);
+    if (avg) {
+      const light = mixWithWhite(avg, 0.88);
+      const mid = mixWithWhite(avg, 0.72);
+      try {
+        const g = ctx.createLinearGradient(0, 0, W, H);
+        g.addColorStop(0, rgbStr(light));
+        g.addColorStop(0.55, rgbStr(mixWithWhite(avg, 0.82)));
+        g.addColorStop(1, rgbStr(mid));
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, W, H);
+        const glow = ctx.createRadialGradient(W * 0.5, H * 0.38, 0.05 * m, W * 0.5, H * 0.42, 0.75 * M);
+        glow.addColorStop(0, 'rgba(255,255,255,0.7)');
+        glow.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.fillStyle = glow;
+        ctx.fillRect(0, 0, W, H);
+        return;
+      } catch (e) {}
+    }
+  }
+  const bg = ctx.createLinearGradient(0, 0, W, H);
+  bg.addColorStop(0, '#F8F9FA');
+  bg.addColorStop(0.55, '#F1F3F5');
+  bg.addColorStop(1, '#E9ECEF');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, W, H);
+  try {
+    const glow = ctx.createRadialGradient(W * 0.5, H * 0.38, 0.05 * m, W * 0.5, H * 0.42, 0.75 * M);
+    glow.addColorStop(0, 'rgba(255,255,255,0.85)');
+    glow.addColorStop(1, 'rgba(255,255,255,0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0, 0, W, H);
+  } catch (e2) {}
+}
+
+function boxesOverlap(a, b, margin) {
+  const m = margin || 40;
+  return !(a.x + a.w + m < b.x - m || b.x + b.w + m < a.x - m || a.y + a.h + m < b.y - m || b.y + b.h + m < a.y - m);
+}
+
+function paintMockupDecorations(ctx, W, H, o, pageBoxes, seed) {
+  const kind = o.decoration || 'none';
+  if (kind === 'none') return;
+  const k = Math.min(W, H) / 2000;
+  const m = Math.max(8, 0.015 * Math.min(W, H));
+  const rnd = mulberry32(seed == null ? 12345 : seed);
+  const avoid = (x, y, w, h) => {
+    const b = { x: x - w / 2, y: y - h / 2, w, h };
+    for (let i = 0; i < (pageBoxes || []).length; i++) {
+      if (boxesOverlap(b, pageBoxes[i], m)) return true;
+    }
+    return false;
+  };
+  const RX = (pad) => pad + rnd() * (W - pad * 2);
+  const RY = (pad) => pad + rnd() * (H - pad * 2);
+  if (kind === 'confetti') {
+    const colors = ['#10B981', '#84CC16', '#FBBF24', '#F472B6', '#93C5FD'];
+    let placed = 0, guard = 0;
+    while (placed < 22 && guard < 140) {
+      guard++;
+      const x = RX(0.04 * W), y = RY(0.04 * H);
+      const r = Math.max(4, (8 + rnd() * 20) * k);
+      if (avoid(x, y, r * 2, r * 2)) continue;
+      ctx.save();
+      ctx.globalAlpha = 0.75;
+      ctx.fillStyle = colors[Math.floor(rnd() * colors.length)];
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+      placed++;
+    }
+    return;
+  }
+  if (kind === 'sparkle') {
+    const drawSparkle = (x, y, r, color, alpha) => {
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(x, y - r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.quadraticCurveTo(x, y, x, y + r);
+      ctx.quadraticCurveTo(x, y, x - r, y);
+      ctx.quadraticCurveTo(x, y, x, y - r);
+      ctx.fill();
+      ctx.restore();
+    };
+    let placed = 0, guard = 0;
+    while (placed < 10 && guard < 120) {
+      guard++;
+      const x = RX(0.05 * W), y = RY(0.05 * H);
+      const r = Math.max(6, (14 + rnd() * 26) * k);
+      if (avoid(x, y, r * 2, r * 2)) continue;
+      drawSparkle(x, y, r, rnd() > 0.4 ? '#FBBF24' : '#FFFFFF', 0.9);
+      placed++;
+    }
+    return;
+  }
+  if (kind === 'stars-scatter') {
+    const star = (x, y, r, rot) => {
+      ctx.beginPath();
+      for (let i = 0; i < 10; i++) {
+        const rr = (i % 2 === 0) ? r : r * 0.45;
+        const a = rot + (i * Math.PI) / 5;
+        const px = x + Math.cos(a) * rr, py = y + Math.sin(a) * rr;
+        if (i === 0) ctx.moveTo(px, py); else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+    };
+    let placed = 0, guard = 0;
+    while (placed < 13 && guard < 130) {
+      guard++;
+      const x = RX(0.045 * W), y = RY(0.045 * H);
+      const r = Math.max(8, (16 + rnd() * 24) * k);
+      if (avoid(x, y, r * 2, r * 2)) continue;
+      ctx.save();
+      ctx.globalAlpha = 0.8;
+      ctx.strokeStyle = rnd() > 0.5 ? '#F59E0B' : '#9CA3AF';
+      ctx.lineWidth = Math.max(2, 5 * k);
+      star(x, y, r, rnd() * Math.PI);
+      ctx.stroke();
+      ctx.restore();
+      placed++;
+    }
+    return;
+  }
+  if (kind === 'washi-tape' && pageBoxes && pageBoxes.length) {
+    const front = pageBoxes[pageBoxes.length - 1];
+    const tapes = [
+      { dx: 0.18, dy: 0.0, rot: -0.21, color: 'rgba(244,114,182,0.72)' },
+      { dx: 0.82, dy: 0.0, rot: 0.19, color: 'rgba(45,212,191,0.72)' },
+      { dx: 0.5, dy: 1.0, rot: -0.08, color: 'rgba(251,191,36,0.72)' }
+    ];
+    tapes.forEach((t) => {
+      const tx = front.x + front.w * t.dx, ty = front.y + front.h * t.dy;
+      const tw = 190 * k, th = 52 * k;
+      ctx.save();
+      ctx.translate(tx, ty);
+      ctx.rotate(t.rot);
+      ctx.fillStyle = t.color;
+      ctx.fillRect(-tw / 2, -th / 2, tw, th);
+      ctx.fillStyle = 'rgba(255,255,255,0.25)';
+      for (let sx = -tw / 2 + 10 * k; sx < tw / 2 - 4 * k; sx += 24 * k) ctx.fillRect(sx, -th / 2, 6 * k, th);
+      ctx.restore();
+    });
+    return;
+  }
+  if (kind === 'ribbon-banner') {
+    const label = (o.caseCount > 1) ? (o.caseCount + ' PAGES') : 'NEW';
+    const rw = 840 * k, rh = 128 * k;
+    const fontSize = Math.max(14, Math.round(64 * k));
+    ctx.save();
+    ctx.translate(W * 0.15, H * 0.15);
+    ctx.rotate(-Math.PI / 4);
+    ctx.fillStyle = '#10B981';
+    ctx.fillRect(-rw / 2, -rh / 2, rw, rh);
+    ctx.fillStyle = 'rgba(0,0,0,0.15)';
+    ctx.fillRect(-rw / 2, rh / 2 - 24 * k, rw, 24 * k);
+    ctx.fillStyle = '#FFFFFF';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    try { ctx.font = '800 ' + fontSize + 'px Inter, system-ui, sans-serif'; } catch (e) {}
+    ctx.fillText(label, 0, 2 * k);
+    ctx.restore();
+  }
+}
+
+function renderFanLayout(selectedPages, caseCount, includeCaption, o) {
+  o = o || {};
+  const sf = spreadFactor(o.spread);
+  const shScale = (o.shadowIntensity == null ? 60 : o.shadowIntensity);
+  const base = mockupBaseCanvas(o.exportFormat);
+  const ctx = base.ctx, W = base.W, H = base.H, k = base.S / 2000;
+  const SS = (a) => scaleShadowSet(a.map((s) => ({ color: s.color, blur: Math.max(1, Math.round(s.blur * k)), offX: Math.round((s.offX || 0) * k), offY: Math.round((s.offY || 0) * k), alpha: s.alpha })), shScale);
+  const BD = Math.max(2, Math.round(3 * k));
+  paintMockupBackground(ctx, W, H, o, selectedPages[0]);
+  const boxes = [];
+  const contentH = H * (includeCaption ? 0.82 : 0.91);
+  const centerY = H * (includeCaption ? 0.46 : 0.5);
+  const kEff = (H > 1.3 * W) ? Math.min(0.9 * W / 1040, 0.8 * contentH / 1330, 1.2) : k;
+  const fitClamped = (pg, mw, mh) => {
+    let d = mockupFitInside(pg, mw, mh);
+    if (d.w > 0.94 * W || d.h > 0.85 * contentH) d = mockupFitInside(pg, 0.94 * W, 0.85 * contentH);
+    return d;
+  };
+  const backs = selectedPages.slice(1);
+  const n = backs.length;
+  const backBoxW = (n <= 1) ? 760 * kEff : Math.min(760 * kEff, (0.47 * W) / (0.29 * (n - 1) / 2 + 0.623));
+  const backBoxH = Math.min(980 * kEff, 0.62 * contentH);
+  for (let b = 0; b < n; b++) {
+    const ang = (n === 1) ? 8 : (-12 + (24 * b) / (n - 1));
+    const spacing = backBoxW * 0.29 * sf;
+    const span = spacing * (n - 1) / 2;
+    const cxx = (n === 1) ? (W / 2 + 0.10 * W * sf) : (W / 2 - span + spacing * b);
+    const pg = backs[b];
+    const d = fitClamped(pg, backBoxW, backBoxH);
+    drawTiltedPage(ctx, pg, cxx, centerY - 0.02 * H, d.w, d.h,
+      (ang * sf * Math.PI) / 180, -0.02 * sf, 0.012 * sf,
+      {
+        border: BD, opacity: 0.97, filter: 'brightness(0.9) saturate(0.8)',
+        shadows: SS([
+          { blur: 28, offX: 6, offY: 15, alpha: 0.18, color: 'rgba(15,23,42,0.22)' },
+          { blur: 65, offX: 12, offY: 34, alpha: 0.12, color: 'rgba(15,23,42,0.18)' }
+        ])
+      });
+    boxes.push({ x: cxx - d.w / 2, y: centerY - 0.02 * H - d.h / 2, w: d.w, h: d.h });
+  }
+  const cover = selectedPages[0];
+  const d1 = fitClamped(cover, 1040 * kEff, 1330 * kEff);
+  drawTiltedPage(ctx, cover, W / 2 - 0.02 * W, centerY + 0.02 * H, d1.w, d1.h,
+    (-5 * sf * Math.PI) / 180, -0.045 * sf, 0.02 * sf,
+    {
+      border: BD,
+      shadows: SS([
+        { blur: 32, offX: 6, offY: 18, alpha: 0.22, color: 'rgba(15,23,42,0.28)' },
+        { blur: 75, offX: 14, offY: 42, alpha: 0.15, color: 'rgba(15,23,42,0.20)' },
+        { blur: 130, offX: 26, offY: 80, alpha: 0.10, color: 'rgba(15,23,42,0.16)' }
+      ])
+    });
+  boxes.push({ x: W / 2 - 0.02 * W - d1.w / 2, y: centerY + 0.02 * H - d1.h / 2, w: d1.w, h: d1.h });
+  base.canvas._boxes = boxes;
+  /* caption + decorations painted by dispatcher */
+  return base.canvas;
+}
+
+function renderFlatLayLayout(selectedPages, caseCount, includeCaption, o) {
+  o = o || {};
+  const shScale = (o.shadowIntensity == null ? 60 : o.shadowIntensity);
+  const gf = gapFactor(o.spread);
+  const base = mockupBaseCanvas(o.exportFormat);
+  const ctx = base.ctx, W = base.W, H = base.H, k = base.S / 2000;
+  const SS = (a) => scaleShadowSet(a.map((s) => ({ color: s.color, blur: Math.max(1, Math.round(s.blur * k)), offX: Math.round((s.offX || 0) * k), offY: Math.round((s.offY || 0) * k), alpha: s.alpha })), shScale);
+  const BD = Math.max(2, Math.round(3 * k));
+  paintMockupBackground(ctx, W, H, o, selectedPages[0]);
+  const boxes = [];
+  const pages = selectedPages.slice(0, 7);
+  const n = pages.length;
+  const top = 0.085 * H, bottom = H * (includeCaption ? 0.86 : 0.915);
+  const left = 0.075 * W, right = W - 0.075 * W;
+  let cols, rows;
+  if (n <= 1) { cols = 1; rows = 1; }
+  else if (n === 2) { cols = 2; rows = 1; }
+  else if (n <= 4) { cols = 2; rows = 2; }
+  else if (n <= 6) { cols = 3; rows = 2; }
+  else { cols = 4; rows = 2; }
+  rows = Math.ceil(n / cols);
+  const gapX = 0.03 * base.S * gf, gapY = 0.03 * base.S * gf;
+  const cellW = (right - left - gapX * (cols - 1)) / cols;
+  const cellH = (bottom - top - gapY * (rows - 1)) / rows;
+  const angle = (-2 * Math.PI) / 180;
+  const inset = 0.018 * base.S;
+  pages.forEach((pg, idx) => {
+    const col = idx % cols, row = Math.floor(idx / cols);
+    const cx = left + col * (cellW + gapX) + cellW / 2;
+    const cy = top + row * (cellH + gapY) + cellH / 2;
+    const d = mockupFitInside(pg, Math.max(80 * k, cellW - inset), Math.max(80 * k, cellH - inset));
+    drawTiltedPage(ctx, pg, cx, cy, d.w, d.h, angle, 0, 0,
+      {
+        border: BD,
+        shadows: SS([
+          { blur: 25, offX: 0, offY: 12, alpha: 0.18, color: 'rgba(15,23,42,0.20)' }
+        ])
+      });
+    boxes.push({ x: cx - d.w / 2, y: cy - d.h / 2, w: d.w, h: d.h });
+  });
+  base.canvas._boxes = boxes;
+  /* caption + decorations painted by dispatcher */
+  return base.canvas;
+}
+
+function renderStackLayout(selectedPages, caseCount, includeCaption, o) {
+  o = o || {};
+  const sf = spreadFactor(o.spread);
+  const shScale = (o.shadowIntensity == null ? 60 : o.shadowIntensity);
+  const base = mockupBaseCanvas(o.exportFormat);
+  const ctx = base.ctx, W = base.W, H = base.H, k = base.S / 2000;
+  const BD = Math.max(2, Math.round(3 * k));
+  paintMockupBackground(ctx, W, H, o, selectedPages[0]);
+  const boxes = [];
+  const contentH = H * (includeCaption ? 0.82 : 0.91);
+  const centerY = H * (includeCaption ? 0.46 : 0.5);
+  const cover = selectedPages[0];
+  const kEff = (H > 1.3 * W) ? Math.min(0.9 * W / 1000, 0.8 * contentH / 1280, 1.2) : k;
+  let d1 = mockupFitInside(cover, Math.min(1000 * kEff, 0.90 * W), Math.min(1280 * kEff, 0.80 * contentH));
+  if (d1.w > 0.94 * W || d1.h > 0.85 * contentH) d1 = mockupFitInside(cover, 0.94 * W, 0.85 * contentH);
+  const cx = W / 2 - 0.03 * W, cy = centerY + 0.005 * H;
+  const dx = 0.013 * W * sf, dy = 0.015 * H * sf;
+  const backs = Math.min(6, selectedPages.length - 1);
+  if (shScale > 0) {
+    const sk = shScale / 100;
+    const x0 = cx - d1.w / 2, y0 = cy - d1.h / 2;
+    ctx.save();
+    ctx.shadowColor = 'rgba(15,23,42,0.22)';
+    ctx.shadowBlur = Math.max(1, Math.round(90 * k * (0.35 + 0.65 * sk)));
+    ctx.shadowOffsetX = Math.round(20 * k * (0.4 + 0.6 * sk));
+    ctx.shadowOffsetY = Math.round(55 * k * (0.4 + 0.6 * sk));
+    ctx.globalAlpha = 0.35 + 0.65 * sk;
+    ctx.fillStyle = 'rgba(255,255,255,1)';
+    ctx.fillRect(x0, y0, d1.w + dx * backs, d1.h + dy * backs);
+    ctx.restore();
+  }
+  for (let b = backs; b >= 1; b--) {
+    const pg = selectedPages[b];
+    drawTiltedPage(ctx, pg, cx + dx * b, cy + dy * b, d1.w, d1.h, 0, 0, 0, { border: BD });
+  }
+  drawTiltedPage(ctx, cover, cx, cy, d1.w, d1.h, 0, 0, 0, { border: BD });
+  boxes.push({ x: cx - d1.w / 2, y: cy - d1.h / 2, w: d1.w + dx * backs, h: d1.h + dy * backs });
+  base.canvas._boxes = boxes;
+  /* caption + decorations painted by dispatcher */
+  return base.canvas;
+}
+
+function renderHeroLayout(selectedPages, caseCount, includeCaption, o) {
+  o = o || {};
+  const shScale = (o.shadowIntensity == null ? 60 : o.shadowIntensity);
+  const base = mockupBaseCanvas(o.exportFormat);
+  const ctx = base.ctx, W = base.W, H = base.H, k = base.S / 2000;
+  const SS = (a) => scaleShadowSet(a.map((s) => ({ color: s.color, blur: Math.max(1, Math.round(s.blur * k)), offX: Math.round((s.offX || 0) * k), offY: Math.round((s.offY || 0) * k), alpha: s.alpha })), shScale);
+  const BD = Math.max(2, Math.round(3 * k));
+  paintMockupBackground(ctx, W, H, o, selectedPages[0]);
+  const centerY = H * (includeCaption ? 0.46 : 0.5);
+  const cover = selectedPages[0];
+  const maxSide = base.S * 0.78;
+  const d1 = mockupFitInside(cover, maxSide, maxSide);
+  drawTiltedPage(ctx, cover, W / 2, centerY, d1.w, d1.h, 0, 0, 0,
+    {
+      border: BD,
+      shadows: SS([
+        { blur: 32, offX: 6, offY: 18, alpha: 0.22, color: 'rgba(15,23,42,0.28)' },
+        { blur: 75, offX: 14, offY: 42, alpha: 0.15, color: 'rgba(15,23,42,0.20)' },
+        { blur: 130, offX: 26, offY: 80, alpha: 0.10, color: 'rgba(15,23,42,0.16)' }
+      ])
+    });
+  base.canvas._boxes = [{ x: W / 2 - d1.w / 2, y: centerY - d1.h / 2, w: d1.w, h: d1.h }];
+  /* caption + decorations painted by dispatcher */
+  return base.canvas;
+}
+
+function buildMockupOptions(loadedPages, total) {
+  const c = readMockupControls();
+  const interiorCases = total >= 2 ? (total - 2) : total;
+  return {
+    layoutType: c.layoutType,
+    selectedPages: (loadedPages || []).filter(Boolean),
+    caseCount: interiorCases,
+    showCaption: c.showCaption,
+    pageCount: c.pageCount,
+    exportFormat: c.exportFormat,
+    bgStyle: c.bgStyle,
+    bgColor: c.bgColor,
+    decoration: c.decoration,
+    shadowIntensity: c.shadowIntensity,
+    spread: c.spread
+  };
+}
+
+function generateEtsyMockup(options) {
+  if (typeof options === 'string') {
+    const a = arguments;
+    const c = readMockupControls();
+    options = {
+      layoutType: a[0], selectedPages: a[1], caseCount: a[2], showCaption: a[3],
+      pageCount: c.pageCount, exportFormat: c.exportFormat, bgStyle: c.bgStyle, bgColor: c.bgColor,
+      decoration: c.decoration, shadowIntensity: c.shadowIntensity, spread: c.spread
+    };
+  }
+  const o = Object.assign(
+    { layoutType: 'fan', pageCount: 5, exportFormat: 'square', bgStyle: 'soft-gradient', bgColor: '#F3F4F6', decoration: 'none', shadowIntensity: 60, spread: 50, showCaption: true, selectedPages: [], caseCount: 0 },
+    options || {}
+  );
+  o.exportFormat = validMockupFormat(o.exportFormat);
+  const pages = (o.selectedPages || []).filter(Boolean);
+  if (!pages.length) throw new Error('No pages available for mockup');
+  try {
+    console.log('[MockupBuilder] mockup options:', { layoutType: o.layoutType, pageCount: o.pageCount, exportFormat: o.exportFormat, bgStyle: o.bgStyle, bgColor: o.bgColor, decoration: o.decoration, shadowIntensity: o.shadowIntensity, spread: o.spread, showCaption: o.showCaption, pages: pages.length, caseCount: o.caseCount });
+  } catch (e) {}
+  const t = o.layoutType || 'fan';
+  const cap = !!o.showCaption;
+  let canvas;
+  if (t === 'flatlay') canvas = renderFlatLayLayout(pages, o.caseCount, cap, o);
+  else if (t === 'stack') canvas = renderStackLayout(pages, o.caseCount, cap, o);
+  else if (t === 'hero') canvas = renderHeroLayout(pages, o.caseCount, cap, o);
+  else canvas = renderFanLayout(pages, o.caseCount, cap, o);
+  try {
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width || 2000, H = canvas.height || 2000;
+    const seed = mockupOptionsSeed(o, pages.length);
+    paintMockupDecorations(ctx, W, H, o, canvas._boxes || [], seed);
+    if (cap) mockupCaption(ctx, W, H, o.caseCount);
+  } catch (e) {}
+  return canvas;
+}
+
+function rollRandomMockupCombo() {
+  const pick = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  return {
+    layoutType: pick(['fan', 'flatlay', 'stack', 'hero']),
+    pageCount: 3 + Math.floor(Math.random() * 4),
+    bgStyle: pick(['soft-gradient', 'solid-color', 'radial-spotlight', 'textured-paper', 'matching-theme']),
+    bgColor: pick(['#F3F4F6', '#FEF3C7', '#FCE7F3', '#E0F2FE', '#DCFCE7', '#EDE9FE']),
+    decoration: pick(['none', 'none', 'confetti', 'sparkle', 'washi-tape', 'ribbon-banner', 'stars-scatter']),
+    shadowIntensity: 20 + Math.floor(Math.random() * 71),
+    spread: 25 + Math.floor(Math.random() * 61),
+    showCaption: Math.random() > 0.25
+  };
+}
+
+function randomizeMockupStyle() {
+  const c = rollRandomMockupCombo();
+  const setActive = (gridId, val) => {
+    document.querySelectorAll('#' + gridId + ' .case-tier-card').forEach((card) => {
+      card.classList.toggle('active', card.dataset.layout === val || card.dataset.format === val);
+    });
+  };
+  setActive('mockupLayoutGrid', c.layoutType);
+  selectedMockupLayout = c.layoutType;
+  const pc = document.getElementById('mockupPageCount');
+  if (pc) pc.value = c.pageCount;
+  updateMockupPageCountLabel(c.pageCount);
+  updateMockupHeroState();
+  const bg = document.getElementById('mockupBgStyle');
+  if (bg) bg.value = c.bgStyle;
+  const col = document.getElementById('mockupBgColor');
+  if (col) col.value = c.bgColor;
+  updateMockupBgColorVisibility();
+  const deco = document.getElementById('mockupDecoration');
+  if (deco) deco.value = c.decoration;
+  const sh = document.getElementById('mockupShadowIntensity');
+  if (sh) sh.value = c.shadowIntensity;
+  const sp = document.getElementById('mockupSpread');
+  if (sp) sp.value = c.spread;
+  const cap = document.getElementById('mockupShowCaption');
+  if (cap) cap.checked = c.showCaption;
+  previewMockup();
+  if (window.lucide) lucide.createIcons();
+}
+
+let lastMockupBatch = [];
+let lastMockupMode = 'single';
+
+function applyVariantAsPrimary(i) {
+  const v = lastMockupBatch[i];
+  if (!v) return;
+  const c = v.combo;
+  document.querySelectorAll('#mockupLayoutGrid .case-tier-card').forEach((card) => {
+    card.classList.toggle('active', card.dataset.layout === c.layoutType);
+  });
+  selectedMockupLayout = c.layoutType;
+  const setVal = (id, val) => { const el = document.getElementById(id); if (el) el.value = val; };
+  setVal('mockupPageCount', c.pageCount);
+  updateMockupPageCountLabel(c.pageCount);
+  setVal('mockupBgStyle', c.bgStyle);
+  setVal('mockupBgColor', c.bgColor);
+  setVal('mockupDecoration', c.decoration);
+  setVal('mockupShadowIntensity', c.shadowIntensity);
+  setVal('mockupSpread', c.spread);
+  const cap = document.getElementById('mockupShowCaption');
+  if (cap) cap.checked = !!c.showCaption;
+  updateMockupBgColorVisibility();
+  updateMockupHeroState();
+  lastMockupMode = 'single';
+  document.querySelectorAll('#mockupVariantStrip .thumb').forEach((t, k) => t.classList.toggle('selected', k === i));
+  previewMockup();
+  if (window.lucide) lucide.createIcons();
+}
+
+function renderVariantStrip() {
+  const wrap = document.getElementById('mockupVariantWrap');
+  const strip = document.getElementById('mockupVariantStrip');
+  if (!strip) return;
+  strip.innerHTML = '';
+  if (!lastMockupBatch.length) { if (wrap) wrap.style.display = 'none'; return; }
+  const layoutNames = { fan: 'Fan', flatlay: 'Flat', stack: 'Stack', hero: 'Hero' };
+  lastMockupBatch.forEach((v, i) => {
+    const d = document.createElement('div');
+    d.className = 'thumb';
+    d.title = 'Preview variant ' + (i + 1) + ' full-size';
+    const imgEl = document.createElement('img');
+    imgEl.src = v.thumbUrl;
+    imgEl.alt = 'Mockup variant ' + (i + 1);
+    const fn = document.createElement('div');
+    fn.className = 'fname';
+    fn.textContent = 'Variant ' + (i + 1) + ' · ' + (layoutNames[v.combo.layoutType] || v.combo.layoutType);
+    d.appendChild(imgEl);
+    d.appendChild(fn);
+    d.addEventListener('click', () => applyVariantAsPrimary(i));
+    strip.appendChild(d);
+  });
+  if (wrap) wrap.style.display = '';
+  if (window.lucide) lucide.createIcons();
+}
+
+async function generateBatchVariants() {
+  if (!uploadedImages || !uploadedImages.length) { alert('Upload at least 1 image first!'); return; }
+  if (typeof window.JSZip === 'undefined') { alert('JSZip library failed to load. Check your connection and reload.'); return; }
+  const btn = document.getElementById('btnBatchVariants');
+  const total = uploadedImages.length;
+  const interiorCases = total >= 2 ? (total - 2) : total;
+  const fmt = validMockupFormat((document.getElementById('mockupExportFormat') || {}).value || 'square');
+  if (btn) { btn.classList.add('loading'); btn.disabled = true; }
+  const wrap = document.getElementById('exportProgressWrap');
+  const txt = document.getElementById('exportProgressText');
+  const bar = document.getElementById('exportProgressBar');
+  if (wrap) wrap.classList.add('visible');
+  try {
+    const combos = [];
+    const seen = {};
+    let guard = 0;
+    while (combos.length < 5 && guard < 120) {
+      guard++;
+      const c = rollRandomMockupCombo();
+      const key = [c.layoutType, c.pageCount, c.bgStyle, c.bgColor, c.decoration].join('|');
+      if (seen[key]) continue;
+      seen[key] = true;
+      combos.push(c);
+    }
+    const cache = new Map();
+    const getImg = async (idx) => {
+      if (!cache.has(idx)) cache.set(idx, await loadImageAsync(uploadedImages[idx].dataUrl));
+      return cache.get(idx);
+    };
+    const batch = [];
+    for (let v = 0; v < combos.length; v++) {
+      if (txt) txt.textContent = 'Generating variant ' + (v + 1) + ' of ' + combos.length + '...';
+      if (bar) bar.style.width = Math.round((v / combos.length) * 100) + '%';
+      if (btn) btn.innerHTML = '<span class="spinner"></span> Generating variant ' + (v + 1) + ' of ' + combos.length + '...';
+      await yieldToUI();
+      const c = combos[v];
+      const effCount = (c.layoutType === 'hero') ? 1 : Math.min(c.pageCount, total);
+      const sIdx = mockupSampleIndices(total, effCount);
+      const pages = [];
+      for (let k = 0; k < sIdx.length; k++) { pages.push(await getImg(sIdx[k])); await yieldToUI(); }
+      const vo = {
+        layoutType: c.layoutType, selectedPages: pages, caseCount: interiorCases,
+        showCaption: c.showCaption, pageCount: c.pageCount, exportFormat: fmt,
+        bgStyle: c.bgStyle, bgColor: c.bgColor, decoration: c.decoration,
+        shadowIntensity: c.shadowIntensity, spread: c.spread
+      };
+      const cv = generateEtsyMockup(vo);
+      const blob = await canvasToBlobAsync(cv, 0.92);
+      let thumbUrl = null;
+      try { thumbUrl = cv.toDataURL('image/jpeg', 0.7); } catch (e) {}
+      try { cv.width = 0; cv.height = 0; } catch (e2) {}
+      if (!blob || !thumbUrl) throw new Error('Could not encode variant ' + (v + 1));
+      batch.push({ combo: c, options: vo, blob: blob, thumbUrl: thumbUrl });
+    }
+    lastMockupBatch = batch;
+    lastMockupMode = 'batch';
+    renderVariantStrip();
+    await generateEtsyPack('batch');
+  } catch (err) {
+    console.error(err);
+    if (wrap) wrap.classList.remove('visible');
+    alert('Something went wrong while building the variants: ' + (err && err.message ? err.message : err));
+  } finally {
+    if (btn) {
+      btn.classList.remove('loading');
+      btn.disabled = false;
+      btn.innerHTML = '🎲 Generate 5 Variants';
+      if (window.lucide) lucide.createIcons();
+    }
+  }
+  if (window.lucide) lucide.createIcons();
+}
+
+let mockupPreviewGen = 0;
+async function previewMockup() {
+  const myGen = ++mockupPreviewGen;
+  const box = document.getElementById('mockupPreviewBox');
+  if (!uploadedImages || !uploadedImages.length) {
+    if (box) box.innerHTML = '<span>No images uploaded yet — add pages in Step 1 first.</span>';
+    return;
+  }
+  if (box) box.innerHTML = '<div class="preview-loading">Rendering preview...</div>';
+  await yieldToUI();
+  if (myGen !== mockupPreviewGen) return;
+  try {
+    const ctrl = readMockupControls();
+    const count = (ctrl.layoutType === 'hero') ? 1 : ctrl.pageCount;
+    const idx = mockupSampleIndices(uploadedImages.length, count);
+    const loaded = [];
+    for (let k = 0; k < idx.length; k++) {
+      loaded.push(await loadImageAsync(uploadedImages[idx[k]].dataUrl));
+      if (myGen !== mockupPreviewGen) return;
+      await yieldToUI();
+    }
+    if (myGen !== mockupPreviewGen) return;
+    const options = buildMockupOptions(loaded, uploadedImages.length);
+    const canvas = generateEtsyMockup(options);
+    if (myGen !== mockupPreviewGen) return;
+    let url = null;
+    try { url = canvas.toDataURL('image/jpeg', 0.85); } catch (e) {}
+    try { canvas.width = 0; canvas.height = 0; } catch (e2) {}
+    if (myGen !== mockupPreviewGen) return;
+    if (box) {
+      if (!url) { box.innerHTML = '<span>Could not render preview in this browser.</span>'; return; }
+      let img = document.getElementById('mockupPreviewImg');
+      if (!img) {
+        box.innerHTML = '';
+        img = document.createElement('img');
+        img.id = 'mockupPreviewImg';
+        box.appendChild(img);
+      }
+      img.alt = selectedMockupLayout + ' mockup preview';
+      img.src = url;
+    }
+  } catch (err) {
+    console.error(err);
+    if (myGen !== mockupPreviewGen) return;
+    if (box) box.innerHTML = '<span>Preview failed: ' + ((err && err.message) || err) + '</span>';
+  }
+  if (window.lucide) lucide.createIcons();
+}
+
+let activeModule = 'assembler';
+
+function switchModule(name) {
+  activeModule = name;
+  document.querySelectorAll('.module-btn').forEach(b => b.classList.toggle('active', b.dataset.module === name));
+  document.getElementById('module-assembler').style.display = name === 'assembler' ? '' : 'none';
+  document.getElementById('module-listing').style.display = name === 'listing' ? '' : 'none';
+  if (name === 'listing') prefillListingTitle();
+  if (window.lucide) lucide.createIcons();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* Guided workflow navigation: Steps 1-3 drive the existing assembler wizard (KDP Listing stays a separate tool) */
+let wfStep = 1;
+let wfMaxReached = 1;
+const WF_TOTAL = 3;
+function wfShowStep(n) {
+  switchModule('assembler');
+  goToStep(n);
+}
+function wfRender() {
+  document.querySelectorAll('#wfSteps .wf-step-pill').forEach(function (pill) {
+    var n = parseInt(pill.getAttribute('data-wf'), 10);
+    pill.classList.toggle('done', n < wfStep);
+    pill.classList.toggle('current', n === wfStep);
+    pill.classList.toggle('clickable', n <= wfMaxReached);
+  });
+  document.querySelectorAll('#wfSteps .wf-link').forEach(function (link) {
+    link.classList.toggle('done', parseInt(link.getAttribute('data-wf-link'), 10) < wfStep);
+  });
+  var counter = document.getElementById('wfCounter');
+  if (counter) counter.textContent = 'Step ' + wfStep + ' of ' + WF_TOTAL;
+}
+function wfGoto(n) {
+  n = Math.max(1, Math.min(WF_TOTAL, n));
+  if (n > wfMaxReached) return;
+  if (n >= 2 && n <= 3 && uploadedImages.length < 1) {
+    alert(n === 2 ? 'Upload at least 1 image first!' : 'Upload and arrange your images first!');
+    return;
+  }
+  wfStep = n;
+  wfShowStep(n);
+  wfRender();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function wfNext() {
+  if (wfStep === 1 && uploadedImages.length < 1) { alert('Upload at least 1 image first!'); return; }
+  if (wfStep === 2 && uploadedImages.length < 1) { alert('Upload and arrange your images first!'); return; }
+  if (wfStep < WF_TOTAL) {
+    wfMaxReached = Math.max(wfMaxReached, wfStep + 1);
+    wfGoto(wfStep + 1);
+  }
+}
+function wfBack() { wfGoto(wfStep - 1); }
+
+function getFitMode() {
+  const el = document.querySelector('input[name="fitMode"]:checked');
+  return el ? el.value : 'fit';
+}
+
+function updateFitUI() {
+  const mode = getFitMode();
+  document.getElementById('optFit').classList.toggle('selected', mode === 'fit');
+  document.getElementById('optFill').classList.toggle('selected', mode === 'fill');
+}
+
+function getCompressionSetting() {
+  const v = (document.getElementById('compressionQuality') || {}).value || 'standard';
+  if (v === 'high') return { quality: 0.95, dpi: 300, label: 'High Quality' };
+  if (v === 'max') return { quality: 0.75, dpi: 200, label: 'Maximum Compression' };
+  return { quality: 0.85, dpi: 300, label: 'Standard' };
+}
+
+function getMarginsEnabled() {
+  const el = document.getElementById('kdpMargins');
+  return el ? el.checked : true;
+}
+
+function yieldToUI() {
+  return new Promise((resolve) => {
+    if (typeof requestIdleCallback === 'function') {
+      try {
+        requestIdleCallback(() => resolve(), { timeout: 50 });
+        return;
+      } catch (e) { /* fall through to setTimeout */ }
+    }
+    setTimeout(resolve, 0);
+  });
+}
+
+/* Legacy name kept for compatibility — delegates to the single shared compressor above (no duplicate logic). */
+function compressImageDataUrl(srcDataUrl, naturalW, naturalH, maxWpx, maxHpx, quality) {
+  return compressImageForPrint(srcDataUrl, maxWpx, maxHpx, quality).then((r) => ({ dataUrl: r.dataUrl, w: r.w, h: r.h }));
+}
+
+function updateExportProgress(current, total) {
+  const wrap = document.getElementById('exportProgressWrap');
+  const bar = document.getElementById('exportProgressBar');
+  const txt = document.getElementById('exportProgressText');
+  if (wrap) wrap.classList.add('visible');
+  if (txt) txt.textContent = 'Processing page ' + current + ' of ' + total + '...';
+  if (bar) bar.style.width = total > 0 ? Math.round((current / total) * 100) + '%' : '0%';
+}
+
+function hideExportProgress() {
+  const wrap = document.getElementById('exportProgressWrap');
+  const bar = document.getElementById('exportProgressBar');
+  if (wrap) wrap.classList.remove('visible');
+  if (bar) bar.style.width = '0%';
+}
+
+const UNIVERSE_LABELS = {
+  sky: 'Sky Mysteries',
+  cryptid: 'Cryptid Files',
+  haunted: 'Haunted Files',
+  ancient: 'Ancient Mysteries',
+  deepsea: 'Deep Sea Files',
+  vanishing: 'Vanishing Files'
+};
+
+function prefillListingTitle() {
+  try {
+    const lt = document.getElementById('listingTitle');
+    const bt = document.getElementById('bookTitle');
+    if (lt && bt && !lt.value.trim() && bt.value.trim()) lt.value = bt.value.trim();
+  } catch (e) {}
+}
+
+function generateListingPrompt() {
+  const bookText = (document.getElementById('listingBookText').value || '').trim();
+  const validationBox = document.getElementById('listingValidation');
+  if (!bookText || bookText.indexOf('[CASE') === -1) {
+    if (validationBox) {
+      validationBox.style.display = 'flex';
+      validationBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+    return;
+  }
+  if (validationBox) validationBox.style.display = 'none';
+  const title = (document.getElementById('listingTitle').value || '').trim() || 'My Sky Mystery Case Files';
+  const universeVal = document.getElementById('listingUniverse').value || 'sky';
+  const universeLabel = UNIVERSE_LABELS[universeVal] || 'Sky Mysteries';
+  const marketplace = document.getElementById('listingMarketplace').value || 'Amazon.com';
+  const price = (document.getElementById('listingPrice').value || '').trim();
+
+  let lines = [];
+  lines.push('You are a senior Amazon KDP listing strategist and copywriter who specializes in the ' + universeLabel + ' niche. You understand Amazon search, KDP category rules, and what makes parents click "Buy" when browsing children\'s activity and reference books.');
+  lines.push('');
+  lines.push('Working title: "' + title + '".');
+  if (price) lines.push('The planned retail price is ' + price + ' — keep the description and positioning appropriate for that price point.');
+  lines.push('');
+  lines.push('Below is the full text of a children\'s/family case files book I\'ve written. Read it carefully, then generate a complete, ready-to-use Amazon KDP listing package based on ONLY what\'s actually in this text — do not invent details, age claims, or content that isn\'t reflected in the book.');
+  lines.push('');
+  lines.push('BOOK TEXT:');
+  lines.push(bookText);
+  lines.push('');
+  lines.push('=== GENERATE THE FOLLOWING ===');
+  lines.push('');
+  lines.push('BOOK TITLE');
+  lines.push('Maximum 200 characters total (title + subtitle combined).');
+  lines.push('Structure: [Catchy, curiosity-driving main title] + [colon] + [keyword-rich descriptive subtitle that states format, niche, and audience].');
+  lines.push('The main title should create intrigue without being generic ("Unexplained" or "Mystery" alone, overused — find a sharper angle from the actual book content).');
+  lines.push('The subtitle must naturally include: the format (e.g. "Case Files," "Activity Book," "Investigation Book"), the niche keyword, and an age/audience signal.');
+  lines.push('Provide 3 title variations, ranked by expected click-through appeal, with a one-line reason for each.');
+  lines.push('');
+  lines.push('BOOK DESCRIPTION (250-400 words)');
+  lines.push('Opening line (1-2 sentences): a hook that mirrors how a parent searching this niche actually thinks or feels — not a generic "Welcome to..." opener.');
+  lines.push('Middle section: describe the format and what\'s inside (number of cases, the Report/Evidence/Explanation/Rating structure if relevant to describe, the tone) using benefit-focused language — what the CHILD gets out of it (critical thinking, curiosity, screen-free engagement), not just a feature list.');
+  lines.push('Include one short bullet list (3-5 bullets) highlighting concrete, specific selling points drawn from the actual book content.');
+  lines.push('Closing line: a soft call-to-action appropriate for an Amazon book description (not salesy, more inviting — e.g. "the perfect gift for curious minds who love a good mystery").');
+  lines.push('Avoid superlative claims that could read as false advertising (no "the #1 book," no unverifiable claims).');
+  lines.push('');
+  lines.push('7 BACKEND SEARCH KEYWORDS');
+  lines.push('Each keyword phrase under 50 characters.');
+  lines.push('Base these on REAL search behavior for this niche — think about what a parent or gift-buyer would actually type into Amazon\'s search bar, not generic category words.');
+  lines.push('No keyword should repeat a word already used in the title or subtitle (Amazon deprioritizes redundant backend keywords).');
+  lines.push('Mix keyword types: include at least one long-tail phrase (4+ words), one gift-intent phrase (e.g. "gift for kids who love mysteries"), and one age/audience-specific phrase.');
+  lines.push('List each with a one-line note on the search intent it targets.');
+  lines.push('');
+  lines.push('RECOMMENDED AMAZON CATEGORIES');
+  lines.push('Suggest 2-3 specific KDP browse categories (not just top-level ones like "Children\'s Books" — go 3-4 levels deep) appropriate for ' + marketplace + '.');
+  lines.push('For each, note briefly why this book fits that category\'s typical audience.');
+  lines.push('');
+  lines.push('TARGET AGE RANGE');
+  lines.push('State a specific age range based on the actual reading level, sentence complexity, and content maturity found in the book text — not a generic "all ages" cop-out.');
+  lines.push('Justify the range in one sentence based on what\'s actually in the text.');
+  lines.push('');
+  lines.push('AUTHOR BIO TEMPLATE (2-3 sentences)');
+  lines.push('Generic and reusable, positioning the author as someone passionate about ' + universeLabel + ' topics for curious young readers.');
+  lines.push('Should sound like a real small-press children\'s author bio, not a corporate description.');
+  lines.push('');
+  lines.push('Keep everything grounded strictly in the actual book content provided above. If something can\'t be determined from the text (e.g. exact page count if not stated), state that it should be confirmed manually rather than guessing.');
+
+  document.getElementById('listingPromptText').value = lines.join('\n');
+  document.getElementById('listingOutputWrap').style.display = 'block';
+  document.getElementById('listingDone').style.display = 'flex';
+  if (window.lucide) lucide.createIcons();
+  document.getElementById('listingOutputWrap').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function copyListingPrompt() {
+  const ta = document.getElementById('listingPromptText');
+  const btn = document.getElementById('btnCopyListing');
+  const done = () => {
+    if (!btn) return;
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✅ Copied!';
+    setTimeout(() => { btn.innerHTML = orig; if (window.lucide) lucide.createIcons(); }, 2000);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(ta.value).then(done).catch(() => { ta.select(); try { document.execCommand('copy'); } catch (e) {} done(); });
+  } else {
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    done();
+  }
+}
+
+function updateSummary() {
+  const n = uploadedImages.length;
+  const isPdf = (typeof selectedOutputFormat === 'undefined') || selectedOutputFormat === 'pdf';
+  const size = isPdf ? getPageSize() : getEtsyPageSize();
+  const el = document.getElementById('exportSummary');
+  const warn = document.getElementById('lowPageWarning');
+  if (!el) return;
+  let base = '';
+  if (n === 0) {
+    base = isPdf
+      ? 'Ready to export: 0 pages. Upload images in Step 1 first.'
+      : 'Ready to export: 0 printables. Upload images in Step 1 first.';
+  }
+  else if (n === 1) base = 'Ready to export: 1 page (Cover) at ' + size.label + '.';
+  else if (n === 2) base = 'Ready to export: 2 pages (Cover + Back Cover) at ' + size.label + '.';
+  else base = 'Ready to export: ' + n + ' pages (Cover + ' + (n-2) + ' cases + Back Cover) at ' + size.label + '.';
+  try {
+    const comp = getCompressionSetting();
+    if (n > 0) {
+      if (isPdf) {
+        const marginsOn = getMarginsEnabled();
+        base += ' ' + comp.label + ' (' + comp.dpi + ' DPI)' + (marginsOn ? ', KDP-safe margins on.' : ', full-bleed margins off.');
+      } else {
+        const footerOn = getEtsyFooterEnabled();
+        base += ' ' + comp.label + ' (' + comp.dpi + ' DPI)' + (footerOn ? ', marketing footer on.' : ', no footer.') + ' Output: individual JPGs + mockup (.zip).';
+      }
+    }
+  } catch (e) {}
+  el.textContent = base;
+  if (warn) warn.style.display = (n > 0 && n < 3) ? 'flex' : 'none';
+  if (window.lucide) lucide.createIcons();
+}
+
+function sanitizeTitle(t) {
+  let s = (t || '').trim() || 'sky-mystery-book';
+  s = s.replace(/\s+/g, '_').replace(/[^a-zA-Z0-9_\-]/g, '').replace(/_+/g, '_').replace(/^_+|_+$/g, '');
+  if (!s) s = 'sky-mystery-book';
+  if (s.length > 80) s = s.slice(0, 80);
+  return s;
+}
+
+function detectFormat(dataUrl, filename) {
+  if (dataUrl.indexOf('data:image/png') === 0) return 'PNG';
+  if (dataUrl.indexOf('data:image/webp') === 0) return 'WEBP';
+  return 'JPEG';
+}
+
+async function generatePDF() {
+  if (!uploadedImages.length) { alert('Upload at least 1 image first!'); return; }
+  if (typeof window.jspdf === 'undefined') { alert('jsPDF library failed to load. Check your connection and reload.'); return; }
+  const btn = document.getElementById('btnGenerate');
+  const orig = btn.innerHTML;
+  const total = uploadedImages.length;
+  btn.classList.add('loading');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Processing page 1 of ' + total + '...';
+  updateExportProgress(0, total);
+
+  await yieldToUI();
+
+  try {
+    const size = getPageSize();
+    const mode = getFitMode();
+    const comp = getCompressionSetting();
+    const marginsOn = getMarginsEnabled();
+    const pageW = size.w, pageH = size.h;
+    const maxWpx = Math.round(pageW * comp.dpi);
+    const maxHpx = Math.round(pageH * comp.dpi);
+    const INTERIOR_MARGIN_IN = 0.25;
+
+    const { jsPDF } = window.jspdf;
+    const doc = new window.jspdf.jsPDF({ unit: 'in', format: [pageW, pageH], compress: true });
+
+    const title = document.getElementById('bookTitle').value || 'My Sky Mystery Case Files';
+    try {
+      doc.setProperties({ title: title, creator: 'Unexplained Sky Mysteries: KDP Production Suite', author: '' });
+    } catch(e) {}
+
+    await processImagesInChunks(uploadedImages, async (im, i) => {
+      if (i > 0) doc.addPage([pageW, pageH], pageW > pageH ? 'landscape' : 'portrait');
+
+      const isCoverPage = (total === 1) || (i === 0) || (i === total - 1);
+      const inset = (marginsOn && !isCoverPage) ? INTERIOR_MARGIN_IN : 0;
+      const usableW = pageW - inset * 2;
+      const usableH = pageH - inset * 2;
+      const offX = inset;
+      const offY = inset;
+
+      // Shared compression + shared Fit/Fill placement (identical inputs as Etsy path).
+      const compressed = await compressImageForPrint(im.dataUrl, maxWpx, maxHpx, comp.quality);
+      const place = calculateFitFillPlacement(compressed.srcW, compressed.srcH, usableW, usableH, mode);
+      const x = offX + place.offsetX, y = offY + place.offsetY;
+      const useDataUrl = compressed.dataUrl;
+      try {
+        doc.addImage(useDataUrl, 'JPEG', x, y, place.drawWidth, place.drawHeight);
+      } catch(err) {
+        doc.addImage(useDataUrl, 'JPEG', x, y, place.drawWidth, place.drawHeight);
+      }
+      try { compressed.canvas.width = 0; compressed.canvas.height = 0; } catch (e2) {}
+    }, (cur, tot) => {
+      updateExportProgress(cur, tot);
+      btn.innerHTML = '<span class="spinner"></span> Processing page ' + cur + ' of ' + tot + '...';
+    });
+
+    const filename = sanitizeTitle(title) + '.pdf';
+    doc.save(filename);
+
+    hideExportProgress();
+    btn.classList.remove('loading');
+    btn.classList.add('success');
+    btn.innerHTML = '✅ PDF Downloaded!';
+    setTimeout(() => {
+      btn.classList.remove('success');
+      btn.disabled = false;
+      btn.innerHTML = orig;
+      if (window.lucide) lucide.createIcons();
+    }, 3000);
+  } catch(err) {
+    console.error(err);
+    hideExportProgress();
+    alert('Something went wrong while building the PDF: ' + (err && err.message ? err.message : err));
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    btn.innerHTML = orig;
+  }
+  if (window.lucide) lucide.createIcons();
+}
+
+async function generateEtsyPack(mockupMode) {
+  if (!uploadedImages.length) { alert('Upload at least 1 image first!'); return; }
+  if (typeof window.JSZip === 'undefined') { alert('JSZip library failed to load. Check your connection and reload.'); return; }
+  lastMockupMode = (mockupMode === 'batch') ? 'batch' : 'single';
+  const btn = document.getElementById('btnGenerate');
+  const total = uploadedImages.length;
+  const totalSteps = total + 1;
+  btn.classList.add('loading');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="spinner"></span> Assembling your pack... page 1 of ' + total + '...';
+  updateExportProgress(0, totalSteps);
+  await yieldToUI();
+
+  try {
+    const size = getEtsyPageSize();
+    const mode = getFitMode();
+    const comp = getCompressionSetting();
+    const footerOn = getEtsyFooterEnabled();
+    const pageWpx = Math.round(size.w * comp.dpi);
+    const pageHpx = Math.round(size.h * comp.dpi);
+    const title = document.getElementById('bookTitle').value || 'My Sky Mystery Case Files';
+
+    const zip = new window.JSZip();
+
+    await processImagesInChunks(uploadedImages, async (im, i) => {
+      // Shared compression + shared Fit/Fill placement (identical inputs as PDF path).
+      const compressed = await compressImageForPrint(im.dataUrl, pageWpx, pageHpx, comp.quality);
+      const place = calculateFitFillPlacement(compressed.srcW, compressed.srcH, pageWpx, pageHpx, mode);
+      const pageCanvas = document.createElement('canvas');
+      pageCanvas.width = pageWpx;
+      pageCanvas.height = pageHpx;
+      const pctx = pageCanvas.getContext('2d');
+      pctx.fillStyle = '#FFFFFF';
+      pctx.fillRect(0, 0, pageWpx, pageHpx);
+      pctx.drawImage(compressed.canvas, place.offsetX, place.offsetY, place.drawWidth, place.drawHeight);
+      try { compressed.canvas.width = 0; compressed.canvas.height = 0; } catch (e2) {}
+      if (footerOn) {
+        const barH = Math.round(pageHpx * 0.032);
+        pctx.fillStyle = 'rgba(255,255,255,0.94)';
+        pctx.fillRect(0, pageHpx - barH, pageWpx, barH);
+        pctx.fillStyle = '#6B7280';
+        pctx.textAlign = 'center';
+        pctx.textBaseline = 'middle';
+        const fontSize = Math.max(18, Math.round(pageHpx * 0.011));
+        try { pctx.font = '600 ' + fontSize + 'px Inter, system-ui, sans-serif'; } catch (e3) {}
+        pctx.fillText('Unexplained Sky Mysteries \u2014 Sample Page', pageWpx / 2, pageHpx - barH / 2);
+      }
+      const blob = await canvasToBlobAsync(pageCanvas, comp.quality);
+      pageCanvas.width = 0; pageCanvas.height = 0;
+      if (!blob) throw new Error('Could not encode page ' + (i + 1));
+      zip.file(etsyFilenameForIndex(i, total), blob);
+    }, (cur, tot) => {
+      updateExportProgress(cur, totalSteps);
+      btn.innerHTML = '<span class="spinner"></span> Assembling your pack... page ' + cur + ' of ' + tot + '...';
+    });
+
+    if (lastMockupMode === 'batch' && lastMockupBatch.length) {
+      for (let v = 0; v < lastMockupBatch.length; v++) {
+        zip.file('Mockup_Variant_' + (v + 1) + '.jpg', lastMockupBatch[v].blob);
+      }
+    } else {
+      const ctrl = readMockupControls();
+      const mockCount = (ctrl.layoutType === 'hero') ? 1 : ctrl.pageCount;
+      const sampleIdx = mockupSampleIndices(total, mockCount);
+      const mockupPages = [];
+      for (let k = 0; k < sampleIdx.length; k++) {
+        mockupPages.push(await loadImageAsync(uploadedImages[sampleIdx[k]].dataUrl));
+        await yieldToUI();
+      }
+      const mockOptions = buildMockupOptions(mockupPages, total);
+      const mockCanvas = generateEtsyMockup(mockOptions);
+      const mockBlob = await canvasToBlobAsync(mockCanvas, 0.92);
+      mockCanvas.width = 0; mockCanvas.height = 0;
+      if (mockBlob) zip.file('00_Product_Mockup_' + mockupFormatDims(mockOptions.exportFormat).label + '.jpg', mockBlob);
+    }
+    updateExportProgress(totalSteps, totalSteps);
+    btn.innerHTML = '<span class="spinner"></span> Compressing .zip...';
+    await yieldToUI();
+
+    const zipBlob = await zip.generateAsync({ type: 'blob' });
+    const filename = sanitizeTitle(title) + '_Etsy_Printable_Pack.zip';
+    const url = URL.createObjectURL(zipBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { try { URL.revokeObjectURL(url); } catch (e) {} try { a.remove(); } catch (e2) {} }, 4000);
+
+    hideExportProgress();
+    btn.classList.remove('loading');
+    btn.classList.add('success');
+    btn.innerHTML = '✅ Printable Pack Downloaded!';
+    setTimeout(() => {
+      btn.classList.remove('success');
+      btn.disabled = false;
+      updateExportUIForFormat();
+      if (window.lucide) lucide.createIcons();
+    }, 3000);
+  } catch (err) {
+    console.error(err);
+    hideExportProgress();
+    alert('Something went wrong while building the Etsy pack: ' + (err && err.message ? err.message : err));
+    btn.classList.remove('loading');
+    btn.disabled = false;
+    updateExportUIForFormat();
+  }
+  if (window.lucide) lucide.createIcons();
+}
+
+document.getElementById('bookTitle').addEventListener('input', updateSummary);
+document.getElementById('etsyPageSize').addEventListener('change', updateSummary);
+window.addEventListener('DOMContentLoaded', () => {
+  renderAll();
+  goToStep(1);
+  updateExportUIForFormat();
+  if (window.lucide) lucide.createIcons();
+});
+if (window.lucide) lucide.createIcons();
+</script>
+</body>
+</html>
