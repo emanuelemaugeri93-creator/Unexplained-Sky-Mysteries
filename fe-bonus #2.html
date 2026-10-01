@@ -1,0 +1,797 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unexplained Sky Mysteries: Junior Sky Investigator Certificate Generator</title>
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<style>
+:root{
+  --bg-0:#0A1028;
+  --bg-1:#101A3A;
+  --bg-2:#18224A;
+  --card:rgba(255,255,255,.045);
+  --card-2:rgba(255,255,255,.07);
+  --line:rgba(201,162,75,.25);
+  --line-soft:rgba(255,255,255,.09);
+  --ink-0:#F4EDE0;
+  --ink-1:#CFC6B4;
+  --ink-muted:#9A917E;
+  --accent:#C9A24B;
+  --accent-2:#8FA3B8;
+  --warn:#D9A441;
+  --ok:#8FA3B8;
+  --radius-xl:22px;
+  --radius-lg:16px;
+  --radius-md:12px;
+  --font-head:'Baloo 2',system-ui,sans-serif;
+  --font-main:'Inter',system-ui,sans-serif;
+  --font-cert:'Playfair Display',Georgia,serif;
+  --shadow-lg:0 28px 70px rgba(0,0,0,.55);
+  --shadow-md:0 14px 32px rgba(0,0,0,.4);
+  --trans:all .25s cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{min-height:100%;overflow-x:hidden;max-width:100vw}
+body{
+  font-family:var(--font-main);
+  color:var(--ink-1);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(201,162,75,.10) 0%, transparent 26%),
+    radial-gradient(circle at 88% 90%, rgba(143,163,184,.08) 0%, transparent 24%),
+    linear-gradient(180deg,var(--bg-1) 0%,var(--bg-0) 65%, #05081A 100%);
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background:
+    repeating-linear-gradient(0deg, rgba(244,237,224,.018) 0 1px, transparent 1px 26px),
+    repeating-linear-gradient(90deg, rgba(244,237,224,.014) 0 1px, transparent 1px 26px);
+  mask-image:linear-gradient(to bottom, rgba(0,0,0,.7), transparent 75%);
+}
+.app-shell{position:relative;z-index:1;width:100%;max-width:1280px;min-width:0;margin:0 auto;padding:24px;box-sizing:border-box}
+.brand-bar{display:flex;align-items:center;gap:14px;padding:14px 20px;margin-bottom:20px;border-radius:16px;background:linear-gradient(135deg, rgba(201,162,75,.12), rgba(255,255,255,.02)),linear-gradient(135deg, #141C42, #0A1028);border:1px solid var(--line);box-shadow:var(--shadow-md);border-top-right-radius:4px;}
+.brand-emblem{width:46px;height:46px;border-radius:12px 12px 12px 3px;display:grid;place-items:center;flex-shrink:0;background:linear-gradient(135deg,var(--accent),#7A5F26);color:#0A1028;box-shadow:0 8px 20px rgba(201,162,75,.3)}
+.brand-emblem svg{width:24px;height:24px}
+.brand-text{display:flex;flex-direction:column;gap:3px;min-width:0}
+.brand-text small{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.brand-text strong{font-family:var(--font-head);font-size:1.35rem;line-height:1.1;color:var(--ink-0)}
+.kit-badge{margin-left:auto;flex-shrink:0;font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#0A1028;background:linear-gradient(135deg,var(--accent),#7A5F26);padding:8px 14px;border-radius:6px;transform:rotate(2deg);box-shadow:0 6px 16px rgba(0,0,0,.4);white-space:nowrap}
+.wf-steps{display:flex;align-items:flex-start;justify-content:center;margin:26px 0 6px;gap:0;flex-wrap:wrap}
+.wf-step-pill{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1 1 0;min-width:88px;max-width:160px;background:none;border:0;font-family:var(--font-main);padding:0;color:var(--ink-muted)}
+.wf-step-pill.clickable{cursor:pointer}
+.wf-dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:1.1rem;border:2px solid rgba(255,255,255,.18);color:var(--ink-muted);background:rgba(255,255,255,.04);transition:var(--trans)}
+.wf-dot svg{width:20px;height:20px}
+.wf-dot .wf-check{display:none}
+.wf-step-pill.current .wf-dot{border-color:var(--accent);color:#fff;box-shadow:0 0 0 4px rgba(201,162,75,.15),0 0 24px rgba(201,162,75,.25)}
+.wf-step-pill.done .wf-dot{background:linear-gradient(135deg,var(--accent),#7A5F26);border-color:transparent;color:#0A1028}
+.wf-step-pill.done .wf-num{display:none}
+.wf-step-pill.done .wf-check{display:inline}
+.wf-step-label{font-size:.78rem;font-weight:800;letter-spacing:.01em;color:var(--ink-muted);text-align:center}
+.wf-step-pill.current .wf-step-label{color:var(--ink-0)}
+.wf-step-pill.done .wf-step-label{color:var(--ink-1)}
+.wf-link{flex:1 1 16px;min-width:10px;height:2px;background:rgba(255,255,255,.14);margin-top:21px;border-radius:2px}
+.wf-link.done{background:linear-gradient(90deg,var(--accent),#7A5F26)}
+.wf-counter{text-align:center;color:var(--ink-muted);font-size:.85rem;font-weight:700;margin-bottom:20px}
+.wf-nav{display:flex;gap:12px;justify-content:center;margin:26px 0 8px;flex-wrap:wrap}
+.wf-continue{border:0;cursor:pointer;border-radius:14px;padding:15px 26px;font-weight:900;font-size:1rem;color:#0A1028;background:linear-gradient(135deg,var(--accent),#7A5F26);box-shadow:0 12px 28px rgba(201,162,75,.25);transition:var(--trans);font-family:var(--font-main);white-space:nowrap}
+.wf-continue:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.wf-back{background:rgba(255,255,255,.07);border:1px solid var(--line-soft);cursor:pointer;border-radius:14px;padding:13px 22px;font-weight:800;font-size:.95rem;color:var(--ink-1);transition:var(--trans);font-family:var(--font-main);white-space:nowrap}
+.wf-back:hover{background:rgba(255,255,255,.12)}
+.wf-step{display:none;animation:fadeUp .3s ease}
+.wf-step.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.cert-layout{display:grid;grid-template-columns:1fr;gap:22px;align-items:start}
+@media (min-width:1020px){
+  .cert-layout.has-preview{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}
+}
+.tab-content{display:none}
+.tab-content.active{display:block}
+.stage{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));border:1px solid var(--line-soft);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);padding:26px;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden;position:relative}
+.stage::before{content:"BONUS #2 • CERTIFIED";position:absolute;top:14px;right:-42px;transform:rotate(35deg);font-size:.62rem;font-weight:900;letter-spacing:.28em;color:rgba(201,162,75,.30);pointer-events:none;white-space:nowrap}
+.stage h2{font-family:var(--font-head);color:var(--ink-0);font-size:1.7rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.stage h2 svg{width:22px;height:22px;stroke:var(--accent)}
+.stage .desc{color:var(--ink-muted);line-height:1.65;margin-bottom:18px;max-width:760px}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.field label{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink-0);font-size:.95rem}
+.field label svg{width:16px;height:16px;stroke:var(--accent)}
+input[type="text"],input[type="date"],select,textarea{width:100%;border:1px solid var(--line-soft);border-radius:14px;padding:14px 15px;font-size:1rem;font-family:var(--font-main);background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));color:#fff;outline:none;transition:var(--trans);box-sizing:border-box;color-scheme:dark}
+select option{background:#101A3A;color:#fff}
+input:focus,select:focus,textarea:focus{border-color:rgba(201,162,75,.6);box-shadow:0 0 0 4px rgba(201,162,75,.15)}
+input::placeholder,textarea::placeholder{color:#7d7667}
+textarea{line-height:1.6;resize:vertical}
+.field-hint{font-size:.84rem;color:var(--ink-muted);line-height:1.5}
+.checkbox-row{display:flex;gap:12px;align-items:flex-start;padding:14px 16px;border-radius:14px;background:rgba(255,255,255,.05);border:1px solid var(--line);cursor:pointer;font-weight:700;color:var(--ink-0);margin:0 0 14px}
+.checkbox-row input{width:18px;height:18px;accent-color:var(--accent);cursor:pointer;flex-shrink:0;margin-top:2px}
+.btn{border:0;cursor:pointer;border-radius:14px;padding:15px 20px;font-weight:900;font-size:.98rem;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:var(--trans);font-family:var(--font-main);white-space:nowrap;flex:0 0 auto}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#7A5F26);color:#0A1028;box-shadow:0 14px 30px rgba(201,162,75,.28);width:100%;font-size:1.05rem;padding:18px;text-transform:uppercase;letter-spacing:.03em}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.05)}
+.btn-ghost{background:rgba(255,255,255,.07);border:1px solid var(--line-soft);color:var(--ink-0)}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-small{padding:11px 16px;font-size:.88rem}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.info-banner{display:flex;gap:10px;align-items:flex-start;background:rgba(143,163,184,0.12);border:1px solid rgba(143,163,184,0.35);border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:13px;line-height:1.5;color:var(--ink-1)}
+.info-banner svg{flex-shrink:0;width:18px;height:18px;margin-top:2px;stroke:var(--accent-2)}
+.info-banner strong{color:var(--ink-0)}
+.theme-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-bottom:6px}
+.theme-opt{display:flex;gap:10px;align-items:flex-start;padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid var(--line-soft);cursor:pointer;transition:var(--trans)}
+.theme-opt:hover{background:rgba(255,255,255,.08)}
+.theme-opt input{margin-top:3px;width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;cursor:pointer}
+.theme-opt strong{display:block;color:var(--ink-0);font-size:.9rem}
+.theme-opt small{display:block;color:var(--ink-muted);font-size:.78rem;line-height:1.45;margin-top:2px}
+.theme-opt input:checked + span strong{color:var(--accent)}
+.preview-aside{position:sticky;top:20px;min-width:0}
+.preview-label{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink-0);font-size:.95rem;margin-bottom:10px}
+.preview-label svg{width:16px;height:16px;stroke:var(--accent)}
+#certScaleWrap{position:relative;border-radius:12px;}
+.preview-only{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:5;}
+.preview-only span{font-family:var(--font-head);font-weight:800;font-size:clamp(2rem,6vw,3.4rem);letter-spacing:.35em;color:rgba(255,255,255,.28);border:4px solid rgba(255,255,255,.28);border-radius:12px;padding:.35em .8em .35em 1.1em;transform:rotate(-12deg);}
+/* ============ CERTIFICATE (rendered node: #certificate) ============ */
+#certificate{position:relative;width:100%;overflow:hidden;border-radius:6px;box-shadow:0 18px 50px rgba(0,0,0,.5);
+  --c-bg:#0E1A3D; --c-ink:#F4EDE0; --c-accent:#C9A24B; --c-muted:rgba(244,237,224,.72);}
+#certificate.size-letter-landscape{aspect-ratio:11/8.5;}
+#certificate.size-letter-portrait{aspect-ratio:8.5/11;}
+#certificate.size-a4-landscape{aspect-ratio:297/210;}
+#certificate.size-a4-portrait{aspect-ratio:210/297;}
+#certificate .cert-bg{position:absolute;inset:0;background:var(--c-bg);}
+#certificate .cert-frame{position:absolute;inset:4.5%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:5% 7%;box-sizing:border-box;}
+#certificate .cert-frame::before{content:"";position:absolute;pointer-events:none;display:none;}
+#certificate.border-ornate .cert-frame{border:3px double var(--c-accent);}
+#certificate.border-ornate .cert-frame::before{display:block;inset:10px;border:1px solid var(--c-accent);opacity:.85;}
+#certificate.border-simple .cert-frame{border:2px solid var(--c-accent);}
+#certificate.border-simple .cert-frame::before{display:block;inset:8px;border:1px solid var(--c-accent);opacity:.7;}
+#certificate.border-tape .cert-frame{border:2px dashed var(--c-accent);}
+#certificate.border-tape .tape{position:absolute;width:22%;height:5.5%;background:rgba(201,162,75,.35);border-left:1px dashed rgba(0,0,0,.15);border-right:1px dashed rgba(0,0,0,.15);}
+#certificate.border-tape .tape.tl{top:-2.5%;left:8%;transform:rotate(-8deg);}
+#certificate.border-tape .tape.tr{top:-2.5%;right:8%;transform:rotate(8deg);}
+#certificate.border-stars .cert-frame{border:2px solid var(--c-accent);}
+#certificate .frame-stars{display:none;justify-content:space-between;width:100%;color:var(--c-accent);font-size:1.4em;letter-spacing:.3em;line-height:1;}
+#certificate.border-stars .frame-stars{display:flex;}
+#certificate .cert-eyebrow{font-family:var(--font-main);font-weight:800;font-size:.75em;letter-spacing:.28em;text-transform:uppercase;color:var(--c-accent);margin-bottom:2%;}
+#certificate .cert-title{font-family:var(--font-cert);font-weight:900;color:var(--c-ink);font-size:2.29em;line-height:1.05;margin-bottom:1.5%;}
+#certificate .cert-present{font-family:var(--font-main);font-size:.7em;color:var(--c-muted);margin-bottom:1%;}
+#certificate .cert-name{font-family:var(--font-cert);font-weight:800;color:var(--c-ink);font-size:2.82em;line-height:1.1;border-bottom:2px solid var(--c-accent);padding:0 4% .8%;margin-bottom:1.6%;max-width:100%;}
+#certificate .cert-rank{font-family:var(--font-main);font-weight:700;font-size:.88em;letter-spacing:.12em;text-transform:uppercase;color:var(--c-accent);margin-bottom:1.4%;}
+#certificate .cert-cases{font-family:var(--font-cert);font-style:italic;font-size:1.01em;color:var(--c-ink);margin-bottom:1.2%;}
+#certificate .cert-highlight{font-family:var(--font-main);font-size:.75em;color:var(--c-muted);margin-bottom:2%;max-width:90%;}
+#certificate .cert-meta{font-family:var(--font-main);font-size:.7em;letter-spacing:.18em;text-transform:uppercase;color:var(--c-muted);margin-bottom:2.4%;}
+#certificate .cert-signatures{display:flex;justify-content:center;gap:8%;width:100%;margin-top:1%;}
+#certificate .sig{flex:1;max-width:34%;display:flex;flex-direction:column;align-items:center;gap:4px;}
+#certificate .sig-line{min-height:1.6em;width:100%;border-bottom:1.5px solid var(--c-accent);font-family:var(--font-cert);font-style:italic;font-size:.97em;color:var(--c-ink);padding-bottom:2px;word-break:break-word;}
+#certificate .sig-cap{font-size:.57em;letter-spacing:.14em;text-transform:uppercase;color:var(--c-muted);}
+#certificate .sig.hidden{display:none;}
+#certificate #certSeal{position:absolute;right:5%;bottom:9%;width:19%;aspect-ratio:1;pointer-events:none;}
+#certificate .seal-circle{width:100%;height:100%;border-radius:50%;display:grid;place-items:center;text-align:center;border:3px double currentColor;box-shadow:0 0 0 4px rgba(0,0,0,.12);}
+#certificate .seal-inner{font-family:var(--font-head);font-weight:800;line-height:1.25;}
+#certificate .seal-star{font-size:1.5em;display:block;}
+#certificate .seal-text{font-size:.53em;letter-spacing:.18em;display:block;margin-top:4px;}
+#certificate .compass{position:relative;width:100%;height:100%;font-family:var(--font-head);font-weight:800;}
+#certificate .compass .c-star{position:absolute;inset:0;display:grid;place-items:center;font-size:1.76em;}
+#certificate .compass span{position:absolute;font-size:.7em;}
+#certificate .compass .n{top:2%;left:50%;transform:translateX(-50%);} .compass .s{bottom:2%;left:50%;transform:translateX(-50%);}
+#certificate .compass .e{right:4%;top:50%;transform:translateY(-50%);} .compass .w{left:4%;top:50%;transform:translateY(-50%);}
+#certificate .saucer{position:relative;width:100%;height:100%;}
+#certificate .saucer .dome{position:absolute;left:32%;top:16%;width:36%;height:30%;border-radius:50%;background:currentColor;opacity:.85;}
+#certificate .saucer .body{position:absolute;left:8%;top:38%;width:84%;height:30%;border-radius:50%;background:currentColor;opacity:.55;}
+#certificate .saucer .lights{position:absolute;left:14%;top:64%;width:72%;display:flex;justify-content:space-between;font-size:.79em;}
+/* theme palettes + backgrounds */
+#certificate.theme-badge{--c-bg:#0E1A3D;--c-ink:#F4EDE0;--c-accent:#C9A24B;--c-muted:rgba(244,237,224,.72);}
+#certificate.theme-badge .cert-bg{background:linear-gradient(160deg,#0E1A3D 0%,#1B2A5E 55%,#0A1230 100%);}
+#certificate.theme-declassified{--c-bg:#E4D6B8;--c-ink:#2A2419;--c-accent:#8A6D2F;--c-muted:rgba(42,36,25,.72);}
+#certificate.theme-declassified .cert-bg{background:linear-gradient(155deg,#EFE3C6 0%,#E0D0AC 60%,#D3BE93 100%);}
+#certificate.theme-declassified .redact{position:absolute;background:#1c1a17;border-radius:2px;opacity:.92;}
+#certificate.theme-declassified .stamp{position:absolute;top:7%;right:6%;transform:rotate(10deg);border:3px solid #A33327;color:#A33327;font-family:var(--font-head);font-weight:800;letter-spacing:.22em;font-size:1.06em;padding:.4em .9em;border-radius:6px;opacity:.88;}
+#certificate.theme-nightsky{--c-bg:#050914;--c-ink:#F4EDE0;--c-accent:#C9A24B;--c-muted:rgba(244,237,224,.66);}
+#certificate.theme-nightsky .cert-bg{background:linear-gradient(180deg,#04070F 0%,#0A1330 60%,#131C46 100%);}
+#certificate.theme-nightsky .star{position:absolute;border-radius:50%;background:#FFFDF4;}
+#certificate.theme-nightsky .milky{position:absolute;left:-10%;top:8%;width:60%;height:120%;transform:rotate(18deg);background:linear-gradient(90deg,transparent,rgba(180,190,230,.10),transparent);}
+#certificate.theme-casefile{--c-bg:#D9B98C;--c-ink:#3A2C17;--c-accent:#7A5A24;--c-muted:rgba(58,44,23,.72);}
+#certificate.theme-casefile .cert-bg{background:linear-gradient(165deg,#E2C896 0%,#D3AE74 55%,#C49E66 100%);}
+#certificate.theme-casefile .folder-tab{position:absolute;top:0;left:6%;width:26%;height:5.5%;background:#C49E66;border-radius:0 0 10px 10px;}
+#certificate.theme-casefile .clip{position:absolute;top:3%;right:5%;width:5%;height:14%;border:3px solid #6E6E6E;border-bottom:none;border-radius:12px 12px 0 0;opacity:.8;}
+#certificate.theme-radar{--c-bg:#04140C;--c-ink:#EAFBEF;--c-accent:#C9A24B;--c-muted:rgba(234,251,239,.66);}
+#certificate.theme-radar .cert-bg{background:linear-gradient(180deg,#020B06 0%,#062015 70%,#04140C 100%);}
+#certificate.theme-radar .rgrid{position:absolute;inset:0;}
+#certificate.theme-radar .rline{position:absolute;background:rgba(74,222,128,.14);}
+#certificate.theme-radar .rring{position:absolute;left:50%;top:54%;border:1.5px solid rgba(74,222,128,.28);border-radius:50%;transform:translate(-50%,-50%);}
+#certificate.theme-radar .sweep{position:absolute;left:50%;top:54%;width:34%;height:3px;transform-origin:left center;transform:rotate(-24deg);background:linear-gradient(90deg, rgba(74,222,128,.9), transparent);}
+#certificate #certDecor{position:absolute;inset:0;pointer-events:none;}
+.footer-brand{margin:22px 0 8px;text-align:center;color:var(--ink-muted);font-size:.9rem}
+.draft-status{font-size:.85rem;color:var(--ink-muted);margin-top:8px;}
+@media (max-width:1019px){
+  .cert-layout.has-preview{grid-template-columns:1fr;}
+  .preview-aside{position:static;}
+}
+@media (max-width:860px){
+  .app-shell{padding:14px}
+  .stage{padding:18px}
+  .kit-badge{display:none}
+  .brand-text strong{font-size:1.1rem}
+}
+@media (max-width:640px){.wf-step-pill{min-width:72px}.wf-step-label{font-size:.68rem}.wf-dot{width:38px;height:38px}}
+@media print{
+  body{background:#fff;}
+  body::before{display:none;}
+  body *{visibility:hidden;}
+  #certificate, #certificate *{visibility:visible;}
+  #certificate{position:absolute;top:0;left:0;width:100%;margin:0;box-shadow:none;border-radius:0;}
+  .preview-only{display:none !important;}
+}
+</style>
+<style id="pageSizeStyle">@page{size:11in 8.5in;margin:0;}</style>
+</head>
+<body>
+<div class="app-shell">
+  <header class="brand-bar">
+    <span class="brand-emblem"><i data-lucide="award"></i></span>
+    <span class="brand-text"><small>Unexplained Sky Mysteries · Bonus #2</small><strong>Junior Sky Investigator Certificate Generator</strong></span>
+    <span class="kit-badge">Bonus #2</span>
+  </header>
+
+  <div class="wf-steps" id="wfSteps">
+    <button type="button" class="wf-step-pill current clickable" data-wf="1" onclick="wfGoto(1)">
+      <span class="wf-dot"><span class="wf-num">1</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Details</span>
+    </button>
+    <div class="wf-link" data-wf-link="1"></div>
+    <button type="button" class="wf-step-pill" data-wf="2" onclick="wfGoto(2)">
+      <span class="wf-dot"><span class="wf-num">2</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Design</span>
+    </button>
+    <div class="wf-link" data-wf-link="2"></div>
+    <button type="button" class="wf-step-pill" data-wf="3" onclick="wfGoto(3)">
+      <span class="wf-dot"><span class="wf-num">3</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Preview</span>
+    </button>
+    <div class="wf-link" data-wf-link="3"></div>
+    <button type="button" class="wf-step-pill" data-wf="4" onclick="wfGoto(4)">
+      <span class="wf-dot"><span class="wf-num">4</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Export</span>
+    </button>
+    <div class="wf-link" data-wf-link="4"></div>
+    <button type="button" class="wf-step-pill" data-wf="5" onclick="wfGoto(5)">
+      <span class="wf-dot"><span class="wf-num">5</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Drafts</span>
+    </button>
+  </div>
+  <div class="wf-counter" id="wfCounter">Step 1 of 5</div>
+
+  <div class="cert-layout has-preview">
+  <div class="steps-col">
+
+  <div class="wf-step active" id="wf-step-1">
+    <section class="stage">
+      <h2><i data-lucide="clipboard-list"></i> Step 1 — Certificate Details</h2>
+      <p class="desc">Fill in the investigator's details. Everything updates live in the preview on the right.</p>
+      <div class="info-banner"><i data-lucide="info"></i><div><strong>Who is this for?</strong> A child who just finished an Unexplained Sky Mysteries book. Type their name exactly as it should appear on the certificate.</div></div>
+      <div class="field">
+        <label><i data-lucide="user"></i> Investigator Name (required)</label>
+        <input type="text" id="cert-name" placeholder="e.g. Maya Reyes" oninput="renderCert()">
+      </div>
+      <div class="field">
+        <label><i data-lucide="hash"></i> Badge Number</label>
+        <div style="display:flex;gap:8px;">
+          <input type="text" id="cert-badge" oninput="renderCert()" style="flex:1;min-width:0;">
+          <button type="button" class="btn btn-ghost btn-small" onclick="regenBadge(true)" style="flex:0 0 auto;">Regenerate</button>
+        </div>
+      </div>
+      <div class="field">
+        <label><i data-lucide="medal"></i> Rank / Title</label>
+        <select id="cert-rank" onchange="renderCert()">
+          <option>Cadet Investigator</option>
+          <option>Junior Field Agent</option>
+          <option>Sky Watcher</option>
+          <option>Field Investigator</option>
+          <option>Senior Case Investigator</option>
+          <option>Chief Sky Detective</option>
+          <option>Master of the Unexplained</option>
+        </select>
+        <div class="field-hint">Promote repeat readers over time — a new rank for every book finished.</div>
+      </div>
+      <div class="field">
+        <label><i data-lucide="book-open"></i> Case(s) Solved</label>
+        <input type="text" id="cert-cases" placeholder="Solved 50 Sky Mystery Cases" oninput="renderCert()">
+      </div>
+      <div class="field">
+        <label><i data-lucide="calendar"></i> Date of Completion</label>
+        <input type="date" id="cert-date" onchange="renderCert()">
+      </div>
+      <div class="field">
+        <label><i data-lucide="pen-line"></i> Signing Authority Name</label>
+        <input type="text" id="cert-signer" placeholder="Director of the Sky Mysteries Division" oninput="renderCert()">
+      </div>
+      <div class="field">
+        <label><i data-lucide="pen-line"></i> Co-signer (optional)</label>
+        <input type="text" id="cert-cosigner" placeholder="e.g. witness, parent, fellow agent…" oninput="renderCert()">
+      </div>
+      <div class="field">
+        <label><i data-lucide="sparkles"></i> Achievement Highlight (optional)</label>
+        <input type="text" id="cert-highlight" placeholder="e.g. For Outstanding Bravery in the Face of the Unexplained" oninput="renderCert()">
+      </div>
+      <div class="wf-nav">
+        <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 2: Design →</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="wf-step" id="wf-step-2">
+    <section class="stage">
+      <h2><i data-lucide="palette"></i> Step 2 — Design &amp; Style</h2>
+      <p class="desc">Pick a theme and finishing touches. The preview updates instantly with every change.</p>
+      <div class="field">
+        <label><i data-lucide="layout-template"></i> Certificate Theme</label>
+        <select id="cert-theme" onchange="renderCert()">
+          <option value="badge" selected>Official Badge Seal — formal navy &amp; gold</option>
+          <option value="declassified">Declassified Document — aged paper &amp; stamp</option>
+          <option value="nightsky">Night Sky Field Report — stars &amp; constellations</option>
+          <option value="casefile">Evidence Case File — manila folder look</option>
+          <option value="radar">Radar Scope — grid, sweep &amp; thermal tones</option>
+        </select>
+      </div>
+      <div class="field">
+        <label><i data-lucide="frame"></i> Border Style</label>
+        <select id="cert-border" onchange="renderCert()">
+          <option value="border-ornate" selected>Ornate double frame</option>
+          <option value="border-simple">Simple double line</option>
+          <option value="border-tape">Dashed evidence-tape look</option>
+          <option value="border-stars">Corner stars</option>
+        </select>
+      </div>
+      <div class="field">
+        <label><i data-lucide="file"></i> Paper Size</label>
+        <select id="cert-size" onchange="renderCert()">
+          <option value="letter" selected>Letter (8.5 × 11 in)</option>
+          <option value="a4">A4 (210 × 297 mm)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label><i data-lucide="rectangle-horizontal"></i> Orientation</label>
+        <select id="cert-orient" onchange="renderCert()">
+          <option value="landscape" selected>Landscape (traditional certificate)</option>
+          <option value="portrait">Portrait</option>
+        </select>
+      </div>
+      <label class="checkbox-row"><input type="checkbox" id="cert-kidsig" checked onchange="renderCert()"><span><strong>Kids' Signature Line</strong><br><small style="font-weight:400;">Adds a blank line for the child to sign — an interactive keepsake.</small></span></label>
+      <label class="checkbox-row"><input type="checkbox" id="cert-sealshow" checked onchange="renderCert()"><span><strong>Decorative Seal Graphic</strong><br><small style="font-weight:400;">Show the theme's badge/seal artwork on the certificate.</small></span></label>
+      <div class="wf-nav">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back</button>
+        <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 3: Preview →</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="wf-step" id="wf-step-3">
+    <section class="stage">
+      <h2><i data-lucide="eye"></i> Step 3 — Live Preview</h2>
+      <p class="desc">This is exactly what prints and exports (the PREVIEW ribbon is screen-only and never appears on paper or PNG).</p>
+      <div class="info-banner"><i data-lucide="info"></i><div><strong>Check the details.</strong> Name spelling, rank, badge number and date — go back a step to fix anything, then return here.</div></div>
+      <div class="wf-nav">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back</button>
+        <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 4: Export →</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="wf-step" id="wf-step-4">
+    <section class="stage">
+      <h2><i data-lucide="download"></i> Step 4 — Export</h2>
+      <p class="desc">Take the certificate off the screen: print it, or share it as an image.</p>
+      <button class="btn btn-primary" onclick="doPrint()">🖨️ Print / Save as PDF</button>
+      <div class="field-hint" style="margin-top:8px;">Opens the print dialog — print only the certificate. Tip: disable browser headers &amp; footers in the print dialog for a clean page.</div>
+      <div class="toolbar">
+        <button class="btn btn-ghost" onclick="doPNG()">⬇️ Download as PNG</button>
+      </div>
+      <div class="info-banner" style="margin-top:14px;"><i data-lucide="share-2"></i><div><strong>Turn one reader into many:</strong> print the certificate as a physical keepsake to include with the book — and post the PNG on Instagram/Facebook so other parents see it. Every share is free word-of-mouth for your next book.</div></div>
+      <div class="wf-nav">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back</button>
+        <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 5: Drafts →</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="wf-step" id="wf-step-5">
+    <section class="stage">
+      <h2><i data-lucide="save"></i> Step 5 — Drafts for Repeat Use</h2>
+      <p class="desc">Generating for several kids, or promoting the same reader through the ranks over time? Save your setup and reload it later.</p>
+      <div class="toolbar" style="margin-top:0;">
+        <button class="btn btn-ghost" onclick="saveDraft()">💾 Save as Draft</button>
+        <button class="btn btn-ghost" onclick="loadDraft(true)">📂 Load Draft</button>
+        <button class="btn btn-ghost" onclick="newCertificate()">✨ New Certificate</button>
+      </div>
+      <div class="draft-status" id="draftStatus">No draft actions yet this session.</div>
+      <div class="wf-nav">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back</button>
+      </div>
+    </section>
+  </div>
+
+  </div><!-- /.steps-col -->
+
+  <aside class="preview-aside">
+    <div class="preview-label"><i data-lucide="scan-eye"></i> Live preview</div>
+    <div id="certScaleWrap">
+      <div id="certificate" class="theme-badge size-letter-landscape border-ornate">
+        <div class="cert-bg"></div>
+        <div id="certDecor"></div>
+        <div class="cert-frame">
+          <div class="frame-stars">★ ★ ★</div>
+          <div class="cert-eyebrow">Unexplained Sky Mysteries · Junior Investigator Division</div>
+          <h2 class="cert-title">Certificate of Investigation</h2>
+          <div class="cert-present">This certificate is proudly presented to</div>
+          <div class="cert-name" id="cName">—</div>
+          <div class="cert-rank" id="cRank"></div>
+          <div class="cert-cases" id="cCases"></div>
+          <div class="cert-highlight" id="cHighlight" style="display:none;"></div>
+          <div class="cert-meta"><span id="cDate"></span></div>
+          <div class="cert-signatures">
+            <div class="sig"><div class="sig-line" id="cSigner"></div><div class="sig-cap">Signing Authority</div></div>
+            <div class="sig hidden" id="cCosignerWrap"><div class="sig-line" id="cCosigner"></div><div class="sig-cap">Co-signer</div></div>
+            <div class="sig" id="cKidsWrap"><div class="sig-line"></div><div class="sig-cap">Junior Investigator's Signature</div></div>
+          </div>
+        </div>
+        <div class="tape tl" style="display:none;"></div>
+        <div class="tape tr" style="display:none;"></div>
+        <div id="certSeal"></div>
+      </div>
+      <div class="preview-only"><span>PREVIEW</span></div>
+    </div>
+  </aside>
+  </div><!-- /.cert-layout -->
+
+  <div class="footer-brand"><strong>Unexplained Sky Mysteries</strong> — Bonus #2: Junior Sky Investigator Certificate Generator</div>
+</div>
+
+<script>
+/* ============================================================
+   Junior Sky Investigator Certificate Generator — app logic
+   Sections: (1) form state + live render, (2) themes/decor,
+   (3) step nav, (4) export (print/PNG), (5) drafts.
+   ============================================================ */
+var DRAFT_KEY = 'jsi-cert-draft-v1';
+
+/* ---------- small helpers ---------- */
+function $(id) { return document.getElementById(id); }
+
+// Read every control into one plain state object (single source of truth).
+function readForm() {
+  return {
+    name: ($('cert-name').value || '').trim(),
+    badge: ($('cert-badge').value || '').trim(),
+    rank: $('cert-rank').value,
+    cases: ($('cert-cases').value || '').trim(),
+    dateISO: $('cert-date').value,
+    signer: ($('cert-signer').value || '').trim(),
+    cosigner: ($('cert-cosigner').value || '').trim(),
+    highlight: ($('cert-highlight').value || '').trim(),
+    theme: $('cert-theme').value,
+    border: $('cert-border').value,
+    size: $('cert-size').value,
+    orient: $('cert-orient').value,
+    kidsSig: $('cert-kidsig').checked,
+    sealShow: $('cert-sealshow').checked
+  };
+}
+
+// Human-readable date ("September 19, 2026"); parses yyyy-mm-dd without TZ shift.
+function fmtDate(iso) {
+  if (!iso) return '';
+  var p = iso.split('-');
+  if (p.length !== 3) return iso;
+  var months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var m = parseInt(p[1], 10);
+  if (!m || m < 1 || m > 12) return iso;
+  return months[m - 1] + ' ' + parseInt(p[2], 10) + ', ' + p[0];
+}
+
+// Random 4–6 digit badge number (also hand-editable in the form).
+function genBadge() {
+  return String(Math.floor(1000 + Math.random() * 990000));
+}
+function regenBadge(update) {
+  $('cert-badge').value = genBadge();
+  if (update !== false) renderCert();
+}
+
+/* ---------- live certificate render ---------- */
+// Master render: reads form state, writes every certificate node, swaps
+// theme/border/size classes, and rebuilds theme decor + seal. Called on
+// every input/change event, so the preview is always in sync.
+function renderCert() {
+  var s = readForm();
+  $('cName').textContent = s.name || '—';
+  $('cRank').textContent = s.rank + '  ·  Badge № ' + (s.badge || '—');
+  $('cCases').textContent = s.cases || 'For completing an Unexplained Sky Mysteries case book';
+  var hl = $('cHighlight');
+  if (s.highlight) { hl.textContent = s.highlight; hl.style.display = ''; }
+  else { hl.textContent = ''; hl.style.display = 'none'; }
+  $('cDate').textContent = fmtDate(s.dateISO) || '—';
+  $('cSigner').textContent = s.signer || 'Director of the Sky Mysteries Division';
+  var co = $('cCosignerWrap');
+  if (s.cosigner) { $('cCosigner').textContent = s.cosigner; co.classList.remove('hidden'); }
+  else { $('cCosigner').textContent = ''; co.classList.add('hidden'); }
+  $('cKidsWrap').classList.toggle('hidden', !s.kidsSig);
+  // Theme / border / size classes drive ALL certificate styling (see CSS).
+  var cert = $('certificate');
+  cert.className = 'theme-' + s.theme + ' size-' + s.size + '-' + s.orient + ' ' + s.border;
+  // Show corner tape strips only for the tape border; star rows only for stars border.
+  var tapes = cert.querySelectorAll('.tape');
+  for (var i = 0; i < tapes.length; i++) tapes[i].style.display = (s.border === 'border-tape') ? '' : 'none';
+  // Rebuild decorative layer + seal for the active theme.
+  buildDecor(s);
+  // Proportional sizing last (needs final DOM in place).
+  fitCert();
+}
+
+/* ---------- themes & decorative artwork (all CSS/DOM, no images) ---------- */
+// Fixed star positions (percent-based) so print, screen and PNG all match.
+var STAR_DOTS = [[6,12,2],[14,32,.16],[22,8,.22],[31,24,2],[38,10,.14],[47,30,.2],[55,12,2],[63,26,.15],[71,8,.22],[79,30,2],[86,14,.16],[93,26,.2],[10,55,2],[20,70,.15],[30,48,.2],[42,66,2],[52,50,.14],[60,72,.2],[70,52,2],[80,68,.15],[88,50,.2],[94,74,2],[8,88,.16],[26,92,.2],[44,84,2],[58,94,.14],[74,86,.2],[90,92,2],[50,40,.18],[66,42,.16]];
+// Seal artwork per theme: pure HTML/CSS shapes + unicode glyphs (no SVG, so
+// html2canvas rasterizes them exactly as shown — inline SVG is skipped by it).
+function sealHTML(theme) {
+  if (theme === 'declassified') {
+    return '<div class="seal-inner" style="color:#A33327;border:3px solid #A33327;border-radius:8px;padding:10px 14px;transform:rotate(-8deg);font-size:.88em;">★ DECLASSIFIED ★</div>';
+  }
+  if (theme === 'nightsky') {
+    return '<div class="saucer" style="color:#C9A24B;"><div class="dome"></div><div class="body"></div><div class="lights"><span>●</span><span>●</span><span>●</span><span>●</span><span>●</span></div></div>';
+  }
+  if (theme === 'casefile') {
+    return '<div class="compass" style="color:#7A5A24;"><div class="c-star">★</div><span class="n">N</span><span class="s">S</span><span class="e">E</span><span class="w">W</span></div>';
+  }
+  if (theme === 'radar') {
+    return '<div class="seal-circle" style="color:#4ADE80;"><div class="seal-inner"><span class="seal-star">◉</span><span class="seal-text">SCANNED</span></div></div>';
+  }
+  return '<div class="seal-circle" style="color:#C9A24B;"><div class="seal-inner"><span class="seal-star">★</span><span class="seal-text">SKY DIVISION</span></div></div>';
+}
+// Decorative background layer per theme. Dots/rings/tape are plain divs so
+// screen, print and PNG output stay pixel-identical.
+function buildDecor(s) {
+  var decor = $('certDecor');
+  var seal = $('certSeal');
+  var html = '';
+  var i;
+  if (s.theme === 'nightsky') {
+    html += '<div class="milky"></div>';
+    for (i = 0; i < STAR_DOTS.length; i++) {
+      var st = STAR_DOTS[i];
+      html += '<div class="star" style="left:' + st[0] + '%;top:' + st[1] + '%;width:' + Math.max(2, st[2] * 14) + 'px;height:' + Math.max(2, st[2] * 14) + 'px;opacity:' + (0.35 + st[2] * 2.4) + ';"></div>';
+    }
+  } else if (s.theme === 'radar') {
+    // Grid drawn as plain divs (not repeating-gradients) so html2canvas
+    // rasterizes exactly what the browser shows.
+    html += '<div class="rgrid">';
+    var n;
+    for (n = 0; n <= 28; n++) {
+      html += '<div class="rline" style="left:' + (n * 100 / 28) + '%;top:0;width:1px;height:100%;"></div>';
+      html += '<div class="rline" style="top:' + (n * 100 / 28) + '%;left:0;height:1px;width:100%;"></div>';
+    }
+    html += '</div>';
+    var rr = [16, 30, 44];
+    for (i = 0; i < rr.length; i++) {
+      html += '<div class="rring" style="width:' + rr[i] + '%;aspect-ratio:1;"></div>';
+    }
+    html += '<div class="sweep"></div>';
+  } else if (s.theme === 'declassified') {
+    html += '<div class="stamp">DECLASSIFIED</div>';
+    html += '<div class="redact" style="left:8%;top:16%;width:18%;height:3.2%;transform:rotate(-2deg);"></div>';
+    html += '<div class="redact" style="right:10%;bottom:24%;width:14%;height:3.2%;transform:rotate(1.5deg);"></div>';
+  } else if (s.theme === 'casefile') {
+    html += '<div class="folder-tab"></div><div class="clip"></div>';
+  }
+  decor.innerHTML = html;
+  seal.innerHTML = s.sealShow ? sealHTML(s.theme) : '';
+}
+/* ---------- proportional sizing (html2canvas-safe) ---------- */
+// html2canvas ignores aspect-ratio/cqw units, so geometry that must match
+// across screen, print and PNG is set in JS: base font-size scales with
+// certificate width (all artwork text uses em), the box height follows the
+// paper ratio, and square elements (seal, radar rings) are squared in px.
+var CERT_RATIOS = {
+  'letter-landscape': 11 / 8.5, 'letter-portrait': 8.5 / 11,
+  'a4-landscape': 297 / 210, 'a4-portrait': 210 / 297
+};
+function fitCert() {
+  var cert = $('certificate');
+  if (!cert) return;
+  var s = readForm();
+  var ratio = CERT_RATIOS[s.size + '-' + s.orient] || CERT_RATIOS['letter-landscape'];
+  var w = cert.clientWidth;
+  if (w > 0) {
+    cert.style.fontSize = (w / 44) + 'px';
+    cert.style.height = (w / ratio) + 'px';
+    var seal = $('certSeal');
+    if (seal && seal.clientWidth > 0) seal.style.height = seal.clientWidth + 'px';
+    var rings = cert.querySelectorAll('.rring');
+    for (var i = 0; i < rings.length; i++) {
+      if (rings[i].clientWidth > 0) rings[i].style.height = rings[i].clientWidth + 'px';
+    }
+  }
+}
+
+/* ---------- step workflow nav (same pattern as the sibling tools) ---------- */
+var wfStep = 1;
+var wfMaxReached = 1;
+var WF_TOTAL = 5;
+function wfRender() {
+  var pills = document.querySelectorAll('#wfSteps .wf-step-pill');
+  for (var i = 0; i < pills.length; i++) {
+    var n = parseInt(pills[i].getAttribute('data-wf'), 10);
+    pills[i].classList.toggle('done', n < wfStep);
+    pills[i].classList.toggle('current', n === wfStep);
+    pills[i].classList.toggle('clickable', n <= wfMaxReached);
+  }
+  var links = document.querySelectorAll('#wfSteps .wf-link');
+  for (var j = 0; j < links.length; j++) {
+    links[j].classList.toggle('done', parseInt(links[j].getAttribute('data-wf-link'), 10) < wfStep);
+  }
+  var steps = document.querySelectorAll('.wf-step');
+  for (var k = 0; k < steps.length; k++) {
+    steps[k].classList.toggle('active', parseInt(steps[k].id.replace('wf-step-', ''), 10) === wfStep);
+  }
+  var counter = $('wfCounter');
+  if (counter) counter.textContent = 'Step ' + wfStep + ' of ' + WF_TOTAL;
+}
+function wfGoto(n) {
+  n = Math.max(1, Math.min(WF_TOTAL, n));
+  if (n > wfMaxReached) return;
+  wfStep = n;
+  wfRender();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function wfNext() {
+  // Investigator name is required before leaving Step 1.
+  if (wfStep === 1 && !$('cert-name').value.trim()) {
+    alert('Please enter the Investigator Name first!');
+    $('cert-name').focus();
+    return;
+  }
+  if (wfStep < WF_TOTAL) {
+    wfMaxReached = Math.max(wfMaxReached, wfStep + 1);
+    wfGoto(wfStep + 1);
+  }
+}
+function wfBack() { wfGoto(wfStep - 1); }
+
+/* ---------- export: print/PDF ---------- */
+// @page cannot be set from JS inline styles, so paper size/orientation is
+// written into the dedicated #pageSizeStyle block before printing.
+var PAGE_SIZES = {
+  'letter-landscape': '11in 8.5in', 'letter-portrait': '8.5in 11in',
+  'a4-landscape': '297mm 210mm', 'a4-portrait': '210mm 297mm'
+};
+function syncPageRule() {
+  var s = readForm();
+  var rule = '@page{size:' + (PAGE_SIZES[s.size + '-' + s.orient] || PAGE_SIZES['letter-landscape']) + ';margin:0;}';
+  var el = $('pageSizeStyle');
+  if (el) el.textContent = rule;
+}
+function doPrint() {
+  if (!readForm().name) { alert('Please enter the Investigator Name first!'); wfGoto(1); return; }
+  syncPageRule();
+  window.print();
+}
+
+/* ---------- export: PNG via html2canvas ---------- */
+// Only #certificate is rasterized, so UI chrome and the PREVIEW ribbon
+// (which lives outside #certificate) never appear in the image.
+function sanitizeFilename(s) {
+  return String(s || 'certificate').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'certificate';
+}
+function doPNG() {
+  var s = readForm();
+  if (!s.name) { alert('Please enter the Investigator Name first!'); wfGoto(1); return; }
+  if (typeof html2canvas === 'undefined') {
+    alert('PNG export needs the html2canvas library (internet connection required once to load it). Use Print / Save as PDF instead — it always works offline.');
+    return;
+  }
+  var iso = s.dateISO || new Date().toISOString().slice(0, 10);
+  var fname = 'junior-sky-investigator-' + sanitizeFilename(s.name) + '-' + iso + '.png';
+  html2canvas($('certificate'), { backgroundColor: null, scale: 3, useCORS: true }).then(function (canvas) {
+    var a = document.createElement('a');
+    a.href = canvas.toDataURL('image/png');
+    a.download = fname;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () { try { a.remove(); } catch (e) {} }, 2000);
+  }).catch(function () {
+    alert('PNG export failed in this browser — please use Print / Save as PDF instead.');
+  });
+}
+
+/* ---------- drafts: localStorage save/load + fresh start ---------- */
+function collectDraft() {
+  var s = readForm();
+  return { v: 1, savedAt: new Date().toISOString(), data: s };
+}
+function applyDraft(d) {
+  if (!d || !d.data) return false;
+  var s = d.data;
+  $('cert-name').value = s.name || '';
+  $('cert-badge').value = s.badge || '';
+  $('cert-rank').value = s.rank || 'Cadet Investigator';
+  $('cert-cases').value = s.cases || '';
+  $('cert-date').value = s.dateISO || '';
+  $('cert-signer').value = s.signer || '';
+  $('cert-cosigner').value = s.cosigner || '';
+  $('cert-highlight').value = s.highlight || '';
+  $('cert-theme').value = s.theme || 'badge';
+  $('cert-border').value = s.border || 'border-ornate';
+  $('cert-size').value = s.size || 'letter';
+  $('cert-orient').value = s.orient || 'landscape';
+  $('cert-kidsig').checked = s.kidsSig !== false;
+  $('cert-sealshow').checked = s.sealShow !== false;
+  renderCert();
+  return true;
+}
+function draftStatus(msg) {
+  var el = $('draftStatus');
+  if (el) el.textContent = msg;
+}
+function saveDraft() {
+  try {
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(collectDraft()));
+    var d = new Date();
+    draftStatus('Draft saved ' + d.toLocaleString() + ' — reload it anytime from this browser.');
+  } catch (e) {
+    draftStatus('Could not save draft in this browser (storage unavailable).');
+  }
+}
+function loadDraft(manual) {
+  var raw = null;
+  try { raw = localStorage.getItem(DRAFT_KEY); } catch (e) {}
+  if (!raw) {
+    if (manual) draftStatus('No saved draft found in this browser yet.');
+    return false;
+  }
+  try {
+    if (applyDraft(JSON.parse(raw))) {
+      draftStatus(manual ? 'Draft loaded — preview updated.' : 'Restored your last saved draft automatically.');
+      return true;
+    }
+  } catch (e) {}
+  if (manual) draftStatus('Saved draft was unreadable — starting fresh instead.');
+  return false;
+}
+// Reset the form to defaults but KEEP the last-used theme/style choices.
+function newCertificate() {
+  var keep = { theme: $('cert-theme').value, border: $('cert-border').value, size: $('cert-size').value, orient: $('cert-orient').value, kidsSig: $('cert-kidsig').checked, sealShow: $('cert-sealshow').checked };
+  $('cert-name').value = '';
+  $('cert-badge').value = genBadge();
+  $('cert-rank').selectedIndex = 0;
+  $('cert-cases').value = '';
+  $('cert-date').value = new Date().toISOString().slice(0, 10);
+  $('cert-signer').value = '';
+  $('cert-cosigner').value = '';
+  $('cert-highlight').value = '';
+  $('cert-theme').value = keep.theme;
+  $('cert-border').value = keep.border;
+  $('cert-size').value = keep.size;
+  $('cert-orient').value = keep.orient;
+  $('cert-kidsig').checked = keep.kidsSig;
+  $('cert-sealshow').checked = keep.sealShow;
+  renderCert();
+  draftStatus('Fresh certificate started — theme and style choices kept.');
+  wfGoto(1);
+}
+
+/* ---------- init ---------- */
+function initCert() {
+  if (!$('cert-date').value) $('cert-date').value = new Date().toISOString().slice(0, 10);
+  if (!$('cert-badge').value) $('cert-badge').value = genBadge();
+  syncPageRule();
+  renderCert();
+  wfRender();
+  loadDraft(false);
+  renderCert();
+  if (window.lucide) lucide.createIcons();
+  window.addEventListener('resize', function () { fitCert(); });
+}
+document.addEventListener('DOMContentLoaded', initCert);
+if (window.lucide) lucide.createIcons();
+</script>
+</body>
+</html>
