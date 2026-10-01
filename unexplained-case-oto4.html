@@ -1,0 +1,1134 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unexplained Sky Mysteries: Field Agent Workbook</title>
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{
+  --bg-0:#141114;
+  --bg-1:#1D1517;
+  --bg-2:#251B1E;
+  --card:rgba(255,255,255,.045);
+  --card-2:rgba(255,255,255,.07);
+  --line:rgba(208,90,90,.22);
+  --line-soft:rgba(255,255,255,.09);
+  --ink-0:#F4EDE3;
+  --ink-1:#CFC3B2;
+  --ink-muted:#9A8F7E;
+  --accent:#D05A5A;
+  --accent-2:#8FA3B8;
+  --warn:#E0684E;
+  --ok:#8FA3B8;
+  --radius-xl:22px;
+  --radius-lg:16px;
+  --radius-md:12px;
+  --font-head:'Baloo 2',system-ui,sans-serif;
+  --font-main:'Inter',system-ui,sans-serif;
+  --shadow-lg:0 28px 70px rgba(0,0,0,.55);
+  --shadow-md:0 14px 32px rgba(0,0,0,.4);
+  --trans:all .25s cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{min-height:100%;overflow-x:hidden;max-width:100vw}
+body{
+  font-family:var(--font-main);
+  color:var(--ink-1);
+  background:
+    radial-gradient(circle at 10% 8%, rgba(208,90,90,.10) 0%, transparent 26%),
+    radial-gradient(circle at 90% 92%, rgba(143,163,184,.08) 0%, transparent 24%),
+    linear-gradient(180deg,var(--bg-1) 0%,var(--bg-0) 65%, #0F0D0E 100%);
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.55;
+  background:
+    repeating-linear-gradient(0deg, rgba(242,239,230,.018) 0 1px, transparent 1px 26px),
+    repeating-linear-gradient(90deg, rgba(242,239,230,.014) 0 1px, transparent 1px 26px);
+  mask-image:linear-gradient(to bottom, rgba(0,0,0,.7), transparent 75%);
+}
+.app-shell{position:relative;z-index:1;width:100%;max-width:1180px;min-width:0;margin:0 auto;padding:24px;box-sizing:border-box}
+.brand-bar{display:flex;align-items:center;gap:14px;padding:14px 20px;margin-bottom:20px;border-radius:16px;background:linear-gradient(135deg, rgba(208,90,90,.12), rgba(255,255,255,.02)),linear-gradient(135deg, #22181B, #141114);border:1px solid var(--line);box-shadow:var(--shadow-md);border-top-right-radius:4px;}
+.brand-emblem{width:46px;height:46px;border-radius:12px 12px 12px 3px;display:grid;place-items:center;flex-shrink:0;background:linear-gradient(135deg,var(--accent),#7A2E2E);color:#141114;box-shadow:0 8px 20px rgba(208,90,90,.3)}
+.brand-emblem svg{width:24px;height:24px}
+.brand-text{display:flex;flex-direction:column;gap:3px;min-width:0}
+.brand-text small{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.brand-text strong{font-family:var(--font-head);font-size:1.45rem;line-height:1;color:var(--ink-0)}
+.kit-badge{margin-left:auto;flex-shrink:0;font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#141114;background:linear-gradient(135deg,var(--accent-2),#46586C);padding:8px 14px;border-radius:6px;transform:rotate(2deg);box-shadow:0 6px 16px rgba(0,0,0,.4);white-space:nowrap}
+.module-toggle{display:flex;gap:10px;padding:10px;margin-bottom:22px;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid var(--line-soft);box-shadow:var(--shadow-md);flex-wrap:wrap}
+.module-btn{flex:1 1 auto;border:0;cursor:pointer;background:transparent;color:var(--ink-muted);padding:13px 20px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:var(--trans);font-size:1rem;font-weight:800;font-family:var(--font-main);white-space:nowrap}
+.module-btn svg{width:18px;height:18px;stroke:currentColor}
+.module-btn:hover{background:rgba(255,255,255,.06);color:#fff}
+.module-btn.active{background:linear-gradient(135deg,var(--accent),#7A2E2E);color:#141114;box-shadow:0 8px 24px rgba(208,90,90,.3)}
+.tab-content{display:none;animation:fadeUp .3s ease}
+.tab-content.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.stage{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));border:1px solid var(--line-soft);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);padding:26px;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden;position:relative}
+.stage::before{content:"FIELD KIT • EVIDENCE GRADE";position:absolute;top:14px;right:-42px;transform:rotate(35deg);font-size:.62rem;font-weight:900;letter-spacing:.28em;color:rgba(208,90,90,.30);pointer-events:none;white-space:nowrap}
+.stage h2{font-family:var(--font-head);color:var(--ink-0);font-size:1.7rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.stage h2 svg{width:22px;height:22px;stroke:var(--accent)}
+.stage .desc{color:var(--ink-muted);line-height:1.65;margin-bottom:18px;max-width:760px}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.field label{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink-0);font-size:.95rem}
+.field label svg{width:16px;height:16px;stroke:var(--accent)}
+input[type="text"],select,textarea{width:100%;border:1px solid var(--line-soft);border-radius:14px;padding:14px 15px;font-size:1rem;font-family:var(--font-main);background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));color:#fff;outline:none;transition:var(--trans);box-sizing:border-box}
+select option{background:#1D1517;color:#fff}
+input:focus,select:focus,textarea:focus{border-color:rgba(208,90,90,.6);box-shadow:0 0 0 4px rgba(208,90,90,.15)}
+input::placeholder,textarea::placeholder{color:#7D766B}
+textarea{line-height:1.6;resize:vertical}
+.field-hint{font-size:.84rem;color:var(--ink-muted);line-height:1.5}
+.err-box{display:none;gap:10px;align-items:flex-start;padding:14px 16px;border-radius:14px;margin:14px 0;background:rgba(224,104,78,.10);border:1px solid rgba(224,104,78,.45);border-left:4px solid var(--warn);color:#F3DCD2;font-size:.92rem;line-height:1.55}
+.err-box.show{display:flex}
+.err-box svg{width:20px;height:20px;flex-shrink:0;stroke:var(--warn);margin-top:2px}
+.btn{border:0;cursor:pointer;border-radius:14px;padding:15px 20px;font-weight:900;font-size:.98rem;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:var(--trans);font-family:var(--font-main);white-space:nowrap;flex:0 0 auto}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#7A2E2E);color:#141114;box-shadow:0 14px 30px rgba(208,90,90,.28);width:100%;font-size:1.05rem;padding:18px;text-transform:uppercase;letter-spacing:.03em}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.05)}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.btn-ghost{background:rgba(255,255,255,.07);border:1px solid var(--line-soft);color:var(--ink-0)}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-small{padding:11px 16px;font-size:.88rem}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.case-list{display:flex;flex-direction:column;gap:8px;margin-top:14px;max-height:420px;overflow-y:auto;padding-right:4px}
+.case-row{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.045);border:1px solid var(--line-soft);cursor:pointer;transition:var(--trans)}
+.case-row:hover{background:rgba(255,255,255,.08)}
+.case-row input{margin-top:3px;width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;cursor:pointer}
+.case-row .num{font-family:var(--font-head);font-weight:800;color:var(--accent);min-width:44px}
+.case-row strong{display:block;color:var(--ink-0);font-size:.95rem}
+.case-row small{display:block;color:var(--ink-muted);font-size:.82rem;line-height:1.5;margin-top:2px}
+.case-row .tag{display:inline-block;font-size:.66rem;font-weight:900;letter-spacing:.08em;border:1px solid var(--line);border-radius:5px;padding:2px 7px;margin-left:8px;color:var(--accent);vertical-align:middle}
+.act-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-bottom:16px}
+.act-opt{display:flex;gap:10px;align-items:flex-start;padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid var(--line-soft);cursor:pointer;transition:var(--trans)}
+.act-opt:hover{background:rgba(255,255,255,.08)}
+.act-opt input{margin-top:3px;width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;cursor:pointer}
+.act-opt svg{width:20px;height:20px;flex-shrink:0;stroke:var(--accent);margin-top:1px}
+.act-opt strong{display:block;color:var(--ink-0);font-size:.93rem}
+.act-opt small{display:block;color:var(--ink-muted);font-size:.8rem;line-height:1.5;margin-top:2px}
+.est-box{display:flex;gap:12px;align-items:flex-start;padding:16px 18px;border-radius:16px;margin-bottom:18px;background:rgba(143,163,184,.10);border:1px solid rgba(143,163,184,.35);border-left:4px solid var(--accent-2)}
+.est-box svg{width:22px;height:22px;flex-shrink:0;stroke:var(--accent-2);margin-top:2px}
+.est-box strong{color:#fff;font-size:1.05rem}
+.est-box span{color:var(--ink-1);font-size:.92rem;line-height:1.6}
+.json-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:14px;margin-top:18px}
+.json-card{padding:18px;border-radius:16px 16px 16px 4px;background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));border:1px solid var(--line-soft);display:flex;flex-direction:column;gap:12px;transition:var(--trans)}
+.json-card:hover{transform:translateY(-3px);border-color:rgba(208,90,90,.45)}
+.card-meta{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.json-index{min-width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,var(--accent),#7A2E2E);color:#141114;font-weight:900;font-size:.85rem;padding:0 8px}
+.badge{display:inline-flex;padding:7px 11px;border-radius:999px;background:rgba(255,255,255,.08);border:1px solid var(--line-soft);color:var(--ink-0);font-size:.76rem;font-weight:800}
+.json-help{color:var(--ink-muted);font-size:.86rem;line-height:1.55}
+.btn-copy{border:0;cursor:pointer;width:100%;padding:12px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#7A2E2E);color:#141114;font-weight:900;display:inline-flex;align-items:center;justify-content:center;gap:8px;white-space:nowrap;flex:0 0 auto}
+.btn-copy svg{width:16px;height:16px}
+.btn-copy:hover{filter:brightness(1.06)}
+.loader{display:none;text-align:center;padding:26px 0 6px}
+.loader.show{display:block}
+.spinner{width:48px;height:48px;margin:0 auto 12px;border-radius:50%;border:4px solid rgba(255,255,255,.12);border-top-color:var(--accent);animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.loader p{font-weight:800;letter-spacing:.05em;color:var(--accent);text-transform:uppercase;font-size:.9rem}
+.stamp-title{display:flex;align-items:center;gap:12px;margin-bottom:14px;margin-top:6px}
+.stamp-title h4{font-family:var(--font-head);color:var(--ink-0);font-size:1.2rem}
+.stamp-mini{font-size:.62rem;font-weight:900;letter-spacing:.18em;color:var(--warn);border:2px solid var(--warn);border-radius:5px;padding:4px 9px;transform:rotate(-4deg);opacity:.9;white-space:nowrap}
+.footer-brand{margin:22px 0 8px;text-align:center;color:var(--ink-muted);font-size:.9rem}
+.info-banner { display:flex; gap:10px; align-items:flex-start; background:rgba(143,163,184,0.12); border:1px solid rgba(143,163,184,0.35); border-radius:8px; padding:10px 12px; margin-bottom:14px; font-size:13px; line-height:1.5; }
+.info-banner i { flex-shrink:0; width:18px; height:18px; margin-top:2px; }
+@media (max-width:860px){
+  .app-shell{padding:14px}
+  .stage{padding:18px}
+  .act-grid{grid-template-columns:1fr}
+  .kit-badge{display:none}
+}
+/* Guided workflow step bar (shared pattern across the Unexplained Sky Mysteries suite) */
+.module-toggle{display:none}
+.wf-step{display:none}
+.wf-step.active{display:block}
+.wf-steps{display:flex;align-items:flex-start;justify-content:center;margin:26px 0 6px;gap:0}
+.wf-step-pill{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1 1 0;min-width:88px;max-width:160px;background:none;border:0;font-family:var(--font-main);padding:0;color:var(--ink-muted)}
+.wf-step-pill.clickable{cursor:pointer}
+.wf-dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:1.1rem;border:2px solid rgba(255,255,255,.18);color:var(--ink-muted);background:rgba(255,255,255,.04);transition:var(--trans)}
+.wf-dot svg{width:20px;height:20px}
+.wf-dot .wf-check{display:none}
+.wf-step-pill.current .wf-dot{border-color:var(--accent);color:#fff;box-shadow:0 0 0 4px rgba(208,90,90,.15),0 0 24px rgba(208,90,90,.25)}
+.wf-step-pill.done .wf-dot{background:linear-gradient(135deg,var(--accent),#7A2E2E);border-color:transparent;color:#141114}
+.wf-step-pill.done .wf-num{display:none}
+.wf-step-pill.done .wf-check{display:inline}
+.wf-step-label{font-size:.78rem;font-weight:800;letter-spacing:.01em;color:var(--ink-muted)}
+.wf-step-pill.current .wf-step-label{color:var(--ink-0)}
+.wf-step-pill.done .wf-step-label{color:var(--ink-1)}
+.wf-link{flex:1 1 16px;min-width:10px;height:2px;background:rgba(255,255,255,.14);margin-top:21px;border-radius:2px}
+.wf-link.done{background:linear-gradient(90deg,var(--accent),#7A2E2E)}
+.wf-counter{text-align:center;color:var(--ink-muted);font-size:.85rem;font-weight:700;margin-bottom:20px}
+.wf-nav{display:flex;gap:12px;justify-content:center;margin:26px 0 8px;flex-wrap:wrap}
+.wf-continue{border:0;cursor:pointer;border-radius:14px;padding:15px 26px;font-weight:900;font-size:1rem;color:#141114;background:linear-gradient(135deg,var(--accent-2),var(--accent));box-shadow:0 12px 28px rgba(208,90,90,.25);transition:var(--trans);font-family:var(--font-main);white-space:nowrap}
+.wf-continue:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.wf-back{background:rgba(255,255,255,.07);border:1px solid var(--line-soft);cursor:pointer;border-radius:14px;padding:13px 22px;font-weight:800;font-size:.95rem;color:var(--ink-1);transition:var(--trans);font-family:var(--font-main);white-space:nowrap}
+.wf-back:hover{background:rgba(255,255,255,.12)}
+@media (max-width:640px){.wf-step-pill{min-width:72px}.wf-step-label{font-size:.68rem}.wf-dot{width:38px;height:38px}}
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <header class="brand-bar">
+    <span class="brand-emblem"><i data-lucide="backpack"></i></span>
+    <span class="brand-text"><small>Unexplained Sky Mysteries</small><strong>Field Agent Workbook</strong></span>
+    <span class="kit-badge">Field Kit</span>
+  </header>
+
+  <div class="module-toggle">
+    <button class="module-btn active" data-module="intake" onclick="switchFwTab('intake')"><i data-lucide="inbox"></i> Case Intake</button>
+    <button class="module-btn" data-module="compiler" onclick="switchFwTab('compiler')"><i data-lucide="hammer"></i> Activity Compiler</button>
+  </div>
+
+  <div class="wf-steps" id="wfSteps">
+    <button type="button" class="wf-step-pill current clickable" data-wf="1" onclick="wfGoto(1)">
+      <span class="wf-dot"><span class="wf-num">1</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Paste Cases</span>
+    </button>
+    <div class="wf-link" data-wf-link="1"></div>
+    <button type="button" class="wf-step-pill" data-wf="2" onclick="wfGoto(2)">
+      <span class="wf-dot"><span class="wf-num">2</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Pick Activities</span>
+    </button>
+    <div class="wf-link" data-wf-link="2"></div>
+    <button type="button" class="wf-step-pill" data-wf="3" onclick="wfGoto(3)">
+      <span class="wf-dot"><span class="wf-num">3</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Compile &amp; Export</span>
+    </button>
+  </div>
+  <div class="wf-counter" id="wfCounter">Step 1 of 3</div>
+
+  <div id="tab-intake" class="tab-content active">
+    <section class="stage">
+      <h2><i data-lucide="inbox"></i> Case Intake</h2>
+      <p class="desc">Paste your finished case-file book text — Standard or Deep Case Mode, any of the 6 universes. The kit parses the real cases out of it, and every activity is built from those real details.</p>
+      <div class="field">
+        <label><i data-lucide="clipboard-paste"></i> Paste Your Finished Case-File Book Text</label>
+        <textarea id="fw-pasted" style="height:200px;" placeholder="Paste text containing [Cover Page], [CASE 1], Case Title: lines (+ [FIELD REPORT] etc. in Deep Case Mode)..."></textarea>
+      </div>
+      <div class="field">
+        <label><i data-lucide="globe"></i> Case Universe</label>
+        <select id="fw-universe" onchange="updateFwEstimate()">
+          <option value="sky" selected>Sky Mysteries — unexplained sightings</option>
+          <option value="cryptid">Cryptid Files — legendary creatures</option>
+          <option value="haunted">Haunted Files — haunted places</option>
+          <option value="ancient">Ancient Mysteries — lost history</option>
+          <option value="deepsea">Deep Sea Files — ocean anomalies</option>
+          <option value="vanishing">Vanishing Files — unexplained disappearances</option>
+        </select>
+      </div>
+      <div class="field">
+        <label><i data-lucide="languages"></i> Activity Language</label>
+        <select id="fw-lang" onchange="checkFwCustom(this)">
+          <option value="English" selected>English</option>
+          <option value="Spanish">Spanish</option>
+          <option value="French">French</option>
+          <option value="German">German</option>
+          <option value="Italian">Italian</option>
+          <option value="Portuguese">Portuguese</option>
+          <option value="Dutch">Dutch</option>
+          <option value="Polish">Polish</option>
+          <option value="Swedish">Swedish</option>
+          <option value="Norwegian">Norwegian</option>
+          <option value="Danish">Danish</option>
+          <option value="Finnish">Finnish</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Korean">Korean</option>
+          <option value="Chinese (Simplified)">Chinese (Simplified)</option>
+          <option value="Arabic">Arabic</option>
+          <option value="Hindi">Hindi</option>
+          <option value="Turkish">Turkish</option>
+          <option value="Indonesian">Indonesian</option>
+          <option value="Vietnamese">Vietnamese</option>
+          <option value="custom">✏️ Custom Specify...</option>
+        </select>
+        <input type="text" id="fw-lang-custom" style="display:none;margin-top:8px;" placeholder="Type the language...">
+      </div>
+      <div class="field">
+        <label><i data-lucide="sliders-horizontal"></i> Age / Difficulty Tier</label>
+        <select id="fw-difficulty" onchange="checkFwCustom(this)">
+          <option value="junior">Junior (ages 5-7) — simpler, shorter activities</option>
+          <option value="standard" selected>Standard (ages 8-10) — balanced default</option>
+          <option value="advanced">Advanced (ages 11-12) — longer, trickier activities</option>
+          <option value="custom">✏️ Custom Specify...</option>
+        </select>
+        <input type="text" id="fw-difficulty-custom" style="display:none;margin-top:8px;" placeholder="e.g. ages 9-11, slightly advanced for strong readers">
+      </div>
+      <div class="field">
+        <label><i data-lucide="badge"></i> Field Agent Persona (optional)</label>
+        <input type="text" id="fw-agent-name" placeholder="e.g. Agent Wren Castellan">
+        <div class="field-hint">If set, this recurring agent narrates the one-line briefing on every activity page — a small touch that ties the whole workbook together. Leave blank to skip.</div>
+      </div>
+      <button class="btn btn-primary" onclick="parseFwCases()">🔍 Parse Cases</button>
+      <div class="err-box" id="fw-error"><i data-lucide="alert-triangle"></i><span id="fw-error-text"></span></div>
+      <div id="fw-case-wrap" style="display:none;">
+        <div class="info-banner">
+          <i data-lucide="info"></i>
+          <div><strong>Parsing all your cases does not mean generating that many pages.</strong> Every case below is checked by default, but only CHECKED cases become activity pages. Uncheck what you don't want, use Select First N or a status filter to narrow it down, or leave everything checked and use Auto-fit on Tab B to trim automatically to a target page count. Nothing compiles until you go to Tab B and click Compile.</div>
+        </div>
+        <div class="stamp-title"><h4>Parsed Cases</h4><span class="stamp-mini" id="fw-case-count">0 FILED</span></div>
+        <div class="toolbar" style="margin-top:0;margin-bottom:6px;">
+          <button class="btn btn-ghost btn-small" onclick="fwSelectAll(true)">Select all</button>
+          <button class="btn btn-ghost btn-small" onclick="fwSelectAll(false)">Select none</button>
+          <button class="btn btn-ghost btn-small" onclick="fwSelectFirst(10)">Select first 10</button>
+          <button class="btn btn-ghost btn-small" onclick="fwSelectByStatus('Solved')">Only Solved</button>
+          <button class="btn btn-ghost btn-small" onclick="fwSelectByStatus('Unresolved')">Only Unresolved</button>
+          <button class="btn btn-ghost btn-small" onclick="fwSelectByStatus('Reopened')">Only Reopened</button>
+          <button class="btn btn-ghost btn-small" onclick="fwSelectByStatus('Classified')">Only Classified</button>
+        </div>
+        <div class="case-list" id="fw-case-list"></div>
+        <div class="wf-nav">
+          <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 2: Pick Activities →</button>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="tab-compiler" class="tab-content">
+    <section class="stage">
+      <h2><i data-lucide="hammer"></i> Activity Compiler</h2>
+      <p class="desc">Pick activity types — each one is generated from your real parsed cases, never blank templates. Odd Sighting Out spans groups of 4 selected cases.</p>
+      <div class="wf-step" id="wf-step-2">
+      <div class="wf-nav" style="margin-top:0;">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back to Step 1</button>
+      </div>
+      <div class="stamp-title"><h4>Illustration Styles</h4><span class="stamp-mini">VISUAL MIX</span></div>
+      <div class="act-grid" id="fw-style-grid" style="margin-bottom:16px;">
+        <label class="act-opt"><input type="checkbox" value="witness_sketch" checked><i data-lucide="pencil"></i><span><strong>Witness Sketch</strong><small>Hand-drawn line art.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="case_photo" checked><i data-lucide="camera"></i><span><strong>Case Photo</strong><small>Documentary photo style.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="evidence_board" checked><i data-lucide="pin"></i><span><strong>Evidence Board</strong><small>Corkboard, pins, string.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="archive_grainy" checked><i data-lucide="film"></i><span><strong>Archive Grainy</strong><small>Old surveillance-photo look.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="radar_thermal" checked><i data-lucide="radar"></i><span><strong>Radar / Thermal</strong><small>Instrument readout style.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="declassified_doc" checked><i data-lucide="file-lock"></i><span><strong>Declassified Doc</strong><small>Redacted official record.</small></span></label>
+      </div>
+      <div class="stamp-title"><h4>Activity Types</h4><span class="stamp-mini">PICK &amp; MIX</span></div>
+      <div class="stamp-title"><h4>Generation Mode</h4><span class="stamp-mini">HOW MANY PAGES?</span></div>
+      <div class="info-banner">
+        <i data-lucide="info"></i>
+        <div><strong>You decide the page count, not the number of parsed cases.</strong> Rotate mode = roughly 1 page per checked case (recommended for the book itself). Full Grid = every checked case × every checked activity type (use only for a bigger bonus pack). The live total below always shows exactly what will compile — check it before clicking Compile Activity Pages.</div>
+      </div>
+      <div class="field">
+        <select id="fw-gen-mode" onchange="updateFwEstimate()">
+          <option value="rotate" selected>Rotate — one activity type per case (recommended for a real book: pages = number of cases)</option>
+          <option value="grid">Full Grid — every case × every checked activity type (many more pages; use for a bonus pack, not the book body)</option>
+        </select>
+        <div class="field-hint">Rotate cycles through your checked activity types case by case, so a 60-case book makes ~60 pages, not 60 × (number of types). Full Grid makes every combination — pick this only when you deliberately want a bigger set.</div>
+      </div>
+      <div class="field">
+        <label><i data-lucide="hash"></i> Target Total Pages (optional)</label>
+        <input type="number" id="fw-target-pages" min="1" placeholder="e.g. 40">
+        <button class="btn btn-ghost btn-small" type="button" onclick="fwAutoFitPages()">🎯 Auto-fit cases to target</button>
+        <div class="field-hint">Enter how many pages you actually want in the finished book, then click Auto-fit — it trims your case selection (keeping the first N checked cases) so the compiled total lands at or just under your target, given the current mode and checked activity types/bookends.</div>
+      </div>
+      <div class="act-grid" id="fw-act-grid">
+        <label class="act-opt"><input type="checkbox" value="maze" checked onchange="updateFwEstimate()"><i data-lucide="route"></i><span><strong>Evidence Maze</strong><small>Maze to this case's real key evidence.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="spot" checked onchange="updateFwEstimate()"><i data-lucide="eye"></i><span><strong>Spot the Anomaly</strong><small>Two scene versions, real setting.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="lineup" checked onchange="updateFwEstimate()"><i data-lucide="users"></i><span><strong>Witness Lineup Match</strong><small>Match real witness quotes to cases.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="decode" checked onchange="updateFwEstimate()"><i data-lucide="key-round"></i><span><strong>Decode the Case File</strong><small>Cipher decoding a real case detail.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="quiz" checked onchange="updateFwEstimate()"><i data-lucide="circle-help"></i><span><strong>True Sighting or Hoax?</strong><small>Quiz on the real verdict/status.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="trace" checked onchange="updateFwEstimate()"><i data-lucide="spline"></i><span><strong>Trace the Flight Path / Trail</strong><small>Trace the real movement/location.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="sizeup" checked onchange="updateFwEstimate()"><i data-lucide="ruler"></i><span><strong>Evidence Size-Up</strong><small>Size compare the real evidence.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="count" checked onchange="updateFwEstimate()"><i data-lucide="hash"></i><span><strong>Count the Clues</strong><small>Count real details from the report.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="shadow" checked onchange="updateFwEstimate()"><i data-lucide="ghost"></i><span><strong>Shadow ID</strong><small>Silhouette of the real subject.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="timeline" checked onchange="updateFwEstimate()"><i data-lucide="clock"></i><span><strong>Timeline Rebuild</strong><small>Put scrambled case events back in order.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="map" checked onchange="updateFwEstimate()"><i data-lucide="map"></i><span><strong>Map the Scene</strong><small>Label a bird's-eye map of the location.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="versus" checked onchange="updateFwEstimate()"><i data-lucide="swords"></i><span><strong>Case vs Case Showdown</strong><small>Two real cases head-to-head.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="cover" checked onchange="updateFwEstimate()"><i data-lucide="book-open"></i><span><strong>Design the Cover</strong><small>Design this case's book cover.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="story" checked onchange="updateFwEstimate()"><i data-lucide="pen-line"></i><span><strong>Finish the Story</strong><small>Write the ending from a cliffhanger.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="sort" checked onchange="updateFwEstimate()"><i data-lucide="layers"></i><span><strong>Evidence Sort</strong><small>Sort real clues into buckets.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="odd" checked onchange="updateFwEstimate()"><i data-lucide="scale"></i><span><strong>Odd Sighting Out</strong><small>Which of 4 real cases differs?</small></span></label>
+      </div>
+      <div class="est-box"><i data-lucide="calculator"></i><div><strong id="fw-est-title">Parse cases first (Tab A)</strong><br><span id="fw-est-text">The estimate appears once cases are parsed and selected.</span></div></div>
+      <div class="stamp-title"><h4>Book Bookends (optional)</h4><span class="stamp-mini">FRONT &amp; BACK MATTER</span></div>
+      <div class="act-grid" id="fw-bookend-grid">
+        <label class="act-opt"><input type="checkbox" value="idcard" checked><i data-lucide="id-card"></i><span><strong>Field Agent ID Card</strong><small>Fill-in name/badge/rank page for the front of the book.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="certificate" checked><i data-lucide="award"></i><span><strong>Certificate of Completion</strong><small>Sign-off page for the back of the book.</small></span></label>
+        <label class="act-opt"><input type="checkbox" value="answerkey" checked><i data-lucide="list-checks"></i><span><strong>Master Answer Key</strong><small>One consolidated grown-ups key for every compiled page.</small></span></label>
+      </div>
+      <div class="wf-nav">
+        <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 3: Compile &amp; Export →</button>
+      </div>
+      </div>
+      <div class="wf-step" id="wf-step-3">
+      <div class="wf-nav" style="margin-top:0;">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back to Step 2</button>
+      </div>
+      <button class="btn btn-primary" onclick="compileFwActivities()">⚒️ Compile Activity Pages</button>
+      <div class="toolbar">
+        <button class="btn btn-ghost btn-small" onclick="copyAllFw()">📋 Copy All</button>
+        <button class="btn btn-ghost btn-small" onclick="downloadAllFw()">⬇️ Download All as .txt</button>
+      </div>
+      <div class="loader" id="fw-loading"><div class="spinner"></div><p>Compiling activities...</p></div>
+      <div id="fw-output" class="json-grid" style="display:none;"></div>
+      </div>
+    </section>
+  </div>
+
+  <div class="footer-brand"><strong>Unexplained Sky Mysteries: Field Agent Workbook</strong> — Field Kit Edition</div>
+</div>
+
+<script>
+var FW = { cases: [], deep: false, universe: 'sky', outputs: [] };
+var FW_CHUNK = 15;
+
+function switchFwTab(name) {
+  var tabs = document.querySelectorAll('.tab-content');
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+  var btns = document.querySelectorAll('.module-btn');
+  for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
+  document.getElementById('tab-' + name).classList.add('active');
+  var btn = document.querySelector('.module-btn[data-module="' + name + '"]');
+  if (btn) btn.classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+/* Guided workflow navigation: Step 1 (intake tab) → Step 2/3 (compiler sub-steps) */
+var wfStep = 1;
+var wfMaxReached = 1;
+var WF_TOTAL = 3;
+function wfShowStep(n) {
+  if (n === 1) {
+    switchFwTab('intake');
+  } else {
+    switchFwTab('compiler');
+    document.getElementById('wf-step-2').classList.toggle('active', n === 2);
+    document.getElementById('wf-step-3').classList.toggle('active', n === 3);
+  }
+}
+function wfRender() {
+  var pills = document.querySelectorAll('#wfSteps .wf-step-pill');
+  for (var pi = 0; pi < pills.length; pi++) {
+    var pn = parseInt(pills[pi].getAttribute('data-wf'), 10);
+    pills[pi].classList.toggle('done', pn < wfStep);
+    pills[pi].classList.toggle('current', pn === wfStep);
+    pills[pi].classList.toggle('clickable', pn <= wfMaxReached);
+  }
+  var links = document.querySelectorAll('#wfSteps .wf-link');
+  for (var li = 0; li < links.length; li++) {
+    links[li].classList.toggle('done', parseInt(links[li].getAttribute('data-wf-link'), 10) < wfStep);
+  }
+  var counter = document.getElementById('wfCounter');
+  if (counter) counter.textContent = 'Step ' + wfStep + ' of ' + WF_TOTAL;
+}
+function wfGoto(n) {
+  n = Math.max(1, Math.min(WF_TOTAL, n));
+  if (n > wfMaxReached) return;
+  wfStep = n;
+  wfShowStep(n);
+  wfRender();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function wfNext() {
+  if (wfStep === 1) {
+    if (!FW.cases.length) { alert('Parse cases in Tab A first!'); return; }
+    if (!fwSelectedCases().length) { alert('Select at least one parsed case!'); return; }
+  }
+  if (wfStep < WF_TOTAL) {
+    wfMaxReached = Math.max(wfMaxReached, wfStep + 1);
+    wfGoto(wfStep + 1);
+  }
+}
+function wfBack() { wfGoto(wfStep - 1); }
+function fwEscHtml(s) {
+  return String(s || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+function fwEscJson(s) {
+  return String(s || '').replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n').trim();
+}
+function yieldToUI() {
+  return new Promise(function (resolve) {
+    if (typeof requestIdleCallback === 'function') {
+      try { requestIdleCallback(function () { resolve(); }, { timeout: 50 }); return; }
+      catch (e) { /* fall through to setTimeout */ }
+    }
+    setTimeout(resolve, 0);
+  });
+}
+function fwCopyText(id, btn) {
+  var ta = document.getElementById(id);
+  if (!ta) return;
+  var done = function () {
+    if (!btn) return;
+    var orig = btn.innerHTML;
+    btn.innerHTML = 'COPIED!';
+    setTimeout(function () { btn.innerHTML = orig; if (window.lucide) lucide.createIcons(); }, 2000);
+  };
+  var txt = ta.value;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(done).catch(function () {
+      ta.style.display = 'block'; ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      ta.style.display = 'none'; done();
+    });
+  } else {
+    ta.style.display = 'block'; ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    ta.style.display = 'none'; done();
+  }
+}
+var UNIVERSE_MOTIFS = {
+  sky: { label: 'Sky Mysteries', motifs: 'grainy night photographs, radar printouts, flashlight beams cutting fog, compass needles, binocular views', visual: 'vast night skies with distant glows and small witness silhouettes looking up' },
+  cryptid: { label: 'Cryptid Files', motifs: 'plaster footprint casts, trail-camera stills, side-by-side sketch comparisons, snapped twigs, blurred treeline photos', visual: 'misty forests and lake shores with half-glimpsed shapes that could be anything' },
+  haunted: { label: 'Haunted Files', motifs: 'EMF meter readouts, hallway photographs, audio timestamp logs, flickering lamp close-ups, floor-plan sketches', visual: 'cozy-but-creaky old houses and hallways, warm lamplight against cool shadows' },
+  ancient: { label: 'Ancient Mysteries', motifs: 'excavation site maps, pottery shard photos, glyph rubbings, measuring tapes beside stones, journal sketches', visual: 'sunlit dig sites, desert canyons and mossy ruins full of carved clues' },
+  deepsea: { label: 'Deep Sea Files', motifs: 'sonar graphs, dive-light photographs, pressure gauge logs, net-marked maps, specimen jar sketches', visual: 'deep blue water, submersible lights and bioluminescent glints in the dark' },
+  vanishing: { label: 'Vanishing Files', motifs: 'last-known-point maps, timetable reconstructions, recovered everyday objects, search-grid overlays, interview notes', visual: 'ordinary places (trails, stations, piers) rendered slightly dreamlike, with one empty space where someone should be' }
+};
+var DECOR_MOTIFS = {
+  witness_sketch: 'hand-annotated margin notes, a small compass rose doodle, a torn-paper edge effect, a faint pencil-sketch case number in the corner',
+  radar_thermal: 'a thin scan-line overlay across the full image, small corner readout numbers, a faint grid frame, a blinking-dot style marker on the sighting location',
+  case_photo: 'a subtle vignette frame, a small embossed case-file corner tab, soft film-grain texture, a discreet timestamp-style caption area',
+  declassified_doc: 'visible paper grain and edge wear, at least one black redaction bar, a corner stamp mark, staple or paperclip shadow detail',
+  archive_grainy: 'heavy film grain, a sprocket-hole edge hint, a faded date stamp, slight vignette darkening at the corners',
+  evidence_board: 'red string connecting to an adjacent pinned photo edge, a visible pushpin shadow, a handwritten sticky-note corner, slight corkboard texture bleeding into the frame edge'
+};
+var COMPOSITION_ANGLES = [
+  'Wide establishing shot of the full scene, subjects small within a vast environment',
+  'Low-angle point-of-view shot as if the viewer is looking straight up or straight ahead into the scene',
+  'Over-the-shoulder shot from behind a witness, showing what they see ahead of them',
+  'Close-up shot focused on a witness face reacting to the scene, subject visible in the background',
+  'Aerial / bird-eye view looking down at the location with the subject visible within it',
+  'Silhouette shot — figures and foreground objects in dark silhouette against a glowing backdrop',
+  'Interior view looking out through a window, doorway, or tent flap toward the scene outside',
+  'Extreme close-up on a piece of physical evidence (a device, a photo, a footprint, a recording), background softly blurred',
+  'Wide horizontal landscape shot with the subject positioned off-center, negative space emphasizing isolation',
+  'Dynamic diagonal composition suggesting motion or unease, as if something is happening quickly within the frame'
+];
+var FW_ACTIVITY_MODES = ['witness_sketch', 'case_photo', 'evidence_board', 'archive_grainy', 'radar_thermal', 'declassified_doc'];
+function fwExtractSections(text) {
+  var re = /\[(Cover Page|CASE\s+\d+|Back Cover)\]\s*([\s\S]*?)(?=\[(?:Cover Page|CASE\s+\d+|Back Cover)\]|$)/gi;
+  var out = [];
+  var m;
+  while ((m = re.exec(text)) !== null) out.push({ name: m[1].trim().toUpperCase(), content: m[2].trim() });
+  return out;
+}
+function fwSubPage(content, tag) {
+  var re = new RegExp('\\[' + tag + '\\]\\s*:?\\s*([\\s\\S]*?)(?=\\[(?:FIELD REPORT|WITNESS STATEMENT|EVIDENCE PHOTO ANALYSIS|VERDICT)\\]|Visual\\s*[1-4]\\s*:|$)', 'i');
+  var m = re.exec(content || '');
+  return m ? m[1].trim() : '';
+}
+function fwSubjects(text) {
+  var freq = {};
+  var order = [];
+  var stop = { The: 1, And: 1, But: 1, For: 1, With: 1, From: 1, That: 1, This: 1, When: 1, Case: 1, Visual: 1, They: 1, There: 1, What: 1, Possible: 1, Explanation: 1, Evidence: 1, Report: 1, Rating: 1, Metaphor: 1, Idea: 1, Title: 1, Status: 1, Field: 1, Witness: 1, Statement: 1, Photo: 1, Analysis: 1, Verdict: 1, Solved: 1, Unresolved: 1, Reopened: 1, Classified: 1, Debated: 1, Mystery: 1, Still: 1, Unexplained: 1, Likely: 1, Explained: 1 };
+  var re = /\b([A-Z][a-z]{2,}(?:\s+[A-Z][a-z]{2,}){0,2})/g;
+  var m;
+  while ((m = re.exec(text || '')) !== null) {
+    var ph = m[1].replace(/\s+/g, ' ');
+    if (stop[ph.split(' ')[0]]) continue;
+    if (!freq[ph]) { freq[ph] = 0; order.push(ph); }
+    freq[ph]++;
+  }
+  order.sort(function (a, b) { return freq[b] - freq[a]; });
+  return order.slice(0, 5);
+}
+function fwLocations(text) {
+  var out = [];
+  var seen = {};
+  var re = /(?:\b(?:at|near|over|above|behind|inside|beneath|along|across)\s+(?:the\s+)?)([A-Za-z][a-z\s\-]{2,32}?)(?=[.,;!\n]|$)/gi;
+  var m;
+  while ((m = re.exec(text || '')) !== null) {
+    var loc = m[1].trim();
+    if (loc && !seen[loc]) { seen[loc] = 1; out.push(loc); }
+    if (out.length >= 4) break;
+  }
+  return out;
+}
+function fwStatusOf(content, deep) {
+  var m = /STATUS:\s*(Solved|Unresolved|Reopened|Classified)/i.exec(content || '');
+  if (m) {
+    var v = m[1].toLowerCase();
+    return v.charAt(0).toUpperCase() + v.slice(1);
+  }
+  var r = /Mystery Rating:\s*(Still Unexplained|Likely Explained|Debated)/i.exec(content || '');
+  return r ? r[1].trim() : '';
+}
+function fwShowError(msg) {
+  var box = document.getElementById('fw-error');
+  var txt = document.getElementById('fw-error-text');
+  if (!box) return;
+  if (!msg) { box.classList.remove('show'); return; }
+  if (txt) txt.textContent = msg;
+  box.classList.add('show');
+}
+function checkFwCustom(sel) {
+  var box = document.getElementById(sel.id + '-custom');
+  if (box) {
+    box.style.display = (sel.value === 'custom') ? 'block' : 'none';
+    if (sel.value === 'custom') box.focus();
+  }
+}
+function fwGetLanguage() {
+  var sel = document.getElementById('fw-lang');
+  if (!sel) return 'English';
+  if (sel.value === 'custom') {
+    var c = document.getElementById('fw-lang-custom');
+    return (c && c.value.trim()) ? c.value.trim() : 'English';
+  }
+  return sel.value;
+}
+var DIFFICULTY_PARAMS = {
+  junior: { ageLabel: 'ages 5-7', spotDiff: 4, dotPoints: '8-12', cipherHint: 'a simple 1-for-1 letter-swap cipher, with the FULL alphabet key shown up front', mazeComplexity: 'a short, simple maze with only 1 dead-end', countRange: '2-3', sizeUpCount: 3, timelineSteps: '4', mapMarkers: '3' },
+  standard: { ageLabel: 'ages 8-10', spotDiff: 7, dotPoints: '15-25', cipherHint: 'a letter-substitution cipher (provide the full key)', mazeComplexity: 'a medium maze with 3 dead-ends', countRange: '3-4', sizeUpCount: 4, timelineSteps: '6', mapMarkers: '5' },
+  advanced: { ageLabel: 'ages 11-12', spotDiff: 10, dotPoints: '30-40', cipherHint: 'a slightly trickier substitution cipher with one or two decoy symbols mixed in (full key still provided)', mazeComplexity: 'a larger maze with 5 dead-ends and two false branching paths', countRange: '5-6', sizeUpCount: 5, timelineSteps: '8', mapMarkers: '7' }
+};
+function fwGetDifficulty() {
+  var sel = document.getElementById('fw-difficulty');
+  var key = sel ? sel.value : 'standard';
+  if (key === 'custom') {
+    var c = document.getElementById('fw-difficulty-custom');
+    var label = (c && c.value.trim()) ? c.value.trim() : DIFFICULTY_PARAMS.standard.ageLabel;
+    // Puzzle-complexity numbers default to the Standard tier's proven values (they're
+    // not derivable from free text); only the age/difficulty LABEL shown to ChatGPT
+    // reflects the custom text, so every instruction still names the reader's real
+    // request instead of a generic tier name.
+    var base = DIFFICULTY_PARAMS.standard;
+    var custom = {};
+    for (var k in base) custom[k] = base[k];
+    custom.ageLabel = label;
+    return custom;
+  }
+  return DIFFICULTY_PARAMS[key] || DIFFICULTY_PARAMS.standard;
+}
+function fwGetAgentName() {
+  var el = document.getElementById('fw-agent-name');
+  return el ? el.value.trim() : '';
+}
+function fwSelectedStyles() {
+  var boxes = document.querySelectorAll('#fw-style-grid input[type="checkbox"]:checked');
+  var out = [];
+  for (var i = 0; i < boxes.length; i++) out.push(boxes[i].value);
+  return out.length ? out : FW_ACTIVITY_MODES.slice();
+}
+function parseFwCases() {
+  var pasted = ((document.getElementById('fw-pasted') || {}).value || '').trim();
+  fwShowError(null);
+  document.getElementById('fw-case-wrap').style.display = 'none';
+  if (!pasted) { fwShowError('Paste your finished case-file book text first — including the [CASE 1], [CASE 2]... blocks.'); return; }
+  var deep = /\[FIELD REPORT\]/i.test(pasted);
+  var sections = fwExtractSections(pasted);
+  var cases = [];
+  for (var i = 0; i < sections.length; i++) {
+    var sec = sections[i];
+    if (!/CASE\s+\d+/i.test(sec.name)) continue;
+    var numMatch = /CASE\s+(\d+)/i.exec(sec.name);
+    var num = numMatch ? parseInt(numMatch[1], 10) : (cases.length + 1);
+    var titleMatch = /Case Title:\s*(.+)/i.exec(sec.content || '');
+    var title = titleMatch ? titleMatch[1].trim() : ('Case ' + num);
+    var witness, evidence, verdict;
+    if (deep) {
+      witness = fwSubPage(sec.content, 'WITNESS STATEMENT');
+      evidence = fwSubPage(sec.content, 'EVIDENCE PHOTO ANALYSIS');
+      verdict = fwSubPage(sec.content, 'VERDICT');
+    } else {
+      var wr = /The Report:\s*([\s\S]*?)(?=\nThe Evidence:|\nPossible Explanation:|\nMystery Rating:|\nVisual Metaphor Idea:|$)/i.exec(sec.content || '');
+      witness = wr ? wr[1].trim() : '';
+      var ev = /The Evidence:\s*([\s\S]*?)(?=\nPossible Explanation:|\nMystery Rating:|\nVisual Metaphor Idea:|$)/i.exec(sec.content || '');
+      evidence = ev ? ev[1].trim() : '';
+      var vd = /Possible Explanation:\s*([\s\S]*?)(?=\nMystery Rating:|\nVisual Metaphor Idea:|$)/i.exec(sec.content || '');
+      verdict = vd ? vd[1].trim() : '';
+    }
+    var status = fwStatusOf(sec.content, deep);
+    var subjects = fwSubjects(sec.content);
+    var locations = fwLocations(sec.content);
+    cases.push({ num: num, title: title, witness: witness, evidence: evidence, verdict: verdict, status: status, subjects: subjects, locations: locations, checked: true });
+  }
+  if (!cases.length) {
+    fwShowError('Couldn\'t find any case titles — make sure you pasted the full case-file text, including \'Case Title:\' lines.');
+    return;
+  }
+  FW.cases = cases;
+  FW.deep = deep;
+  FW.universe = ((document.getElementById('fw-universe') || {}).value || 'sky');
+  FW.outputs = [];
+  document.getElementById('fw-output').style.display = 'none';
+  document.getElementById('fw-output').innerHTML = '';
+  renderFwCaseList();
+  document.getElementById('fw-case-wrap').style.display = 'block';
+  updateFwEstimate();
+}
+function renderFwCaseList() {
+  var list = document.getElementById('fw-case-list');
+  if (!list) return;
+  var html = '';
+  for (var i = 0; i < FW.cases.length; i++) {
+    var c = FW.cases[i];
+    var previewBits = [];
+    if (c.witness) previewBits.push(c.witness.slice(0, 90));
+    var preview = previewBits.length ? previewBits[0] + (c.witness.length > 90 ? '…' : '') : 'No witness text parsed.';
+    var tag = c.status ? '<span class="tag">' + fwEscHtml(c.status.toUpperCase()) + '</span>' : '';
+    html += '<label class="case-row"><input type="checkbox" data-fwcase="' + i + '"' + (c.checked ? ' checked' : '') + ' onchange="fwToggleCase(' + i + ', this.checked)">' +
+      '<span class="num">#' + c.num + '</span>' +
+      '<span><strong>' + fwEscHtml(c.title) + tag + '</strong><small>' + fwEscHtml(preview) + '</small></span></label>';
+  }
+  list.innerHTML = html;
+  var cc = document.getElementById('fw-case-count');
+  if (cc) cc.textContent = FW.cases.length + (FW.deep ? ' DEEP' : '') + ' FILED';
+}
+function fwToggleCase(i, on) {
+  if (FW.cases[i]) FW.cases[i].checked = !!on;
+  updateFwEstimate();
+}
+function fwSelectAll(on) {
+  for (var i = 0; i < FW.cases.length; i++) FW.cases[i].checked = !!on;
+  renderFwCaseList();
+  updateFwEstimate();
+}
+function fwSelectFirst(n) {
+  for (var i = 0; i < FW.cases.length; i++) FW.cases[i].checked = (i < n);
+  renderFwCaseList();
+  updateFwEstimate();
+}
+function fwSelectByStatus(status) {
+  var any = false;
+  for (var i = 0; i < FW.cases.length; i++) {
+    var match = (FW.cases[i].status || '').toLowerCase() === status.toLowerCase();
+    FW.cases[i].checked = match;
+    if (match) any = true;
+  }
+  renderFwCaseList();
+  updateFwEstimate();
+  if (!any) alert('No parsed cases have the status "' + status + '" — selection cleared.');
+}
+function fwSelectedCases() {
+  var out = [];
+  for (var i = 0; i < FW.cases.length; i++) if (FW.cases[i].checked) out.push(FW.cases[i]);
+  return out;
+}
+function fwSelectedActivities() {
+  var boxes = document.querySelectorAll('#fw-act-grid input[type="checkbox"]:checked');
+  var out = [];
+  for (var i = 0; i < boxes.length; i++) out.push(boxes[i].value);
+  return out;
+}
+function updateFwEstimate() {
+  var t = document.getElementById('fw-est-title');
+  var x = document.getElementById('fw-est-text');
+  if (!t || !x) return;
+  var sel = fwSelectedCases();
+  var acts = fwSelectedActivities();
+  if (!FW.cases.length) {
+    t.textContent = 'Parse cases first (Tab A)';
+    x.textContent = 'The estimate appears once cases are parsed and selected.';
+    return;
+  }
+  var perCase = [];
+  var oddOn = false;
+  var versusOn = false;
+  for (var i = 0; i < acts.length; i++) {
+    if (acts[i] === 'odd') oddOn = true;
+    else if (acts[i] === 'versus') versusOn = true;
+    else perCase.push(acts[i]);
+  }
+  var oddPages = 0;
+  if (oddOn) {
+    for (var og = 0; og < sel.length; og += 4) {
+      if (sel.length - og >= 2) oddPages++;
+    }
+  }
+  var versusPages = versusOn ? Math.floor(sel.length / 2) : 0;
+  var bookendPages = fwSelectedBookends().length;
+  var mode = fwGetGenMode();
+  var total, modeLabel;
+  if (mode === 'rotate') {
+    total = sel.length + oddPages + versusPages + bookendPages;
+    modeLabel = sel.length + ' cases (Rotate: 1 activity type each, cycling through ' + perCase.length + ' checked type' + (perCase.length === 1 ? '' : 's') + ')';
+  } else {
+    total = sel.length * perCase.length + oddPages + versusPages + bookendPages;
+    modeLabel = sel.length + ' cases × ' + perCase.length + ' activity types (Full Grid)';
+  }
+  t.textContent = modeLabel + (oddOn ? ' + ' + oddPages + ' Odd-Sighting-Out group pages' : '') + (versusOn ? ' + ' + versusPages + ' Versus pair pages' : '') + (bookendPages ? ' + ' + bookendPages + ' bookend page' + (bookendPages > 1 ? 's' : '') : '') + ' = ' + total + ' activity pages';
+  x.textContent = 'Odd Sighting Out spans groups of 4 selected cases.' + (mode === 'grid' ? ' Full Grid multiplies fast — switch to Rotate mode or use Auto-fit above to control the total.' : ' Use Auto-fit above to trim cases to a target page count.') + (total >= 150 ? ' ⚠️ Heads-up: ' + total + ' pages means ' + total + ' individual prompts to copy one by one — consider a smaller batch.' : '');
+}
+var FW_TWISTS = [
+  'Hide a tiny gold star somewhere in the illustration description for sharp-eyed readers to find.',
+  'Give the activity a case-file codename drawn from the case title.',
+  'End the page with one curious "what would YOU investigate next?" question for the reader.',
+  'Include one red herring detail that is clearly wrong for this case.',
+  'Ask the reader to sign the page with their field-agent codename when finished.',
+  'Add a small "Evidence bag" checklist of the real clues for the reader to tick off.',
+  'Frame one instruction as a radio message from headquarters.',
+  'Hide the case number somewhere in the illustration description.',
+  'Award a printable badge name fitting the case for completing the page.',
+  'Add a progress note naming how many cases deep into their own book the reader is.',
+  'Let the reader circle a confidence level (Rookie / Agent / Chief) at the end.',
+  'Add one bonus star question that reuses the verdict in a surprising new way.'
+];
+function fwTwist(angleIdx) {
+  return 'FIELD TWIST (small extra flourish — do not change the activity mechanics above): ' + FW_TWISTS[angleIdx % FW_TWISTS.length];
+}
+var FW_ACTS = {
+  maze: { name: 'Evidence Maze', inst: function (c, d, variantIdx) { var variants = [ 'Draw a solvable maze for ' + d.ageLabel + ' where the start is the witness location and the finish is this case\u2019s real key evidence: "' + c.evidenceShort + '". Decorate maze walls with motifs from the scene (' + c.placeShort + '). Build ' + d.mazeComplexity + ', each dead-end containing a red-herring clue from other mysteries (clearly wrong for this case).', 'Chart a path a young investigator would walk for ' + d.ageLabel + ': begin at the witness location and finish at this case\u2019s real key evidence ("' + c.evidenceShort + '"). Dress the maze walls with scene motifs (' + c.placeShort + '). Build ' + d.mazeComplexity + ', with every dead-end holding a red-herring clue from other mysteries (clearly wrong for this case).' ]; return variants[variantIdx % variants.length]; } },
+  spot: { name: 'Spot the Anomaly', inst: function (c, d, variantIdx) { var variants = [ 'Describe TWO near-identical scene illustrations set at "' + c.placeShort + '" featuring "' + c.subjectShort + '", then list exactly ' + d.spotDiff + ' small differences between them (a moved object, a missing detail, a changed light), scaled for ' + d.ageLabel + '. Differences must reference real elements from this case only.', 'Create TWO almost-the-same pictures of "' + c.subjectShort + '" at "' + c.placeShort + '" for ' + d.ageLabel + ', then challenge the reader to spot exactly ' + d.spotDiff + ' tiny changes between them (something moved, something missing, a light that changed). Every change must come from real elements of this case.' ]; return variants[variantIdx % variants.length]; } },
+  lineup: { name: 'Witness Lineup Match', inst: function (c, d, variantIdx) { var variants = [ 'Present 3 short witness quotes, worded for ' + d.ageLabel + ' — the FIRST must be this case\u2019s real witness words: "' + c.witnessShort + '". The other two are plausible decoys in different voices. The reader matches each quote to its case; provide the answer key showing this case\u2019s quote is the correct match for "' + c.title + '".', 'Line up 3 witness statements rewritten for ' + d.ageLabel + ' — the FIRST is this case\u2019s genuine witness account ("' + c.witnessShort + '"), the other two are decoy statements in different voices. The reader works out which statement belongs to "' + c.title + '"; include an answer key confirming the match.' ]; return variants[variantIdx % variants.length]; } },
+  decode: { name: 'Decode the Case File', inst: function (c, d, variantIdx) { var variants = [ 'Build ' + d.cipherHint + ' whose decoded answer is this case\u2019s real detail: "' + c.decodeAnswer + '". Include 2 encoded hint words plus the final encoded message, solvable by ' + d.ageLabel + ', with the decoded answer in the grown-ups key.', 'Invent ' + d.cipherHint + ' that decodes to this case\u2019s real detail ("' + c.decodeAnswer + '"). Give 2 encoded hint words plus the final encoded message, solvable by ' + d.ageLabel + ', with the decoded answer in the grown-ups key.' ]; return variants[variantIdx % variants.length]; } },
+  quiz: { name: 'True Sighting or Hoax?', inst: function (c, d, variantIdx) { var variants = [ 'Write one quiz question for ' + d.ageLabel + ' summarizing this case\u2019s real report ("' + c.witnessShort + '") asking the reader to guess: true unexplained sighting or explainable event? Then reveal the case\u2019s ACTUAL verdict/status ("' + c.verdictShort + '") with a one-sentence kid-friendly reason. Never leave the reader scared — end curious.', 'Pose one question to ' + d.ageLabel + ' readers retelling this case\u2019s real report ("' + c.witnessShort + '"): unexplained true sighting or explainable event? Then disclose the case\u2019s ACTUAL verdict/status ("' + c.verdictShort + '") with a one-sentence kid-friendly reason. Never leave the reader scared — end curious.' ]; return variants[variantIdx % variants.length]; } },
+  trace: { name: 'Trace the Flight Path / Trail', inst: function (c, d, variantIdx) { var variants = [ 'Design a numbered dot-to-dot / path-tracing route (' + d.dotPoints + ' points, scaled for ' + d.ageLabel + ') whose finished shape evokes this case\u2019s real movement or place: "' + c.placeShort + '" and "' + c.subjectShort + '". Label start and finish with in-world names from the case, and add 3 tiny scene doodads along the path from the report.', 'Lay out a dot-to-dot / path-tracing route (' + d.dotPoints + ' points, right for ' + d.ageLabel + ') that finishes as a shape recalling this case\u2019s real movement or place ("' + c.placeShort + '" / "' + c.subjectShort + '"). Name the start and finish with in-world names from the case, and dot 3 tiny scene details from the report along the route.' ]; return variants[variantIdx % variants.length]; } },
+  sizeup: { name: 'Evidence Size-Up', inst: function (c, d, variantIdx) { var variants = [ 'Create a size-ordering activity for ' + d.ageLabel + ' comparing this case\u2019s real subject/evidence ("' + c.subjectShort + '", evidence: "' + c.evidenceShort + '") against ' + d.sizeUpCount + ' familiar objects. Reader orders everything smallest-to-largest; grown-ups key gives the real-world-plausible order and one measurement clue from the case.', 'Run a smallest-to-largest ordering challenge for ' + d.ageLabel + ' starring this case\u2019s real subject/evidence ("' + c.subjectShort + '", evidence: "' + c.evidenceShort + '") alongside ' + d.sizeUpCount + ' familiar objects. The grown-ups key gives the real-world-plausible order plus one measurement clue from the case.' ]; return variants[variantIdx % variants.length]; } },
+  count: { name: 'Count the Clues', inst: function (c, d, variantIdx) { var variants = [ c.countablesReal
+    ? 'Describe one busy illustrated scene at "' + c.placeShort + '" for ' + d.ageLabel + ' hiding countable items pulled ONLY from this case’s real report (' + c.countables + ', roughly ' + d.countRange + ' items per kind). Ask the reader to count each kind (answers: exact numbers you choose, listed in a grown-ups key). Every counted item must appear in the case text.'
+    : 'The case text didn’t explicitly list countable objects, so invent 3-4 countable items (roughly ' + d.countRange + ' each) that would plausibly appear in a scene about "' + c.subjectShort + '" at "' + c.placeShort + '", scaled for ' + d.ageLabel + ' (keep them consistent with the case’s real tone and evidence). Describe one busy illustrated scene hiding those items. Ask the reader to count each kind (answers: exact numbers you choose, listed in a grown-ups key).',
+    c.countablesReal
+    ? 'Pack one busy illustrated scene at "' + c.placeShort + '" for ' + d.ageLabel + ' with countable items taken ONLY from this case’s real report (' + c.countables + ', roughly ' + d.countRange + ' of each kind). Have the reader count each kind (answers: exact numbers you choose, in a grown-ups key). Every counted item must appear in the case text.'
+    : 'The case text didn’t name countable objects outright, so dream up 3-4 countable items (roughly ' + d.countRange + ' each) that fit a scene about "' + c.subjectShort + '" at "' + c.placeShort + '" for ' + d.ageLabel + ' (keep them consistent with the case’s real tone and evidence). Illustrate one busy scene hiding those items. Ask the reader to count each kind (answers: exact numbers you choose, in a grown-ups key).' ]; return variants[variantIdx % variants.length]; } },
+  shadow: { name: 'Shadow ID', inst: function (c, d, variantIdx) { var variants = [ 'Present 3 described silhouettes, scaled for ' + d.ageLabel + ' — one is the true shadow of this case\u2019s real subject ("' + c.subjectShort + '"), two are decoy silhouettes from unrelated subjects. Reader picks the match; grown-ups key confirms with one visual tell taken from the case evidence ("' + c.evidenceShort + '").', 'Show 3 described silhouettes tuned for ' + d.ageLabel + ' — the true shadow is this case\u2019s real subject ("' + c.subjectShort + '"), the other two are unrelated decoys. The reader names the match; the grown-ups key proves it with one visual tell from the case evidence ("' + c.evidenceShort + '").' ]; return variants[variantIdx % variants.length]; } },
+  timeline: { name: 'Timeline Rebuild', inst: function (c, d, variantIdx) { var variants = [ 'Rebuild the case timeline for ' + d.ageLabel + ': pull ' + d.timelineSteps + ' key moments from this case\u2019s real report ("' + c.witnessShort + '") and present them SCRAMBLED. The reader puts the events at "' + c.placeShort + '" back in order; grown-ups key gives the true sequence with one time-clue from the evidence ("' + c.evidenceShort + '") per step.', 'Scramble ' + d.timelineSteps + ' moments from this case\u2019s real events for ' + d.ageLabel + ' ("' + c.witnessShort + '") — the reader numbers them first-to-last to retell what happened at "' + c.placeShort + '". Grown-ups key confirms the true order using details from "' + c.evidenceShort + '".' ]; return variants[variantIdx % variants.length]; } },
+  map: { name: 'Map the Scene', inst: function (c, d, variantIdx) { var variants = [ 'Draw a bird\u2019s-eye map activity for ' + d.ageLabel + ' of "' + c.placeShort + '" from this case, with ' + d.mapMarkers + ' marked spots taken ONLY from real details ("' + c.witnessShort + '" / "' + c.evidenceShort + '"). The reader labels each marker from a word bank; grown-ups key gives the correct labels.', 'Chart "' + c.placeShort + '" from above for ' + d.ageLabel + ': a simple map with ' + d.mapMarkers + ' numbered markers placed where real things happened ("' + c.evidenceShort + '"). Reader matches each number to a real detail from "' + c.witnessShort + '"; grown-ups key confirms.' ]; return variants[variantIdx % variants.length]; } },
+  versus: { name: 'Case vs Case Showdown' },
+  cover: { name: 'Design the Cover', inst: function (c, d, variantIdx) { var variants = [ 'Commission a book-cover design task for ' + d.ageLabel + ': the reader designs the cover for "' + c.title + '" starring "' + c.subjectShort + '" at "' + c.placeShort + '", following 3 must-include elements lifted from the real evidence ("' + c.evidenceShort + '"). Grown-ups key lists the must-includes for checking.', 'Turn "' + c.title + '" into a cover-design brief for ' + d.ageLabel + ': title lettering practice plus an illustration plan featuring "' + c.subjectShort + '" ("' + c.evidenceShort + '"). Grown-ups key confirms the 3 required elements appear.' ]; return variants[variantIdx % variants.length]; } },
+  story: { name: 'Finish the Story', inst: function (c, d, variantIdx) { var variants = [ 'Start a story continuation for ' + d.ageLabel + ' from a cliffhanger moment inside this case\u2019s real report ("' + c.witnessShort + '") — stop right before the resolution, and let the reader write what happens next in 4-6 sentences. Grown-ups key reveals the case\u2019s ACTUAL verdict ("' + c.verdictShort + '") to compare against.', 'Freeze this case\u2019s real events at their tensest beat ("' + c.witnessShort + '") and hand the pen to the ' + d.ageLabel + ' reader to finish the tale. Grown-ups key holds the real verdict ("' + c.verdictShort + '") for comparison afterwards.' ]; return variants[variantIdx % variants.length]; } },
+  sort: { name: 'Evidence Sort', inst: function (c, d, variantIdx) { var variants = [ 'Build a sorting-tray activity for ' + d.ageLabel + ' with clue cards drawn ONLY from this case\u2019s real evidence ("' + c.evidenceShort + '"). Reader sorts each clue into "Seen" vs "Heard" buckets; grown-ups key gives the correct sort with one citation from "' + c.witnessShort + '" per card.', 'Lay out clue cards from this case\u2019s real evidence for ' + d.ageLabel + ' ("' + c.evidenceShort + '") and two sorting trays: what witnesses SAW versus what they HEARD. Reader sorts every card; grown-ups key confirms, citing "' + c.witnessShort + '".' ]; return variants[variantIdx % variants.length]; } },
+  odd: { name: 'Odd Sighting Out', instGroup: function (group, count, d) {
+    var words = { 2: 'two', 3: 'three', 4: 'four' };
+    var w = words[count] || String(count);
+    var others = count - 1;
+    var otherWords = { 1: 'the other one', 2: 'the other two', 3: 'the other three' };
+    var ow = otherWords[others] || ('the other ' + others);
+    return 'Using these real cases from the reader’s own book — ' + group + ' — design a compare-and-contrast activity for ' + d.ageLabel + ': the reader studies all ' + w + ' mini-summaries and picks which ONE does not belong with ' + ow + ', then defends the choice in one sentence. Provide the intended answer plus one acceptable alternate answer in the grown-ups key (either reasoning earns the badge).';
+  } }
+};
+function fwCaseSummary(c) {
+  var subjReal = !!(c.subjects && c.subjects.length);
+  var subj = subjReal ? c.subjects.join(', ') : 'the reported phenomenon';
+  var locsReal = !!(c.locations && c.locations.length);
+  var locs = locsReal ? c.locations.join(', ') : null;
+  var countData = fwCountables(c);
+  return {
+    title: c.title,
+    num: c.num,
+    subjectShort: subj.split(',')[0],
+    subjects: subj,
+    subjectsReal: subjReal,
+    placeShort: locs ? locs[0] : 'the sighting location',
+    places: locs || 'the sighting location',
+    placesReal: locsReal,
+    witnessShort: (c.witness || 'No witness words recorded.').slice(0, 220),
+    evidenceShort: (c.evidence || 'No physical evidence recorded.').slice(0, 220),
+    verdictShort: ((c.verdict || 'No verdict recorded') + (c.status ? ' [STATUS: ' + c.status + ']' : '')).slice(0, 220),
+    decodeAnswer: (locs ? locs[0] : c.title).slice(0, 60),
+    countables: countData.list,
+    countablesReal: countData.real
+  };
+}
+function fwCountables(c) {
+  var found = [];
+  var words = ['lights', 'orbs', 'photos', 'photographs', 'footprints', 'witnesses', 'stars',
+    'trees', 'houses', 'cars', 'birds', 'sounds', 'flashes', 'shadows', 'marks', 'tracks',
+    'prints', 'signals', 'beams', 'glimmers', 'ripples', 'bubbles', 'stones', 'rocks',
+    'symbols', 'carvings', 'artifacts', 'readings', 'blips', 'dots', 'windows', 'doors',
+    'clouds', 'waves', 'fish', 'bones', 'shells', 'coins', 'letters', 'notes', 'pages',
+    'boxes', 'crates', 'lanterns', 'candles', 'footsteps', 'voices', 'echoes', 'ripples',
+    'scratches', 'dents', 'holes', 'gaps', 'streaks', 'trails', 'signs', 'objects'];
+  var text = ((c.witness || '') + ' ' + (c.evidence || '')).toLowerCase();
+  for (var i = 0; i < words.length; i++) {
+    if (text.indexOf(words[i]) !== -1) found.push(words[i]);
+    if (found.length >= 4) break;
+  }
+  if (found.length) return { list: found.join(', '), real: true };
+  return { list: 'stars in the sky, trees on the ridge, lights in the photo', real: false };
+}
+function fwImageJson(kind, summary, modeKey, angleIdx, um) {
+  var decor = DECOR_MOTIFS[modeKey] || DECOR_MOTIFS.case_photo;
+  var angle = COMPOSITION_ANGLES[angleIdx % COMPOSITION_ANGLES.length];
+  var out = '{\n';
+  out += '  "objective": "Activity illustration: ' + kind + ' for case ' + summary.num + ' of a kids mystery case-files book.",\n';
+  out += '  "art_style": "Bold kids activity-page illustration, thick friendly outlines, big clear shapes, generous white space for solving.",\n';
+  out += '  "page_content": "' + fwEscJson(summary.title + ' — ' + summary.subjectShort + ' at ' + summary.placeShort) + '",\n';
+  out += '  "decor_motifs": "' + decor + '",\n';
+  out += '  "composition": "' + angle + '",\n';
+  out += '  "universe_evidence_language": "Style props and textures like: ' + fwEscJson(um.motifs) + '"\n';
+  out += '}';
+  return out;
+}
+function fwBuildPrompt(actId, c, um, angleIdx, diff, lang, agentName, styles) {
+  var s = fwCaseSummary(c);
+  var modeKey = styles[angleIdx % styles.length];
+  var subjLabel = s.subjectsReal ? s.subjects : s.subjects + ' (no subject was explicitly named in the text — infer something fitting from the witness/evidence details above)';
+  var placeLabel = s.placesReal ? s.places : s.places + ' (no specific place was explicitly named in the text — infer something fitting from the witness/evidence details above)';
+  var head = 'ACTIVITY PAGE REQUEST — ' + FW_ACTS[actId].name + ' (Case ' + s.num + ': ' + s.title + ')\n\n' +
+    'You are creating one printable kids activity page (' + diff.ageLabel + ') for a mystery case-files book. Family-safe, encouraging, curious tone — never scary.\n' +
+    'Write all reader-facing text in ' + lang + '.\n' +
+    (agentName ? 'A recurring Field Agent named ' + agentName + ' narrates the one-line briefing at the top of this page, in a warm, encouraging voice.\n' : '') +
+    '\nREAL CASE DATA (use these exact details — do not invent substitutes for anything NOT marked as inferred below):\n' +
+    '- Case title: ' + s.title + '\n' +
+    '- Witness said: "' + s.witnessShort + '"\n' +
+    '- Key evidence: ' + s.evidenceShort + '\n' +
+    '- Verdict/status: ' + s.verdictShort + '\n' +
+    '- Named subjects: ' + subjLabel + '\n' +
+    '- Named places: ' + placeLabel + '\n\n';
+  var body = 'ACTIVITY INSTRUCTIONS: ' + FW_ACTS[actId].inst(s, diff, angleIdx) + ' ' + fwTwist(angleIdx) + '\n\n' +
+    'OUTPUT STRUCTURE:\n' +
+    '1. Page title plus a one-line' + (agentName ? ' briefing from ' + agentName : ' agent briefing') + ' that names the real case detail above.\n' +
+    '2. The complete activity, fully written out and solvable, with a grown-ups answer key at the end.\n' +
+    '3. One "Field note" fun fact tied to the real evidence.\n\n';
+  return head + body + 'IMAGE PROMPT (JSON):\n' + fwImageJson(FW_ACTS[actId].name, s, modeKey, angleIdx, um);
+}
+function fwBuildOddPrompt(group, um, angleIdx, diff, lang, agentName, styles) {
+  var mini = [];
+  for (var i = 0; i < group.length; i++) {
+    var s = fwCaseSummary(group[i]);
+    mini.push('"' + s.title + '" (Case ' + s.num + ': ' + s.subjectShort + ' at ' + s.placeShort + ' — ' + s.verdictShort + ')');
+  }
+  var modeKey = styles[angleIdx % styles.length];
+  var head = 'ACTIVITY PAGE REQUEST — Odd Sighting Out (Cases ' + mini.length + ' from the reader’s own book)\n\n' +
+    'You are creating one printable kids activity page (' + diff.ageLabel + ') for a mystery case-files book. Family-safe, encouraging, curious tone — never scary.\n' +
+    'Write all reader-facing text in ' + lang + '.\n' +
+    (agentName ? 'A recurring Field Agent named ' + agentName + ' narrates the one-line briefing at the top of this page, in a warm, encouraging voice.\n' : '') +
+    '\nREAL CASE DATA (these are the reader’s actual cases — use all of them):\n' +
+    '- ' + mini.join('\n- ') + '\n\n';
+  var body = 'ACTIVITY INSTRUCTIONS: ' + FW_ACTS.odd.instGroup(mini.join('; '), group.length, diff) + ' ' + fwTwist(angleIdx) + '\n\n' +
+    'OUTPUT STRUCTURE:\n' +
+    '1. Page title plus a one-line' + (agentName ? ' briefing from ' + agentName : ' briefing') + ' naming all ' + group.length + ' real cases.\n' +
+    '2. ' + group.length + ' mini case cards (2-3 lines each, true to the data above) plus the which-one-differs question.\n' +
+    '3. Grown-ups answer key with the intended answer AND one acceptable alternate.\n\n';
+  var first = fwCaseSummary(group[0]);
+  return head + body + 'IMAGE PROMPT (JSON):\n' + fwImageJson('Odd Sighting Out group page', first, modeKey, angleIdx, um);
+}
+function fwBuildVersusPrompt(group, um, angleIdx, diff, lang, agentName, styles) {
+  var mini = [];
+  for (var i = 0; i < group.length; i++) {
+    var s = fwCaseSummary(group[i]);
+    mini.push('"' + s.title + '" (Case ' + s.num + ': ' + s.subjectShort + ' at ' + s.placeShort + ' — ' + s.verdictShort + ')');
+  }
+  var modeKey = styles[angleIdx % styles.length];
+  var head = 'ACTIVITY PAGE REQUEST — Case vs Case Showdown (Cases ' + mini[0].match(/Case (\d+)/)[1] + ' vs ' + mini[1].match(/Case (\d+)/)[1] + ' from the reader\u2019s own book)\n\n' +
+    'You are creating one printable kids activity page (' + diff.ageLabel + ') for a mystery case-files book. Family-safe, encouraging, curious tone — never scary.\n' +
+    'Write all reader-facing text in ' + lang + '.\n' +
+    (agentName ? 'A recurring Field Agent named ' + agentName + ' referees this showdown in a warm, encouraging voice.\n' : '') +
+    '\nREAL CASE DATA (these are the reader\u2019s actual cases — use both of them):\n' +
+    '- ' + mini.join('\n- ') + '\n\n';
+  var body = 'ACTIVITY INSTRUCTIONS: Stage a head-to-head showdown for ' + diff.ageLabel + ' between these two real cases — ' + mini.join(' VS ') + ' — across three rounds: (1) stranger witness report, (2) stronger evidence, (3) more surprising verdict. The reader picks a winner per round plus an overall champion, defending each pick in one sentence. Grown-ups key names an intended winner per round with one reason drawn from the real details above. ' + fwTwist(angleIdx) + '\n\n' +
+    'OUTPUT STRUCTURE:\n' +
+    '1. Page title plus a one-line' + (agentName ? ' showdown intro from ' + agentName : ' showdown intro') + ' naming both real cases.\n' +
+    '2. Two mini case cards (2-3 lines each, true to the data above) plus the three-round scorecard.\n' +
+    '3. Grown-ups answer key with intended winners and one acceptable alternate.\n\n';
+  var first = fwCaseSummary(group[0]);
+  return head + body + 'IMAGE PROMPT (JSON):\n' + fwImageJson('Case vs Case Showdown page', first, modeKey, angleIdx, um);
+}
+function fwSetLoadMsg(txt) {
+  var p = document.querySelector('#fw-loading p');
+  if (p) p.textContent = txt;
+}
+function fwSelectedBookends() {
+  var boxes = document.querySelectorAll('#fw-bookend-grid input[type="checkbox"]:checked');
+  var out = [];
+  for (var i = 0; i < boxes.length; i++) out.push(boxes[i].value);
+  return out;
+}
+function fwGetGenMode() {
+  var sel = document.getElementById('fw-gen-mode');
+  return sel ? sel.value : 'rotate';
+}
+function fwCountOddPages(n) {
+  var pages = 0;
+  for (var g = 0; g < n; g += 4) { if (n - g >= 2) pages++; }
+  return pages;
+}
+function fwAutoFitPages() {
+  var targetEl = document.getElementById('fw-target-pages');
+  var target = targetEl ? parseInt(targetEl.value, 10) : NaN;
+  if (!target || target < 1) { alert('Enter a target page count first.'); return; }
+  if (!FW.cases.length) { alert('Parse cases in Tab A first.'); return; }
+  var acts = fwSelectedActivities();
+  var perCase = [];
+  var oddOn = false;
+  var versusOn = false;
+  for (var i = 0; i < acts.length; i++) {
+    if (acts[i] === 'odd') oddOn = true;
+    else if (acts[i] === 'versus') versusOn = true;
+    else perCase.push(acts[i]);
+  }
+  if (!perCase.length && !oddOn && !versusOn) { alert('Check at least one activity type first.'); return; }
+  var mode = fwGetGenMode();
+  var bookendPages = fwSelectedBookends().length;
+  var budget = target - bookendPages;
+  if (budget < 1) { alert('Your target is too small once the ' + bookendPages + ' checked bookend page(s) are counted. Raise the target or uncheck a bookend.'); return; }
+  var n = 0;
+  var max = FW.cases.length;
+  while (n < max) {
+    var trial = n + 1;
+    var oddPages = oddOn ? fwCountOddPages(trial) : 0;
+    var versusPages = versusOn ? Math.floor(trial / 2) : 0;
+    var pages = (mode === 'rotate') ? (trial + oddPages + versusPages) : (trial * perCase.length + oddPages + versusPages);
+    if (pages > budget) break;
+    n = trial;
+  }
+  if (n < 1) {
+    alert('Even 1 case exceeds your target with the current settings (mode: ' + mode + ', ' + perCase.length + ' activity type(s), ' + bookendPages + ' bookend page(s)). Raise the target, switch to Rotate mode, or uncheck some activity types.');
+    return;
+  }
+  fwSelectFirst(n);
+  alert('Selected the first ' + n + ' of ' + FW.cases.length + ' parsed cases to fit your ' + target + '-page target (' + mode + ' mode).');
+}
+function fwBuildIdCardPrompt(um, diff, lang, agentName) {
+  var agentLine = agentName ? ('The card is being filled out by "' + agentName + '", so use that name as the printed example/placeholder on the card.') : 'Leave the name line blank for the reader to fill in themselves.';
+  return 'FIELD AGENT ID CARD — front-matter page, ' + um.name + ' universe.\n\n' +
+    'Design a printable fill-in ID card for ' + d(diff).ageLabel + ' readers, styled like an official field-investigator badge/credential, matching this case-file book\'s visual language (' + um.visual + '). ' + agentLine + '\n\n' +
+    'INCLUDE THESE FILL-IN FIELDS: Agent Name, Badge Number (pre-filled with a fun serial format, e.g. FA-0000), Rank (blank checkboxes: Cadet / Field Agent / Senior Investigator), Date of Enlistment (blank), a small "oath" line the reader can sign, and a photo/self-portrait box for the reader to draw themselves.\n\n' +
+    'Language: write all card text in ' + lang + '.\n\n' +
+    'IMAGE PROMPT (JSON):\n' + fwImageJson('Field Agent ID Card', { subjectShort: 'the field agent ID card', placeShort: 'a badge/credential design', evidenceShort: 'an official case-file seal', verdictShort: '' }, (fwSelectedStyles()[0] || 'case_photo'), 0, um);
+}
+function fwBuildCertificatePrompt(um, diff, lang, agentName, caseCount) {
+  var agentLine = agentName ? ('Address it to "' + agentName + '" by name in the certificate text.') : 'Leave the recipient name line blank for the reader to fill in.';
+  return 'CERTIFICATE OF COMPLETION — back-matter page, ' + um.name + ' universe.\n\n' +
+    'Design a printable certificate for ' + d(diff).ageLabel + ' readers, celebrating finishing all ' + caseCount + ' cases in this workbook, styled like an official field-division commendation matching this book\'s visual language (' + um.visual + '). ' + agentLine + '\n\n' +
+    'INCLUDE: a formal completion statement naming the case count, a blank line for the reader\'s signature, a blank line for a parent/guardian countersignature, a decorative seal or ribbon motif, and one warm closing line encouraging the reader to keep investigating.\n\n' +
+    'Language: write all certificate text in ' + lang + '.\n\n' +
+    'IMAGE PROMPT (JSON):\n' + fwImageJson('Certificate of Completion', { subjectShort: 'the completed field agent', placeShort: 'a commendation/certificate design', evidenceShort: 'a division seal or ribbon', verdictShort: '' }, (fwSelectedStyles()[0] || 'case_photo'), 1, um);
+}
+function fwBuildAnswerKeyPrompt(jobs, um, diff, lang) {
+  var lines = [];
+  for (var i = 0; i < jobs.length; i++) {
+    var j = jobs[i];
+    if (j.kind === 'odd') {
+      lines.push((i + 1) + '. Odd Sighting Out — Cases ' + j.group.map(function (c) { return c.num; }).join(', '));
+    } else {
+      lines.push((i + 1) + '. ' + FW_ACTS[j.actId].name + ' — Case ' + j.caseNum + ': ' + j.caseTitle);
+    }
+  }
+  return 'MASTER ANSWER KEY — one consolidated back-of-book page for grown-ups, ' + um.name + ' universe.\n\n' +
+    'This workbook compiles ' + jobs.length + ' activity pages, listed below in page order. Design ONE printable answer-key page (use a compact table or numbered-list layout, split across as many pages as needed to stay legible) giving the grown-up reader the correct answer for each numbered page, cross-referenced to the page/activity name below. Pull the actual answer for each entry from the corresponding activity prompt already generated in this workbook — do not invent new answers, restate the ones already established per activity.\n\n' +
+    'PAGE ORDER TO KEY:\n' + lines.join('\n') + '\n\n' +
+    'Language: write in ' + lang + '. Keep the layout plain and scannable — this is a reference page, not an illustrated spread. No image prompt needed for this page.';
+}
+function d(diff) { return diff; }
+async function compileFwActivities() {
+  var sel = fwSelectedCases();
+  var acts = fwSelectedActivities();
+  if (!FW.cases.length) { alert('Parse cases in Tab A first!'); return; }
+  if (!sel.length) { alert('Select at least one parsed case!'); return; }
+  if (!acts.length) { alert('Select at least one activity type!'); return; }
+  var um = UNIVERSE_MOTIFS[FW.universe] || UNIVERSE_MOTIFS.sky;
+  var diff = fwGetDifficulty();
+  var lang = fwGetLanguage();
+  var agentName = fwGetAgentName();
+  var styles = fwSelectedStyles();
+  var wrap = document.getElementById('fw-output');
+  wrap.style.display = 'none';
+  wrap.innerHTML = '';
+  FW.outputs = [];
+  var loader = document.getElementById('fw-loading');
+  loader.classList.add('show');
+  fwSetLoadMsg('Preparing activities...');
+  await yieldToUI();
+  var jobs = [];
+  var perCase = [];
+  var oddOn = false;
+  var versusOn = false;
+  var a, i, g;
+  for (a = 0; a < acts.length; a++) {
+    if (acts[a] === 'odd') oddOn = true;
+    else if (acts[a] === 'versus') versusOn = true;
+    else perCase.push(acts[a]);
+  }
+  var genMode = fwGetGenMode();
+  if (genMode === 'rotate') {
+    if (perCase.length) {
+      for (i = 0; i < sel.length; i++) {
+        jobs.push({ kind: 'pair', caseIdx: i, actId: perCase[i % perCase.length] });
+      }
+    }
+  } else {
+    for (i = 0; i < sel.length; i++) {
+      for (a = 0; a < perCase.length; a++) jobs.push({ kind: 'pair', caseIdx: i, actId: perCase[a] });
+    }
+  }
+  if (oddOn) {
+    for (g = 0; g < sel.length; g += 4) {
+      var grp = sel.slice(g, g + 4);
+      if (grp.length >= 2) jobs.push({ kind: 'odd', group: grp });
+    }
+  }
+  if (versusOn) {
+    for (g = 0; g + 1 < sel.length; g += 2) {
+      jobs.push({ kind: 'versus', group: [sel[g], sel[g + 1]] });
+    }
+  }
+  var bookends = fwSelectedBookends();
+  if (bookends.indexOf('idcard') !== -1) {
+    jobs.unshift({ kind: 'bookend', title: 'Field Agent ID Card (front matter)', text: fwBuildIdCardPrompt(um, diff, lang, agentName) });
+  }
+  if (bookends.indexOf('certificate') !== -1) {
+    jobs.push({ kind: 'bookend', title: 'Certificate of Completion (back matter)', text: fwBuildCertificatePrompt(um, diff, lang, agentName, sel.length) });
+  }
+  var angleIdx = 0;
+  var batchHtml = '';
+  for (i = 0; i < jobs.length; i++) {
+    var j = jobs[i];
+    var title, text;
+    if (j.kind === 'bookend') {
+      title = j.title;
+      text = j.text;
+    } else if (j.kind === 'odd') {
+      title = 'Odd Sighting Out — Cases ' + j.group.map(function (c) { return c.num; }).join(', ');
+      text = fwBuildOddPrompt(j.group, um, angleIdx, diff, lang, agentName, styles);
+    } else if (j.kind === 'versus') {
+      title = 'Case vs Case — Cases ' + j.group.map(function (c) { return c.num; }).join(' vs ');
+      text = fwBuildVersusPrompt(j.group, um, angleIdx, diff, lang, agentName, styles);
+    } else {
+      var c = sel[j.caseIdx];
+      j.caseNum = c.num;
+      j.caseTitle = c.title;
+      title = FW_ACTS[j.actId].name + ' — Case ' + c.num + ': ' + c.title;
+      text = fwBuildPrompt(j.actId, c, um, angleIdx, diff, lang, agentName, styles);
+    }
+    angleIdx++;
+    FW.outputs.push({ title: title, text: text });
+    var n = FW.outputs.length;
+    batchHtml += '<div class="json-card"><div class="card-meta"><div class="json-index">' + n + '</div><span class="badge">' + fwEscHtml(title) + '</span></div>' +
+      '<div class="json-help">Copy this activity prompt for ChatGPT + your image tool.</div>' +
+      '<button class="btn-copy" onclick="fwCopyText(\'fw' + n + '\',this)"><i data-lucide="copy"></i> Copy Prompt</button>' +
+      '<textarea id="fw' + n + '" style="display:none;">' + fwEscHtml(text) + '</textarea></div>';
+    if ((i + 1) % FW_CHUNK === 0 || i === jobs.length - 1) {
+      wrap.innerHTML += batchHtml;
+      batchHtml = '';
+      fwSetLoadMsg('Compiling activity ' + (i + 1) + ' of ' + jobs.length + '...');
+      await yieldToUI();
+    }
+  }
+  if (bookends.indexOf('answerkey') !== -1) {
+    var keyJobs = jobs.filter(function (j) { return j.kind !== 'bookend'; });
+    var keyText = fwBuildAnswerKeyPrompt(keyJobs, um, diff, lang);
+    FW.outputs.push({ title: 'Master Answer Key (back matter)', text: keyText });
+    var kn = FW.outputs.length;
+    wrap.innerHTML += '<div class="json-card"><div class="card-meta"><div class="json-index">' + kn + '</div><span class="badge">Master Answer Key (back matter)</span></div>' +
+      '<div class="json-help">Copy this consolidated answer-key prompt for the back of the book.</div>' +
+      '<button class="btn-copy" onclick="fwCopyText(\'fw' + kn + '\',this)"><i data-lucide="copy"></i> Copy Prompt</button>' +
+      '<textarea id="fw' + kn + '" style="display:none;">' + fwEscHtml(keyText) + '</textarea></div>';
+  }
+  loader.classList.remove('show');
+  wrap.style.display = 'grid';
+  if (window.lucide) lucide.createIcons();
+}
+function copyAllFw() {
+  if (!FW.outputs.length) { alert('Compile activities first!'); return; }
+  var all = '';
+  for (var i = 0; i < FW.outputs.length; i++) {
+    all += '===== ' + FW.outputs[i].title + ' =====\n' + FW.outputs[i].text + '\n\n';
+  }
+  var ta = document.createElement('textarea');
+  ta.value = all;
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); } catch (e) {}
+  document.body.removeChild(ta);
+  alert('Copied ' + FW.outputs.length + ' activity prompts to clipboard!');
+}
+function downloadAllFw() {
+  if (!FW.outputs.length) { alert('Compile activities first!'); return; }
+  var all = '';
+  for (var i = 0; i < FW.outputs.length; i++) {
+    all += '===== ' + FW.outputs[i].title + ' =====\n' + FW.outputs[i].text + '\n\n';
+  }
+  var blob = new Blob([all], { type: 'text/plain' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'field-agent-activities.txt';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} try { a.remove(); } catch (e2) {} }, 2000);
+}
+if (window.lucide) lucide.createIcons();
+</script>
+</body>
+</html>
