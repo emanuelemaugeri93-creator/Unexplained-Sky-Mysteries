@@ -1,0 +1,644 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unexplained Sky Mysteries: Series Branding Consistency Prompt Kit</title>
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{
+  --bg-0:#0A1028;
+  --bg-1:#101A3A;
+  --bg-2:#18224A;
+  --card:rgba(255,255,255,.045);
+  --card-2:rgba(255,255,255,.07);
+  --line:rgba(201,162,75,.25);
+  --line-soft:rgba(255,255,255,.09);
+  --ink-0:#F4EDE0;
+  --ink-1:#CFC6B4;
+  --ink-muted:#9A917E;
+  --accent:#C9A24B;
+  --accent-2:#8FA3B8;
+  --warn:#D9A441;
+  --ok:#8FA3B8;
+  --radius-xl:22px;
+  --radius-lg:16px;
+  --radius-md:12px;
+  --font-head:'Baloo 2',system-ui,sans-serif;
+  --font-main:'Inter',system-ui,sans-serif;
+  --shadow-lg:0 28px 70px rgba(0,0,0,.55);
+  --shadow-md:0 14px 32px rgba(0,0,0,.4);
+  --trans:all .25s cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{min-height:100%;overflow-x:hidden;max-width:100vw}
+body{
+  font-family:var(--font-main);
+  color:var(--ink-1);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(201,162,75,.10) 0%, transparent 26%),
+    radial-gradient(circle at 88% 90%, rgba(143,163,184,.08) 0%, transparent 24%),
+    linear-gradient(180deg,var(--bg-1) 0%,var(--bg-0) 65%, #05081A 100%);
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background:
+    repeating-linear-gradient(0deg, rgba(244,237,224,.018) 0 1px, transparent 1px 26px),
+    repeating-linear-gradient(90deg, rgba(244,237,224,.014) 0 1px, transparent 1px 26px);
+  mask-image:linear-gradient(to bottom, rgba(0,0,0,.7), transparent 75%);
+}
+.app-shell{position:relative;z-index:1;width:100%;max-width:1280px;min-width:0;margin:0 auto;padding:24px;box-sizing:border-box}
+.brand-bar{display:flex;align-items:center;gap:14px;padding:14px 20px;margin-bottom:20px;border-radius:16px;background:linear-gradient(135deg, rgba(201,162,75,.12), rgba(255,255,255,.02)),linear-gradient(135deg, #141C42, #0A1028);border:1px solid var(--line);box-shadow:var(--shadow-md);border-top-right-radius:4px;}
+.brand-emblem{width:46px;height:46px;border-radius:12px 12px 12px 3px;display:grid;place-items:center;flex-shrink:0;background:linear-gradient(135deg,var(--accent),#7A5F26);color:#0A1028;box-shadow:0 8px 20px rgba(201,162,75,.3)}
+.brand-emblem svg{width:24px;height:24px}
+.brand-text{display:flex;flex-direction:column;gap:3px;min-width:0}
+.brand-text small{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.brand-text strong{font-family:var(--font-head);font-size:1.3rem;line-height:1.1;color:var(--ink-0)}
+.kit-badge{margin-left:auto;flex-shrink:0;font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#0A1028;background:linear-gradient(135deg,var(--accent),#7A5F26);padding:8px 14px;border-radius:6px;transform:rotate(2deg);box-shadow:0 6px 16px rgba(0,0,0,.4);white-space:nowrap}
+.wf-steps{display:flex;align-items:flex-start;justify-content:center;margin:26px 0 6px;gap:0;flex-wrap:wrap}
+.wf-step-pill{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1 1 0;min-width:80px;max-width:150px;background:none;border:0;font-family:var(--font-main);padding:0;color:var(--ink-muted)}
+.wf-step-pill.clickable{cursor:pointer}
+.wf-dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:1.05rem;border:2px solid rgba(255,255,255,.18);color:var(--ink-muted);background:rgba(255,255,255,.04);transition:var(--trans)}
+.wf-dot svg{width:20px;height:20px}
+.wf-dot .wf-check{display:none}
+.wf-step-pill.current .wf-dot{border-color:var(--accent);color:#fff;box-shadow:0 0 0 4px rgba(201,162,75,.15),0 0 24px rgba(201,162,75,.25)}
+.wf-step-pill.done .wf-dot{background:linear-gradient(135deg,var(--accent),#7A5F26);border-color:transparent;color:#0A1028}
+.wf-step-pill.done .wf-num{display:none}
+.wf-step-pill.done .wf-check{display:inline}
+.wf-step-label{font-size:.74rem;font-weight:800;letter-spacing:.01em;color:var(--ink-muted);text-align:center}
+.wf-step-pill.current .wf-step-label{color:var(--ink-0)}
+.wf-step-pill.done .wf-step-label{color:var(--ink-1)}
+.wf-link{flex:1 1 12px;min-width:8px;height:2px;background:rgba(255,255,255,.14);margin-top:21px;border-radius:2px}
+.wf-link.done{background:linear-gradient(90deg,var(--accent),#7A5F26)}
+.wf-counter{text-align:center;color:var(--ink-muted);font-size:.85rem;font-weight:700;margin-bottom:20px}
+.wf-nav{display:flex;gap:12px;justify-content:center;margin:26px 0 8px;flex-wrap:wrap}
+.wf-continue{border:0;cursor:pointer;border-radius:14px;padding:15px 26px;font-weight:900;font-size:1rem;color:#0A1028;background:linear-gradient(135deg,var(--accent),#7A5F26);box-shadow:0 12px 28px rgba(201,162,75,.25);transition:var(--trans);font-family:var(--font-main);white-space:nowrap}
+.wf-continue:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.wf-back{background:rgba(255,255,255,.07);border:1px solid var(--line-soft);cursor:pointer;border-radius:14px;padding:13px 22px;font-weight:800;font-size:.95rem;color:var(--ink-1);transition:var(--trans);font-family:var(--font-main);white-space:nowrap}
+.wf-back:hover{background:rgba(255,255,255,.12)}
+.wf-step{display:none;animation:fadeUp .3s ease}
+.wf-step.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.two-col{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:22px;align-items:start}
+.mini-live{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:16px;padding:18px;position:sticky;top:20px}
+.mini-live h4{font-family:var(--font-head);color:var(--ink-0);font-size:1.05rem;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.mini-live h4 svg{width:18px;height:18px;stroke:var(--accent)}
+.mini-tag{font-size:.82rem;line-height:1.6;color:var(--ink-1);background:rgba(0,0,0,.25);border-radius:10px;padding:10px 12px;margin:10px 0;white-space:pre-wrap;}
+.swatches{display:flex;gap:8px;margin:10px 0}
+.swatch{flex:1;height:34px;border-radius:8px;border:1px solid rgba(255,255,255,.2);display:grid;place-items:center;font-size:.62rem;font-weight:800;color:rgba(0,0,0,.55)}
+.mini-style{font-size:.82rem;color:var(--ink-muted)}
+.mini-style b{color:var(--accent)}
+.stage{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));border:1px solid var(--line-soft);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);padding:26px;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden;position:relative}
+.stage h2{font-family:var(--font-head);color:var(--ink-0);font-size:1.7rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.stage h2 svg{width:22px;height:22px;stroke:var(--accent)}
+.stage .desc{color:var(--ink-muted);line-height:1.65;margin-bottom:18px;max-width:760px}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.field label{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink-0);font-size:.95rem}
+.field label svg{width:16px;height:16px;stroke:var(--accent)}
+input[type="text"],select,textarea{width:100%;border:1px solid var(--line-soft);border-radius:14px;padding:14px 15px;font-size:1rem;font-family:var(--font-main);background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));color:#fff;outline:none;transition:var(--trans);box-sizing:border-box}
+select option{background:#101A3A;color:#fff}
+input:focus,select:focus,textarea:focus{border-color:rgba(201,162,75,.6);box-shadow:0 0 0 4px rgba(201,162,75,.15)}
+input::placeholder,textarea::placeholder{color:#7d7667}
+textarea{line-height:1.6;resize:vertical}
+.field-hint{font-size:.84rem;color:var(--ink-muted);line-height:1.5}
+.info-banner{display:flex;gap:10px;align-items:flex-start;background:rgba(143,163,184,0.12);border:1px solid rgba(143,163,184,0.35);border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:13px;line-height:1.5;color:var(--ink-1)}
+.info-banner svg{flex-shrink:0;width:18px;height:18px;margin-top:2px;stroke:var(--accent-2)}
+.info-banner strong{color:var(--ink-0)}
+.radio-card{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border-radius:14px;background:rgba(255,255,255,.045);border:1px solid var(--line-soft);cursor:pointer;transition:var(--trans);margin-bottom:10px}
+.radio-card:hover{background:rgba(255,255,255,.08)}
+.radio-card input{margin-top:3px;width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;cursor:pointer}
+.radio-card strong{display:block;color:var(--ink-0);font-size:.93rem}
+.radio-card small{display:block;color:var(--ink-muted);font-size:.8rem;margin-top:2px}
+.checkbox-row{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border-radius:12px;background:rgba(255,255,255,.045);border:1px solid var(--line-soft);cursor:pointer;margin-bottom:10px;font-size:.9rem;line-height:1.5}
+.checkbox-row input{margin-top:3px;width:18px;height:18px;accent-color:var(--accent);flex-shrink:0;cursor:pointer}
+.checkbox-row code{display:block;font-size:.78rem;color:var(--ink-muted);margin-top:4px;font-weight:400}
+.btn{border:0;cursor:pointer;border-radius:14px;padding:15px 20px;font-weight:900;font-size:.98rem;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:var(--trans);font-family:var(--font-main);white-space:nowrap;flex:0 0 auto}
+.btn svg{width:18px;height:18px}
+.btn-primary{background:linear-gradient(135deg,var(--accent),#7A5F26);color:#0A1028;box-shadow:0 14px 30px rgba(201,162,75,.28);width:100%;font-size:1.05rem;padding:18px;text-transform:uppercase;letter-spacing:.03em}
+.btn-primary:hover:not(:disabled){transform:translateY(-2px);filter:brightness(1.05)}
+.btn-ghost{background:rgba(255,255,255,.07);border:1px solid var(--line-soft);color:var(--ink-0)}
+.btn-ghost:hover{background:rgba(255,255,255,.12)}
+.btn-small{padding:11px 16px;font-size:.88rem}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.output-block{background:rgba(0,0,0,.3);border:1px solid var(--line);border-radius:14px;padding:16px;margin:12px 0}
+.output-block h4{font-family:var(--font-head);color:var(--accent);font-size:1.05rem;margin-bottom:8px}
+.output-block pre{white-space:pre-wrap;font-family:var(--font-main);font-size:.86rem;line-height:1.65;color:var(--ink-0)}
+.footer-brand{margin:22px 0 8px;text-align:center;color:var(--ink-muted);font-size:.9rem}
+.disclaimer{margin:14px auto 0;max-width:900px;text-align:center;color:var(--ink-muted);font-size:.8rem;line-height:1.6;padding:0 20px 26px;}
+@media (max-width:1019px){.two-col{grid-template-columns:1fr;}.mini-live{position:static;}}
+@media (max-width:860px){
+  .app-shell{padding:14px}
+  .stage{padding:18px}
+  .kit-badge{display:none}
+  .brand-text strong{font-size:1.05rem}
+}
+@media (max-width:640px){.wf-step-pill{min-width:64px}.wf-step-label{font-size:.64rem}.wf-dot{width:38px;height:38px}}
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <header class="brand-bar">
+    <span class="brand-emblem"><i data-lucide="palette"></i></span>
+    <span class="brand-text"><small>Unexplained Sky Mysteries · Case Files Unlimited Bonus #2</small><strong>Series Branding Consistency Prompt Kit</strong></span>
+    <span class="kit-badge">Bonus #2</span>
+  </header>
+
+  <div class="info-banner"><i data-lucide="info"></i><div><strong>Why this exists:</strong> every new AI chat session starts with zero memory of your character's look. Without a pasted "visual lock," book 3 of your series can come back wearing different clothes, a different palette, a different style than book 1 — and the series stops looking like one collection. This kit builds that lock for you.</div></div>
+
+  <div class="wf-steps" id="wfSteps">
+    <button type="button" class="wf-step-pill current clickable" data-wf="1" onclick="wfGoto(1)">
+      <span class="wf-dot"><span class="wf-num">1</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Investigator</span>
+    </button>
+    <div class="wf-link" data-wf-link="1"></div>
+    <button type="button" class="wf-step-pill" data-wf="2" onclick="wfGoto(2)">
+      <span class="wf-dot"><span class="wf-num">2</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Palette</span>
+    </button>
+    <div class="wf-link" data-wf-link="2"></div>
+    <button type="button" class="wf-step-pill" data-wf="3" onclick="wfGoto(3)">
+      <span class="wf-dot"><span class="wf-num">3</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Style</span>
+    </button>
+    <div class="wf-link" data-wf-link="3"></div>
+    <button type="button" class="wf-step-pill" data-wf="4" onclick="wfGoto(4)">
+      <span class="wf-dot"><span class="wf-num">4</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Identity</span>
+    </button>
+    <div class="wf-link" data-wf-link="4"></div>
+    <button type="button" class="wf-step-pill" data-wf="5" onclick="wfGoto(5)">
+      <span class="wf-dot"><span class="wf-num">5</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Output</span>
+    </button>
+    <div class="wf-link" data-wf-link="5"></div>
+    <button type="button" class="wf-step-pill" data-wf="6" onclick="wfGoto(6)">
+      <span class="wf-dot"><span class="wf-num">6</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Save</span>
+    </button>
+  </div>
+  <div class="wf-counter" id="wfCounter">Step 1 of 6</div>
+
+  <div class="two-col">
+  <div class="steps-col">
+
+  <div class="wf-step active" id="wf-step-1">
+    <section class="stage">
+      <h2><i data-lucide="user"></i> Step 1 — Investigator Visual Profile</h2>
+      <p class="desc">Describe exactly what your investigator looks like — every illustration in the series will reuse this description word for word.</p>
+      <div class="info-banner"><i data-lucide="info"></i><div><strong>Be as specific as possible</strong> — vague descriptions like "a kid detective" are exactly what causes AI image generators to drift across sessions. The more concrete anchor details you lock in here, the more consistent your series will look.</div></div>
+      <div class="field"><label><i data-lucide="user"></i> Investigator Name</label><input type="text" id="inv-name" placeholder="e.g. Nova Reyes"></div>
+      <div class="field"><label><i data-lucide="cake"></i> Apparent Age / Age Range</label><input type="text" id="inv-age" placeholder="e.g. around 12 years old"></div>
+      <div class="field"><label><i data-lucide="scissors"></i> Hair (color + style)</label><input type="text" id="inv-hair" placeholder="e.g. dark curly hair tied back with a blue band"></div>
+      <div class="field"><label><i data-lucide="eye"></i> Eyes</label><input type="text" id="inv-eyes" placeholder="e.g. bright hazel eyes"></div>
+      <div class="field"><label><i data-lucide="smile"></i> Skin Tone</label><input type="text" id="inv-skin" placeholder="e.g. warm medium-brown skin"></div>
+      <div class="field"><label><i data-lucide="ruler"></i> Build / Height Impression</label><input type="text" id="inv-build" placeholder="e.g. small and wiry, quick on her feet"></div>
+      <div class="field"><label><i data-lucide="shirt"></i> Outfit &amp; Signature Items</label><textarea id="inv-outfit" style="height:90px;" placeholder="e.g. denim jacket with a sky-blue patch, worn brown satchel, always carries a spiral notebook"></textarea></div>
+      <div class="field"><label><i data-lucide="key-round"></i> Recurring Accessory / Prop</label><input type="text" id="inv-prop" placeholder="e.g. a spiral notebook">
+      <div class="field-hint">Tip: if you own the Franchise Launch Kit bonus, pull this straight from your investigator's "signature quirk" — same idea, visual form.</div></div>
+      <div class="field"><label><i data-lucide="drama"></i> Default Expression / Pose Tendency</label><input type="text" id="inv-pose" placeholder="e.g. curious, slightly crouched, always looking just off-frame at the evidence"></div>
+      <div class="wf-nav"><button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 2: Palette →</button></div>
+    </section>
+  </div>
+
+  <div class="wf-step" id="wf-step-2">
+    <section class="stage">
+      <h2><i data-lucide="swatch-book"></i> Step 2 — Color Palette Lock</h2>
+      <p class="desc">Name your series colors in plain words (no hex codes required). Anything the preview can't render still works fine in the prompt.</p>
+      <div class="field"><label><i data-lucide="droplet"></i> Primary Color</label><input type="text" id="pal-primary" placeholder="e.g. deep navy blue"></div>
+      <div class="field"><label><i data-lucide="droplets"></i> Secondary Color</label><input type="text" id="pal-secondary" placeholder="e.g. warm gold"></div>
+      <div class="field"><label><i data-lucide="sparkle"></i> Accent Color</label><input type="text" id="pal-accent" placeholder="e.g. signal red"></div>
+      <div class="field"><label><i data-lucide="cloud-sun"></i> Background / Setting Tone</label><input type="text" id="pal-tone" placeholder="e.g. warm, slightly muted, evening light"></div>
+      <div class="wf-nav">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back</button>
+        <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 3: Style →</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="wf-step" id="wf-step-3">
+    <section class="stage">
+      <h2><i data-lucide="brush"></i> Step 3 — House Illustration Style</h2>
+      <p class="desc">One art style for the whole series — the same 4 house styles used across the product family, plus Custom.</p>
+      <div id="style-radios">
+        <label class="radio-card"><input type="radio" name="house-style" value="witness_sketch" checked><span><strong>Witness Sketch</strong><small>Hand-drawn B&amp;W line art, eyewitness-notebook feel.</small></span></label>
+        <label class="radio-card"><input type="radio" name="house-style" value="radar_thermal"><span><strong>Radar &amp; Thermal Readout</strong><small>Instrument scans, grids and heat tones.</small></span></label>
+        <label class="radio-card"><input type="radio" name="house-style" value="case_photo"><span><strong>Case File Photograph</strong><small>Full-color documentary evidence photo.</small></span></label>
+        <label class="radio-card"><input type="radio" name="house-style" value="declassified_doc"><span><strong>Declassified Document</strong><small>Aged paper, stamps and redaction bars.</small></span></label>
+        <label class="radio-card"><input type="radio" name="house-style" value="custom"><span><strong>Custom</strong><small>Describe your own house style below.</small></span></label>
+      </div>
+      <div class="field" id="custom-style-wrap" style="display:none;">
+        <label><i data-lucide="pen-line"></i> Your Custom House Style</label>
+        <textarea id="custom-style" style="height:90px;" placeholder="Describe the exact look every illustration must share..."></textarea>
+      </div>
+      <div class="field"><label>Consistency Rules (all recommended ON)</label></div>
+      <label class="checkbox-row"><input type="checkbox" id="rule-border" checked><span>Consistent border/frame treatment<span><code>Adds: "same case-file stamped border on every image".</code></span></span></label>
+      <label class="checkbox-row"><input type="checkbox" id="rule-lineweight" checked><span>Consistent line weight / rendering technique<span><code>Adds: "identical line weight and rendering technique on every image".</code></span></span></label>
+      <label class="checkbox-row"><input type="checkbox" id="rule-notext" checked><span>No text or lettering inside the image itself<span><code>Adds: "absolutely no text, words, letters or numbers rendered inside the image".</code></span></span></label>
+      <div class="field"><label><i data-lucide="proportions"></i> Aspect Ratio Note</label><input type="text" id="aspect-note" placeholder='e.g. square, 1:1 — or portrait, 4:5'></div>
+      <div class="wf-nav">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back</button>
+        <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 4: Identity →</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="wf-step" id="wf-step-4">
+    <section class="stage">
+      <h2><i data-lucide="badge-check"></i> Step 4 — Series Identity Elements</h2>
+      <p class="desc">The recurring marks that make every volume instantly recognizable as part of one series.</p>
+      <div class="field"><label><i data-lucide="bookmark"></i> Series Name</label><input type="text" id="series-name" placeholder="e.g. The Meridian Files"></div>
+      <div class="field"><label><i data-lucide="stamp"></i> Recurring Badge / Logo Description (optional)</label><textarea id="series-badge" style="height:80px;" placeholder="e.g. a small circular case-file stamp in the corner reading [series name]"></textarea></div>
+      <div class="field"><label><i data-lucide="hash"></i> Watermark / Case-Number Stamp Style (optional)</label><input type="text" id="series-watermark" placeholder="e.g. faint CASE № stamp, bottom-right corner"></div>
+      <div class="wf-nav">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back</button>
+        <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 5: Output →</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="wf-step" id="wf-step-5">
+    <section class="stage">
+      <h2><i data-lucide="clipboard-copy"></i> Step 5 — Generated Output</h2>
+      <p class="desc">Live output — regenerates on every keystroke in Steps 1–4. Copy a block, then paste it into any image session.</p>
+      <div class="output-block">
+        <h4>The Visual Lock Block</h4>
+        <pre id="lock-block">Fill in Steps 1–4 to build your lock…</pre>
+        <div class="toolbar"><button class="btn btn-ghost btn-small" onclick="copyBlock('lock-block', this)">📋 Copy to Clipboard</button></div>
+      </div>
+      <div class="output-block">
+        <h4>Quick Reference Tag</h4>
+        <pre id="lock-tag">Fill in Steps 1–4 to build your lock…</pre>
+        <div class="toolbar"><button class="btn btn-ghost btn-small" onclick="copyBlock('lock-tag', this)">📋 Copy to Clipboard</button></div>
+      </div>
+      <div class="info-banner"><i data-lucide="info"></i><div><strong>How to use it:</strong> Paste the full Visual Lock Block as the first line of your very first image prompt in every new session. For every image after the first in that same session, the shorter Quick Reference Tag is usually enough — but always use the full block again when starting a brand-new chat session, since the AI has no memory of the previous one.</div></div>
+      <div class="wf-nav">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back</button>
+        <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 6: Save →</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="wf-step" id="wf-step-6">
+    <section class="stage">
+      <h2><i data-lucide="save"></i> Step 6 — Save, Load &amp; Export</h2>
+      <p class="desc">Keep one lock per series in this browser, reload it in one click, or take it as a .txt file.</p>
+      <div class="field">
+        <label><i data-lucide="folder-open"></i> Saved Series Locks</label>
+        <select id="saved-locks"><option value="">— no saved locks yet —</option></select>
+      </div>
+      <div class="toolbar" style="margin-top:0;">
+        <button class="btn btn-ghost" onclick="saveLock()">💾 Save This Series Lock</button>
+        <button class="btn btn-ghost" onclick="loadLock()">📂 Load Selected</button>
+        <button class="btn btn-ghost" onclick="deleteLock()">🗑️ Delete Selected</button>
+        <button class="btn btn-ghost" onclick="exportLock()">⬇️ Export as .txt</button>
+      </div>
+      <div class="field-hint" id="lock-status" style="margin-top:10px;">Locks are stored only in this browser (localStorage) — nothing leaves your device.</div>
+      <div class="wf-nav">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back</button>
+      </div>
+    </section>
+  </div>
+
+  </div><!-- /.steps-col -->
+
+  <aside class="mini-live" id="miniLive">
+    <h4><i data-lucide="scan-eye"></i> Live lock preview</h4>
+    <div class="swatches">
+      <div class="swatch" id="sw-1">1</div>
+      <div class="swatch" id="sw-2">2</div>
+      <div class="swatch" id="sw-3">3</div>
+    </div>
+    <div class="mini-tag" id="mini-tag">Fill in the steps…</div>
+    <div class="mini-style">Style: <b id="mini-style">Witness Sketch</b></div>
+  </aside>
+  </div><!-- /.two-col -->
+
+  <div class="footer-brand"><strong>Unexplained Sky Mysteries</strong> — Case Files Unlimited Bonus #2</div>
+</div>
+<div class="disclaimer">Part of the Unexplained Sky Mysteries family of tools. All processing happens in your browser — nothing is uploaded anywhere.</div>
+
+<script>
+/* ============================================================
+   Series Branding Consistency Prompt Kit — app logic
+   (1) readForm() gathers every control into one state object.
+   (2) buildLockBlock(state) assembles the full Visual Lock Block:
+       Character section + Palette section + Style section (house
+       style + checked consistency rules + aspect note) + Series
+       Identity section. Empty optional fields are skipped so the
+       block never contains blank lines or "undefined".
+   (3) buildQuickTag(state) condenses the same state to 1-2 sentences.
+   (4) renderAll() rebuilds block + tag + mini preview + swatches.
+   (5) Step nav mirrors the sibling tools (wfGoto/wfNext/wfBack,
+       back-only pill clicks, Step X of 6 counter).
+   (6) Save/load/export via localStorage (key SBC_LOCKS_KEY).
+   ============================================================ */
+var SBC_LOCKS_KEY = 'sbc-locks-v1';
+
+function $(id) { return document.getElementById(id); }
+function val(id) { var el = $(id); return el ? (el.value || '').trim() : ''; }
+
+// A small table of common CSS color names so the swatch preview can render
+// plain-language colors (e.g. "deep navy blue" won't match anything, but
+// "navy" or "#0A1028" will). Unknown names fall back to neutral gray and
+// never block input — the prompt text always uses the user's exact words.
+var NAMED_COLORS = {
+  black: '#000000', white: '#FFFFFF', red: '#C0392B', crimson: '#DC143C',
+  blue: '#2E5AAC', navy: '#0A1028', skyblue: '#87CEEB', gold: '#C9A24B',
+  yellow: '#F2C230', green: '#3E8E41', olive: '#8FA05C', gray: '#808080',
+  grey: '#808080', silver: '#C0C0C0', brown: '#7A5230', orange: '#D97A3D',
+  pink: '#E79FB5', purple: '#7B5EA7', teal: '#2E8B8B', beige: '#E4D6B8',
+  cream: '#F2EAD8', maroon: '#6E1423', lime: '#84CC16', cyan: '#67E8F9'
+};
+function resolveColor(text) {
+  var t = String(text || '').trim();
+  var hex = t.match(/#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})\b/);
+  if (hex) {
+    var h = hex[1];
+    if (h.length === 3) h = h[0] + h[0] + h[1] + h[1] + h[2] + h[2];
+    return '#' + h;
+  }
+  var words = t.toLowerCase().replace(/[^a-z\s]/g, ' ').split(/\s+/);
+  for (var i = 0; i < words.length; i++) {
+    if (NAMED_COLORS[words[i]]) return NAMED_COLORS[words[i]];
+  }
+  return null;
+}
+
+var HOUSE_STYLES = {
+  witness_sketch: 'Witness Sketch (hand-drawn black-and-white line art, eyewitness-notebook feel)',
+  radar_thermal: 'Radar & Thermal Readout (instrument scans, grids and heat tones)',
+  case_photo: 'Case File Photograph (full-color documentary evidence photo)',
+  declassified_doc: 'Declassified Document (aged paper, stamps and redaction bars)'
+};
+function readForm() {
+  var styleEl = document.querySelector('input[name="house-style"]:checked');
+  return {
+    name: val('inv-name'), age: val('inv-age'), hair: val('inv-hair'),
+    eyes: val('inv-eyes'), skin: val('inv-skin'), build: val('inv-build'),
+    outfit: val('inv-outfit'), prop: val('inv-prop'), pose: val('inv-pose'),
+    primary: val('pal-primary'), secondary: val('pal-secondary'),
+    accent: val('pal-accent'), tone: val('pal-tone'),
+    style: styleEl ? styleEl.value : 'witness_sketch',
+    customStyle: val('custom-style'),
+    ruleBorder: $('rule-border') ? $('rule-border').checked : true,
+    ruleLine: $('rule-lineweight') ? $('rule-lineweight').checked : true,
+    ruleNoText: $('rule-notext') ? $('rule-notext').checked : true,
+    aspect: val('aspect-note'),
+    series: val('series-name'), badge: val('series-badge'), watermark: val('series-watermark')
+  };
+}
+
+// The core prompt-construction function. Each labeled section is built only
+// from fields the user actually filled; style text comes from the 4 house
+// names (or the Custom textarea); checked rules append their locked
+// sentences verbatim. Returns { block, tag }.
+function buildLockBlock(s) {
+  var name = s.name || '[INVESTIGATOR NAME]';
+  var lines = [];
+  lines.push('VISUAL LOCK — ' + (s.series || '[SERIES NAME]'));
+  lines.push('');
+  var charBits = [name];
+  if (s.age) charBits.push(s.age);
+  if (s.hair) charBits.push(/hair/i.test(s.hair) ? s.hair : s.hair + ' hair');
+  if (s.eyes) charBits.push(s.eyes);
+  if (s.skin) charBits.push(/skin/i.test(s.skin) ? s.skin : s.skin + ' skin');
+  if (s.build) charBits.push(s.build);
+  lines.push('CHARACTER: ' + charBits.join(', ') + '.');
+  if (s.outfit) lines.push('Outfit and signature items: ' + s.outfit + '.');
+  if (s.prop) lines.push('Always include this recurring prop: ' + s.prop + '.');
+  if (s.pose) lines.push('Usual expression and pose: ' + s.pose + '.');
+  lines.push('');
+  var palBits = [];
+  if (s.primary) palBits.push('primary ' + s.primary);
+  if (s.secondary) palBits.push('secondary ' + s.secondary);
+  if (s.accent) palBits.push('accent ' + s.accent);
+  lines.push('PALETTE: ' + (palBits.length ? palBits.join('; ') + '.' : 'consistent series palette throughout.') + (s.tone ? ' Overall setting tone: ' + s.tone + '.' : ''));
+  lines.push('');
+  var styleText = s.style === 'custom' ? (s.customStyle || 'one consistent custom house style across every image') : (HOUSE_STYLES[s.style] || HOUSE_STYLES.witness_sketch);
+  lines.push('STYLE: ' + styleText + '.');
+  if (s.ruleBorder) lines.push('Same case-file stamped border on every image.');
+  if (s.ruleLine) lines.push('Identical line weight and rendering technique on every image.');
+  if (s.ruleNoText) lines.push('Absolutely no text, words, letters or numbers rendered inside the image.');
+  if (s.aspect) lines.push('Aspect ratio for every image: ' + s.aspect + '.');
+  lines.push('');
+  var idBits = [];
+  if (s.badge) idBits.push('Recurring badge/logo: ' + s.badge + '.');
+  if (s.watermark) idBits.push('Watermark/case-number stamp: ' + s.watermark + '.');
+  lines.push('SERIES IDENTITY: ' + (idBits.length ? idBits.join(' ') : 'Keep every volume visually grouped as one collection.'));
+  // Condensed reminder: sentence 1 locks character (+prop), sentence 2
+  // locks style (+palette). Two sentences max, plain prompt language.
+  var sent1 = 'Keep ' + name + ' visually identical in every image' + (s.prop ? '; always include ' + s.prop : '') + '.';
+  var sent2bits = ['Same ' + (s.style === 'custom' ? (s.customStyle || 'house style') : (HOUSE_STYLES[s.style] || 'style'))];
+  if (s.primary || s.secondary) sent2bits.push('same palette (' + [s.primary, s.secondary, s.accent].filter(Boolean).join(', ') + ')');
+  var tag = sent1 + ' ' + sent2bits.join('; ') + '.';
+  return { block: lines.join('\n'), tag: tag };
+}
+
+function renderAll() {
+  var s = readForm();
+  var out = buildLockBlock(s);
+  $('lock-block').textContent = out.block;
+  $('lock-tag').textContent = out.tag;
+  // Custom-style textarea visibility follows the Custom radio.
+  var cw = $('custom-style-wrap');
+  if (cw) cw.style.display = (s.style === 'custom') ? '' : 'none';
+  // Swatch sanity check: render what we can, gray + note what we can't.
+  var cols = [s.primary, s.secondary, s.accent];
+  for (var i = 0; i < 3; i++) {
+    var box = $('sw-' + (i + 1));
+    if (!box) continue;
+    var c = resolveColor(cols[i]);
+    if (c) { box.style.background = c; box.textContent = ''; box.title = cols[i]; }
+    else { box.style.background = '#3a3f4d'; box.textContent = '?'; box.title = cols[i] ? ('Could not preview "' + cols[i] + '" — still fine in the prompt') : 'Empty'; }
+  }
+  $('mini-tag').textContent = out.tag;
+  var stNames = { witness_sketch: 'Witness Sketch', radar_thermal: 'Radar & Thermal', case_photo: 'Case Photo', declassified_doc: 'Declassified Doc', custom: 'Custom' };
+  $('mini-style').textContent = s.style === 'custom' ? ('Custom' + (s.customStyle ? ': ' + s.customStyle.slice(0, 60) : '')) : (stNames[s.style] || s.style);
+}
+/* ---------- copy buttons ---------- */
+function copyBlock(id, btn) {
+  var ta = document.createElement('textarea');
+  ta.value = $(id).textContent;
+  document.body.appendChild(ta);
+  ta.select();
+  var done = function () {
+    if (!btn) return;
+    var orig = btn.innerHTML;
+    btn.innerHTML = 'Copied!';
+    setTimeout(function () { btn.innerHTML = orig; if (window.lucide) lucide.createIcons(); }, 2000);
+  };
+  try { document.execCommand('copy'); done(); } catch (e) { done(); }
+  try { document.body.removeChild(ta); } catch (e2) {}
+}
+
+/* ---------- step workflow nav (same pattern as sibling tools) ---------- */
+var wfStep = 1;
+var wfMaxReached = 1;
+var WF_TOTAL = 6;
+function wfRender() {
+  var pills = document.querySelectorAll('#wfSteps .wf-step-pill');
+  for (var i = 0; i < pills.length; i++) {
+    var n = parseInt(pills[i].getAttribute('data-wf'), 10);
+    pills[i].classList.toggle('done', n < wfStep);
+    pills[i].classList.toggle('current', n === wfStep);
+    pills[i].classList.toggle('clickable', n <= wfMaxReached);
+  }
+  var links = document.querySelectorAll('#wfSteps .wf-link');
+  for (var j = 0; j < links.length; j++) {
+    links[j].classList.toggle('done', parseInt(links[j].getAttribute('data-wf-link'), 10) < wfStep);
+  }
+  var steps = document.querySelectorAll('.wf-step');
+  for (var k = 0; k < steps.length; k++) {
+    steps[k].classList.toggle('active', parseInt(steps[k].id.replace('wf-step-', ''), 10) === wfStep);
+  }
+  var counter = $('wfCounter');
+  if (counter) counter.textContent = 'Step ' + wfStep + ' of ' + WF_TOTAL;
+  var aside = $('miniLive');
+  if (aside) aside.style.display = (wfStep >= 5) ? 'none' : '';
+}
+function wfGoto(n) {
+  n = Math.max(1, Math.min(WF_TOTAL, n));
+  if (n > wfMaxReached) return;
+  wfStep = n;
+  wfRender();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function wfNext() { if (wfStep < WF_TOTAL) { wfMaxReached = Math.max(wfMaxReached, wfStep + 1); wfGoto(wfStep + 1); } }
+function wfBack() { wfGoto(wfStep - 1); }
+
+/* ---------- save / load / export (localStorage, per-series keyed list) ---------- */
+function readLocks() {
+  try {
+    var raw = localStorage.getItem(SBC_LOCKS_KEY);
+    if (!raw) return {};
+    var o = JSON.parse(raw);
+    return (o && typeof o === 'object') ? o : {};
+  } catch (e) { return {}; }
+}
+function writeLocks(o) {
+  try { localStorage.setItem(SBC_LOCKS_KEY, JSON.stringify(o)); return true; }
+  catch (e) { return false; }
+}
+function lockStatus(msg) {
+  var el = $('lock-status');
+  if (el) el.textContent = msg;
+}
+// Snapshot every Step 1-4 control so a lock fully restores the form later.
+function snapshotForm() {
+  return {
+    name: $('inv-name').value, age: $('inv-age').value, hair: $('inv-hair').value,
+    eyes: $('inv-eyes').value, skin: $('inv-skin').value, build: $('inv-build').value,
+    outfit: $('inv-outfit').value, prop: $('inv-prop').value, pose: $('inv-pose').value,
+    primary: $('pal-primary').value, secondary: $('pal-secondary').value,
+    accent: $('pal-accent').value, tone: $('pal-tone').value,
+    style: (document.querySelector('input[name="house-style"]:checked') || {}).value || 'witness_sketch',
+    customStyle: $('custom-style').value,
+    ruleBorder: $('rule-border').checked, ruleLine: $('rule-lineweight').checked,
+    ruleNoText: $('rule-notext').checked, aspect: $('aspect-note').value,
+    series: $('series-name').value, badge: $('series-badge').value, watermark: $('series-watermark').value
+  };
+}
+function applySnapshot(d) {
+  if (!d) return;
+  $('inv-name').value = d.name || ''; $('inv-age').value = d.age || '';
+  $('inv-hair').value = d.hair || ''; $('inv-eyes').value = d.eyes || '';
+  $('inv-skin').value = d.skin || ''; $('inv-build').value = d.build || '';
+  $('inv-outfit').value = d.outfit || ''; $('inv-prop').value = d.prop || '';
+  $('inv-pose').value = d.pose || '';
+  $('pal-primary').value = d.primary || ''; $('pal-secondary').value = d.secondary || '';
+  $('pal-accent').value = d.accent || ''; $('pal-tone').value = d.tone || '';
+  var radios = document.querySelectorAll('input[name="house-style"]');
+  for (var i = 0; i < radios.length; i++) radios[i].checked = (radios[i].value === (d.style || 'witness_sketch'));
+  $('custom-style').value = d.customStyle || '';
+  $('rule-border').checked = d.ruleBorder !== false;
+  $('rule-lineweight').checked = d.ruleLine !== false;
+  $('rule-notext').checked = d.ruleNoText !== false;
+  $('aspect-note').value = d.aspect || '';
+  $('series-name').value = d.series || '';
+  $('series-badge').value = d.badge || '';
+  $('series-watermark').value = d.watermark || '';
+  renderAll();
+}
+function refreshLockList(keepSel) {
+  var locks = readLocks();
+  var sel = $('saved-locks');
+  if (!sel) return;
+  var names = Object.keys(locks).sort();
+  var html = names.length ? '' : '<option value="">— no saved locks yet —</option>';
+  for (var i = 0; i < names.length; i++) {
+    html += '<option value="' + names[i].replace(/"/g, '&quot;') + '"' + (names[i] === keepSel ? ' selected' : '') + '>' + names[i].replace(/</g, '&lt;') + '</option>';
+  }
+  sel.innerHTML = html;
+}
+function currentSeriesKey() {
+  var s = readForm();
+  return s.series || s.name || 'untitled-series';
+}
+function saveLock() {
+  var locks = readLocks();
+  var key = currentSeriesKey();
+  locks[key] = snapshotForm();
+  if (writeLocks(locks)) {
+    refreshLockList(key);
+    lockStatus('Saved lock "' + key + '" in this browser.');
+  } else {
+    lockStatus('Could not save — browser storage unavailable.');
+  }
+}
+function loadLock() {
+  var sel = $('saved-locks');
+  var key = sel ? sel.value : '';
+  if (!key) { lockStatus('Pick a saved lock from the dropdown first.'); return; }
+  var locks = readLocks();
+  if (!locks[key]) { lockStatus('That lock no longer exists — list refreshed.'); refreshLockList(); return; }
+  applySnapshot(locks[key]);
+  lockStatus('Loaded lock "' + key + '" — preview updated.');
+}
+function deleteLock() {
+  var sel = $('saved-locks');
+  var key = sel ? sel.value : '';
+  if (!key) { lockStatus('Pick a saved lock from the dropdown first.'); return; }
+  var locks = readLocks();
+  delete locks[key];
+  writeLocks(locks);
+  refreshLockList();
+  lockStatus('Deleted lock "' + key + '".');
+}
+function sanitizeFilename(s) {
+  return String(s || 'series-lock').toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '').slice(0, 60) || 'series-lock';
+}
+function exportLock() {
+  var s = readForm();
+  var out = buildLockBlock(s);
+  var text = out.block + '\n\n---\nQUICK REFERENCE TAG:\n' + out.tag + '\n';
+  var blob = new Blob([text], { type: 'text/plain' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = sanitizeFilename(s.series || s.name) + '-visual-lock.txt';
+  document.body.appendChild(a);
+  a.click();
+  setTimeout(function () { try { URL.revokeObjectURL(a.href); } catch (e) {} try { a.remove(); } catch (e2) {} }, 2000);
+  lockStatus('Exported .txt file — check your downloads.');
+}
+
+/* ---------- init: live-update wiring ---------- */
+function initKit() {
+  var form = document.querySelector('.steps-col');
+  if (form) {
+    form.addEventListener('input', renderAll);
+    form.addEventListener('change', renderAll);
+  }
+  refreshLockList();
+  renderAll();
+  wfRender();
+  if (window.lucide) lucide.createIcons();
+}
+document.addEventListener('DOMContentLoaded', initKit);
+if (window.lucide) lucide.createIcons();
+</script>
+</body>
+</html>
