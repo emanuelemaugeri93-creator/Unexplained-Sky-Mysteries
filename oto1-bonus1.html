@@ -1,0 +1,703 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Unexplained Sky Mysteries: Print Cost &amp; Royalty Estimator</title>
+<meta name="robots" content="noindex, nofollow, noarchive" />
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{
+  --bg-0:#0A1028;
+  --bg-1:#101A3A;
+  --bg-2:#18224A;
+  --card:rgba(255,255,255,.045);
+  --card-2:rgba(255,255,255,.07);
+  --line:rgba(201,162,75,.25);
+  --line-soft:rgba(255,255,255,.09);
+  --ink-0:#F4EDE0;
+  --ink-1:#CFC6B4;
+  --ink-muted:#9A917E;
+  --accent:#C9A24B;
+  --accent-2:#8FA3B8;
+  --warn:#D9A441;
+  --ok:#8FA3B8;
+  --danger:#D96A5F;
+  --radius-xl:22px;
+  --radius-lg:16px;
+  --radius-md:12px;
+  --font-head:'Baloo 2',system-ui,sans-serif;
+  --font-main:'Inter',system-ui,sans-serif;
+  --shadow-lg:0 28px 70px rgba(0,0,0,.55);
+  --shadow-md:0 14px 32px rgba(0,0,0,.4);
+  --trans:all .25s cubic-bezier(.4,0,.2,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{min-height:100%;overflow-x:hidden;max-width:100vw}
+body{
+  font-family:var(--font-main);
+  color:var(--ink-1);
+  background:
+    radial-gradient(circle at 12% 8%, rgba(201,162,75,.10) 0%, transparent 26%),
+    radial-gradient(circle at 88% 90%, rgba(143,163,184,.08) 0%, transparent 24%),
+    linear-gradient(180deg,var(--bg-1) 0%,var(--bg-0) 65%, #05081A 100%);
+  overflow-x:hidden;
+}
+body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.5;
+  background:
+    repeating-linear-gradient(0deg, rgba(244,237,224,.018) 0 1px, transparent 1px 26px),
+    repeating-linear-gradient(90deg, rgba(244,237,224,.014) 0 1px, transparent 1px 26px);
+  mask-image:linear-gradient(to bottom, rgba(0,0,0,.7), transparent 75%);
+}
+.app-shell{position:relative;z-index:1;width:100%;max-width:1180px;min-width:0;margin:0 auto;padding:24px;box-sizing:border-box}
+.brand-bar{display:flex;align-items:center;gap:14px;padding:14px 20px;margin-bottom:20px;border-radius:16px;background:linear-gradient(135deg, rgba(201,162,75,.12), rgba(255,255,255,.02)),linear-gradient(135deg, #141C42, #0A1028);border:1px solid var(--line);box-shadow:var(--shadow-md);border-top-right-radius:4px;}
+.brand-emblem{width:46px;height:46px;border-radius:12px 12px 12px 3px;display:grid;place-items:center;flex-shrink:0;background:linear-gradient(135deg,var(--accent),#7A5F26);color:#0A1028;box-shadow:0 8px 20px rgba(201,162,75,.3)}
+.brand-emblem svg{width:24px;height:24px}
+.brand-text{display:flex;flex-direction:column;gap:3px;min-width:0}
+.brand-text small{font-size:.72rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+.brand-text strong{font-family:var(--font-head);font-size:1.35rem;line-height:1.1;color:var(--ink-0)}
+.kit-badge{margin-left:auto;flex-shrink:0;font-size:.72rem;font-weight:900;letter-spacing:.1em;text-transform:uppercase;color:#0A1028;background:linear-gradient(135deg,var(--accent),#7A5F26);padding:8px 14px;border-radius:6px;transform:rotate(2deg);box-shadow:0 6px 16px rgba(0,0,0,.4);white-space:nowrap}
+.wf-steps{display:flex;align-items:flex-start;justify-content:center;margin:26px 0 6px;gap:0;flex-wrap:wrap}
+.wf-step-pill{display:flex;flex-direction:column;align-items:center;gap:8px;flex:1 1 0;min-width:88px;max-width:160px;background:none;border:0;font-family:var(--font-main);padding:0;color:var(--ink-muted)}
+.wf-step-pill.clickable{cursor:pointer}
+.wf-dot{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-weight:900;font-size:1.1rem;border:2px solid rgba(255,255,255,.18);color:var(--ink-muted);background:rgba(255,255,255,.04);transition:var(--trans)}
+.wf-dot svg{width:20px;height:20px}
+.wf-dot .wf-check{display:none}
+.wf-step-pill.current .wf-dot{border-color:var(--accent);color:#fff;box-shadow:0 0 0 4px rgba(201,162,75,.15),0 0 24px rgba(201,162,75,.25)}
+.wf-step-pill.done .wf-dot{background:linear-gradient(135deg,var(--accent),#7A5F26);border-color:transparent;color:#0A1028}
+.wf-step-pill.done .wf-num{display:none}
+.wf-step-pill.done .wf-check{display:inline}
+.wf-step-label{font-size:.78rem;font-weight:800;letter-spacing:.01em;color:var(--ink-muted);text-align:center}
+.wf-step-pill.current .wf-step-label{color:var(--ink-0)}
+.wf-step-pill.done .wf-step-label{color:var(--ink-1)}
+.wf-link{flex:1 1 16px;min-width:10px;height:2px;background:rgba(255,255,255,.14);margin-top:21px;border-radius:2px}
+.wf-link.done{background:linear-gradient(90deg,var(--accent),#7A5F26)}
+.wf-counter{text-align:center;color:var(--ink-muted);font-size:.85rem;font-weight:700;margin-bottom:20px}
+.wf-nav{display:flex;gap:12px;justify-content:center;margin:26px 0 8px;flex-wrap:wrap}
+.wf-continue{border:0;cursor:pointer;border-radius:14px;padding:15px 26px;font-weight:900;font-size:1rem;color:#0A1028;background:linear-gradient(135deg,var(--accent),#7A5F26);box-shadow:0 12px 28px rgba(201,162,75,.25);transition:var(--trans);font-family:var(--font-main);white-space:nowrap}
+.wf-continue:hover{transform:translateY(-2px);filter:brightness(1.05)}
+.wf-back{background:rgba(255,255,255,.07);border:1px solid var(--line-soft);cursor:pointer;border-radius:14px;padding:13px 22px;font-weight:800;font-size:.95rem;color:var(--ink-1);transition:var(--trans);font-family:var(--font-main);white-space:nowrap}
+.wf-back:hover{background:rgba(255,255,255,.12)}
+.wf-step{display:none;animation:fadeUp .3s ease}
+.wf-step.active{display:block}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.stage{background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));border:1px solid var(--line-soft);border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);padding:26px;max-width:100%;min-width:0;box-sizing:border-box;overflow:hidden;position:relative}
+.stage::before{content:"KDP BONUS #1 • ESTIMATOR";position:absolute;top:14px;right:-42px;transform:rotate(35deg);font-size:.62rem;font-weight:900;letter-spacing:.28em;color:rgba(201,162,75,.30);pointer-events:none;white-space:nowrap}
+.stage h2{font-family:var(--font-head);color:var(--ink-0);font-size:1.7rem;margin-bottom:6px;display:flex;align-items:center;gap:10px}
+.stage h2 svg{width:22px;height:22px;stroke:var(--accent)}
+.stage .desc{color:var(--ink-muted);line-height:1.65;margin-bottom:18px;max-width:760px}
+.field{display:flex;flex-direction:column;gap:8px;margin-bottom:16px}
+.field label{display:flex;align-items:center;gap:8px;font-weight:800;color:var(--ink-0);font-size:.95rem}
+.field label svg{width:16px;height:16px;stroke:var(--accent)}
+input[type="text"],input[type="number"],select,textarea{width:100%;border:1px solid var(--line-soft);border-radius:14px;padding:14px 15px;font-size:1rem;font-family:var(--font-main);background:linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));color:#fff;outline:none;transition:var(--trans);box-sizing:border-box;color-scheme:dark}
+select option{background:#101A3A;color:#fff}
+input:focus,select:focus,textarea:focus{border-color:rgba(201,162,75,.6);box-shadow:0 0 0 4px rgba(201,162,75,.15)}
+input::placeholder,textarea::placeholder{color:#7d7667}
+.field-hint{font-size:.84rem;color:var(--ink-muted);line-height:1.5}
+.info-banner{display:flex;gap:10px;align-items:flex-start;background:rgba(143,163,184,0.12);border:1px solid rgba(143,163,184,0.35);border-radius:8px;padding:10px 12px;margin-bottom:14px;font-size:13px;line-height:1.5;color:var(--ink-1)}
+.info-banner svg{flex-shrink:0;width:18px;height:18px;margin-top:2px;stroke:var(--accent-2)}
+.info-banner strong{color:var(--ink-0)}
+.seg-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
+.seg-btn{border:1px solid var(--line-soft);cursor:pointer;border-radius:14px;padding:14px 10px;font-weight:800;font-size:.95rem;color:var(--ink-muted);background:rgba(255,255,255,.04);transition:var(--trans);font-family:var(--font-main);display:flex;align-items:center;justify-content:center;gap:8px}
+.seg-btn svg{width:18px;height:18px}
+.seg-btn.active{background:linear-gradient(135deg,var(--accent),#7A5F26);color:#0A1028;border-color:transparent;box-shadow:0 8px 22px rgba(201,162,75,.25)}
+.kv-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.kv{background:rgba(255,255,255,.045);border:1px solid var(--line-soft);border-radius:14px;padding:14px}
+.kv small{display:block;font-size:.72rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-muted);margin-bottom:6px}
+.kv strong{font-family:var(--font-head);font-size:1.5rem;color:var(--ink-0);line-height:1.1}
+.kv.hero{background:linear-gradient(135deg, rgba(201,162,75,.16), rgba(255,255,255,.02));border-color:var(--line)}
+.kv.hero strong{color:var(--accent)}
+.formula{font-size:.85rem;color:var(--ink-muted);background:rgba(0,0,0,.25);border:1px dashed rgba(201,162,75,.35);border-radius:12px;padding:12px 14px;margin:10px 0;line-height:1.6}
+.formula code{color:var(--accent-2);font-weight:700}
+.warn-box{display:flex;gap:10px;align-items:flex-start;padding:13px 14px;border-radius:14px;margin:12px 0;background:rgba(217,106,95,.10);border:1px solid rgba(217,106,95,.45);border-left:4px solid var(--danger);color:#f3d9d4;font-size:.9rem;line-height:1.55}
+.warn-box svg{width:20px;height:20px;flex-shrink:0;stroke:var(--danger);margin-top:2px}
+.splitbar{display:flex;height:26px;border-radius:999px;overflow:hidden;margin:12px 0 6px;border:1px solid var(--line-soft)}
+.splitbar div{height:100%;transition:width .3s ease}
+.split-legend{display:flex;flex-wrap:wrap;gap:14px;font-size:.82rem;color:var(--ink-muted);margin-bottom:6px}
+.split-legend i{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:6px;vertical-align:baseline}
+table.cmp{width:100%;border-collapse:collapse;margin-top:12px;font-size:.92rem}
+table.cmp th,table.cmp td{padding:11px 10px;text-align:right;border-bottom:1px solid var(--line-soft)}
+table.cmp th:first-child,table.cmp td:first-child{text-align:left}
+table.cmp th{font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-muted)}
+table.cmp tr.hl td{background:rgba(201,162,75,.12);font-weight:800;color:var(--ink-0)}
+table.cmp tr.hl td:first-child{border-left:3px solid var(--accent)}
+.goal-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+.goal-card{background:rgba(255,255,255,.045);border:1px solid var(--line-soft);border-radius:16px;padding:18px}
+.goal-card h4{font-family:var(--font-head);color:var(--ink-0);font-size:1.1rem;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.goal-card h4 svg{width:18px;height:18px;stroke:var(--accent)}
+.goal-result{font-size:1.05rem;font-weight:800;color:var(--accent);margin-top:10px;line-height:1.5}
+.footer-brand{margin:22px 0 8px;text-align:center;color:var(--ink-muted);font-size:.9rem}
+.disclaimer{margin:14px auto 0;max-width:900px;text-align:center;color:var(--ink-muted);font-size:.8rem;line-height:1.6;padding:0 20px 26px;}
+.two-col{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:22px;align-items:start}
+.mini-card{background:rgba(255,255,255,.045);border:1px solid var(--line);border-radius:16px;padding:18px;position:sticky;top:20px}
+.mini-card h4{font-family:var(--font-head);color:var(--ink-0);font-size:1.1rem;margin-bottom:10px}
+@media (max-width:1019px){.two-col{grid-template-columns:1fr;}.mini-card{position:static;}.goal-grid{grid-template-columns:1fr;}}
+@media (max-width:860px){
+  .app-shell{padding:14px}
+  .stage{padding:18px}
+  .kit-badge{display:none}
+  .brand-text strong{font-size:1.1rem}
+  .seg-row{grid-template-columns:1fr}
+}
+@media (max-width:640px){.wf-step-pill{min-width:72px}.wf-step-label{font-size:.68rem}.wf-dot{width:38px;height:38px}}
+</style>
+</head>
+<body>
+<div class="app-shell">
+  <header class="brand-bar">
+    <span class="brand-emblem"><i data-lucide="calculator"></i></span>
+    <span class="brand-text"><small>Unexplained Sky Mysteries · KDP Production Suite Bonus #1</small><strong>Print Cost &amp; Royalty Estimator</strong></span>
+    <span class="kit-badge">Bonus #1</span>
+  </header>
+
+  <div class="wf-steps" id="wfSteps">
+    <button type="button" class="wf-step-pill current clickable" data-wf="1" onclick="wfGoto(1)">
+      <span class="wf-dot"><span class="wf-num">1</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Specs</span>
+    </button>
+    <div class="wf-link" data-wf-link="1"></div>
+    <button type="button" class="wf-step-pill" data-wf="2" onclick="wfGoto(2)">
+      <span class="wf-dot"><span class="wf-num">2</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Results</span>
+    </button>
+    <div class="wf-link" data-wf-link="2"></div>
+    <button type="button" class="wf-step-pill" data-wf="3" onclick="wfGoto(3)">
+      <span class="wf-dot"><span class="wf-num">3</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Compare</span>
+    </button>
+    <div class="wf-link" data-wf-link="3"></div>
+    <button type="button" class="wf-step-pill" data-wf="4" onclick="wfGoto(4)">
+      <span class="wf-dot"><span class="wf-num">4</span><i data-lucide="check" class="wf-check"></i></span>
+      <span class="wf-step-label">Goals</span>
+    </button>
+  </div>
+  <div class="wf-counter" id="wfCounter">Step 1 of 4</div>
+
+  <div class="wf-step active" id="wf-step-1">
+    <section class="stage">
+      <h2><i data-lucide="book-open"></i> Step 1 — Book Specs</h2>
+      <p class="desc">Enter your book's exact print specs and price. Everything on this page — including the snapshot on the right — updates live.</p>
+      <div class="two-col">
+      <div>
+      <div class="field">
+        <label><i data-lucide="globe"></i> Marketplace</label>
+        <select id="kdp-market" onchange="onMarketChange()">
+          <option value="US" selected>US — Amazon.com ($)</option>
+          <option value="UK">UK — Amazon.co.uk (£)</option>
+          <option value="EU">EU — Amazon.de / .fr / .it / .es… (€)</option>
+          <option value="CA">Canada — Amazon.ca (CAD $)</option>
+          <option value="AU">Australia — Amazon.com.au (A$)</option>
+          <option value="JP">Japan — Amazon.co.jp (¥)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label><i data-lucide="book"></i> Format</label>
+        <div class="seg-row">
+          <button type="button" class="seg-btn active" id="fmt-pb" onclick="setFormat('pb')"><i data-lucide="book-open"></i>Paperback</button>
+          <button type="button" class="seg-btn" id="fmt-hc" onclick="setFormat('hc')"><i data-lucide="book"></i>Hardcover</button>
+        </div>
+      </div>
+      <div class="field">
+        <label><i data-lucide="ruler"></i> Trim Size</label>
+        <select id="kdp-trim" onchange="renderAll()"></select>
+        <div class="field-hint" id="trim-note"></div>
+      </div>
+      <div class="field">
+        <label><i data-lucide="droplet"></i> Interior Ink</label>
+        <select id="kdp-ink" onchange="renderAll()"></select>
+      </div>
+      <div class="field" id="paper-row">
+        <label><i data-lucide="layers"></i> Paper Type</label>
+        <select id="kdp-paper" onchange="renderAll()">
+          <option value="white" selected>White paper</option>
+          <option value="cream">Cream paper</option>
+        </select>
+        <div class="field-hint">White vs. cream costs the same to print. (Groundwood paper exists at roughly 5% less — confirm on KDP if you use it.)</div>
+      </div>
+      <div class="field">
+        <label><i data-lucide="file-stack"></i> Page Count</label>
+        <input type="number" id="kdp-pages" value="220" min="1" oninput="renderAll()">
+        <div class="field-hint" id="pages-note"></div>
+      </div>
+      <div class="field">
+        <label><i data-lucide="tag"></i> List Price</label>
+        <input type="number" id="kdp-price" value="12.99" min="0" step="0.01" oninput="renderAll()">
+        <div class="field-hint" id="price-note"></div>
+      </div>
+      </div>
+      <div>
+      <div class="mini-card">
+        <h4>Live snapshot</h4>
+        <div class="kv-grid" style="grid-template-columns:1fr 1fr;margin:0;">
+          <div class="kv"><small>Printing cost</small><strong id="mini-cost">–</strong></div>
+          <div class="kv hero"><small>Your royalty</small><strong id="mini-royalty">–</strong></div>
+          <div class="kv"><small>Min. list price</small><strong id="mini-min">–</strong></div>
+          <div class="kv"><small>Rate applied</small><strong id="mini-rate">–</strong></div>
+        </div>
+      </div>
+      </div>
+      </div>
+      <div class="wf-nav">
+        <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 2: Results →</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="wf-step" id="wf-step-2">
+    <section class="stage">
+      <h2><i data-lucide="pie-chart"></i> Step 2 — Instant Results</h2>
+      <p class="desc">Your exact numbers for these specs — no black box, the formula is shown under every figure.</p>
+      <div class="kv-grid">
+        <div class="kv"><small>Printing cost</small><strong id="r-cost">–</strong></div>
+        <div class="kv hero"><small>Royalty / copy (Amazon)</small><strong id="r-royalty">–</strong></div>
+        <div class="kv"><small>Royalty / copy (Expanded · 40%)</small><strong id="r-expanded">–</strong></div>
+        <div class="kv"><small>Minimum viable list price</small><strong id="r-minprice">–</strong></div>
+      </div>
+      <div class="formula" id="r-formula"></div>
+      <div id="r-warnings"></div>
+      <div class="stamp-title" style="display:flex;align-items:center;gap:12px;margin:18px 0 6px;"><h4 style="font-family:var(--font-head);color:var(--ink-0);">Where each <span id="r-currency-word">dollar</span> goes</h4></div>
+      <div class="splitbar"><div id="split-cost" style="background:#8FA3B8;"></div><div id="split-royalty" style="background:#C9A24B;"></div><div id="split-amazon" style="background:rgba(255,255,255,.18);"></div></div>
+      <div class="split-legend">
+        <span><i style="background:#8FA3B8;"></i>Printing cost <b id="split-cost-t"></b></span>
+        <span><i style="background:#C9A24B;"></i>Your royalty <b id="split-royalty-t"></b></span>
+        <span><i style="background:rgba(255,255,255,.35);"></i>Amazon's share <b id="split-amazon-t"></b></span>
+      </div>
+      <div class="wf-nav">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back</button>
+        <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 3: Compare →</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="wf-step" id="wf-step-3">
+    <section class="stage">
+      <h2><i data-lucide="scale"></i> Step 3 — Price Point Comparison</h2>
+      <p class="desc">How your royalty scales if you price a little lower or higher. Your entered price is highlighted.</p>
+      <div style="overflow-x:auto;">
+      <table class="cmp" id="cmp-table">
+        <thead><tr><th>List price</th><th>Rate</th><th>Printing cost</th><th>Royalty / copy</th></tr></thead>
+        <tbody id="cmp-body"></tbody>
+      </table>
+      </div>
+      <div class="wf-nav">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back</button>
+        <button type="button" class="wf-continue" onclick="wfNext()">Continue to Step 4: Goals →</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="wf-step" id="wf-step-4">
+    <section class="stage">
+      <h2><i data-lucide="target"></i> Step 4 — Break-Even &amp; Sales Goals</h2>
+      <p class="desc">Turn the Step 2 royalty figure into a plan. Both directions calculate instantly.</p>
+      <div class="goal-grid">
+        <div class="goal-card">
+          <h4><i data-lucide="trophy"></i>Revenue goal → units needed</h4>
+          <div class="field"><label>I want to earn</label><input type="number" id="goal-revenue" value="500" min="0" step="1" oninput="renderGoals()"></div>
+          <div class="goal-result" id="goal-units">–</div>
+        </div>
+        <div class="goal-card">
+          <h4><i data-lucide="shopping-cart"></i>Units sold → total revenue</h4>
+          <div class="field"><label>If I sell this many copies</label><input type="number" id="goal-units-in" value="100" min="0" step="1" oninput="renderGoals()"></div>
+          <div class="goal-result" id="goal-revenue-out">–</div>
+        </div>
+      </div>
+      <div class="info-banner" style="margin-top:14px;"><i data-lucide="info"></i><div><strong>Based on your current Step 2 royalty per copy.</strong> Change specs or price on Step 1 and these goals recalculate automatically.</div></div>
+      <div class="wf-nav">
+        <button type="button" class="wf-back" onclick="wfBack()">← Back</button>
+      </div>
+    </section>
+  </div>
+
+  <div class="footer-brand"><strong>Unexplained Sky Mysteries</strong> — KDP Production Suite Bonus #1</div>
+</div>
+<div class="disclaimer" id="rate-disclaimer"></div>
+
+<script>
+/* ============================================================
+   KDP PRINT COST & ROYALTY ESTIMATOR — data + logic
+   Rate research date: September 21, 2026.
+   PRIMARY SOURCES (re-verify here if Amazon changes rates):
+   - Paperback printing-cost tables: https://kdp.amazon.com/en_US/help/topic/G201834340
+     ("Paperback Printing Cost")
+   - Hardcover printing-cost tables: https://kdp.amazon.com/help?topicId=GHT976ZKSKUXBB6H
+     ("Hardcover Printing Cost")
+   - Royalty rates + thresholds: https://kdp.amazon.com/en_US/help/topic/G201834330
+     ("Paperback Royalty") and https://kdp.amazon.com/help/topic/G77F3WPD3KQLJTFS
+     ("Hardcover Royalty")
+   - Pricing rules (min/max list): https://kdp.amazon.com/en_US/help/topic/G8BKPU9AGVZSF9QF
+     ("Print Book Pricing Page")
+   Cross-checked 2026-08-04 against kdpcalc.com/print-cost (third party).
+   Band edges (e.g. AU black 24-108, premium 24-40/42-828, hardcover
+   75-108/110-550) are taken verbatim from the KDP tables above; a page
+   count falling in a printed gap (e.g. 41 premium pages, 109 hardcover
+   pages) is computed with the per-page band, flagged "estimate, verify
+   on KDP" in the UI via the band label.
+   ============================================================ */
+
+// Marketplace config: currency, 60%-rate price threshold, max list price.
+// Source: Paperback Royalty + Hardcover Royalty help pages (threshold table),
+// max list from the Printing Cost pages. PL/SE omitted by choice (EU focus
+// + US/UK/CA/AU/JP); hardcover cost rows are published by KDP only for
+// US/UK/EU, so hardcover is offered for those three marketplaces only.
+var KDP_MARKETS = {
+  US: { cur: 'USD', sym: '$', dec: 2, rate60: 9.99, maxList: 250 },
+  UK: { cur: 'GBP', sym: '£', dec: 2, rate60: 7.99, maxList: 250 },
+  EU: { cur: 'EUR', sym: '€', dec: 2, rate60: 9.99, maxList: 250 },
+  CA: { cur: 'CAD', sym: 'CA$', dec: 2, rate60: 13.99, maxList: 350 },
+  AU: { cur: 'AUD', sym: 'A$', dec: 2, rate60: 13.99, maxList: 350 },
+  JP: { cur: 'JPY', sym: '¥', dec: 0, rate60: 1000, maxList: 30000 }
+};
+
+// Paperback rate tables. Each ink entry: flat-band upper page limit (pages at
+// or below pay flat only), flat fixed costs, per-page fixed + rates, limits.
+// Source: Paperback Printing Cost page (G201834340). Standard color has no
+// flat band (72-600 always per-page); AU publishes no standard-color row, so
+// it is not offered for AU here. Groundwood not offered (White/Cream only);
+// groundwood runs ~5% cheaper per KDP — noted in the UI, verify on KDP.
+var KDP_PB = {
+  US: {
+    bw:      { flatMax: 110, flatReg: 2.30, flatLarge: 2.84, fixed: 1.00, perReg: 0.012, perLarge: 0.017, minP: 24, maxP: 828 },
+    premium: { flatMax: 40, flatReg: 3.60, flatLarge: 4.20, fixed: 1.00, perReg: 0.065, perLarge: 0.080, minP: 24, maxP: 828 },
+    standard:{ flatMax: 71, flatReg: 0, flatLarge: 0, fixed: 1.00, perReg: 0.0255, perLarge: 0.0402, minP: 72, maxP: 600 }
+  },
+  UK: {
+    bw:      { flatMax: 110, flatReg: 1.93, flatLarge: 2.15, fixed: 0.85, perReg: 0.010, perLarge: 0.012, minP: 24, maxP: 828 },
+    premium: { flatMax: 40, flatReg: 2.59, flatLarge: 3.24, fixed: 0.85, perReg: 0.0435, perLarge: 0.0598, minP: 24, maxP: 828 },
+    standard:{ flatMax: 71, flatReg: 0, flatLarge: 0, fixed: 0.85, perReg: 0.020, perLarge: 0.027, minP: 72, maxP: 600 }
+  },
+  EU: {
+    bw:      { flatMax: 110, flatReg: 2.05, flatLarge: 2.48, fixed: 0.75, perReg: 0.012, perLarge: 0.016, minP: 24, maxP: 828 },
+    premium: { flatMax: 40, flatReg: 2.85, flatLarge: 3.61, fixed: 0.75, perReg: 0.0525, perLarge: 0.0715, minP: 24, maxP: 828 },
+    standard:{ flatMax: 71, flatReg: 0, flatLarge: 0, fixed: 0.75, perReg: 0.024, perLarge: 0.035, minP: 72, maxP: 600 }
+  },
+  CA: {
+    bw:      { flatMax: 110, flatReg: 2.99, flatLarge: 3.53, fixed: 1.26, perReg: 0.016, perLarge: 0.021, minP: 24, maxP: 828 },
+    premium: { flatMax: 40, flatReg: 4.66, flatLarge: 5.26, fixed: 1.26, perReg: 0.085, perLarge: 0.10, minP: 24, maxP: 828 },
+    standard:{ flatMax: 71, flatReg: 0, flatLarge: 0, fixed: 1.26, perReg: 0.037, perLarge: 0.052, minP: 72, maxP: 600 }
+  },
+  AU: {
+    bw:      { flatMax: 108, flatReg: 4.74, flatLarge: 5.28, fixed: 2.42, perReg: 0.022, perLarge: 0.027, minP: 24, maxP: 828 },
+    premium: { flatMax: 40, flatReg: 5.82, flatLarge: 6.42, fixed: 2.42, perReg: 0.085, perLarge: 0.10, minP: 24, maxP: 828 }
+  },
+  JP: {
+    bw:      { flatMax: 110, flatReg: 422, flatLarge: 530, fixed: 206, perReg: 2, perLarge: 3, minP: 24, maxP: 828 },
+    premium: { flatMax: 40, flatReg: 475, flatLarge: 475, fixed: 206, perReg: 4, perLarge: 5, minP: 24, maxP: 828 },
+    standard:{ flatMax: 71, flatReg: 0, flatLarge: 0, fixed: 206, perReg: 3.5, perLarge: 4.5, minP: 72, maxP: 600 }
+  }
+};
+
+// Hardcover rate tables. Source: Hardcover Printing Cost page
+// (topicId=GHT976ZKSKUXBB6H). KDP publishes cost rows for US/UK/EU only
+// (plus PL/SE, omitted by choice); standard color ink is not offered for
+// hardcover (premium color only). Bands: black 75-108 flat / 110-550
+// per-page; premium 75-550 always per-page.
+var KDP_HC = {
+  US: {
+    bw:      { flatMax: 108, flatReg: 6.80, flatLarge: 7.49, fixed: 5.65, perReg: 0.012, perLarge: 0.017, minP: 75, maxP: 550 },
+    premium: { flatMax: 74, flatReg: 0, flatLarge: 0, fixed: 5.65, perReg: 0.065, perLarge: 0.080, minP: 75, maxP: 550 }
+  },
+  UK: {
+    bw:      { flatMax: 108, flatReg: 5.23, flatLarge: 5.45, fixed: 4.15, perReg: 0.010, perLarge: 0.012, minP: 75, maxP: 550 },
+    premium: { flatMax: 74, flatReg: 0, flatLarge: 0, fixed: 4.15, perReg: 0.045, perLarge: 0.060, minP: 75, maxP: 550 }
+  },
+  EU: {
+    bw:      { flatMax: 108, flatReg: 5.95, flatLarge: 6.35, fixed: 4.65, perReg: 0.012, perLarge: 0.016, minP: 75, maxP: 550 },
+    premium: { flatMax: 74, flatReg: 0, flatLarge: 0, fixed: 4.65, perReg: 0.057, perLarge: 0.072, minP: 75, maxP: 550 }
+  }
+};
+
+// Real KDP trim sizes. Large = width > 6.12in OR height > 9in (Print Options
+// help page). Hardcover: the 5 sizes KDP lists (no custom hardcover trims).
+var TRIMS_PB = [
+  [5, 8], [5.06, 7.81], [5.25, 8], [5.5, 8.5], [6, 9], [6.14, 9.21],
+  [6.69, 9.61], [7, 10], [7.44, 9.69], [7.5, 9.25], [8, 10], [8.25, 6],
+  [8.25, 8.25], [8.25, 11], [8.5, 8.5], [8.5, 11]
+];
+var TRIMS_HC = [[5.5, 8.5], [6, 9], [6.14, 9.21], [7, 10], [8.25, 11]];
+var INK_LABEL = { bw: 'Black & White', premium: 'Premium Color', standard: 'Standard Color' };
+
+/* ---------- core math (pure functions — easy to unit-test) ---------- */
+function trimLabel(t) { return t[0] + ' x ' + t[1] + ' in'; }
+function isLargeTrim(t) { return t[0] > 6.12 || t[1] > 9; }
+
+// Printing cost for an exact spec. Returns {cost, band, fixed, per}.
+// Formula (all KDP cost pages): fixed + pages*per, or flat fixed in low band.
+function printCost(mkt, format, ink, large, pages) {
+  var table = (format === 'hc' ? KDP_HC[mkt] : KDP_PB[mkt])[ink];
+  var dec = KDP_MARKETS[mkt].dec;
+  var round = function (x) {
+    if (dec === 0) return Math.round(x);
+    return Math.round(x * 100) / 100;
+  };
+  if (pages <= table.flatMax) {
+    return { cost: round(large ? table.flatLarge : table.flatReg), band: 'flat', fixed: (large ? table.flatLarge : table.flatReg), per: 0 };
+  }
+  var fixed = table.fixed;
+  var per = large ? table.perLarge : table.perReg;
+  return { cost: round(fixed + pages * per), band: 'perpage', fixed: fixed, per: per };
+}
+
+// Royalty rate from list price (60% at/above threshold, else 50%).
+// Source: Paperback Royalty + Hardcover Royalty pages (rate tables).
+function rateFor(mkt, price) {
+  return price >= KDP_MARKETS[mkt].rate60 - 1e-9 ? 0.6 : 0.5;
+}
+
+function money(x, mkt) {
+  var m = KDP_MARKETS[mkt];
+  if (m.dec === 0) return m.sym + Math.round(x).toString();
+  var v = (Math.round(x * 100) / 100).toFixed(2);
+  return m.sym + v;
+}
+
+// Smallest list price (1-cent steps) with non-negative royalty.
+function minViablePrice(mkt, format, ink, large, pages, cost) {
+  var step = KDP_MARKETS[mkt].dec === 0 ? 1 : 0.01;
+  var p = 0;
+  var guard = 0;
+  while (guard < 2000000) {
+    var r = rateFor(mkt, p) * p - cost;
+    if (r >= -0.000001) return Math.round(p * 100) / 100;
+    p = Math.round((p + step) * 100) / 100;
+    guard++;
+  }
+  return Math.round(p * 100) / 100;
+}
+/* ---------- UI state + rendering ---------- */
+var curFormat = 'pb';
+
+function el(id) { return document.getElementById(id); }
+function escHtml(s) {
+  return String(s === undefined || s === null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+}
+
+function setFormat(f) {
+  curFormat = f;
+  el('fmt-pb').classList.toggle('active', f === 'pb');
+  el('fmt-hc').classList.toggle('active', f === 'hc');
+  populateTrims();
+  populateInks();
+  renderAll();
+}
+
+function onMarketChange() {
+  var mkt = el('kdp-market').value;
+  if (curFormat === 'hc' && !KDP_HC[mkt]) {
+    setFormat('pb');
+    return;
+  }
+  populateTrims();
+  populateInks();
+  renderAll();
+}
+
+function populateTrims() {
+  var sel = el('kdp-trim');
+  var list = curFormat === 'hc' ? TRIMS_HC : TRIMS_PB;
+  var keep = sel.value;
+  var html = '';
+  for (var i = 0; i < list.length; i++) {
+    var t = list[i];
+    var v = t[0] + 'x' + t[1];
+    var tag = isLargeTrim(t) ? ' — Large trim' : '';
+    html += '<option value="' + v + '"' + (v === keep ? ' selected' : '') + (v === '6x9' && !keep ? ' selected' : '') + '>' + trimLabel(t) + tag + '</option>';
+  }
+  sel.innerHTML = html;
+}
+
+function populateInks() {
+  var sel = el('kdp-ink');
+  var mkt = el('kdp-market').value;
+  var table = (curFormat === 'hc' ? KDP_HC[mkt] : KDP_PB[mkt]) || KDP_PB[mkt] || KDP_PB.US;
+  var keep = sel.value;
+  var html = '';
+  var keys = ['bw', 'standard', 'premium'];
+  for (var i = 0; i < keys.length; i++) {
+    var k = keys[i];
+    if (!table[k]) continue;
+    if (curFormat === 'hc' && k === 'standard') continue;
+    html += '<option value="' + k + '"' + (k === keep ? ' selected' : '') + '>' + INK_LABEL[k] + '</option>';
+  }
+  sel.innerHTML = html;
+  if (!sel.value) sel.selectedIndex = 0;
+  var prow = el('paper-row');
+  if (prow) prow.style.display = (curFormat === 'pb' && sel.value === 'bw') ? '' : 'none';
+}
+
+function readSpecs() {
+  var mkt = el('kdp-market').value;
+  if (curFormat === 'hc' && !KDP_HC[mkt]) mkt = 'US';
+  var tv = (el('kdp-trim').value || '6x9').split('x');
+  var trim = [parseFloat(tv[0]), parseFloat(tv[1])];
+  var ink = el('kdp-ink').value || 'bw';
+  var table = (curFormat === 'hc' ? KDP_HC[mkt] : KDP_PB[mkt])[ink] || (curFormat === 'hc' ? KDP_HC[mkt].bw : KDP_PB[mkt].bw);
+  var pages = parseInt(el('kdp-pages').value, 10);
+  if (isNaN(pages) || pages < 1) pages = 1;
+  var price = parseFloat(el('kdp-price').value);
+  if (isNaN(price) || price < 0) price = 0;
+  return { mkt: mkt, format: curFormat, ink: ink, trim: trim, large: isLargeTrim(trim), pages: pages, price: price, table: table };
+}
+
+function calcAll(spec) {
+  var pc = printCost(spec.mkt, spec.format, spec.ink, spec.large, spec.pages);
+  var rate = rateFor(spec.mkt, spec.price);
+  var royalty = rate * spec.price - pc.cost;
+  var expanded = spec.format === 'pb' ? 0.4 * spec.price - pc.cost : null;
+  var minV = minViablePrice(spec.mkt, spec.format, spec.ink, spec.large, spec.pages, pc.cost);
+  var maxList = KDP_MARKETS[spec.mkt].maxList;
+  var inRange = spec.pages >= spec.table.minP && spec.pages <= spec.table.maxP;
+  return { pc: pc, rate: rate, royalty: royalty, expanded: expanded, minV: minV, maxList: maxList, inRange: inRange };
+}
+
+function formulaText(spec, pc) {
+  var m = KDP_MARKETS[spec.mkt];
+  var unit = m.dec === 0 ? '' : ' ' + m.cur;
+  if (pc.band === 'flat') {
+    return 'Flat-rate band (' + spec.table.minP + '–' + spec.table.flatMax + ' pages): fixed cost only, no per-page charge.';
+  }
+  return money(pc.fixed, spec.mkt) + ' fixed + (' + spec.pages + ' pages × ' + money(pc.per, spec.mkt) + '/page)' + ' = ' + money(pc.cost, spec.mkt) + unit;
+}
+
+function renderAll() {
+  var spec = readSpecs();
+  var r = calcAll(spec);
+  var m = KDP_MARKETS[spec.mkt];
+  // snapshot (step 1)
+  el('mini-cost').textContent = money(r.pc.cost, spec.mkt);
+  el('mini-royalty').textContent = money(r.royalty, spec.mkt);
+  el('mini-min').textContent = money(r.minV, spec.mkt);
+  el('mini-rate').textContent = Math.round(r.rate * 100) + '%';
+  // trim + pages + price notes
+  var tn = el('trim-note');
+  if (tn) tn.textContent = trimLabel(spec.trim) + (spec.large ? ' is a Large trim size (higher per-page cost).' : ' is a Regular trim size (lower per-page cost).');
+  var pn = el('pages-note');
+  if (pn) {
+    if (!r.inRange) pn.textContent = '⚠️ KDP accepts ' + spec.table.minP + '–' + spec.table.maxP + ' pages for this spec — adjust before publishing.';
+    else pn.textContent = 'Valid page range for this spec: ' + spec.table.minP + '–' + spec.table.maxP + ' pages.';
+  }
+  var prn = el('price-note');
+  if (prn) {
+    var bits = 'Minimum viable list price for these specs: ' + money(r.minV, spec.mkt) + ' (royalty hits $0). Max list price here: ' + money(r.maxList, spec.mkt) + '.';
+    if (spec.price < r.minV - 1e-9) bits = '⚠️ Below the KDP minimum — at ' + money(spec.price, spec.mkt) + ' your royalty would be negative. ' + bits;
+    else if (spec.price > r.maxList) bits = '⚠️ Above KDP\u2019s maximum list price of ' + money(r.maxList, spec.mkt) + ' for this marketplace. ' + bits;
+    prn.textContent = bits;
+  }
+  // results (step 2)
+  el('r-cost').textContent = money(r.pc.cost, spec.mkt);
+  el('r-royalty').textContent = money(r.royalty, spec.mkt);
+  el('r-expanded').textContent = r.expanded === null ? 'n/a — hardcover has no Expanded Distribution' : money(r.expanded, spec.mkt);
+  el('r-minprice').textContent = money(r.minV, spec.mkt);
+  el('r-formula').innerHTML = '<code>' + escHtml(formulaText(spec, r.pc)) + '</code><br>Band: ' + escHtml(spec.table.minP + '–' + (r.pc.band === 'flat' ? spec.table.flatMax : spec.table.maxP) + ' pages (' + (r.pc.band === 'flat' ? 'flat fixed cost' : 'fixed + per-page') + ')') + '. Royalty = ' + Math.round(r.rate * 100) + '% × list − printing cost.';
+  var whtml = '';
+  if (!r.inRange) whtml += '<div class="warn-box"><i data-lucide="alert-triangle"></i><div><strong>Page count out of KDP range.</strong> This spec allows ' + spec.table.minP + '–' + spec.table.maxP + ' pages; you entered ' + spec.pages + '. Fix the page count before publishing.</div></div>';
+  if (spec.price < r.minV - 1e-9) whtml += '<div class="warn-box"><i data-lucide="alert-triangle"></i><div><strong>Price below minimum.</strong> KDP will reject ' + money(spec.price, spec.mkt) + ' for these specs — raise it to at least ' + money(r.minV, spec.mkt) + '.</div></div>';
+  if (spec.price > r.maxList) whtml += '<div class="warn-box"><i data-lucide="alert-triangle"></i><div><strong>Price above maximum.</strong> KDP caps this marketplace at ' + money(r.maxList, spec.mkt) + '.</div></div>';
+  el('r-warnings').innerHTML = whtml;
+  // split bar (shares of list price)
+  var p = spec.price > 0 ? spec.price : 1;
+  var costPct = Math.max(0, Math.min(100, r.pc.cost / p * 100));
+  var royPct = Math.max(0, Math.min(100 - costPct, r.royalty / p * 100));
+  var amaPct = Math.max(0, 100 - costPct - royPct);
+  el('split-cost').style.width = costPct + '%';
+  el('split-royalty').style.width = royPct + '%';
+  el('split-amazon').style.width = amaPct + '%';
+  el('split-cost-t').textContent = money(r.pc.cost, spec.mkt);
+  el('split-royalty-t').textContent = money(r.royalty, spec.mkt);
+  el('split-amazon-t').textContent = money(p - r.pc.cost - r.royalty, spec.mkt);
+  var cw = { US: 'dollar', UK: 'pound', EU: 'euro', CA: 'dollar', AU: 'dollar', JP: 'yen' };
+  el('r-currency-word').textContent = cw[spec.mkt] || 'dollar';
+  renderTable(spec, r);
+  renderGoals(spec, r);
+  if (window.lucide) lucide.createIcons();
+}
+
+function renderTable(spec, r) {
+  var body = el('cmp-body');
+  if (!body) return;
+  var m = KDP_MARKETS[spec.mkt];
+  var unit = m.dec === 0 ? 100 : 1;
+  var offs = [-4 * unit, -2 * unit, 0, 2 * unit, 4 * unit, 6 * unit];
+  var html = '';
+  for (var i = 0; i < offs.length; i++) {
+    var pr = Math.round((spec.price + offs[i]) * 100) / 100;
+    if (pr <= 0 || pr > r.maxList) continue;
+    var rate = rateFor(spec.mkt, pr);
+    var roy = rate * pr - r.pc.cost;
+    var hl = Math.abs(pr - spec.price) < 1e-9 ? ' class="hl"' : '';
+    html += '<tr' + hl + '><td>' + money(pr, spec.mkt) + '</td><td>' + Math.round(rate * 100) + '%</td><td>' + money(r.pc.cost, spec.mkt) + '</td><td>' + money(roy, spec.mkt) + '</td></tr>';
+  }
+  body.innerHTML = html;
+}
+
+function renderGoals(spec, r) {
+  var rev = parseFloat((el('goal-revenue') || {}).value);
+  var unitsIn = parseFloat((el('goal-units-in') || {}).value);
+  var gu = el('goal-units');
+  var gr = el('goal-revenue-out');
+  if (gu) {
+    if (isNaN(rev) || rev <= 0) gu.textContent = '–';
+    else if (r.royalty <= 0) gu.textContent = 'Not reachable at this royalty (raise the price first).';
+    else gu.textContent = 'Sell ' + Math.ceil(rev / r.royalty).toLocaleString('en-US') + ' copies at ' + money(r.royalty, spec.mkt) + ' each.';
+  }
+  if (gr) {
+    if (isNaN(unitsIn) || unitsIn < 0) gr.textContent = '–';
+    else gr.textContent = money(unitsIn * r.royalty, spec.mkt) + ' total (' + Math.round(unitsIn).toLocaleString('en-US') + ' × ' + money(r.royalty, spec.mkt) + ').';
+  }
+}
+
+/* ---------- step workflow nav (same pattern as sibling tools) ---------- */
+var wfStep = 1;
+var wfMaxReached = 1;
+var WF_TOTAL = 4;
+function wfRender() {
+  var pills = document.querySelectorAll('#wfSteps .wf-step-pill');
+  for (var i = 0; i < pills.length; i++) {
+    var n = parseInt(pills[i].getAttribute('data-wf'), 10);
+    pills[i].classList.toggle('done', n < wfStep);
+    pills[i].classList.toggle('current', n === wfStep);
+    pills[i].classList.toggle('clickable', n <= wfMaxReached);
+  }
+  var links = document.querySelectorAll('#wfSteps .wf-link');
+  for (var j = 0; j < links.length; j++) {
+    links[j].classList.toggle('done', parseInt(links[j].getAttribute('data-wf-link'), 10) < wfStep);
+  }
+  var steps = document.querySelectorAll('.wf-step');
+  for (var k = 0; k < steps.length; k++) {
+    steps[k].classList.toggle('active', parseInt(steps[k].id.replace('wf-step-', ''), 10) === wfStep);
+  }
+  var counter = document.getElementById('wfCounter');
+  if (counter) counter.textContent = 'Step ' + wfStep + ' of ' + WF_TOTAL;
+}
+function wfGoto(n) {
+  n = Math.max(1, Math.min(WF_TOTAL, n));
+  if (n > wfMaxReached) return;
+  wfStep = n;
+  wfRender();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function wfNext() {
+  if (wfStep < WF_TOTAL) {
+    wfMaxReached = Math.max(wfMaxReached, wfStep + 1);
+    wfGoto(wfStep + 1);
+  }
+}
+function wfBack() { wfGoto(wfStep - 1); }
+
+function initEstimator() {
+  populateTrims();
+  populateInks();
+  renderAll();
+  wfRender();
+  var d = document.getElementById('rate-disclaimer');
+  if (d) d.textContent = 'Printing costs and royalty rates reflect Amazon KDP\u2019s published rates as of September 21, 2026 and are subject to change without notice — always confirm current rates on kdp.amazon.com before finalizing your price.';
+  if (window.lucide) lucide.createIcons();
+}
+document.addEventListener('DOMContentLoaded', initEstimator);
+if (window.lucide) lucide.createIcons();
+</script>
+</body>
+</html>
