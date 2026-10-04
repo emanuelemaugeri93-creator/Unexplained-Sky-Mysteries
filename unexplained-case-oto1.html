@@ -176,6 +176,83 @@
       transform: rotate(180deg);
     }
 
+    /* ---- HOW TO USE button with animated pulsing border ---- */
+    .howto-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 24px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: .95rem;
+      text-decoration: none;
+      color: #1A0B2E;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
+      font-family: var(--font-main);
+      letter-spacing: .01em;
+      white-space: nowrap;
+      cursor: pointer;
+      border: 0;
+      z-index: 1;
+      transition: var(--transition);
+      box-shadow: 0 8px 22px rgba(192,38,212,.35);
+    }
+
+    .howto-btn::before {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-primary));
+      background-size: 200% 200%;
+      z-index: -1;
+      animation: howtoBorderPulse 2s ease-in-out infinite, howtoGradientShift 3s linear infinite;
+      opacity: .9;
+    }
+
+    .howto-btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 999px;
+      box-shadow: 0 0 0 0 rgba(192,38,212,.5);
+      animation: howtoGlowPulse 2s ease-in-out infinite;
+      pointer-events: none;
+    }
+
+    .howto-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      filter: brightness(1.06);
+      box-shadow: 0 14px 32px rgba(192,38,212,.5);
+    }
+
+    .howto-btn:hover::before {
+      opacity: 1;
+    }
+
+    .howto-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+    }
+
+    @keyframes howtoBorderPulse {
+      0%, 100% { inset: -3px; opacity: .9; }
+      50% { inset: -6px; opacity: .65; }
+    }
+
+    @keyframes howtoGradientShift {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    @keyframes howtoGlowPulse {
+      0% { box-shadow: 0 0 0 0 rgba(192,38,212,.55); }
+      70% { box-shadow: 0 0 0 14px rgba(192,38,212,0); }
+      100% { box-shadow: 0 0 0 0 rgba(192,38,212,0); }
+    }
+
     .bonus-dropdown {
       max-height: 0;
       overflow: hidden;
@@ -1210,7 +1287,7 @@
 <body>
 
   <!-- ============================================
-       BONUS DROPDOWN BAR
+       BONUS DROPDOWN BAR + HOW TO USE BUTTON
        ============================================ -->
   <div class="bonus-bar">
     <div class="bonus-bar-inner">
@@ -1224,6 +1301,10 @@
           <span>Bonus Resources</span>
           <i data-lucide="chevron-down" class="bonus-chevron"></i>
         </button>
+        <a href="https://drive.google.com/file/d/14_ZPHAFauYI4fUFvias3_FovwcnmqvTE/view?usp=sharing" target="_blank" rel="noopener" class="howto-btn" id="bonusHowToBtn">
+          <i data-lucide="help-circle"></i>
+          How to Use
+        </a>
       </div>
     </div>
     <div class="bonus-dropdown" id="bonusDropdown">
