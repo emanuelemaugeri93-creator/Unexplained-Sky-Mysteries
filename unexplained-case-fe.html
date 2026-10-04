@@ -185,6 +185,40 @@
       transform: rotate(180deg);
     }
 
+    /* ---- UPGRADE toggle button (indigo/violet theme) ---- */
+    .upgrade-toggle {
+      border: 1px solid rgba(129,140,248,.4);
+      cursor: pointer;
+      background: linear-gradient(135deg, rgba(129,140,248,.28), rgba(45,212,191,.22));
+      color: #fff;
+      padding: 11px 20px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      font-weight: 800;
+      font-size: .93rem;
+      font-family: var(--font-main);
+      transition: var(--transition);
+      white-space: nowrap;
+    }
+
+    .upgrade-toggle:hover {
+      background: linear-gradient(135deg, rgba(129,140,248,.45), rgba(45,212,191,.35));
+      transform: translateY(-1px);
+    }
+
+    .upgrade-toggle svg {
+      width: 17px;
+      height: 17px;
+      stroke: currentColor;
+      transition: transform .3s ease;
+    }
+
+    .upgrade-toggle.open svg.upgrade-chevron {
+      transform: rotate(180deg);
+    }
+
     /* ---- HOW TO USE button with animated pulsing border ---- */
     .howto-btn {
       position: relative;
@@ -275,7 +309,21 @@
       border-top-color: rgba(255,255,255,.08);
     }
 
-    .bonus-dropdown-inner {
+    .upgrade-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .4s cubic-bezier(.4,0,.2,1);
+      width: 100%;
+      border-top: 1px solid transparent;
+    }
+
+    .upgrade-dropdown.open {
+      max-height: 600px;
+      border-top-color: rgba(129,140,248,.12);
+    }
+
+    .bonus-dropdown-inner,
+    .upgrade-dropdown-inner {
       max-width: 1440px;
       margin: 0 auto;
       padding: 20px 24px 24px;
@@ -332,6 +380,63 @@
       box-shadow: 0 16px 32px rgba(192,132,252,.32);
     }
 
+    /* ---- Upgrade link buttons (violet/indigo gradient) ---- */
+    .upgrade-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 24px;
+      border-radius: 18px;
+      font-weight: 800;
+      font-size: .95rem;
+      text-decoration: none;
+      color: #04111f;
+      background: linear-gradient(135deg, #818CF8, #2DD4BF);
+      box-shadow: 0 10px 24px rgba(129,140,248,.28);
+      transition: var(--transition);
+      font-family: var(--font-main);
+      letter-spacing: .01em;
+    }
+
+    .upgrade-link-btn:hover {
+      transform: translateY(-3px);
+      filter: brightness(1.06);
+      box-shadow: 0 16px 32px rgba(129,140,248,.42);
+    }
+
+    .upgrade-link-btn svg {
+      width: 18px;
+      height: 18px;
+      stroke: currentColor;
+    }
+
+    .upgrade-link-btn.upg-alt {
+      background: linear-gradient(135deg, #c4b5fd, #818CF8);
+      box-shadow: 0 10px 24px rgba(167,139,250,.28);
+    }
+
+    .upgrade-link-btn.upg-alt:hover {
+      box-shadow: 0 16px 32px rgba(167,139,250,.42);
+    }
+
+    .upgrade-link-btn.upg-alt-2 {
+      background: linear-gradient(135deg, #67e8f9, #818CF8);
+      box-shadow: 0 10px 24px rgba(103,232,249,.28);
+    }
+
+    .upgrade-link-btn.upg-alt-2:hover {
+      box-shadow: 0 16px 32px rgba(103,232,249,.42);
+    }
+
+    .upgrade-link-btn.upg-alt-3 {
+      background: linear-gradient(135deg, #2DD4BF, #818CF8);
+      box-shadow: 0 10px 24px rgba(45,212,191,.28);
+    }
+
+    .upgrade-link-btn.upg-alt-3:hover {
+      box-shadow: 0 16px 32px rgba(45,212,191,.42);
+    }
+
     @media (max-width: 640px) {
       .bonus-bar-inner {
         padding: 10px 16px;
@@ -341,12 +446,14 @@
         justify-content: center;
         width: 100%;
       }
-      .bonus-dropdown-inner {
+      .bonus-dropdown-inner,
+      .upgrade-dropdown-inner {
         padding: 16px;
         flex-direction: column;
         align-items: stretch;
       }
-      .bonus-link-btn {
+      .bonus-link-btn,
+      .upgrade-link-btn {
         justify-content: center;
       }
     }
@@ -1268,7 +1375,7 @@
 <body>
 
   <!-- ============================================
-       BONUS DROPDOWN BAR + HOW TO USE BUTTON
+       BONUS DROPDOWN BAR + UPGRADES + HOW TO USE BUTTON
        ============================================ -->
   <div class="bonus-bar">
     <div class="bonus-bar-inner">
@@ -1281,6 +1388,11 @@
           <i data-lucide="gift"></i>
           <span>Bonus Resources</span>
           <i data-lucide="chevron-down" class="bonus-chevron"></i>
+        </button>
+        <button class="upgrade-toggle" id="upgradeToggle" onclick="toggleUpgradeDropdown()" aria-expanded="false">
+          <i data-lucide="rocket"></i>
+          <span>Get Upgrades</span>
+          <i data-lucide="chevron-down" class="upgrade-chevron"></i>
         </button>
         <a href="https://drive.google.com/file/d/11Ko7xCywmf6iEr_IRE1NmKDNbDOr7NWp/view?usp=sharing" target="_blank" rel="noopener" class="howto-btn" id="bonusHowToBtn">
           <i data-lucide="help-circle"></i>
@@ -1304,12 +1416,56 @@
         </a>
       </div>
     </div>
+    <div class="upgrade-dropdown" id="upgradeDropdown">
+      <div class="upgrade-dropdown-inner">
+        <a href="https://creatorspacelab.com/unexplained-sky-mysteries-oto1" target="_blank" rel="noopener" class="upgrade-link-btn">
+          <i data-lucide="arrow-up-circle"></i>
+          Get Upgrade #2 Here
+        </a>
+        <a href="https://creatorspacelab.com/unexplained-sky-mysteries-oto2" target="_blank" rel="noopener" class="upgrade-link-btn upg-alt">
+          <i data-lucide="arrow-up-circle"></i>
+          Get Upgrade #3 Here
+        </a>
+        <a href="https://creatorspacelab.com/unexplained-sky-mysteries-oto3" target="_blank" rel="noopener" class="upgrade-link-btn upg-alt-2">
+          <i data-lucide="arrow-up-circle"></i>
+          Get Upgrade #4 Here
+        </a>
+        <a href="https://creatorspacelab.com/unexplained-sky-mysteries-oto4" target="_blank" rel="noopener" class="upgrade-link-btn upg-alt-3">
+          <i data-lucide="arrow-up-circle"></i>
+          Get Upgrade #5 Here
+        </a>
+      </div>
+    </div>
   </div>
 
   <script>
     function toggleBonusDropdown() {
       const dropdown = document.getElementById('bonusDropdown');
       const toggle = document.getElementById('bonusToggle');
+      const upgradeDropdown = document.getElementById('upgradeDropdown');
+      const upgradeToggle = document.getElementById('upgradeToggle');
+      // Close the other dropdown if open
+      if (upgradeDropdown.classList.contains('open')) {
+        upgradeDropdown.classList.remove('open');
+        upgradeToggle.classList.remove('open');
+        upgradeToggle.setAttribute('aria-expanded', 'false');
+      }
+      const isOpen = dropdown.classList.toggle('open');
+      toggle.classList.toggle('open', isOpen);
+      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+
+    function toggleUpgradeDropdown() {
+      const dropdown = document.getElementById('upgradeDropdown');
+      const toggle = document.getElementById('upgradeToggle');
+      const bonusDropdown = document.getElementById('bonusDropdown');
+      const bonusToggle = document.getElementById('bonusToggle');
+      // Close the other dropdown if open
+      if (bonusDropdown.classList.contains('open')) {
+        bonusDropdown.classList.remove('open');
+        bonusToggle.classList.remove('open');
+        bonusToggle.setAttribute('aria-expanded', 'false');
+      }
       const isOpen = dropdown.classList.toggle('open');
       toggle.classList.toggle('open', isOpen);
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
