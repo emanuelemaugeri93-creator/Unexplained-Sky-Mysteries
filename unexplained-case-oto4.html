@@ -53,9 +53,9 @@ body::before{
 .app-shell{position:relative;z-index:1;width:100%;max-width:1180px;min-width:0;margin:0 auto;padding:24px;box-sizing:border-box}
 
 /* ============================================
-   BONUS DROPDOWN BAR + HOW TO USE BUTTON
+   HOW TO USE BAR (single button, no bonus dropdown)
    ============================================ */
-.bonus-bar {
+.howto-bar {
   position: relative;
   z-index: 100;
   width: 100%;
@@ -64,66 +64,17 @@ body::before{
   backdrop-filter: blur(16px);
   box-shadow: 0 4px 24px rgba(0,0,0,.45);
 }
-.bonus-bar-inner {
+.howto-bar-inner {
   max-width: 1180px;
   margin: 0 auto;
   padding: 0 24px;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-end;
   gap: 16px;
   min-height: 58px;
   flex-wrap: wrap;
   box-sizing: border-box;
-}
-.bonus-brand {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  color: #F4EDE3;
-  font-weight: 800;
-  font-size: .98rem;
-  letter-spacing: .01em;
-}
-.bonus-brand svg {
-  width: 20px;
-  height: 20px;
-  stroke: var(--accent);
-}
-.bonus-actions {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-.bonus-toggle {
-  border: 1px solid rgba(208,90,90,.4);
-  cursor: pointer;
-  background: linear-gradient(135deg, rgba(208,90,90,.22), rgba(122,46,46,.22));
-  color: #F4EDE3;
-  padding: 11px 20px;
-  border-radius: 999px;
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font-weight: 800;
-  font-size: .93rem;
-  font-family: var(--font-main);
-  transition: var(--trans);
-  white-space: nowrap;
-}
-.bonus-toggle:hover {
-  background: linear-gradient(135deg, rgba(208,90,90,.4), rgba(122,46,46,.4));
-  transform: translateY(-1px);
-}
-.bonus-toggle svg {
-  width: 17px;
-  height: 17px;
-  stroke: currentColor;
-  transition: transform .3s ease;
-}
-.bonus-toggle.open svg.bonus-chevron {
-  transform: rotate(180deg);
 }
 /* ---- HOW TO USE button with animated pulsing border ---- */
 .howto-btn {
@@ -187,72 +138,8 @@ body::before{
   70% { box-shadow: 0 0 0 14px rgba(208,90,90,0); }
   100% { box-shadow: 0 0 0 0 rgba(208,90,90,0); }
 }
-.bonus-dropdown {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .4s cubic-bezier(.4,0,.2,1);
-  width: 100%;
-  border-top: 1px solid transparent;
-}
-.bonus-dropdown.open {
-  max-height: 600px;
-  border-top-color: rgba(208,90,90,.15);
-}
-.bonus-dropdown-inner {
-  max-width: 1180px;
-  margin: 0 auto;
-  padding: 20px 24px 24px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  align-items: center;
-  box-sizing: border-box;
-}
-.bonus-link-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 24px;
-  border-radius: 14px 14px 14px 4px;
-  font-weight: 800;
-  font-size: .95rem;
-  text-decoration: none;
-  color: #141114;
-  background: linear-gradient(135deg, var(--accent), #7A2E2E);
-  box-shadow: 0 10px 24px rgba(208,90,90,.3);
-  transition: var(--trans);
-  font-family: var(--font-main);
-  letter-spacing: .01em;
-}
-.bonus-link-btn:hover {
-  transform: translateY(-3px);
-  filter: brightness(1.06);
-  box-shadow: 0 16px 32px rgba(208,90,90,.45);
-}
-.bonus-link-btn svg {
-  width: 18px;
-  height: 18px;
-  stroke: currentColor;
-}
-.bonus-link-btn.bonus-alt {
-  background: linear-gradient(135deg, #8FA3B8, #46586C);
-  box-shadow: 0 10px 24px rgba(143,163,184,.28);
-}
-.bonus-link-btn.bonus-alt:hover {
-  box-shadow: 0 16px 32px rgba(143,163,184,.42);
-}
-.bonus-link-btn.bonus-alt-3 {
-  background: linear-gradient(135deg, #E0684E, #7A2E2E);
-  box-shadow: 0 10px 24px rgba(224,104,78,.3);
-}
-.bonus-link-btn.bonus-alt-3:hover {
-  box-shadow: 0 16px 32px rgba(224,104,78,.45);
-}
 @media (max-width: 640px) {
-  .bonus-bar-inner { padding: 10px 16px; justify-content: center; }
-  .bonus-actions { justify-content: center; width: 100%; }
-  .bonus-dropdown-inner { padding: 16px; flex-direction: column; align-items: stretch; }
-  .bonus-link-btn { justify-content: center; }
+  .howto-bar-inner { padding: 10px 16px; justify-content: center; }
 }
 
 .brand-bar{display:flex;align-items:center;gap:14px;padding:14px 20px;margin-bottom:20px;border-radius:16px;background:linear-gradient(135deg, rgba(208,90,90,.12), rgba(255,255,255,.02)),linear-gradient(135deg, #22181B, #141114);border:1px solid var(--line);box-shadow:var(--shadow-md);border-top-right-radius:4px;}
@@ -373,50 +260,16 @@ textarea{line-height:1.6;resize:vertical}
 <body>
 
   <!-- ============================================
-       BONUS DROPDOWN BAR + HOW TO USE BUTTON
+       HOW TO USE BAR
        ============================================ -->
-  <div class="bonus-bar">
-    <div class="bonus-bar-inner">
-      <div class="bonus-brand">
-        <i data-lucide="gift"></i>
-        <span>Bonus Vault</span>
-      </div>
-      <div class="bonus-actions">
-        <button class="bonus-toggle" id="bonusToggle" onclick="toggleBonusDropdown()" aria-expanded="false">
-          <i data-lucide="gift"></i>
-          <span>Bonus Resources</span>
-          <i data-lucide="chevron-down" class="bonus-chevron"></i>
-        </button>
-        <a href="https://drive.google.com/file/d/1lTL7Zh3I5Id7OQnL6kzGxFGUpQGYsEFC/view?usp=sharing" target="_blank" rel="noopener" class="howto-btn" id="bonusHowToBtn">
-          <i data-lucide="help-circle"></i>
-          How to Use
-        </a>
-      </div>
-    </div>
-    <div class="bonus-dropdown" id="bonusDropdown">
-      <div class="bonus-dropdown-inner">
-        <!-- Placeholder bonus links — swap the href values with your real bonus URLs -->
-        <a href="#" target="_blank" rel="noopener" class="bonus-link-btn">
-          <i data-lucide="download"></i>
-          Access Bonus #1 Here
-        </a>
-        <a href="#" target="_blank" rel="noopener" class="bonus-link-btn bonus-alt">
-          <i data-lucide="download"></i>
-          Access Bonus #2 Here
-        </a>
-      </div>
+  <div class="howto-bar">
+    <div class="howto-bar-inner">
+      <a href="https://drive.google.com/file/d/1lTL7Zh3I5Id7OQnL6kzGxFGUpQGYsEFC/view?usp=sharing" target="_blank" rel="noopener" class="howto-btn" id="howToUseBtn">
+        <i data-lucide="help-circle"></i>
+        How to Use
+      </a>
     </div>
   </div>
-
-  <script>
-    function toggleBonusDropdown() {
-      const dropdown = document.getElementById('bonusDropdown');
-      const toggle = document.getElementById('bonusToggle');
-      const isOpen = dropdown.classList.toggle('open');
-      toggle.classList.toggle('open', isOpen);
-      toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    }
-  </script>
 
 <div class="app-shell">
   <header class="brand-bar">
